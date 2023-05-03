@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
 
-set(project_name HW2)
+set(project_name AnimeDefenders)
 project(${project_name})
 
 set(CMAKE_CXX_STANDARD 20)
@@ -9,12 +9,15 @@ add_compile_options(-Wall -Wextra -Werror -Wpedantic)
 set(main_executable ${PROJECT_SOURCE_DIR}/src/main.cpp)
 set(include_files 
     ${PROJECT_SOURCE_DIR}/include/A_lib/A.hpp
+    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/AnimeFramework.hpp
 )
 set(include_locations 
     ${PROJECT_SOURCE_DIR}/include/A_lib
+    ${PROJECT_SOURCE_DIR}/include/AnimeFramework
 )
 set(source
     ${PROJECT_SOURCE_DIR}/src/A_lib/A.cpp
+    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/AnimeFramework.cpp
 )
 
 set(tests_folder ${PROJECT_SOURCE_DIR}/tests)
@@ -31,6 +34,9 @@ if(ENABLE_COVERAGE)
 endif()
 
 if(ENABLE_CLANG_TIDY AND NOT ENABLE_TESTING AND NOT ENABLE_COVERAGE)
+    string(REPLACE "${PROJECT_SOURCE_DIR}" "-I${PROJECT_SOURCE_DIR}" clang_tidy_includes "${include_locations}")
+    message("${clang_tidy_includes}")
+
     find_program(CLANG_TIDY "clang-tidy-15")
     add_custom_target(
         TIDY_TARGET ALL
@@ -39,7 +45,7 @@ if(ENABLE_CLANG_TIDY AND NOT ENABLE_TESTING AND NOT ENABLE_COVERAGE)
         ${source} 
         ${main_executable}
         --
-        -I"${include_locations}"
+        ${clang_tidy_includes}
         -std=c++20
     )
 endif()
