@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Body.hpp"
+#include "Vector2.hpp"
 
 namespace AnimeDefendersEngine {
     namespace PhysicsEngine {
@@ -8,7 +9,7 @@ namespace AnimeDefendersEngine {
             Body* bodyA;
             Body* bodyB;
             float penetration;
-            // Vector2d normal;
+            Math::Vector2<float> normal;
         };
     }  // namespace PhysicsEngine
 }  // namespace AnimeDefendersEngine
