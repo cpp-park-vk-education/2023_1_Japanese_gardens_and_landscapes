@@ -65,6 +65,7 @@ set(include_locations
     ${PROJECT_SOURCE_DIR}/include/Logger
     ${PROJECT_SOURCE_DIR}/include/Math
     ${PROJECT_SOURCE_DIR}/include/OpenGlDependency
+    ${PROJECT_SOURCE_DIR}/include/Physics
     ${PROJECT_SOURCE_DIR}/include/SpriteComponent
     ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent
     ${PROJECT_SOURCE_DIR}/include/UiElementComponent
