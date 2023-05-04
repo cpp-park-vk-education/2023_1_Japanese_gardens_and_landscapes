@@ -67,6 +67,12 @@ set(include_locations
 set(source
     ${PROJECT_SOURCE_DIR}/src/A_lib/A.cpp
     ${PROJECT_SOURCE_DIR}/src/AnimeFramework/AnimeFramework.cpp
+    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/ComponentManager.cpp
+    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/Entity.cpp
+    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/EventManager.cpp
+    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/GameLoop.cpp
+    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/Scene.cpp
+    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/SceneManager.cpp
     ${PROJECT_SOURCE_DIR}/src/CameraComponent/Camera.cpp
     ${PROJECT_SOURCE_DIR}/src/CameraComponent/CameraSystem.cpp
     ${PROJECT_SOURCE_DIR}/src/Graphics/Renderer.cpp
