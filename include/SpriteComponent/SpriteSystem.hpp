@@ -1,16 +1,20 @@
 #pragma once
 
-#include <vector>
-
 #include "Camera.hpp"
 #include "ISystem.hpp"
-#include "Scene.hpp"
 #include "Sprite.hpp"
 
-class SpriteSystem : public System {
- public:
-    SpriteSystem() = 0;
+#include <vector>
 
-    static auto findVisibleSprites(const std::vector<Sprite*>&, Camera*) -> std::vector<Sprite*>;
-    static auto drawSprite(Sprite*) -> void;
-};
+namespace AnimeDefendersEngine {
+
+    class SpriteSystem : public ISystem {
+     public:
+        static auto findVisibleSprites(const std::vector<Sprite*>&, Camera*) -> std::vector<Sprite*> const;
+        static auto drawSprite(Sprite*) -> void const;
+
+     private:
+        SpriteSystem();
+    };
+
+}  // namespace AnimeDefendersEngine

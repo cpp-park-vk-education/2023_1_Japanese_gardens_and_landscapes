@@ -1,10 +1,14 @@
 #pragma ones
 
-#include <vector>
-
 #include "Texture.hpp"
 
-struct Animation {
-    std::vector<Texture> frames;
-    int timeInterval;
-};
+#include <vector>
+
+namespace AnimeDefendersEngine {
+
+    struct Animation {
+        std::vector<Texture> frames;
+        int timeInterval;
+    };
+
+}  // namespace AnimeDefendersEngine

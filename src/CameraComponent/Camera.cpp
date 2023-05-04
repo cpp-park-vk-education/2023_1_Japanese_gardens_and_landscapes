@@ -1,10 +1,10 @@
-#pragma once
-
 #include "Camera.hpp"
 
-auto Camera::determineNewCameraTranspose() -> void const {}
+using namespace AnimeDefendersEngine;
 
-auto Camera::applyCameraView() -> void const {}
+auto Camera::determineNewCameraTranspose() -> void {}
+
+auto Camera::applyCameraView() -> void {}
 
 auto Camera::setMotionRule(std::function<Transpose()>) -> void {}
 

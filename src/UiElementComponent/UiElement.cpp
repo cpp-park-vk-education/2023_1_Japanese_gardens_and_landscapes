@@ -1,12 +1,12 @@
-#pragma ones
-
 #include "UiElement.hpp"
 
-auto UiElement::applyUiElementTransform() -> void {}
+using namespace AnimeDefendersEngine;
 
-auto UiElement::drawUiElement() -> void {}
+auto UiElement::applyUiElementTransform() -> void const {}
 
-auto UiElement::checkByPointInclude(int, int) -> bool {}
+auto UiElement::drawUiElement() -> void const {}
+
+auto UiElement::checkByPointInclude(int, int) -> bool const {}
 
 auto UiElement::setPosition(int, int) -> void {}
 

@@ -1,10 +1,10 @@
-#pragma once
-
 #include "Sprite.hpp"
 
-auto Sprite::isSpriteVisibleToCamera(Camera*) -> bool {}
+using namespace AnimeDefendersEngine;
 
-auto Sprite::drawSprite() -> void {}
+auto Sprite::isSpriteVisibleToCamera(Camera*) -> bool const {}
+
+auto Sprite::drawSprite() -> void const {}
 
 auto Sprite::setTransform(const Transform&) -> void {}
 

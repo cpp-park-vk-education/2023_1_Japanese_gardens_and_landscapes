@@ -1,5 +1,5 @@
-#pragma once
-
 #include "DrawTextureWrapper.hpp"
 
-auto DrawTextureWrapper::drawTexture(FileSystem::image&) -> void {}
+using namespace AnimeDefendersEngine;
+
+auto DrawTextureWrapper::drawTexture(Image&) -> void const {}

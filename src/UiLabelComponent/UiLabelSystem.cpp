@@ -1,9 +1,9 @@
-#pragma ones
+#include "UiLabelSystem.hpp"
 
-#include "UiLabelElementSystem.hpp"
+using namespace AnimeDefendersEngine;
 
-auto UiLabelElementSystem::applyUiElementTransform(UiLabelElement*) -> void {}
+auto UiLabelSystem::applyUiElementTransform(UiLabel*) -> void const {}
 
-auto UiLabelElementSystem::drawUiElement(UiLabelElement*) -> void {}
+auto UiLabelSystem::drawUiElement(UiLabel*) -> void const {}
 
-auto UiLabelElementSystem::checkByPointInclude(UiLabelElement*, int, int) -> bool {}
+auto UiLabelSystem::checkByPointInclude(UiLabel*, int, int) -> bool const {}

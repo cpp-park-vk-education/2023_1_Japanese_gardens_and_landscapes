@@ -10,14 +10,63 @@ set(main_executable ${PROJECT_SOURCE_DIR}/src/main.cpp)
 set(include_files 
     ${PROJECT_SOURCE_DIR}/include/A_lib/A.hpp
     ${PROJECT_SOURCE_DIR}/include/AnimeFramework/AnimeFramework.hpp
+    ${PROJECT_SOURCE_DIR}/include/CameraComponent/Camera.hpp
+    ${PROJECT_SOURCE_DIR}/include/CameraComponent/CameraSystem.hpp
+    ${PROJECT_SOURCE_DIR}/include/Graphics/Animaton.hpp
+    ${PROJECT_SOURCE_DIR}/include/Graphics/Color.hpp
+    ${PROJECT_SOURCE_DIR}/include/Graphics/IDrawTextureWrapper.hpp
+    ${PROJECT_SOURCE_DIR}/include/Graphics/ITrasnposeMathWrapper.hpp
+    ${PROJECT_SOURCE_DIR}/include/Graphics/IUiContextWrapper.hpp
+    ${PROJECT_SOURCE_DIR}/include/Graphics/IWindow.hpp
+    ${PROJECT_SOURCE_DIR}/include/Graphics/Renderer.hpp 
+    ${PROJECT_SOURCE_DIR}/include/Graphics/Texture.hpp
+    ${PROJECT_SOURCE_DIR}/include/OpenGlDependency/DrawTextureWrapper.hpp
+    ${PROJECT_SOURCE_DIR}/include/OpenGlDependency/TransposeMathWrapper.hpp
+    ${PROJECT_SOURCE_DIR}/include/OpenGlDependency/UiContextWrapper.hpp
+    ${PROJECT_SOURCE_DIR}/include/OpenGlDependency/Window.hpp
+    ${PROJECT_SOURCE_DIR}/include/SpriteComponent/Sprite.hpp
+    ${PROJECT_SOURCE_DIR}/include/SpriteComponent/SpriteSystem.hpp
+    ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent/UiColorElement.hpp
+    ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent/UiColorElementSystem.hpp
+    ${PROJECT_SOURCE_DIR}/include/UiElementComponent/UiElement.hpp
+    ${PROJECT_SOURCE_DIR}/include/UiElementComponent/UiElementSystem.hpp
+    ${PROJECT_SOURCE_DIR}/include/UiLabelComponent/UiLabel.hpp
+    ${PROJECT_SOURCE_DIR}/include/UiLabelComponent/UiLabelSystem.hpp
+    ${PROJECT_SOURCE_DIR}/include/UiTextureElementComponent/UiTextureElement.hpp
+    ${PROJECT_SOURCE_DIR}/include/UiTextureElementComponent/UiTextureElementSystem.hpp
 )
 set(include_locations 
     ${PROJECT_SOURCE_DIR}/include/A_lib
     ${PROJECT_SOURCE_DIR}/include/AnimeFramework
+    ${PROJECT_SOURCE_DIR}/include/CameraComponent
+    ${PROJECT_SOURCE_DIR}/include/Graphics
+    ${PROJECT_SOURCE_DIR}/include/OpenGlDependency
+    ${PROJECT_SOURCE_DIR}/include/SpriteComponent
+    ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent
+    ${PROJECT_SOURCE_DIR}/include/UiElementComponent
+    ${PROJECT_SOURCE_DIR}/include/UiLabelComponent
+    ${PROJECT_SOURCE_DIR}/include/UiTextureElementComponent
 )
 set(source
     ${PROJECT_SOURCE_DIR}/src/A_lib/A.cpp
     ${PROJECT_SOURCE_DIR}/src/AnimeFramework/AnimeFramework.cpp
+    ${PROJECT_SOURCE_DIR}/src/CameraComponent/Camera.cpp
+    ${PROJECT_SOURCE_DIR}/src/CameraComponent/CameraSystem.cpp
+    ${PROJECT_SOURCE_DIR}/src/Graphics/Renderer.cpp
+    ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
+    ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
+    ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/UiContextWrapper.cpp
+    ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/Window.cpp
+    ${PROJECT_SOURCE_DIR}/src/SpriteComponent/Sprite.cpp
+    ${PROJECT_SOURCE_DIR}/src/SpriteComponent/SpriteSystem.cpp
+    ${PROJECT_SOURCE_DIR}/src/UiColorElementComponent/UiColorElement.cpp
+    ${PROJECT_SOURCE_DIR}/src/UiColorElementComponent/UiColorElementSystem.cpp
+    ${PROJECT_SOURCE_DIR}/src/UiElementComponent/UiElement.cpp
+    ${PROJECT_SOURCE_DIR}/src/UiElementComponent/UiElementSystem.cpp
+    ${PROJECT_SOURCE_DIR}/src/UiLabelComponent/UiLabel.cpp
+    ${PROJECT_SOURCE_DIR}/src/UiLabelComponent/UiLabelSystem.cpp
+    ${PROJECT_SOURCE_DIR}/src/UiTextureElementComponent/UiTextureElement.cpp
+    ${PROJECT_SOURCE_DIR}/src/UiTextureElementComponent/UiTextureElementSystem.cpp
 )
 
 set(tests_folder ${PROJECT_SOURCE_DIR}/tests)

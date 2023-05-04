@@ -1,7 +1,7 @@
-#pragma once
-
 #include "SpriteSystem.hpp"
 
-auto SpriteSystem::findVisibleSprites(const std::vector<Sprite*>&, Camera*) -> std::vector<Sprite*> {}
+using namespace AnimeDefendersEngine;
 
-auto SpriteSystem::drawSprite(Sprite*) -> void {}
+auto SpriteSystem::findVisibleSprites(const std::vector<Sprite*>&, Camera*) -> std::vector<Sprite*> const {}
+
+auto SpriteSystem::drawSprite(Sprite*) -> void const {}

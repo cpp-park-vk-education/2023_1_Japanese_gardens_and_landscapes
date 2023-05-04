@@ -2,8 +2,12 @@
 
 #include "FileSystem.hpp"
 
-struct Texture {
-    const FileSystem::Image& image;
-    int width;
-    int heidth;
-};
+namespace AnimeDefendersEngine {
+
+    struct Texture {
+        const Image& image;
+        int width;
+        int heidth;
+    };
+
+}  // namespace AnimeDefendersEngine

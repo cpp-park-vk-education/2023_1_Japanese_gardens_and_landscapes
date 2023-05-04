@@ -1,5 +1,5 @@
-#pragma once
-
 #include "UiContextWrapper.hpp"
 
-auto UIContextWrapper::applyUiViewPort(UiElement*) -> void {}
+using namespace AnimeDefendersEngine;
+
+auto UiContextWrapper::applyUiViewPort(UiElement*) -> void const {}
