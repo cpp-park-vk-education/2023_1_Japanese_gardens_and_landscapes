@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 20)
 add_compile_options(-Wall -Wextra -Werror -Wpedantic)
 
 set(main_executable ${PROJECT_SOURCE_DIR}/src/main.cpp)
-set(include_files 
+set(include_files
     ${PROJECT_SOURCE_DIR}/include/A_lib/A.hpp
     ${PROJECT_SOURCE_DIR}/include/AnimeFramework/AnimeFramework.hpp
     ${PROJECT_SOURCE_DIR}/include/AnimeFramework/Component.hpp
@@ -27,7 +27,7 @@ set(include_files
     ${PROJECT_SOURCE_DIR}/include/Graphics/ITrasnposeMathWrapper.hpp
     ${PROJECT_SOURCE_DIR}/include/Graphics/IUiContextWrapper.hpp
     ${PROJECT_SOURCE_DIR}/include/Graphics/IWindow.hpp
-    ${PROJECT_SOURCE_DIR}/include/Graphics/Renderer.hpp 
+    ${PROJECT_SOURCE_DIR}/include/Graphics/Renderer.hpp
     ${PROJECT_SOURCE_DIR}/include/Graphics/Texture.hpp
     ${PROJECT_SOURCE_DIR}/include/InputManager/InputManager.hpp
     ${PROJECT_SOURCE_DIR}/include/Logger/Logger.hpp
@@ -38,6 +38,13 @@ set(include_files
     ${PROJECT_SOURCE_DIR}/include/OpenGlDependency/TransposeMathWrapper.hpp
     ${PROJECT_SOURCE_DIR}/include/OpenGlDependency/UiContextWrapper.hpp
     ${PROJECT_SOURCE_DIR}/include/OpenGlDependency/Window.hpp
+    ${PROJECT_SOURCE_DIR}/include/Physics/Body.hpp
+    ${PROJECT_SOURCE_DIR}/include/Physics/BodyDefinition.hpp
+    ${PROJECT_SOURCE_DIR}/include/Physics/CollisionHandler.hpp
+    ${PROJECT_SOURCE_DIR}/include/Physics/Manifold.hpp
+    ${PROJECT_SOURCE_DIR}/include/Physics/PhysicsSystem.hpp
+    ${PROJECT_SOURCE_DIR}/include/Physics/PhysicsWorld.hpp
+    ${PROJECT_SOURCE_DIR}/include/Physics/Shape.hpp
     ${PROJECT_SOURCE_DIR}/include/SpriteComponent/Sprite.hpp
     ${PROJECT_SOURCE_DIR}/include/SpriteComponent/SpriteSystem.hpp
     ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent/UiColorElement.hpp
@@ -49,7 +56,7 @@ set(include_files
     ${PROJECT_SOURCE_DIR}/include/UiTextureElementComponent/UiTextureElement.hpp
     ${PROJECT_SOURCE_DIR}/include/UiTextureElementComponent/UiTextureElementSystem.hpp
 )
-set(include_locations 
+set(include_locations
     ${PROJECT_SOURCE_DIR}/include/A_lib
     ${PROJECT_SOURCE_DIR}/include/AnimeFramework
     ${PROJECT_SOURCE_DIR}/include/CameraComponent
@@ -58,6 +65,7 @@ set(include_locations
     ${PROJECT_SOURCE_DIR}/include/Logger
     ${PROJECT_SOURCE_DIR}/include/Math
     ${PROJECT_SOURCE_DIR}/include/OpenGlDependency
+    ${PROJECT_SOURCE_DIR}/include/Physics
     ${PROJECT_SOURCE_DIR}/include/SpriteComponent
     ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent
     ${PROJECT_SOURCE_DIR}/include/UiElementComponent
@@ -81,6 +89,13 @@ set(source
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/UiContextWrapper.cpp
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/Window.cpp
+    ${PROJECT_SOURCE_DIR}/src/Physics/Body.cpp
+    ${PROJECT_SOURCE_DIR}/src/Physics/BodyDefinition.cpp
+    ${PROJECT_SOURCE_DIR}/src/Physics/CollisionHandler.cpp
+    ${PROJECT_SOURCE_DIR}/src/Physics/Manifold.cpp
+    ${PROJECT_SOURCE_DIR}/src/Physics/PhysicsSystem.cpp
+    ${PROJECT_SOURCE_DIR}/src/Physics/PhysicsWorld.cpp
+    ${PROJECT_SOURCE_DIR}/src/Physics/Shape.cpp
     ${PROJECT_SOURCE_DIR}/src/SpriteComponent/Sprite.cpp
     ${PROJECT_SOURCE_DIR}/src/SpriteComponent/SpriteSystem.cpp
     ${PROJECT_SOURCE_DIR}/src/UiColorElementComponent/UiColorElement.cpp
@@ -96,11 +111,10 @@ set(source
 set(tests_folder ${PROJECT_SOURCE_DIR}/tests)
 
 if(DEBUG OR ENABLE_COVERAGE OR ENABLE_SANITIZERS OR ENABLE_TESTING)
-    add_compile_options(-g -O0)   
+    add_compile_options(-g -O0)
 elseif()
     add_compile_options(-Ofast)
 endif()
-
 
 if(ENABLE_COVERAGE)
     add_compile_options(-fprofile-arcs -ftest-coverage)
@@ -114,8 +128,8 @@ if(ENABLE_CLANG_TIDY AND NOT ENABLE_TESTING AND NOT ENABLE_COVERAGE)
     add_custom_target(
         TIDY_TARGET ALL
         COMMAND clang-tidy-15
-        --config-file=${PROJECT_SOURCE_DIR}/configs/.clang-tidy 
-        ${source} 
+        --config-file=${PROJECT_SOURCE_DIR}/configs/.clang-tidy
+        ${source}
         ${main_executable}
         --
         ${clang_tidy_includes}
@@ -128,7 +142,7 @@ if(ENABLE_CLANG_FORMAT)
     add_custom_target(
         FORMAT_CHECK_TARGET ALL
         COMMAND clang-format
-        --dry-run 
+        --dry-run
         --Werror
         -style=file:${PROJECT_SOURCE_DIR}/configs/.clang-format
         ${source}
@@ -152,8 +166,8 @@ if(ENABLE_CPPCHECK)
     add_custom_target(
         CPPCHECK_TARGET ALL
         COMMAND cppcheck
-        --enable=all 
-        --suppress=missingInclude 
+        --enable=all
+        --suppress=missingInclude
         --std=c++20
         ${source}
         ${include_files}
@@ -162,7 +176,7 @@ endif()
 
 if(ENABLE_SANITIZERS)
     add_compile_options(-fsanitize=address -fsanitize=leak -fsanitize=undefined)
-    add_link_options(-fsanitize=address -fsanitize=leak -fsanitize=undefined) 
+    add_link_options(-fsanitize=address -fsanitize=leak -fsanitize=undefined)
 endif()
 
 include_directories(${include_locations})
@@ -173,9 +187,11 @@ add_custom_target(EXE_TARGET DEPENDS ${project_name})
 if(ENABLE_CLANG_FORMAT)
     add_dependencies(${project_name} FORMAT_TARGET)
 endif()
+
 if(ENABLE_CLANG_TIDY)
     add_dependencies(${project_name} TIDY_TARGET)
 endif()
+
 if(ENABLE_CPPCHECK)
     add_dependencies(${project_name} CPPCHECK_TARGET)
 endif()
@@ -188,23 +204,23 @@ if(ENABLE_COVERAGE OR ENABLE_TESTING)
     enable_testing()
     add_subdirectory(googletest)
     add_subdirectory(${tests_folder})
-    
+
     find_program(CTEST "ctest")
     add_custom_target(
-        TESTS_TARGET ALL 
-        COMMAND ctest 
+        TESTS_TARGET ALL
+        COMMAND ctest
         --output-on-failure
-        --test-dir ${PROJECT_BINARY_DIR} 
+        --test-dir ${PROJECT_BINARY_DIR}
         DEPENDS tests_list_target
     )
 
     if(ENABLE_TESTING)
         find_program(VALGRIND "valgrind")
         add_custom_target(
-            VALGRIND_TARGET ALL 
-            COMMAND valgrind 
-            --leak-check=full 
-            -s 
+            VALGRIND_TARGET ALL
+            COMMAND valgrind
+            --leak-check=full
+            -s
             make -C ${PROJECT_BINARY_DIR}/tests test
             DEPENDS tests_list_target
         )
