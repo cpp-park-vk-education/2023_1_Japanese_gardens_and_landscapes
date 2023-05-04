@@ -10,6 +10,15 @@ set(main_executable ${PROJECT_SOURCE_DIR}/src/main.cpp)
 set(include_files 
     ${PROJECT_SOURCE_DIR}/include/A_lib/A.hpp
     ${PROJECT_SOURCE_DIR}/include/AnimeFramework/AnimeFramework.hpp
+    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/Component.hpp
+    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/ComponentManager.hpp
+    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/Entity.hpp
+    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/Event.hpp
+    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/EventManager.hpp
+    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/GameLoop.hpp
+    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/MemoryMaster.hpp
+    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/Scene.hpp
+    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/SceneManager.hpp
     ${PROJECT_SOURCE_DIR}/include/CameraComponent/Camera.hpp
     ${PROJECT_SOURCE_DIR}/include/CameraComponent/CameraSystem.hpp
     ${PROJECT_SOURCE_DIR}/include/Graphics/Animaton.hpp
@@ -20,6 +29,11 @@ set(include_files
     ${PROJECT_SOURCE_DIR}/include/Graphics/IWindow.hpp
     ${PROJECT_SOURCE_DIR}/include/Graphics/Renderer.hpp 
     ${PROJECT_SOURCE_DIR}/include/Graphics/Texture.hpp
+    ${PROJECT_SOURCE_DIR}/include/InputManager/InputManager.hpp
+    ${PROJECT_SOURCE_DIR}/include/Logger/Logger.hpp
+    ${PROJECT_SOURCE_DIR}/include/Math/Graph.hpp
+    ${PROJECT_SOURCE_DIR}/include/Math/Matrix.hpp
+    ${PROJECT_SOURCE_DIR}/include/Math/Vector2.hpp
     ${PROJECT_SOURCE_DIR}/include/OpenGlDependency/DrawTextureWrapper.hpp
     ${PROJECT_SOURCE_DIR}/include/OpenGlDependency/TransposeMathWrapper.hpp
     ${PROJECT_SOURCE_DIR}/include/OpenGlDependency/UiContextWrapper.hpp
@@ -40,6 +54,9 @@ set(include_locations
     ${PROJECT_SOURCE_DIR}/include/AnimeFramework
     ${PROJECT_SOURCE_DIR}/include/CameraComponent
     ${PROJECT_SOURCE_DIR}/include/Graphics
+    ${PROJECT_SOURCE_DIR}/include/InputManager
+    ${PROJECT_SOURCE_DIR}/include/Logger
+    ${PROJECT_SOURCE_DIR}/include/Math
     ${PROJECT_SOURCE_DIR}/include/OpenGlDependency
     ${PROJECT_SOURCE_DIR}/include/SpriteComponent
     ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent
@@ -53,6 +70,7 @@ set(source
     ${PROJECT_SOURCE_DIR}/src/CameraComponent/Camera.cpp
     ${PROJECT_SOURCE_DIR}/src/CameraComponent/CameraSystem.cpp
     ${PROJECT_SOURCE_DIR}/src/Graphics/Renderer.cpp
+    ${PROJECT_SOURCE_DIR}/src/InputManager/InputManager.cpp
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/UiContextWrapper.cpp
