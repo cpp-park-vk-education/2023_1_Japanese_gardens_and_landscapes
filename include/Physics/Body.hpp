@@ -7,8 +7,8 @@ namespace AnimeDefendersEngine {
     namespace PhysicsEngine {
         class IBody {
          public:
-            virtual void applyForce(Vector2 vec) = 0;
-            virtual void applyImpulse(Vector2 vec) = 0;
+            virtual void applyForce(Math::Vector2 vec) = 0;
+            virtual void applyImpulse(Math::Vector2 vec) = 0;
             virtual Vector2d getPosition() = 0;
             virtual ~IBody(){};
         };
