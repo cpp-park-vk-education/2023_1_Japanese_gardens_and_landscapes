@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Vector2.hpp"
+
 namespace AnimeDefendersEngine {
     namespace PhysicsEngine {
 
@@ -24,8 +26,8 @@ namespace AnimeDefendersEngine {
 
         class Rectangle : public Shape {
          public:
-            // Rectangle(vector2 size) : size(size) { m_type = Type::rectangle; };
-            // vector2 size;
+            Rectangle(Math::Vector2 size) : size(size) { m_type = Type::rectangle; };
+            Math::Vector2 size;
         };
     }  // namespace PhysicsEngine
 }  // namespace AnimeDefendersEngine
