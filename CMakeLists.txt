@@ -68,6 +68,7 @@ set(include_locations
     ${PROJECT_SOURCE_DIR}/include/OpenGlDependency
     ${PROJECT_SOURCE_DIR}/include/Physics
     ${PROJECT_SOURCE_DIR}/include/SpriteComponent
+    ${PROJECT_SOURCE_DIR}/include/Systems
     ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent
     ${PROJECT_SOURCE_DIR}/include/UiElementComponent
     ${PROJECT_SOURCE_DIR}/include/UiLabelComponent
