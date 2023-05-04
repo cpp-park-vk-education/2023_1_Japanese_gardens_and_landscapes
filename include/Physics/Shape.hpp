@@ -5,29 +5,29 @@
 namespace AnimeDefendersEngine {
     namespace PhysicsEngine {
 
+        enum class ShapeType {
+            circle = 0,
+            rectangle
+        };
+
         class Shape {
          public:
-            enum class Type {
-                circle = 0,
-                rectangle
-            };
             virtual ~Shape();
-            Type getType() const;
-            ;
+            auto getType() -> ShapeType const;
 
          protected:
-            Type m_type;
+            ShapeType m_type;
         };
 
         class Circle : public Shape {
          public:
-            explicit Circle(float radius) : radius(radius);
+            explicit Circle(float radius);
             float radius;
         };
 
         class Rectangle : public Shape {
          public:
-            explicit Rectangle(Math::Vector2<float> size) : size(size);
+            explicit Rectangle(Math::Vector2<float> size);
             Math::Vector2<float> size;
         };
     }  // namespace PhysicsEngine
