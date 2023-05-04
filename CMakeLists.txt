@@ -47,6 +47,7 @@ set(include_files
     ${PROJECT_SOURCE_DIR}/include/Physics/Shape.hpp
     ${PROJECT_SOURCE_DIR}/include/SpriteComponent/Sprite.hpp
     ${PROJECT_SOURCE_DIR}/include/SpriteComponent/SpriteSystem.hpp
+    ${PROJECT_SOURCE_DIR}/include/Systems/ISystem.hpp
     ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent/UiColorElement.hpp
     ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent/UiColorElementSystem.hpp
     ${PROJECT_SOURCE_DIR}/include/UiElementComponent/UiElement.hpp
@@ -66,6 +67,7 @@ set(include_locations
     ${PROJECT_SOURCE_DIR}/include/OpenGlDependency
     ${PROJECT_SOURCE_DIR}/include/Physics
     ${PROJECT_SOURCE_DIR}/include/SpriteComponent
+    ${PROJECT_SOURCE_DIR}/include/Systems
     ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent
     ${PROJECT_SOURCE_DIR}/include/UiElementComponent
     ${PROJECT_SOURCE_DIR}/include/UiLabelComponent
@@ -91,7 +93,6 @@ set(source
     ${PROJECT_SOURCE_DIR}/src/Physics/Body.cpp
     ${PROJECT_SOURCE_DIR}/src/Physics/BodyDefinition.cpp
     ${PROJECT_SOURCE_DIR}/src/Physics/CollisionHandler.cpp
-    ${PROJECT_SOURCE_DIR}/src/Physics/Manifold.cpp
     ${PROJECT_SOURCE_DIR}/src/Physics/PhysicsSystem.cpp
     ${PROJECT_SOURCE_DIR}/src/Physics/PhysicsWorld.cpp
     ${PROJECT_SOURCE_DIR}/src/Physics/Shape.cpp

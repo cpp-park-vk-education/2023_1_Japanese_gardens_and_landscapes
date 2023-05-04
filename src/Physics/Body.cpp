@@ -2,7 +2,7 @@
 
 using namespace AnimeDefendersEngine::PhysicsEngine;
 
-Body::setType(BodyType type){};
-void Body::applyForce(Math::Vector2<float> vec){};
-void Body::applyImpulse(Math::Vector2<float> vec){};
-Math::Vector2<float> Body::getPosition(){};
+auto Body::setType(BodyType type) -> void{};
+auto Body::applyForce(Math::Vector2<float> vec) -> void{};
+auto Body::applyImpulse(Math::Vector2<float> vec) -> void{};
+auto Body::getPosition() -> Math::Vector2<float>{};
