@@ -27,8 +27,8 @@ namespace AnimeDefendersEngine {
 
         class Rectangle : public Shape {
          public:
-            explicit Rectangle(Math::Vector2 size) : size(size);
-            Math::Vector2 size;
+            explicit Rectangle(Math::Vector2<float> size) : size(size);
+            Math::Vector2<float> size;
         };
     }  // namespace PhysicsEngine
 }  // namespace AnimeDefendersEngine

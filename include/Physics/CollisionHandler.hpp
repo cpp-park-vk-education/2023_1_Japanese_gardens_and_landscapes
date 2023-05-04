@@ -13,9 +13,11 @@ namespace AnimeDefendersEngine {
             virtual auto narrowPhase(std::vector<Manifold>& bodies) -> void = 0;
 
          protected:
-            auto hasCollision(IBody* bodyA, IBody* bodyB) -> bool;
-            auto specifyCollision(Manifold contact) -> void;
-            auto resolveCollision(Manifold contact) -> void;
+            virtual auto hasCollision(IBody* bodyA, IBody* bodyB) -> bool = 0;
+            virtual auto specifyCollision(Manifold contact) -> void = 0;
+            virtual auto resolveCollision(Manifold contact) -> void = 0;
         };
+
+        class CollisionHandler : public ICollisionHandler {};
     }  // namespace PhysicsEngine
 }  // namespace AnimeDefendersEngine
