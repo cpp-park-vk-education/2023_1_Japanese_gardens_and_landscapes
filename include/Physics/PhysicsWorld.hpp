@@ -16,7 +16,7 @@ namespace AnimeDefendersEngine {
 
          private:
             void fixedUpdate();
-            std::vector<IBodyUPtr> m_bodies;
+            std::vector<std::unique_ptr<IBody>> m_bodies;
             std::vector<Manifold> m_contacts;
 
             float m_fixedDeltaTime;

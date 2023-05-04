@@ -13,8 +13,6 @@ namespace AnimeDefendersEngine {
             virtual ~IBody(){};
         };
 
-        using IBodyUPtr = std::unique_ptr<IBody>;
-
         class Body : public IBody {
          private:
             BodyDefinition bodyDefinition;
