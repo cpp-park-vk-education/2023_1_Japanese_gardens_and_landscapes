@@ -5,6 +5,6 @@
 namespace AnimeDefendersEngine {
     class ISystem {
      public:
-        virtual void updateSystem(ComponentManager&) = 0;
+        virtual void updateSystem(IComponentManager&) = 0;
     };
 }  // namespace AnimeDefendersEngine

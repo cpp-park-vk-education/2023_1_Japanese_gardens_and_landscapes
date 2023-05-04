@@ -12,6 +12,7 @@ namespace AnimeDefendersEngine {
      public:
         auto getActiveScene() -> Scene& override;
         void loadSceme(int sceneId) override;
+        void addScene(Scene);
 
      private:
         std::vector<Scene> m_scenes;

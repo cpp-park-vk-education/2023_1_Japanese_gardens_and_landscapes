@@ -12,6 +12,7 @@ namespace AnimeDefendersEngine {
      public:
         void addEntity(std::shared_ptr<Entity>);
         void deleteEntity(std::string entityId);
+        auto getComponents() -> std::shared_ptr<IComponentManager>;
 
      private:
         std::vector<std::shared_ptr<Entity>> m_entities;
