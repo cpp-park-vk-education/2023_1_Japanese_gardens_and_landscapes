@@ -4,4 +4,4 @@
 using namespace AnimeDefendersEngine;
 
 auto SceneManager::getActiveScene() -> Scene& {}
-void SceneManager::loadSceme(int sceneId) {}
+void SceneManager::loadScene(int sceneId) {}
