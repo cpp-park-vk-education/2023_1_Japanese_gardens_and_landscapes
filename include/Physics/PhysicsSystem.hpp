@@ -6,7 +6,7 @@ namespace AnimeDefendersEngine {
     namespace PhysicsEngine {
         class PhysicsSystem : public ISystem {
          public:
-            virtual void updateSystem(ComponentManager&) override{};
+            virtual auto updateSystem(ComponentManager&) -> void override{};
 
          private:
             PhysicsWorld physicsWorld;
