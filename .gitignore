@@ -1,6 +1,7 @@
 build
 files
 .vscode
+.DS_Store
 
 *.d
 

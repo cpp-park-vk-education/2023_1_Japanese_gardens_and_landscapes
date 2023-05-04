@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+
 #include "Body.hpp"
 #include "Manifold.hpp"
 
@@ -12,9 +13,9 @@ namespace AnimeDefendersEngine {
             virtual auto narrowPhase(std::vector<Manifold>& bodies) -> void = 0;
 
          protected:
-            auto hasCollision(IBody*, IBody*) -> bool;
-            auto specifyCollision(Manifold) -> void;
-            auto resolveCollision(Manifold) -> void;
+            auto hasCollision(IBody* bodyA, IBody* bodyB) -> bool;
+            auto specifyCollision(Manifold contact) -> void;
+            auto resolveCollision(Manifold contact) -> void;
         };
     }  // namespace PhysicsEngine
 }  // namespace AnimeDefendersEngine
