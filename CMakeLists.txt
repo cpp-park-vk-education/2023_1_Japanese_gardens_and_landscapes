@@ -47,6 +47,7 @@ set(include_files
     ${PROJECT_SOURCE_DIR}/include/Physics/Shape.hpp
     ${PROJECT_SOURCE_DIR}/include/SpriteComponent/Sprite.hpp
     ${PROJECT_SOURCE_DIR}/include/SpriteComponent/SpriteSystem.hpp
+    ${PROJECT_SOURCE_DIR}/include/Systems/ISystem.hpp
     ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent/UiColorElement.hpp
     ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent/UiColorElementSystem.hpp
     ${PROJECT_SOURCE_DIR}/include/UiElementComponent/UiElement.hpp
