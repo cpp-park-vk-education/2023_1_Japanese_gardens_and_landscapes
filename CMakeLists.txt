@@ -17,6 +17,7 @@ set(include_files
     ${PROJECT_SOURCE_DIR}/include/AnimeFramework/EventManager.hpp
     ${PROJECT_SOURCE_DIR}/include/AnimeFramework/GameLoop.hpp
     ${PROJECT_SOURCE_DIR}/include/AnimeFramework/MemoryMaster.hpp
+    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/InputManager.hpp
     ${PROJECT_SOURCE_DIR}/include/AnimeFramework/Scene.hpp
     ${PROJECT_SOURCE_DIR}/include/AnimeFramework/SceneManager.hpp
     ${PROJECT_SOURCE_DIR}/include/CameraComponent/Camera.hpp
@@ -29,7 +30,6 @@ set(include_files
     ${PROJECT_SOURCE_DIR}/include/Graphics/IWindow.hpp
     ${PROJECT_SOURCE_DIR}/include/Graphics/Renderer.hpp
     ${PROJECT_SOURCE_DIR}/include/Graphics/Texture.hpp
-    ${PROJECT_SOURCE_DIR}/include/InputManager/InputManager.hpp
     ${PROJECT_SOURCE_DIR}/include/Logger/Logger.hpp
     ${PROJECT_SOURCE_DIR}/include/Math/Graph.hpp
     ${PROJECT_SOURCE_DIR}/include/Math/Matrix.hpp
@@ -61,7 +61,6 @@ set(include_locations
     ${PROJECT_SOURCE_DIR}/include/AnimeFramework
     ${PROJECT_SOURCE_DIR}/include/CameraComponent
     ${PROJECT_SOURCE_DIR}/include/Graphics
-    ${PROJECT_SOURCE_DIR}/include/InputManager
     ${PROJECT_SOURCE_DIR}/include/Logger
     ${PROJECT_SOURCE_DIR}/include/Math
     ${PROJECT_SOURCE_DIR}/include/OpenGlDependency
@@ -79,12 +78,12 @@ set(source
     ${PROJECT_SOURCE_DIR}/src/AnimeFramework/Entity.cpp
     ${PROJECT_SOURCE_DIR}/src/AnimeFramework/EventManager.cpp
     ${PROJECT_SOURCE_DIR}/src/AnimeFramework/GameLoop.cpp
+    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/InputManager.cpp
     ${PROJECT_SOURCE_DIR}/src/AnimeFramework/Scene.cpp
     ${PROJECT_SOURCE_DIR}/src/AnimeFramework/SceneManager.cpp
     ${PROJECT_SOURCE_DIR}/src/CameraComponent/Camera.cpp
     ${PROJECT_SOURCE_DIR}/src/CameraComponent/CameraSystem.cpp
     ${PROJECT_SOURCE_DIR}/src/Graphics/Renderer.cpp
-    ${PROJECT_SOURCE_DIR}/src/InputManager/InputManager.cpp
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/UiContextWrapper.cpp
