@@ -1,5 +1,5 @@
 #include "InputManager.hpp"
 
-using namespace AnimeDefenders;
+using namespace AnimeDefendersEngine;
 
 auto InputManager::setEventManager(EventManager eventManager) -> void {};

@@ -3,7 +3,7 @@
 #include "EventManager.hpp"
 #include "Window.hpp"
 
-namespace AnimeDefenders {
+namespace AnimeDefendersEngine {
 class InputManager {
  public:
     auto setEventManager(EventManager eventManager) -> void;
