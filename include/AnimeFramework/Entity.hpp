@@ -9,7 +9,7 @@ enum class ComponentType { Sprite, Camera, UiElement, Audio, Collider2DComponent
 class Entity {
  public:
     auto addComponent(Component* component) -> void;
-    auto getComponent(ComponentType componentType);
+    auto getComponent(ComponentType componentType) -> Component*;
 
  private:
     std::string m_entityId;

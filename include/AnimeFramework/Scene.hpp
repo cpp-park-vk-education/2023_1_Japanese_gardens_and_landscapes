@@ -11,8 +11,8 @@ namespace AnimeDefendersEngine {
 
     class Scene {
      public:
-        void addEntity(std::shared_ptr<Entity>);
-        void deleteEntity(std::string entityId);
+        auto addEntity(std::shared_ptr<Entity>) -> void;
+        auto deleteEntity(std::string entityId) -> void;
 
      private:
         std::vector<std::shared_ptr<Entity>> m_entities;

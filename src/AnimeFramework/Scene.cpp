@@ -7,5 +7,5 @@
 
 using namespace AnimeDefendersEngine;
 
-void Scene::addEntity(std::shared_ptr<Entity>) {}
-void Scene::deleteEntity(std::string entityId) {}
+auto Scene::addEntity(std::shared_ptr<Entity>) -> void{}
+auto Scene::deleteEntity(std::string entityId) -> void{}
