@@ -3,12 +3,10 @@
 #include <memory>
 
 #include "Shape.hpp"
+#include "Vector2.hpp"
 
 namespace AnimeDefendersEngine {
     namespace PhysicsEngine {
-
-        using Layers = size_t;
-        using ShapeUPtr = std::unique_ptr<Shape>;
 
         enum class BodyType {
             staticBody = 0,
@@ -17,17 +15,17 @@ namespace AnimeDefendersEngine {
 
         class Transform {
          public:
-            // Vector2d position;
+            Math::Vector2 position;
         };
 
         struct BodyDefinition {
-            size_t ID;
-            ShapeUPtr shape;
+            size_t id;
+            std::unique_ptr<Shape> shape;
             BodyType bodyType;
             Transform transform;
-            // Vector2d velocity;
-            Layers layers;
-            // Vector2d force;
+            Math::Vector2 velocity;
+            size_t layers;
+            Math::Vector2 force;
             bool isTrigger;
             BodyDefinition(const Shape& shape, Transform transform){};
         };
