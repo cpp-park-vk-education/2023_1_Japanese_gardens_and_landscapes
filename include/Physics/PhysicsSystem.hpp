@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ISystem.hpp"
+#include "PhysicsWorld.hpp"
 
 namespace AnimeDefendersEngine {
     namespace PhysicsEngine {
@@ -13,6 +14,6 @@ namespace AnimeDefendersEngine {
 
          private:
             PhysicsWorld physicsWorld;
-        }
+        };
     }  // namespace PhysicsEngine
 }  // namespace AnimeDefendersEngine
