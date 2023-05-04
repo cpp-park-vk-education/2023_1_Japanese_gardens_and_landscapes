@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ComponentManager.hpp"
+#include "Entity.hpp"
 
 #include <memory>
 #include <string>
