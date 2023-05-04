@@ -15,10 +15,10 @@ namespace AnimeDefendersEngine {
             auto removeBody(IBody* body) -> void;
 
          private:
-            void fixedUpdate();
+            auto fixedUpdate() -> void;
+
             std::vector<std::unique_ptr<IBody>> m_bodies;
             std::vector<Manifold> m_contacts;
-
             float m_fixedDeltaTime;
         };
     }  // namespace PhysicsEngine
