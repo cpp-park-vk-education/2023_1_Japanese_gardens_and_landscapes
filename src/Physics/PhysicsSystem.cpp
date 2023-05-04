@@ -1,8 +1,8 @@
 #include "PhysicsSystem.hpp"
 
-using namespace AnimeDefendersEngine;
+using namespace AnimeDefendersEngine::PhysicsEngine;
 
-PhysicsSystem(float fixedDeltaTime){};
-virtual auto updateSystem(ComponentManager& componentManager) -> void override{};
-auto updateSystem(ComponentManager& componentManager, float timeStep) -> void{};
-auto setFixedDeltaTime(float fixedDeltaTime) -> void{};
+PhysicsSystem::PhysicsSystem(float fixedDeltaTime){};
+auto PhysicsSystem::updateSystem(ComponentManager& componentManager) -> void{};
+auto PhysicsSystem::updateSystem(ComponentManager& componentManager, float timeStep) -> void{};
+auto PhysicsSystem::setFixedDeltaTime(float fixedDeltaTime) -> void{};
