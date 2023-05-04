@@ -70,6 +70,7 @@ set(source
     ${PROJECT_SOURCE_DIR}/src/CameraComponent/Camera.cpp
     ${PROJECT_SOURCE_DIR}/src/CameraComponent/CameraSystem.cpp
     ${PROJECT_SOURCE_DIR}/src/Graphics/Renderer.cpp
+    ${PROJECT_SOURCE_DIR}/src/InputManager/InputManager.cpp
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/UiContextWrapper.cpp
