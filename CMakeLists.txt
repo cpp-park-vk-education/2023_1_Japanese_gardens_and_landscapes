@@ -92,7 +92,6 @@ set(source
     ${PROJECT_SOURCE_DIR}/src/Physics/Body.cpp
     ${PROJECT_SOURCE_DIR}/src/Physics/BodyDefinition.cpp
     ${PROJECT_SOURCE_DIR}/src/Physics/CollisionHandler.cpp
-    ${PROJECT_SOURCE_DIR}/src/Physics/Manifold.cpp
     ${PROJECT_SOURCE_DIR}/src/Physics/PhysicsSystem.cpp
     ${PROJECT_SOURCE_DIR}/src/Physics/PhysicsWorld.cpp
     ${PROJECT_SOURCE_DIR}/src/Physics/Shape.cpp
