@@ -3,6 +3,6 @@
 #include "UiElement.hpp"
 
 class IUiContextWrapper {
-public:
-  virtual auto applyUiViewPort(UiElement *) -> void = 0;
+ public:
+    virtual auto applyUiViewPort(UiElement*) -> void = 0;
 };

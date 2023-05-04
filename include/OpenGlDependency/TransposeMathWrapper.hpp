@@ -3,7 +3,7 @@
 #include "ITrasposeMathWrapper.hpp"
 
 class TransposeMathWrapper : public ITransposeMathWrapper {
-  auto initialIdentityMatrix() -> void override;
-  auto applyTransposeMatrix(Transpose *) -> void override;
-  auto dropLastMatrix() -> void override;
+    auto initialIdentityMatrix() -> void override;
+    auto applyTransposeMatrix(Transpose*) -> void override;
+    auto dropLastMatrix() -> void override;
 };

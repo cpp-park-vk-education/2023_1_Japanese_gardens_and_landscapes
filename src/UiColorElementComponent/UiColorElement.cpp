@@ -14,6 +14,6 @@ auto UiElement::setWidth(int) -> void {}
 
 auto UiElement::setHeidth(int) -> void {}
 
-auto UiElement::setEventOnClick(std::function<void(void *)>) -> void {}
+auto UiElement::setEventOnClick(std::function<void(void*)>) -> void {}
 
 auto UiElement::setColor(Color) -> void {}

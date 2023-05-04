@@ -2,4 +2,4 @@
 
 #include "DrawTextureWrapper.hpp"
 
-auto DrawTextureWrapper::drawTexture(FileSystem::image &) -> void {}
+auto DrawTextureWrapper::drawTexture(FileSystem::image&) -> void {}

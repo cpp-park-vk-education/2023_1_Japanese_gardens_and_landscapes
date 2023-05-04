@@ -3,5 +3,5 @@
 #include "IUiContextWrapper.hpp"
 
 class UiContextWrapper : public IUiContextWrapper {
-  auto applyUiViewPort(UiElement *) -> void override;
+    auto applyUiViewPort(UiElement*) -> void override;
 };

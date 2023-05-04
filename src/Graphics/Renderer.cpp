@@ -4,4 +4,4 @@
 
 Renderer::Renderer() {}
 
-auto Renderer::renderObjects(Scene &) -> void {}
+auto Renderer::renderObjects(Scene&) -> void {}

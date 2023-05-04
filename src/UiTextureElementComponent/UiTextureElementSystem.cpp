@@ -2,10 +2,8 @@
 
 #include "UiTextureElementSystem.hpp"
 
-auto UiTextureElementSystem::applyUiElementTransform(UiTextureElement *)
-    -> void {}
+auto UiTextureElementSystem::applyUiElementTransform(UiTextureElement*) -> void {}
 
-auto UiTextureElementSystem::drawUiElement(UiTextureElement *) -> void {}
+auto UiTextureElementSystem::drawUiElement(UiTextureElement*) -> void {}
 
-auto UiTextureElementSystem::checkByPointInclude(UiTextureElement *, int, int)
-    -> bool {}
+auto UiTextureElementSystem::checkByPointInclude(UiTextureElement*, int, int) -> bool {}

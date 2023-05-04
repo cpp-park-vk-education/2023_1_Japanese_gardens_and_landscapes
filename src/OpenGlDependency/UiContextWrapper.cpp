@@ -2,4 +2,4 @@
 
 #include "UiContextWrapper.hpp"
 
-auto UIContextWrapper::applyUiViewPort(UiElement *) -> void {}
+auto UIContextWrapper::applyUiViewPort(UiElement*) -> void {}

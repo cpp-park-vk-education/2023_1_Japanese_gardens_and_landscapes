@@ -3,6 +3,6 @@
 #include "IDrawTextureWrapper.hpp"
 
 class DrawTextureWrapper : public IDrawTextureWrapper {
-public:
-  auto drawTexture(FileSystem::image &) -> void override;
+ public:
+    auto drawTexture(FileSystem::image&) -> void override;
 };

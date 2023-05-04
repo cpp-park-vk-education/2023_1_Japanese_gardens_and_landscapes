@@ -4,6 +4,6 @@
 
 auto TransposeMathWrapper::initialIdentityMatrix() -> void {}
 
-auto TransposeMathWrapper::applyTransposeMatrix(Transpose *) -> void {}
+auto TransposeMathWrapper::applyTransposeMatrix(Transpose*) -> void {}
 
 auto TransposeMathWrapper::dropLastMatrix() -> void {}

@@ -2,8 +2,8 @@
 
 #include "UiElementSystem.hpp"
 
-auto UiElementSystem::applyUiElementTransform(UiElement *) -> void {}
+auto UiElementSystem::applyUiElementTransform(UiElement*) -> void {}
 
-auto UiElementSystem::drawUiElement(UiElement *) -> void {}
+auto UiElementSystem::drawUiElement(UiElement*) -> void {}
 
-auto UiElementSystem::checkByPointInclude(UiElement *, int, int) -> bool {}
+auto UiElementSystem::checkByPointInclude(UiElement*, int, int) -> bool {}

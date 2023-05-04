@@ -7,16 +7,16 @@
 #include "Transform.hpp"
 
 class Sprite : public Component {
-public:
-  auto isSpriteVisibleToCamera(Camera *) -> bool const;
-  auto drawSprite() -> void const;
+ public:
+    auto isSpriteVisibleToCamera(Camera*) -> bool const;
+    auto drawSprite() -> void const;
 
-  auto setTransform(const Transform &) -> void;
-  auto setTexture(Texture) -> void;
-  auto setAnimation(Animation) -> void;
+    auto setTransform(const Transform&) -> void;
+    auto setTexture(Texture) -> void;
+    auto setAnimation(Animation) -> void;
 
-private:
-  const Transform &m_transform;
-  Texture m_texture;
-  Animation m_animation;
+ private:
+    const Transform& m_transform;
+    Texture m_texture;
+    Animation m_animation;
 };

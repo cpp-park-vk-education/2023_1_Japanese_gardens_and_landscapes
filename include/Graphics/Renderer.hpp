@@ -4,10 +4,10 @@
 #include "Scene.hpp"
 
 class Renderer {
-public:
-  Renderer();
-  auto renderObjects(Scene &) -> void;
+ public:
+    Renderer();
+    auto renderObjects(Scene&) -> void;
 
-private:
-  IWindow &m_window;
+ private:
+    IWindow& m_window;
 };

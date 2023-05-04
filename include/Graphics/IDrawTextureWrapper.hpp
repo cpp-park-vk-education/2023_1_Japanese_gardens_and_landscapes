@@ -3,6 +3,6 @@
 #include "FileSystem.hpp"
 
 class IDrawTextureWrapper {
-public:
-  virtual auto drawTexture(FileSystem::image &) -> void = 0;
+ public:
+    virtual auto drawTexture(FileSystem::image&) -> void = 0;
 };
