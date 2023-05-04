@@ -15,7 +15,7 @@ namespace AnimeDefendersEngine {
 
         class Transform {
          public:
-            Math::Vector2 position;
+            Math::Vector2<float> position;
         };
 
         struct BodyDefinition {
@@ -23,11 +23,11 @@ namespace AnimeDefendersEngine {
             std::unique_ptr<Shape> shape;
             BodyType bodyType;
             Transform transform;
-            Math::Vector2 velocity;
+            Math::Vector2<float> velocity;
             size_t layers;
-            Math::Vector2 force;
+            Math::Vector2<float> force;
             bool isTrigger;
-            BodyDefinition(const Shape& shape, Transform transform){};
+            BodyDefinition(const Shape& shape, Transform transform);
         };
     }  // namespace PhysicsEngine
 }  // namespace AnimeDefendersEngine
