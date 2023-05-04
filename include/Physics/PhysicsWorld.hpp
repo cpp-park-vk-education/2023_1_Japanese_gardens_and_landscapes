@@ -9,15 +9,15 @@ namespace AnimeDefendersEngine {
         class PhysicsWorld {
          public:
             PhysicsWorld(const float fixedDeltaTime);
-            void setFixedDeltaTime(const float fixedDeltaTime);
-            void update(const float timeStep);
+            auto setFixedDeltaTime(const float fixedDeltaTime) -> void;
+            auto update(const float timeStep) -> void;
             auto addBody(const BodyDefinition& bodyDefinition) -> IBody*;
-            void removeBody(IBody* body);
+            auto removeBody(IBody* body) -> void;
 
          private:
-            std::vector<IBodyUPtr> bodies;
-            std::vector<Manifold> contacts;
             void fixedUpdate();
+            std::vector<IBodyUPtr> m_bodies;
+            std::vector<Manifold> m_contacts;
 
             float m_fixedDeltaTime;
         };
