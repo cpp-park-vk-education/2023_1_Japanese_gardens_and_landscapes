@@ -2,7 +2,11 @@
 
 #include "FileSystem.hpp"
 
-class IDrawTextureWrapper {
- public:
-    virtual auto drawTexture(FileSystem::image&) -> void = 0;
-};
+namespace AnimeDefendersEngine {
+
+    class IDrawTextureWrapper {
+     public:
+        virtual auto drawTexture(Image&) -> void const = 0;
+    };
+
+}  // namespace AnimeDefendersEngine

@@ -1,13 +1,18 @@
 #pragma ones
 
-#include "System.hpp"
+#include "ISystem.hpp"
 #include "UiElement.hpp"
 
-class UiElementSystem : public System {
- public:
-    UiElementSystem() = 0;
+namespace AnimeDefendersEngine {
 
-    static auto applyUiElementTransform(UiElement*) -> void;
-    static auto drawUiElement(UiElement*) -> void;
-    static auto checkByPointInclude(UiElement*, int, int) -> bool;
-};
+    class UiElementSystem : public ISystem {
+     public:
+        static auto applyUiElementTransform(UiElement*) -> void const;
+        static auto drawUiElement(UiElement*) -> void const;
+        static auto checkByPointInclude(UiElement*, int, int) -> bool const;
+
+     private:
+        UiElementSystem();
+    };
+
+}  // namespace AnimeDefendersEngine

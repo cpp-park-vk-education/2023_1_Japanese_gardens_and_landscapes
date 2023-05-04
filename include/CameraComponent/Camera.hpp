@@ -5,19 +5,23 @@
 #include "Component.hpp"
 #include "Transpose.hpp"
 
-class Camera : public Component {
- public:
-    auto determineNewCameraTranspose() -> void const;
-    auto applyCameraView() -> void const;
+namespace AnimeDefendersEngine {
 
-    auto setMotionRule(std::function<Transpose()>) -> void;
-    auto setExtraTranspose(Transpose) -> void;
-    auto setExtraMotion(std::function<Transpose(Transpose)>) -> void;
-    auto setIsActive(bool) -> void;
+    class Camera : public Component {
+     public:
+        auto determineNewCameraTranspose() -> void;
+        auto applyCameraView() -> void const;
 
- private:
-    std::function<Transpose()> m_motionRule;
-    Transpose m_extraTranspose;
-    std::function<Transpose(Transpose)> m_extraMotion;
-    bool m_isActive;
-};
+        auto setMotionRule(std::function<Transpose()>) -> void;
+        auto setExtraTranspose(Transpose) -> void;
+        auto setExtraMotion(std::function<Transpose(Transpose)>) -> void;
+        auto setIsActive(bool) -> void;
+
+     private:
+        std::function<Transpose()> m_motionRule;
+        Transpose m_cameraTranspose;
+        std::function<Transpose(Transpose)> m_extraMotion;
+        bool m_isActive;
+    };
+
+}  // namespace AnimeDefendersEngine

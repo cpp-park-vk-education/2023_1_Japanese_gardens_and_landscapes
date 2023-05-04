@@ -1,13 +1,18 @@
 #pragma ones
 
-#include "System.hpp"
-#include "UiLabelElement.hpp"
+#include "UiElementSystem.hpp"
+#include "UiLabel.hpp"
 
-class UiLabelElementSystem : public System {
- public:
-    UiLabelElementSystem() = 0;
+namespace AnimeDefendersEngine {
 
-    static auto applyUiElementTransform(UiLabelElement*) -> void;
-    static auto drawUiElement(UiLabelElement*) -> void;
-    static auto checkByPointInclude(UiLabelElement*, int, int) -> bool;
-};
+    class UiLabelSystem : public UiElementSystem {
+     public:
+        static auto applyUiElementTransform(UiLabel*) -> void const;
+        static auto drawUiElement(UiLabel*) -> void const;
+        static auto checkByPointInclude(UiLabel*, int, int) -> bool const;
+
+     private:
+        UiLabelSystem();
+    };
+
+}  // namespace AnimeDefendersEngine

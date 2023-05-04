@@ -1,6 +1,7 @@
 build
 files
 .vscode
+.DS_Store
 
 *.d
 
@@ -65,3 +66,5 @@ _deps
 
 .history
 .ionide
+
+Test.sh

@@ -1,9 +1,9 @@
-#pragma ones
-
 #include "UiElementSystem.hpp"
 
-auto UiElementSystem::applyUiElementTransform(UiElement*) -> void {}
+using namespace AnimeDefendersEngine;
 
-auto UiElementSystem::drawUiElement(UiElement*) -> void {}
+auto UiElementSystem::applyUiElementTransform(UiElement*) -> void const {}
 
-auto UiElementSystem::checkByPointInclude(UiElement*, int, int) -> bool {}
+auto UiElementSystem::drawUiElement(UiElement*) -> void const {}
+
+auto UiElementSystem::checkByPointInclude(UiElement*, int, int) -> bool const {}

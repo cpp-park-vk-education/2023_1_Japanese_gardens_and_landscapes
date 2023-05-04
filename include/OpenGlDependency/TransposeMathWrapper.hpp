@@ -1,9 +1,13 @@
 #pragma once
 
-#include "ITrasposeMathWrapper.hpp"
+#include "ITransposeMathWrapper.hpp"
 
-class TransposeMathWrapper : public ITransposeMathWrapper {
-    auto initialIdentityMatrix() -> void override;
-    auto applyTransposeMatrix(Transpose*) -> void override;
-    auto dropLastMatrix() -> void override;
-};
+namespace AnimeDefendersEngine {
+
+    class TransposeMathWrapper : public ITransposeMathWrapper {
+        auto initialIdentityMatrix() -> void const override;
+        auto applyTransposeMatrix(Transpose*) -> void const override;
+        auto dropLastMatrix() -> void const override;
+    };
+
+}  // namespace AnimeDefendersEngine

@@ -1,19 +1,19 @@
-#pragma ones
+#include "UiColorElement.hpp"
 
-#include "UiElement.hpp"
+using namespace AnimeDefendersEngine;
 
-auto UiElement::applyUiElementTransform() -> void {}
+auto UiColorElement::applyUiElementTransform() -> void const {}
 
-auto UiElement::drawUiElement() -> void {}
+auto UiColorElement::drawUiElement() -> void const {}
 
-auto UiElement::checkByPointInclude(int, int) -> bool {}
+auto UiColorElement::checkByPointInclude(int, int) -> bool const {}
 
-auto UiElement::setPosition(int, int) -> void {}
+auto UiColorElement::setPosition(int, int) -> void {}
 
-auto UiElement::setWidth(int) -> void {}
+auto UiColorElement::setWidth(int) -> void {}
 
-auto UiElement::setHeidth(int) -> void {}
+auto UiColorElement::setHeidth(int) -> void {}
 
-auto UiElement::setEventOnClick(std::function<void(void*)>) -> void {}
+auto UiColorElement::setEventOnClick(std::function<void(void*)>) -> void {}
 
-auto UiElement::setColor(Color) -> void {}
+auto UiColorElement::setColor(Color) -> void {}

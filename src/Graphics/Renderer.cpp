@@ -1,7 +1,7 @@
-#pragma once
-
 #include "Renderer.hpp"
+
+using namespace AnimeDefendersEngine;
 
 Renderer::Renderer() {}
 
-auto Renderer::renderObjects(Scene&) -> void {}
+auto Renderer::renderObjects(Scene&) -> void const {}

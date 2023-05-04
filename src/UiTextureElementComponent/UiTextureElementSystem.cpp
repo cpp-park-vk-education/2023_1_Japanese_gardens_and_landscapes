@@ -1,9 +1,9 @@
-#pragma ones
-
 #include "UiTextureElementSystem.hpp"
 
-auto UiTextureElementSystem::applyUiElementTransform(UiTextureElement*) -> void {}
+using namespace AnimeDefendersEngine;
 
-auto UiTextureElementSystem::drawUiElement(UiTextureElement*) -> void {}
+auto UiTextureElementSystem::applyUiElementTransform(UiTextureElement*) -> void const {}
 
-auto UiTextureElementSystem::checkByPointInclude(UiTextureElement*, int, int) -> bool {}
+auto UiTextureElementSystem::drawUiElement(UiTextureElement*) -> void const {}
+
+auto UiTextureElementSystem::checkByPointInclude(UiTextureElement*, int, int) -> bool const {}

@@ -1,9 +1,9 @@
-#pragma ones
-
 #include "UiColorElementSystem.hpp"
 
-auto UiColorElementSystem::applyUiElementTransform(UiColorElement*) -> void {}
+using namespace AnimeDefendersEngine;
 
-auto UiColorElementSystem::drawUiElement(UiColorElement*) -> void {}
+auto UiColorElementSystem::applyUiElementTransform(UiColorElement*) -> void const {}
 
-auto UiColorElementSystem::checkByPointInclude(UiColorElement*, int, int) -> bool {}
+auto UiColorElementSystem::drawUiElement(UiColorElement*) -> void const {}
+
+auto UiColorElementSystem::checkByPointInclude(UiColorElement*, int, int) -> bool const {}

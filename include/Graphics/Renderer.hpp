@@ -3,11 +3,17 @@
 #include "IWindow.hpp"
 #include "Scene.hpp"
 
-class Renderer {
- public:
-    Renderer();
-    auto renderObjects(Scene&) -> void;
+#include <memory>
 
- private:
-    IWindow& m_window;
-};
+namespace AnimeDefendersEngine {
+
+    class Renderer {
+     public:
+        Renderer();
+        auto renderObjects(Scene&) -> void const;
+
+     private:
+        std::unique_ptr<IWindow> m_window;
+    };
+
+}  // namespace AnimeDefendersEngine

@@ -1,19 +1,19 @@
-#pragma ones
+#include "UiTextureElement.hpp"
 
-#include "UiElement.hpp"
+using namespace AnimeDefendersEngine;
 
-auto UiElement::applyUiElementTransform() -> void {}
+auto UiTextureElement::applyUiElementTransform() -> void const {}
 
-auto UiElement::drawUiElement() -> void {}
+auto UiTextureElement::drawUiElement() -> void const {}
 
-auto UiElement::checkByPointInclude(int, int) -> bool {}
+auto UiTextureElement::checkByPointInclude(int, int) -> bool const {}
 
-auto UiElement::setPosition(int, int) -> void {}
+auto UiTextureElement::setPosition(int, int) -> void {}
 
-auto UiElement::setWidth(int) -> void {}
+auto UiTextureElement::setWidth(int) -> void {}
 
-auto UiElement::setHeidth(int) -> void {}
+auto UiTextureElement::setHeidth(int) -> void {}
 
-auto UiElement::setEventOnClick(std::function<void(void*)>) -> void {}
+auto UiTextureElement::setEventOnClick(std::function<void(void*)>) -> void {}
 
-auto UiElement::setTexture(Texture) -> void {}
+auto UiTextureElement::setTexture(Texture) -> void {}

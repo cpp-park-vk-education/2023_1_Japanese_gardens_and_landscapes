@@ -1,23 +1,21 @@
-#pragma ones
+#include "UiLabel.hpp"
 
-#include "UiElement.hpp"
+using namespace AnimeDefendersEngine;
 
-auto UiElement::applyUiElementTransform() -> void {}
+auto UiLabel::applyUiElementTransform() -> void const {}
 
-auto UiElement::drawUiElement() -> void {}
+auto UiLabel::drawUiElement() -> void const {}
 
-auto UiElement::checkByPointInclude(int, int) -> bool {}
+auto UiLabel::checkByPointInclude(int, int) -> bool const {}
 
-auto UiElement::setPosition(int, int) -> void {}
+auto UiLabel::setPosition(int, int) -> void {}
 
-auto UiElement::setWidth(int) -> void {}
+auto UiLabel::setWidth(int) -> void {}
 
-auto UiElement::setHeidth(int) -> void {}
+auto UiLabel::setHeidth(int) -> void {}
 
-auto UiElement::setEventOnClick(std::function<void(void*)>) -> void {}
+auto UiLabel::setEventOnClick(std::function<void(void*)>) -> void {}
 
-auto UiElement::setTextContent(const std::string&) -> void {}
+auto UiLabel::setTextContent(const std::string&) -> void {}
 
-auto UiElement::setTextColor(Color) -> void {}
-
-auto UiElement::setTextSize(int) -> void {}
+auto UiLabel::setTextColor(Color) -> void {}

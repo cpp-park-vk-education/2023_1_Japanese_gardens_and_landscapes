@@ -2,7 +2,11 @@
 
 #include "UiElement.hpp"
 
-class IUiContextWrapper {
- public:
-    virtual auto applyUiViewPort(UiElement*) -> void = 0;
-};
+namespace AnimeDefendersEngine {
+
+    class IUiContextWrapper {
+     public:
+        virtual auto applyUiViewPort(UiElement*) -> void const = 0;
+    };
+
+}  // namespace AnimeDefendersEngine

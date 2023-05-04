@@ -1,13 +1,18 @@
 #pragma ones
 
-#include "System.hpp"
 #include "UiColorElement.hpp"
+#include "UiElementSystem.hpp"
 
-class UiColorElementSystem : public System {
- public:
-    UiColorElementSystem() = 0;
+namespace AnimeDefendersEngine {
 
-    static auto applyUiElementTransform(UiColorElement*) -> void;
-    static auto drawUiElement(UiColorElement*) -> void;
-    static auto checkByPointInclude(UiColorElement*, int, int) -> bool;
-};
+    class UiColorElementSystem : public UiElementSystem {
+     public:
+        static auto applyUiElementTransform(UiColorElement*) -> void const;
+        static auto drawUiElement(UiColorElement*) -> void const;
+        static auto checkByPointInclude(UiColorElement*, int, int) -> bool const;
+
+     private:
+        UiColorElementSystem();
+    };
+
+}  // namespace AnimeDefendersEngine

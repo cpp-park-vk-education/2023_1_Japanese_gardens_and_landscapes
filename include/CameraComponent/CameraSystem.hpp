@@ -3,10 +3,15 @@
 #include "Camera.hpp"
 #include "System.hpp"
 
-class CameraSystem : public System {
- public:
-    CameraSystem() = 0;
+namespace AnimeDefendersEngine {
 
-    static auto determineNewCameraTranspose(Camera*) -> void;
-    static auto applyCameraView(Camera*) -> void;
-};
+    class CameraSystem : public System {
+     public:
+        static auto determineNewCameraTranspose(Camera*) -> void const;
+        static auto applyCameraView(Camera*) -> void const;
+
+     private:
+        CameraSystem();
+    };
+
+}  // namespace AnimeDefendersEngine

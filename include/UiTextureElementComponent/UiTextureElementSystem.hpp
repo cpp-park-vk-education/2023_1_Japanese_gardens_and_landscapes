@@ -1,13 +1,18 @@
 #pragma ones
 
-#include "System.hpp"
+#include "UiElementSystem.hpp"
 #include "UiTextureElement.hpp"
 
-class UiTextureElementSystem : public System {
- public:
-    UiTextureElementSystem() = 0;
+namespace AnimeDefendersEngine {
 
-    static auto applyUiElementTransform(UiTextureElement*) -> void;
-    static auto drawUiElement(UiTextureElement*) -> void;
-    static auto checkByPointInclude(UiTextureElement*, int, int) -> bool;
-};
+    class UiTextureElementSystem : public UiElementSystem {
+     public:
+        static auto applyUiElementTransform(UiTextureElement*) -> void const;
+        static auto drawUiElement(UiTextureElement*) -> void const;
+        static auto checkByPointInclude(UiTextureElement*, int, int) -> bool const;
+
+     private:
+        UiTextureElementSystem();
+    };
+
+}  // namespace AnimeDefendersEngine

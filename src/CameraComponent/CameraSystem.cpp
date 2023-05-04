@@ -1,7 +1,7 @@
-#pragma ones
-
 #include "CameraSystem.hpp"
 
-auto CameraSystem::determineNewCameraTranspose(Camera*) -> void {}
+using namespace AnimeDefendersEngine;
 
-auto CameraSystem::applyCameraView(Camera*) -> void {}
+auto CameraSystem::determineNewCameraTranspose(Camera*) -> void const {}
+
+auto CameraSystem::applyCameraView(Camera*) -> void const {}

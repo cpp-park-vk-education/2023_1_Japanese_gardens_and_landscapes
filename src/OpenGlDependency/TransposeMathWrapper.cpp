@@ -1,9 +1,9 @@
-#pragma once
-
 #include "TransposeMathWrapper.hpp"
 
-auto TransposeMathWrapper::initialIdentityMatrix() -> void {}
+using namespace AnimeDefendersEngine;
 
-auto TransposeMathWrapper::applyTransposeMatrix(Transpose*) -> void {}
+auto TransposeMathWrapper::initialIdentityMatrix() -> void const {}
 
-auto TransposeMathWrapper::dropLastMatrix() -> void {}
+auto TransposeMathWrapper::applyTransposeMatrix(Transpose*) -> void const {}
+
+auto TransposeMathWrapper::dropLastMatrix() -> void const {}
