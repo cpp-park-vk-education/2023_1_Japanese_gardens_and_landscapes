@@ -6,8 +6,10 @@ namespace AnimeDefendersEngine {
     namespace PhysicsEngine {
         class PhysicsSystem : public ISystem {
          public:
-            virtual auto updateSystem(ComponentManager& componentManager) -> void override{};
-            virtual auto updateSystem(ComponentManager& componentManager, float timeStep) -> void override{};
+            PhysicsSystem(float fixedDeltaTime);
+            virtual auto updateSystem(ComponentManager& componentManager) -> void override;
+            auto updateSystem(ComponentManager& componentManager, float timeStep) -> void;
+            auto setFixedDeltaTime(float fixedDeltaTime) -> void;
 
          private:
             PhysicsWorld physicsWorld;
