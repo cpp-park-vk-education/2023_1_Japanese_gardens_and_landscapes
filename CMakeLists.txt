@@ -88,6 +88,13 @@ set(source
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/UiContextWrapper.cpp
     ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/Window.cpp
+    ${PROJECT_SOURCE_DIR}/src/Physics/Body.cpp
+    ${PROJECT_SOURCE_DIR}/src/Physics/BodyDefinition.cpp
+    ${PROJECT_SOURCE_DIR}/src/Physics/CollisionHandler.cpp
+    ${PROJECT_SOURCE_DIR}/src/Physics/Manifold.cpp
+    ${PROJECT_SOURCE_DIR}/src/Physics/PhysicsSystem.cpp
+    ${PROJECT_SOURCE_DIR}/src/Physics/PhysicsWorld.cpp
+    ${PROJECT_SOURCE_DIR}/src/Physics/Shape.cpp
     ${PROJECT_SOURCE_DIR}/src/SpriteComponent/Sprite.cpp
     ${PROJECT_SOURCE_DIR}/src/SpriteComponent/SpriteSystem.cpp
     ${PROJECT_SOURCE_DIR}/src/UiColorElementComponent/UiColorElement.cpp
