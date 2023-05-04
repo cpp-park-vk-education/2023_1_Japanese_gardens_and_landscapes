@@ -7,9 +7,9 @@ namespace AnimeDefendersEngine {
     namespace PhysicsEngine {
         class IBody {
          public:
-            virtual void applyForce(Math::Vector2<float> vec) = 0;
-            virtual void applyImpulse(Math::Vector2<float> vec) = 0;
-            virtual Math::Vector2<float> getPosition() = 0;
+            virtual auto applyForce(Math::Vector2<float> vec) -> void = 0;
+            virtual auto applyImpulse(Math::Vector2<float> vec) -> void = 0;
+            virtual auto getPosition() -> Math::Vector2<float> = 0;
             virtual ~IBody(){};
         };
 
@@ -18,7 +18,7 @@ namespace AnimeDefendersEngine {
             BodyDefinition bodyDefinition;
 
          public:
-            void setType(BodyType type);
+            auto setType(BodyType type) -> void;
         };
     }  // namespace PhysicsEngine
 }  // namespace AnimeDefendersEngine
