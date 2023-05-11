@@ -3,6 +3,6 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-TEST(SpriteComponent, firstTest) {
+TEST(SpriteComponent, isSpriteVisibleToCameraTest) {
     //
 }
