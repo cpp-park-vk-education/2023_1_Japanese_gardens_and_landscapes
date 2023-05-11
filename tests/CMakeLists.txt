@@ -11,6 +11,11 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 set(A_tests ${PROJECT_SOURCE_DIR}/tests/A.cpp)
 set(AnimeFramework_test ${PROJECT_SOURCE_DIR}/tests/AnimeFramework.cpp)
+set(Camera_test ${PROJECT_SOURCE_DIR}/tests/Camera.cpp)
+set(CameraSystem_test ${PROJECT_SOURCE_DIR}/tests/CameraSystem.cpp)
+set(Renderer_test ${PROJECT_SOURCE_DIR}/tests/Renderer.cpp)
+set(Sprite_test ${PROJECT_SOURCE_DIR}/tests/Sprite.cpp)
+set(SpriteSystem_test ${PROJECT_SOURCE_DIR}/tests/SpriteSystem.cpp)
 
 add_executable(${A_test_name}_tests_run ${A_tests})
 add_executable(${AnimeFramework_test_name}_tests_run ${AnimeFramework_test})
