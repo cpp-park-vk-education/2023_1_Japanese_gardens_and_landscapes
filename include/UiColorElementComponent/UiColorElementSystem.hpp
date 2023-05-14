@@ -8,9 +8,9 @@ namespace AnimeDefendersEngine {
 
         class UiColorElementSystem : public UiElementSystem {
          public:
-            static auto applyUiElementTransform(UiColorElement&) -> void const;
-            static auto drawUiElement(UiColorElement&) -> void const;
-            static auto checkByPointInclude(UiColorElement&, int, int) -> bool const;
+            static auto applyUiElementTransform(const UiColorElement&) -> void const;
+            static auto drawUiElement(const UiColorElement&) -> void const;
+            static auto checkByPointInclude(const UiColorElement&, int, int) -> bool const;
 
          private:
             UiColorElementSystem();

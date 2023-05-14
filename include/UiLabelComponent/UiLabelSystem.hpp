@@ -8,9 +8,9 @@ namespace AnimeDefendersEngine {
 
         class UiLabelSystem : public UiElementSystem {
          public:
-            static auto applyUiElementTransform(UiLabel&) -> void const;
-            static auto drawUiElement(UiLabel&) -> void const;
-            static auto checkByPointInclude(UiLabel&, int, int) -> bool const;
+            static auto applyUiElementTransform(const UiLabel&) -> void const;
+            static auto drawUiElement(const UiLabel&) -> void const;
+            static auto checkByPointInclude(const UiLabel&, int, int) -> bool const;
 
          private:
             UiLabelSystem();

@@ -7,7 +7,7 @@ namespace AnimeDefendersEngine {
 
         class DrawTextureWrapper : public IDrawTextureWrapper {
          public:
-            auto drawTexture(Image&) -> void const override;
+            auto drawTexture(const Image&) -> void const override;
         };
 
     }  // namespace Graphics

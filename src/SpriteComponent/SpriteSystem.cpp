@@ -2,6 +2,6 @@
 
 using namespace AnimeDefendersEngine::Graphics;
 
-auto SpriteSystem::findVisibleSprites(const std::vector<Sprite&>&, Camera&) -> std::vector<Sprite*> const {}
+auto SpriteSystem::isSpriteVisibleToCamera(const Sprite&, const Camera&) -> bool const {}
 
-auto SpriteSystem::drawSprite(Sprite&) -> void const {}
+auto SpriteSystem::drawSprite(const Sprite&) -> void const {}

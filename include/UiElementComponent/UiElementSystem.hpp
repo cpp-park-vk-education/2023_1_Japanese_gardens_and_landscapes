@@ -8,9 +8,9 @@ namespace AnimeDefendersEngine {
 
         class UiElementSystem : public ISystem {
          public:
-            static auto applyUiElementTransform(UiElement&) -> void const;
-            static auto drawUiElement(UiElement&) -> void const;
-            static auto checkByPointInclude(UiElement&, int, int) -> bool const;
+            static auto applyUiElementTransform(const UiElement&) -> void const;
+            static auto drawUiElement(const UiElement&) -> void const;
+            static auto checkByPointInclude(const UiElement&, int, int) -> bool const;
 
          private:
             UiElementSystem();

@@ -2,7 +2,10 @@
 
 using namespace AnimeDefendersEngine::PhysicsEngine;
 
-PhysicsSystem::PhysicsSystem(float fixedDeltaTime){};
-auto PhysicsSystem::updateSystem(ComponentManager& componentManager) -> void{};
-auto PhysicsSystem::updateSystem(ComponentManager& componentManager, float timeStep) -> void{};
-auto PhysicsSystem::setFixedDeltaTime(float fixedDeltaTime) -> void{};
+PhysicsSystem::PhysicsSystem(float fixedDeltaTime) {}
+
+auto PhysicsSystem::updateSystem(ComponentManager& componentManager) -> void {}
+
+auto PhysicsSystem::updateSystem(ComponentManager& componentManager, float timeStep) -> void {}
+
+auto PhysicsSystem::setFixedDeltaTime(float fixedDeltaTime) -> void {}

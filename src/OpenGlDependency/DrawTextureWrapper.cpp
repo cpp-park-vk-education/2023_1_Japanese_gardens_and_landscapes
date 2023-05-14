@@ -2,4 +2,4 @@
 
 using namespace AnimeDefendersEngine::Graphics;
 
-auto DrawTextureWrapper::drawTexture(Image&) -> void const {}
+auto DrawTextureWrapper::drawTexture(const Image&) -> void const {}

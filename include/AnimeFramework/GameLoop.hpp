@@ -13,7 +13,7 @@ namespace AnimeDefendersEngine {
         void setEventManager(std::unique_ptr<IEventManager>);
 
      private:
-        bool is_running = true;
+        bool is_running{true};
         std::unique_ptr<ISystemManager> m_systemManager;
         std::unique_ptr<IEventManager> m_eventManager;
         std::unique_ptr<InputManager> m_input;

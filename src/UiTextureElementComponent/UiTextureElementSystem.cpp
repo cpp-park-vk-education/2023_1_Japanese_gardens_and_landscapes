@@ -2,8 +2,8 @@
 
 using namespace AnimeDefendersEngine::Graphics;
 
-auto UiTextureElementSystem::applyUiElementTransform(UiTextureElement&) -> void const {}
+auto UiTextureElementSystem::applyUiElementTransform(const UiTextureElement&) -> void const {}
 
-auto UiTextureElementSystem::drawUiElement(UiTextureElement&) -> void const {}
+auto UiTextureElementSystem::drawUiElement(const UiTextureElement&) -> void const {}
 
-auto UiTextureElementSystem::checkByPointInclude(UiTextureElement&, int, int) -> bool const {}
+auto UiTextureElementSystem::checkByPointInclude(const UiTextureElement&, int, int) -> bool const {}

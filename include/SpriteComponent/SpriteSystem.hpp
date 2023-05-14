@@ -11,8 +11,8 @@ namespace AnimeDefendersEngine {
 
         class SpriteSystem : public ISystem {
          public:
-            static auto findVisibleSprites(const std::vector<Sprite*>&, Camera*) -> std::vector<Sprite*> const;
-            static auto drawSprite(Sprite*) -> void const;
+            static auto isSpriteVisibleToCamera(const Sprite&, const Camera&) -> bool const;
+            static auto drawSprite(const Sprite&) -> void const;
 
          private:
             SpriteSystem();

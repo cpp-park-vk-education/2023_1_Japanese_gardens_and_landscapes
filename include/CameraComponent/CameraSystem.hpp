@@ -8,8 +8,8 @@ namespace AnimeDefendersEngine {
 
         class CameraSystem : public System {
          public:
-            static auto determineNewCameraTranspose(Camera&) -> void const;
-            static auto applyCameraView(Camera&) -> void const;
+            static auto determineNewCameraTranspose(const Camera&) -> void const;
+            static auto applyCameraView(const Camera&) -> void const;
 
          private:
             CameraSystem();

@@ -2,6 +2,6 @@
 
 using namespace AnimeDefendersEngine::Graphics;
 
-auto CameraSystem::determineNewCameraTranspose(Camera&) -> void const {}
+auto CameraSystem::determineNewCameraTranspose(const Camera&) -> void const {}
 
-auto CameraSystem::applyCameraView(Camera&) -> void const {}
+auto CameraSystem::applyCameraView(const Camera&) -> void const {}

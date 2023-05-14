@@ -7,7 +7,7 @@ namespace AnimeDefendersEngine {
 
         class UiContextWrapper : public IUiContextWrapper {
          public:
-            auto applyUiViewPort(UiElement&) -> void const override;
+            auto applyUiViewPort(const UiElement&) -> void const override;
         };
 
     }  // namespace Graphics

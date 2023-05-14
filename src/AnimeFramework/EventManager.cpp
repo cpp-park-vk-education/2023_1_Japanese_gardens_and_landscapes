@@ -2,4 +2,4 @@
 
 using namespace AnimeDefendersEngine;
 
-auto EventManager::hasEvent(std::string eventName) -> bool {};
+auto EventManager::hasEvent(std::string eventName) -> bool {}

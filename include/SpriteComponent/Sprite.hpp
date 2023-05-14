@@ -11,7 +11,7 @@ namespace AnimeDefendersEngine {
 
         class Sprite : public Component {
          public:
-            auto isSpriteVisibleToCamera(Camera*) -> bool const;
+            auto isSpriteVisibleToCamera(const Camera&) -> bool const;
             auto drawSprite() -> void const;
 
             auto setTransform(const Transform&) -> void;

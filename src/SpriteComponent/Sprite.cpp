@@ -2,7 +2,7 @@
 
 using namespace AnimeDefendersEngine::Graphics;
 
-auto Sprite::isSpriteVisibleToCamera(Camera&) -> bool const {}
+auto Sprite::isSpriteVisibleToCamera(const Camera&) -> bool const {}
 
 auto Sprite::drawSprite() -> void const {}
 

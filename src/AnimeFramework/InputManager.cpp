@@ -2,4 +2,4 @@
 
 using namespace AnimeDefendersEngine;
 
-auto InputManager::setEventManager(EventManager eventManager) -> void {};
+auto InputManager::setEventManager(EventManager eventManager) -> void {}

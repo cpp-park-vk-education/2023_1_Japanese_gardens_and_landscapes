@@ -8,9 +8,9 @@ namespace AnimeDefendersEngine {
 
         class UiTextureElementSystem : public UiElementSystem {
          public:
-            static auto applyUiElementTransform(UiTextureElement&) -> void const;
-            static auto drawUiElement(UiTextureElement&) -> void const;
-            static auto checkByPointInclude(UiTextureElement&, int, int) -> bool const;
+            static auto applyUiElementTransform(const UiTextureElement&) -> void const;
+            static auto drawUiElement(const UiTextureElement&) -> void const;
+            static auto checkByPointInclude(const UiTextureElement&, int, int) -> bool const;
 
          private:
             UiTextureElementSystem();

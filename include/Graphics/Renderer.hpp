@@ -11,7 +11,7 @@ namespace AnimeDefendersEngine {
         class Renderer {
          public:
             Renderer();
-            auto renderObjects(Scene&) -> void const;
+            auto renderObjects(const Scene&) -> void const;
 
          private:
             std::unique_ptr<IWindow> m_window;
