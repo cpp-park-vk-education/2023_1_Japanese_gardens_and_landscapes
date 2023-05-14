@@ -13,7 +13,7 @@ namespace AnimeDefendersEngine {
         auto applyCameraView() -> void const;
 
         auto setMotionRule(std::function<Transpose()>) -> void;
-        auto setExtraTranspose(Transpose) -> void;
+        auto setCameraTranspose(Transpose) -> void;
         auto setExtraMotion(std::function<Transpose(Transpose)>) -> void;
         auto setIsActive(bool) -> void;
 

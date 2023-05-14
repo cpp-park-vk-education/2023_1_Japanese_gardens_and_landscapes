@@ -27,8 +27,9 @@ set(include_files
     ${PROJECT_SOURCE_DIR}/include/Graphics/ITrasnposeMathWrapper.hpp
     ${PROJECT_SOURCE_DIR}/include/Graphics/IUiContextWrapper.hpp
     ${PROJECT_SOURCE_DIR}/include/Graphics/IWindow.hpp
-    ${PROJECT_SOURCE_DIR}/include/Graphics/Renderer.hpp 
+    ${PROJECT_SOURCE_DIR}/include/Graphics/Renderer.hpp
     ${PROJECT_SOURCE_DIR}/include/Graphics/Texture.hpp
+    ${PROJECT_SOURCE_DIR}/include/Graphics/Transpose.hpp
     ${PROJECT_SOURCE_DIR}/include/InputManager/InputManager.hpp
     ${PROJECT_SOURCE_DIR}/include/Logger/Logger.hpp
     ${PROJECT_SOURCE_DIR}/include/Math/Graph.hpp

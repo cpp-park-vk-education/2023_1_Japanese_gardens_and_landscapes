@@ -3,6 +3,12 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-TEST(SpriteComponent, isSpriteVisibleToCameraTest) {
-    //
+using namespace AnimeDefendersEngine;
+
+TEST(SpriteComponent, isSpriteVisibleToCameraTestVisiable) {
+    Camera camera{};
+    camera.setCameraTranspose({});
+
+    Sprite sprite{};
+    sprite.setTransform();
 }
