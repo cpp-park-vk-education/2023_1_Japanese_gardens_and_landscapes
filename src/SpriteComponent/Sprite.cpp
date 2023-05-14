@@ -1,8 +1,8 @@
 #include "Sprite.hpp"
 
-using namespace AnimeDefendersEngine;
+using namespace AnimeDefendersEngine::Graphics;
 
-auto Sprite::isSpriteVisibleToCamera(Camera*) -> bool const {}
+auto Sprite::isSpriteVisibleToCamera(Camera&) -> bool const {}
 
 auto Sprite::drawSprite() -> void const {}
 

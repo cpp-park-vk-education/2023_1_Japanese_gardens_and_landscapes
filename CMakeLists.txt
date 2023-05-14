@@ -6,109 +6,107 @@ project(${project_name})
 set(CMAKE_CXX_STANDARD 20)
 add_compile_options(-Wall -Wextra -Werror -Wpedantic)
 
-set(main_executable ${PROJECT_SOURCE_DIR}/src/main.cpp)
+set(main_executable src/main.cpp)
+
 set(include_files
-    ${PROJECT_SOURCE_DIR}/include/A_lib/A.hpp
-    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/AnimeFramework.hpp
-    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/Component.hpp
-    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/ComponentManager.hpp
-    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/Entity.hpp
-    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/Event.hpp
-    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/EventManager.hpp
-    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/GameLoop.hpp
-    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/MemoryMaster.hpp
-    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/InputManager.hpp
-    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/Scene.hpp
-    ${PROJECT_SOURCE_DIR}/include/AnimeFramework/SceneManager.hpp
-    ${PROJECT_SOURCE_DIR}/include/CameraComponent/Camera.hpp
-    ${PROJECT_SOURCE_DIR}/include/CameraComponent/CameraSystem.hpp
-    ${PROJECT_SOURCE_DIR}/include/Graphics/Animaton.hpp
-    ${PROJECT_SOURCE_DIR}/include/Graphics/Color.hpp
-    ${PROJECT_SOURCE_DIR}/include/Graphics/IDrawTextureWrapper.hpp
-    ${PROJECT_SOURCE_DIR}/include/Graphics/ITrasnposeMathWrapper.hpp
-    ${PROJECT_SOURCE_DIR}/include/Graphics/IUiContextWrapper.hpp
-    ${PROJECT_SOURCE_DIR}/include/Graphics/IWindow.hpp
-    ${PROJECT_SOURCE_DIR}/include/Graphics/Renderer.hpp
-    ${PROJECT_SOURCE_DIR}/include/Graphics/Texture.hpp
-    ${PROJECT_SOURCE_DIR}/include/Logger/Logger.hpp
-    ${PROJECT_SOURCE_DIR}/include/Math/Graph.hpp
-    ${PROJECT_SOURCE_DIR}/include/Math/Matrix.hpp
-    ${PROJECT_SOURCE_DIR}/include/Math/Vector2.hpp
-    ${PROJECT_SOURCE_DIR}/include/OpenGlDependency/DrawTextureWrapper.hpp
-    ${PROJECT_SOURCE_DIR}/include/OpenGlDependency/TransposeMathWrapper.hpp
-    ${PROJECT_SOURCE_DIR}/include/OpenGlDependency/UiContextWrapper.hpp
-    ${PROJECT_SOURCE_DIR}/include/OpenGlDependency/Window.hpp
-    ${PROJECT_SOURCE_DIR}/include/Physics/Body.hpp
-    ${PROJECT_SOURCE_DIR}/include/Physics/BodyDefinition.hpp
-    ${PROJECT_SOURCE_DIR}/include/Physics/CollisionHandler.hpp
-    ${PROJECT_SOURCE_DIR}/include/Physics/Manifold.hpp
-    ${PROJECT_SOURCE_DIR}/include/Physics/PhysicsSystem.hpp
-    ${PROJECT_SOURCE_DIR}/include/Physics/PhysicsWorld.hpp
-    ${PROJECT_SOURCE_DIR}/include/Physics/Shape.hpp
-    ${PROJECT_SOURCE_DIR}/include/SpriteComponent/Sprite.hpp
-    ${PROJECT_SOURCE_DIR}/include/SpriteComponent/SpriteSystem.hpp
-    ${PROJECT_SOURCE_DIR}/include/Systems/ISystem.hpp
-    ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent/UiColorElement.hpp
-    ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent/UiColorElementSystem.hpp
-    ${PROJECT_SOURCE_DIR}/include/UiElementComponent/UiElement.hpp
-    ${PROJECT_SOURCE_DIR}/include/UiElementComponent/UiElementSystem.hpp
-    ${PROJECT_SOURCE_DIR}/include/UiLabelComponent/UiLabel.hpp
-    ${PROJECT_SOURCE_DIR}/include/UiLabelComponent/UiLabelSystem.hpp
-    ${PROJECT_SOURCE_DIR}/include/UiTextureElementComponent/UiTextureElement.hpp
-    ${PROJECT_SOURCE_DIR}/include/UiTextureElementComponent/UiTextureElementSystem.hpp
+    include/AnimeFramework/AnimeFramework.hpp
+    include/AnimeFramework/Component.hpp
+    include/AnimeFramework/ComponentManager.hpp
+    include/AnimeFramework/Entity.hpp
+    include/AnimeFramework/Event.hpp
+    include/AnimeFramework/EventManager.hpp
+    include/AnimeFramework/GameLoop.hpp
+    include/AnimeFramework/MemoryMaster.hpp
+    include/AnimeFramework/InputManager.hpp
+    include/AnimeFramework/Scene.hpp
+    include/AnimeFramework/SceneManager.hpp
+    include/CameraComponent/Camera.hpp
+    include/CameraComponent/CameraSystem.hpp
+    include/Graphics/Animaton.hpp
+    include/Graphics/Color.hpp
+    include/Graphics/IDrawTextureWrapper.hpp
+    include/Graphics/ITrasnposeMathWrapper.hpp
+    include/Graphics/IUiContextWrapper.hpp
+    include/Graphics/IWindow.hpp
+    include/Graphics/Renderer.hpp
+    include/Graphics/Texture.hpp
+    include/Logger/Logger.hpp
+    include/Math/Graph.hpp
+    include/Math/Matrix.hpp
+    include/Math/Vector2.hpp
+    include/OpenGlDependency/DrawTextureWrapper.hpp
+    include/OpenGlDependency/TransposeMathWrapper.hpp
+    include/OpenGlDependency/UiContextWrapper.hpp
+    include/OpenGlDependency/Window.hpp
+    include/Physics/Body.hpp
+    include/Physics/BodyDefinition.hpp
+    include/Physics/CollisionHandler.hpp
+    include/Physics/Manifold.hpp
+    include/Physics/PhysicsSystem.hpp
+    include/Physics/PhysicsWorld.hpp
+    include/Physics/Shape.hpp
+    include/SpriteComponent/Sprite.hpp
+    include/SpriteComponent/SpriteSystem.hpp
+    include/Systems/ISystem.hpp
+    include/UiColorElementComponent/UiColorElement.hpp
+    include/UiColorElementComponent/UiColorElementSystem.hpp
+    include/UiElementComponent/UiElement.hpp
+    include/UiElementComponent/UiElementSystem.hpp
+    include/UiLabelComponent/UiLabel.hpp
+    include/UiLabelComponent/UiLabelSystem.hpp
+    include/UiTextureElementComponent/UiTextureElement.hpp
+    include/UiTextureElementComponent/UiTextureElementSystem.hpp
 )
 set(include_locations
-    ${PROJECT_SOURCE_DIR}/include/A_lib
-    ${PROJECT_SOURCE_DIR}/include/AnimeFramework
-    ${PROJECT_SOURCE_DIR}/include/CameraComponent
-    ${PROJECT_SOURCE_DIR}/include/Graphics
-    ${PROJECT_SOURCE_DIR}/include/Logger
-    ${PROJECT_SOURCE_DIR}/include/Math
-    ${PROJECT_SOURCE_DIR}/include/OpenGlDependency
-    ${PROJECT_SOURCE_DIR}/include/Physics
-    ${PROJECT_SOURCE_DIR}/include/SpriteComponent
-    ${PROJECT_SOURCE_DIR}/include/Systems
-    ${PROJECT_SOURCE_DIR}/include/UiColorElementComponent
-    ${PROJECT_SOURCE_DIR}/include/UiElementComponent
-    ${PROJECT_SOURCE_DIR}/include/UiLabelComponent
-    ${PROJECT_SOURCE_DIR}/include/UiTextureElementComponent
+    include/AnimeFramework
+    include/CameraComponent
+    include/Graphics
+    include/Logger
+    include/Math
+    include/OpenGlDependency
+    include/Physics
+    include/SpriteComponent
+    include/Systems
+    include/UiColorElementComponent
+    include/UiElementComponent
+    include/UiLabelComponent
+    include/UiTextureElementComponent
 )
 set(source
-    ${PROJECT_SOURCE_DIR}/src/A_lib/A.cpp
-    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/AnimeFramework.cpp
-    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/ComponentManager.cpp
-    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/Entity.cpp
-    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/EventManager.cpp
-    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/GameLoop.cpp
-    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/InputManager.cpp
-    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/Scene.cpp
-    ${PROJECT_SOURCE_DIR}/src/AnimeFramework/SceneManager.cpp
-    ${PROJECT_SOURCE_DIR}/src/CameraComponent/Camera.cpp
-    ${PROJECT_SOURCE_DIR}/src/CameraComponent/CameraSystem.cpp
-    ${PROJECT_SOURCE_DIR}/src/Graphics/Renderer.cpp
-    ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
-    ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
-    ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/UiContextWrapper.cpp
-    ${PROJECT_SOURCE_DIR}/src/OpenGlDependency/Window.cpp
-    ${PROJECT_SOURCE_DIR}/src/Physics/Body.cpp
-    ${PROJECT_SOURCE_DIR}/src/Physics/BodyDefinition.cpp
-    ${PROJECT_SOURCE_DIR}/src/Physics/CollisionHandler.cpp
-    ${PROJECT_SOURCE_DIR}/src/Physics/PhysicsSystem.cpp
-    ${PROJECT_SOURCE_DIR}/src/Physics/PhysicsWorld.cpp
-    ${PROJECT_SOURCE_DIR}/src/Physics/Shape.cpp
-    ${PROJECT_SOURCE_DIR}/src/SpriteComponent/Sprite.cpp
-    ${PROJECT_SOURCE_DIR}/src/SpriteComponent/SpriteSystem.cpp
-    ${PROJECT_SOURCE_DIR}/src/UiColorElementComponent/UiColorElement.cpp
-    ${PROJECT_SOURCE_DIR}/src/UiColorElementComponent/UiColorElementSystem.cpp
-    ${PROJECT_SOURCE_DIR}/src/UiElementComponent/UiElement.cpp
-    ${PROJECT_SOURCE_DIR}/src/UiElementComponent/UiElementSystem.cpp
-    ${PROJECT_SOURCE_DIR}/src/UiLabelComponent/UiLabel.cpp
-    ${PROJECT_SOURCE_DIR}/src/UiLabelComponent/UiLabelSystem.cpp
-    ${PROJECT_SOURCE_DIR}/src/UiTextureElementComponent/UiTextureElement.cpp
-    ${PROJECT_SOURCE_DIR}/src/UiTextureElementComponent/UiTextureElementSystem.cpp
+    src/AnimeFramework/AnimeFramework.cpp
+    src/AnimeFramework/ComponentManager.cpp
+    src/AnimeFramework/Entity.cpp
+    src/AnimeFramework/EventManager.cpp
+    src/AnimeFramework/GameLoop.cpp
+    src/AnimeFramework/InputManager.cpp
+    src/AnimeFramework/Scene.cpp
+    src/AnimeFramework/SceneManager.cpp
+    src/CameraComponent/Camera.cpp
+    src/CameraComponent/CameraSystem.cpp
+    src/Graphics/Renderer.cpp
+    src/OpenGlDependency/DrawTextureWrapper.cpp
+    src/OpenGlDependency/TransposeMathWrapper.cpp
+    src/OpenGlDependency/UiContextWrapper.cpp
+    src/OpenGlDependency/Window.cpp
+    src/Physics/Body.cpp
+    src/Physics/BodyDefinition.cpp
+    src/Physics/CollisionHandler.cpp
+    src/Physics/PhysicsSystem.cpp
+    src/Physics/PhysicsWorld.cpp
+    src/Physics/Shape.cpp
+    src/SpriteComponent/Sprite.cpp
+    src/SpriteComponent/SpriteSystem.cpp
+    src/UiColorElementComponent/UiColorElement.cpp
+    src/UiColorElementComponent/UiColorElementSystem.cpp
+    src/UiElementComponent/UiElement.cpp
+    src/UiElementComponent/UiElementSystem.cpp
+    src/UiLabelComponent/UiLabel.cpp
+    src/UiLabelComponent/UiLabelSystem.cpp
+    src/UiTextureElementComponent/UiTextureElement.cpp
+    src/UiTextureElementComponent/UiTextureElementSystem.cpp
 )
 
-set(tests_folder ${PROJECT_SOURCE_DIR}/tests)
+set(tests_folder tests)
 
 if(DEBUG OR ENABLE_COVERAGE OR ENABLE_SANITIZERS OR ENABLE_TESTING)
     add_compile_options(-g -O0)
@@ -128,7 +126,7 @@ if(ENABLE_CLANG_TIDY AND NOT ENABLE_TESTING AND NOT ENABLE_COVERAGE)
     add_custom_target(
         TIDY_TARGET ALL
         COMMAND clang-tidy-15
-        --config-file=${PROJECT_SOURCE_DIR}/configs/.clang-tidy
+        --config-file=configs/.clang-tidy
         ${source}
         ${main_executable}
         --
@@ -144,7 +142,7 @@ if(ENABLE_CLANG_FORMAT)
         COMMAND clang-format
         --dry-run
         --Werror
-        -style=file:${PROJECT_SOURCE_DIR}/configs/.clang-format
+        -style=file:configs/.clang-format
         ${source}
         ${include_files}
         ${tests_folder}/*.cpp
@@ -154,7 +152,7 @@ if(ENABLE_CLANG_FORMAT)
         COMMAND clang-format
         -i
         --Werror
-        -style=file:${PROJECT_SOURCE_DIR}/configs/.clang-format
+        -style=file:configs/.clang-format
         ${source}
         ${include_files}
         ${tests_folder}/*.cpp

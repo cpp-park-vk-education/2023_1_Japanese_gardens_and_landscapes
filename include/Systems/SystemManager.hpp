@@ -16,4 +16,5 @@ namespace AnimeDefendersEngine {
      private:
         std::vector<ISystem*> m_systems;
     };
+
 }  // namespace AnimeDefendersEngine

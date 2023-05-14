@@ -1,11 +1,13 @@
 #pragma ones
 
 namespace AnimeDefendersEngine {
+    namespace Graphics {
 
-    struct Color {
-        float red;
-        float green;
-        float blue;
-    };
+        struct Color {
+            float red;
+            float green;
+            float blue;
+        };
 
+    }  // namespace Graphics
 }  // namespace AnimeDefendersEngine

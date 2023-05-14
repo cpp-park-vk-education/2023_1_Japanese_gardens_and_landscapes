@@ -4,15 +4,17 @@
 #include "UiElementSystem.hpp"
 
 namespace AnimeDefendersEngine {
+    namespace Graphics {
 
-    class UiColorElementSystem : public UiElementSystem {
-     public:
-        static auto applyUiElementTransform(UiColorElement*) -> void const;
-        static auto drawUiElement(UiColorElement*) -> void const;
-        static auto checkByPointInclude(UiColorElement*, int, int) -> bool const;
+        class UiColorElementSystem : public UiElementSystem {
+         public:
+            static auto applyUiElementTransform(UiColorElement&) -> void const;
+            static auto drawUiElement(UiColorElement&) -> void const;
+            static auto checkByPointInclude(UiColorElement&, int, int) -> bool const;
 
-     private:
-        UiColorElementSystem();
-    };
+         private:
+            UiColorElementSystem();
+        };
 
+    }  // namespace Graphics
 }  // namespace AnimeDefendersEngine

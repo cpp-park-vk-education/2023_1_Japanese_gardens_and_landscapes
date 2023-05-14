@@ -1,6 +1,6 @@
 #include "UiElement.hpp"
 
-using namespace AnimeDefendersEngine;
+using namespace AnimeDefendersEngine::Graphics;
 
 auto UiElement::applyUiElementTransform() -> void const {}
 
@@ -14,4 +14,4 @@ auto UiElement::setWidth(int) -> void {}
 
 auto UiElement::setHeidth(int) -> void {}
 
-auto UiElement::setEventOnClick(std::function<void(void*)>) -> void {}
+auto UiElement::setEventOnClick(std::function<void(int, int, int)>) -> void {}

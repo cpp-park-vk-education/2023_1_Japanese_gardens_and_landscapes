@@ -1,6 +1,6 @@
 #include "UiLabel.hpp"
 
-using namespace AnimeDefendersEngine;
+using namespace AnimeDefendersEngine::Graphics;
 
 auto UiLabel::applyUiElementTransform() -> void const {}
 
@@ -14,7 +14,7 @@ auto UiLabel::setWidth(int) -> void {}
 
 auto UiLabel::setHeidth(int) -> void {}
 
-auto UiLabel::setEventOnClick(std::function<void(void*)>) -> void {}
+auto UiLabel::setEventOnClick(std::function<void(int, int, int)>) -> void {}
 
 auto UiLabel::setTextContent(const std::string&) -> void {}
 

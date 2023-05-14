@@ -7,6 +7,7 @@
 
 namespace AnimeDefendersEngine {
     namespace PhysicsEngine {
+
         class ICollisionHandler {
          public:
             virtual auto broadPhase(const std::vector<IBody*>& bodies) -> std::vector<Manifold> = 0;
@@ -28,5 +29,6 @@ namespace AnimeDefendersEngine {
             virtual auto specifyCollision(Manifold contact) -> void override;
             virtual auto resolveCollision(Manifold contact) -> void override;
         };
+
     }  // namespace PhysicsEngine
 }  // namespace AnimeDefendersEngine

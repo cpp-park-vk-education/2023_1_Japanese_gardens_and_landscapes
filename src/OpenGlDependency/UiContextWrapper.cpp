@@ -1,5 +1,5 @@
 #include "UiContextWrapper.hpp"
 
-using namespace AnimeDefendersEngine;
+using namespace AnimeDefendersEngine::Graphics;
 
-auto UiContextWrapper::applyUiViewPort(UiElement*) -> void const {}
+auto UiContextWrapper::applyUiViewPort(UiElement&) -> void const {}

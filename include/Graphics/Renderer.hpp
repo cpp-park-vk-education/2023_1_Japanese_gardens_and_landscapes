@@ -6,14 +6,16 @@
 #include <memory>
 
 namespace AnimeDefendersEngine {
+    namespace Graphics {
 
-    class Renderer {
-     public:
-        Renderer();
-        auto renderObjects(Scene&) -> void const;
+        class Renderer {
+         public:
+            Renderer();
+            auto renderObjects(Scene&) -> void const;
 
-     private:
-        std::unique_ptr<IWindow> m_window;
-    };
+         private:
+            std::unique_ptr<IWindow> m_window;
+        };
 
+    }  // namespace Graphics
 }  // namespace AnimeDefendersEngine

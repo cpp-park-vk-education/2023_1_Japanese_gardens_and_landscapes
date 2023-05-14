@@ -1,7 +1,7 @@
 #include "SpriteSystem.hpp"
 
-using namespace AnimeDefendersEngine;
+using namespace AnimeDefendersEngine::Graphics;
 
-auto SpriteSystem::findVisibleSprites(const std::vector<Sprite*>&, Camera*) -> std::vector<Sprite*> const {}
+auto SpriteSystem::findVisibleSprites(const std::vector<Sprite&>&, Camera&) -> std::vector<Sprite*> const {}
 
-auto SpriteSystem::drawSprite(Sprite*) -> void const {}
+auto SpriteSystem::drawSprite(Sprite&) -> void const {}

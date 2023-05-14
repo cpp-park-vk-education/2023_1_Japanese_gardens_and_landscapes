@@ -1,6 +1,6 @@
 #include "UiColorElement.hpp"
 
-using namespace AnimeDefendersEngine;
+using namespace AnimeDefendersEngine::Graphics;
 
 auto UiColorElement::applyUiElementTransform() -> void const {}
 
@@ -14,6 +14,6 @@ auto UiColorElement::setWidth(int) -> void {}
 
 auto UiColorElement::setHeidth(int) -> void {}
 
-auto UiColorElement::setEventOnClick(std::function<void(void*)>) -> void {}
+auto UiColorElement::setEventOnClick(std::function<void(int, int, int)>) -> void {}
 
 auto UiColorElement::setColor(Color) -> void {}

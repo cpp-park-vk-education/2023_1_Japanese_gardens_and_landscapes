@@ -9,23 +9,18 @@ set(CMAKE_CXX_STANDARD 20)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-set(A_tests ${PROJECT_SOURCE_DIR}/tests/A.cpp)
 set(AnimeFramework_test ${PROJECT_SOURCE_DIR}/tests/AnimeFramework.cpp)
 
-add_executable(${A_test_name}_tests_run ${A_tests})
 add_executable(${AnimeFramework_test_name}_tests_run ${AnimeFramework_test})
 
 set(libs ${project_name}_lib gtest_main gtest gmock gcov)
 
-target_link_libraries(${A_test_name}_tests_run ${libs})
 target_link_libraries(${AnimeFramework_test_name}_tests_run ${libs})
 
 add_custom_target(
     tests_list_target 
     DEPENDS 
-    ${A_test_name}_tests_run
     ${AnimeFramework_test_name}_tests_run
 )
 
-add_test(NAME ${A_test_name} COMMAND ${A_test_name}_tests_run)
 add_test(NAME ${AnimeFramework_test_name} COMMAND ${AnimeFramework_test_name}_tests_run)

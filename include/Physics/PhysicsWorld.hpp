@@ -6,6 +6,7 @@
 
 namespace AnimeDefendersEngine {
     namespace PhysicsEngine {
+
         class PhysicsWorld {
          public:
             PhysicsWorld(const float fixedDeltaTime);
@@ -21,5 +22,6 @@ namespace AnimeDefendersEngine {
             std::vector<Manifold> m_contacts;
             float m_fixedDeltaTime;
         };
+
     }  // namespace PhysicsEngine
 }  // namespace AnimeDefendersEngine

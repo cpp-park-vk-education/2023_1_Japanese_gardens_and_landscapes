@@ -4,14 +4,16 @@
 #include "System.hpp"
 
 namespace AnimeDefendersEngine {
+    namespace Graphics {
 
-    class CameraSystem : public System {
-     public:
-        static auto determineNewCameraTranspose(Camera*) -> void const;
-        static auto applyCameraView(Camera*) -> void const;
+        class CameraSystem : public System {
+         public:
+            static auto determineNewCameraTranspose(Camera&) -> void const;
+            static auto applyCameraView(Camera&) -> void const;
 
-     private:
-        CameraSystem();
-    };
+         private:
+            CameraSystem();
+        };
 
+    }  // namespace Graphics
 }  // namespace AnimeDefendersEngine

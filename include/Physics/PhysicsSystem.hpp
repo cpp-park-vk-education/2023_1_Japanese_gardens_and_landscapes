@@ -5,6 +5,7 @@
 
 namespace AnimeDefendersEngine {
     namespace PhysicsEngine {
+
         class PhysicsSystem : public ISystem {
          public:
             explicit PhysicsSystem(float fixedDeltaTime);
@@ -15,5 +16,6 @@ namespace AnimeDefendersEngine {
          private:
             PhysicsWorld physicsWorld;
         };
+
     }  // namespace PhysicsEngine
 }  // namespace AnimeDefendersEngine

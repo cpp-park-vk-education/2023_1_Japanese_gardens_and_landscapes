@@ -5,6 +5,7 @@
 
 namespace AnimeDefendersEngine {
     namespace PhysicsEngine {
+
         class IBody {
          public:
             virtual auto applyForce(Math::Vector2<float> vec) -> void = 0;
@@ -23,5 +24,6 @@ namespace AnimeDefendersEngine {
             virtual auto getPosition() -> Math::Vector2<float> override;
             auto setType(BodyType type) -> void;
         };
+
     }  // namespace PhysicsEngine
 }  // namespace AnimeDefendersEngine

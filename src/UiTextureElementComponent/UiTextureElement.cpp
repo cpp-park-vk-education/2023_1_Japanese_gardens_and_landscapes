@@ -1,6 +1,6 @@
 #include "UiTextureElement.hpp"
 
-using namespace AnimeDefendersEngine;
+using namespace AnimeDefendersEngine::Graphics;
 
 auto UiTextureElement::applyUiElementTransform() -> void const {}
 
@@ -14,6 +14,6 @@ auto UiTextureElement::setWidth(int) -> void {}
 
 auto UiTextureElement::setHeidth(int) -> void {}
 
-auto UiTextureElement::setEventOnClick(std::function<void(void*)>) -> void {}
+auto UiTextureElement::setEventOnClick(std::function<void(int, int, int)>) -> void {}
 
 auto UiTextureElement::setTexture(Texture) -> void {}

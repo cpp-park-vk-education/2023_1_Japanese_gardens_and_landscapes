@@ -29,5 +29,6 @@ namespace AnimeDefendersEngine {
             bool isTrigger;
             BodyDefinition(const Shape& shape, Transform transform);
         };
+
     }  // namespace PhysicsEngine
 }  // namespace AnimeDefendersEngine

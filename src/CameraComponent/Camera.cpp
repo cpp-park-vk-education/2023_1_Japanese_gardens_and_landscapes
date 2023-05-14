@@ -1,6 +1,6 @@
 #include "Camera.hpp"
 
-using namespace AnimeDefendersEngine;
+using namespace AnimeDefendersEngine::Graphics;
 
 auto Camera::determineNewCameraTranspose() -> void {}
 

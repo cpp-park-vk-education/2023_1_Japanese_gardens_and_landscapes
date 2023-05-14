@@ -1,6 +1,6 @@
 #include "Renderer.hpp"
 
-using namespace AnimeDefendersEngine;
+using namespace AnimeDefendersEngine::Graphics;
 
 Renderer::Renderer() {}
 

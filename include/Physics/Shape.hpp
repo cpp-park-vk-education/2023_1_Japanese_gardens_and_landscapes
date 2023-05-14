@@ -30,5 +30,6 @@ namespace AnimeDefendersEngine {
             explicit Rectangle(Math::Vector2<float> size);
             Math::Vector2<float> size;
         };
+
     }  // namespace PhysicsEngine
 }  // namespace AnimeDefendersEngine

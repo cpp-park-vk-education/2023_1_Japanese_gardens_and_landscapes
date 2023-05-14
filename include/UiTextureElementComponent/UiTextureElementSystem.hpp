@@ -4,15 +4,17 @@
 #include "UiTextureElement.hpp"
 
 namespace AnimeDefendersEngine {
+    namespace Graphics {
 
-    class UiTextureElementSystem : public UiElementSystem {
-     public:
-        static auto applyUiElementTransform(UiTextureElement*) -> void const;
-        static auto drawUiElement(UiTextureElement*) -> void const;
-        static auto checkByPointInclude(UiTextureElement*, int, int) -> bool const;
+        class UiTextureElementSystem : public UiElementSystem {
+         public:
+            static auto applyUiElementTransform(UiTextureElement&) -> void const;
+            static auto drawUiElement(UiTextureElement&) -> void const;
+            static auto checkByPointInclude(UiTextureElement&, int, int) -> bool const;
 
-     private:
-        UiTextureElementSystem();
-    };
+         private:
+            UiTextureElementSystem();
+        };
 
+    }  // namespace Graphics
 }  // namespace AnimeDefendersEngine
