@@ -1,7 +1,9 @@
 #pragma once
 
 namespace AnimeDefendersEngine {
-enum class ComponentType{};
+
+    enum class ComponentType {
+    };
     struct Component {};
 
 }  // namespace AnimeDefendersEngine

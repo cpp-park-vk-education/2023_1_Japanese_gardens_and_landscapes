@@ -6,6 +6,7 @@ static_assert(false, "Need to add propper headers for IEventManager and InputMan
 #include <memory>
 
 namespace AnimeDefendersEngine {
+
     class GameLoop {
      public:
         void run();
@@ -18,4 +19,5 @@ namespace AnimeDefendersEngine {
         std::unique_ptr<IEventManager> m_eventManager;
         std::unique_ptr<InputManager> m_input;
     };
+
 }  // namespace AnimeDefendersEngine

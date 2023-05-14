@@ -5,6 +5,7 @@
 #include "SceneManager.hpp"
 
 namespace AnimeDefendersEngine {
+
     class AnimeFramework {
      public:
         void run();

@@ -3,6 +3,7 @@
 #include <cstddef>
 
 namespace AnimeDefendersEngine {
+
     class MemoryMaster {
      public:
         using size_type = std::size_t;
