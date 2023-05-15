@@ -20,6 +20,8 @@ set(include_files
     include/AnimeFramework/InputManager.hpp
     include/AnimeFramework/Scene.hpp
     include/AnimeFramework/SceneManager.hpp
+    include/AudioSystem/AudioSource.hpp
+    include/AudioSystem/AudioSystem.hpp
     include/CameraComponent/Camera.hpp
     include/CameraComponent/CameraSystem.hpp
     include/Graphics/Animaton.hpp
@@ -34,6 +36,7 @@ set(include_files
     include/Math/Graph.hpp
     include/Math/Matrix.hpp
     include/Math/Vector2.hpp
+    include/OpenAlDependency/AudioPlayWrapper.hpp
     include/OpenGlDependency/DrawTextureWrapper.hpp
     include/OpenGlDependency/TransposeMathWrapper.hpp
     include/OpenGlDependency/UiContextWrapper.hpp
@@ -59,10 +62,12 @@ set(include_files
 )
 set(include_locations
     include/AnimeFramework
+    include/AudioSystem
     include/CameraComponent
     include/Graphics
     include/Logger
     include/Math
+    include/OpenAlDependency
     include/OpenGlDependency
     include/Physics
     include/SpriteComponent
@@ -81,9 +86,12 @@ set(source
     src/AnimeFramework/InputManager.cpp
     src/AnimeFramework/Scene.cpp
     src/AnimeFramework/SceneManager.cpp
+    src/AudioSystem/AudioSource.cpp
+    src/AudioSystem/AudioSystem.cpp
     src/CameraComponent/Camera.cpp
     src/CameraComponent/CameraSystem.cpp
     src/Graphics/Renderer.cpp
+    src/OpenAlDependency/AudioPlayWrapper.cpp
     src/OpenGlDependency/DrawTextureWrapper.cpp
     src/OpenGlDependency/TransposeMathWrapper.cpp
     src/OpenGlDependency/UiContextWrapper.cpp
