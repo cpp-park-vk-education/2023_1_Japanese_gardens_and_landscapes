@@ -4,16 +4,15 @@
 
 namespace AnimeDefendersEngine {
 
+    template <typename T>
     class MemoryMaster {
      public:
         using size_type = std::size_t;
 
      public:
-        template <typename T>
-        auto allocate(size_type size) -> T*;
+        auto allocate(size_type size) -> T* {}
 
-        template <typename T>
-        void deallocate(T*);
+        void deallocate(T*, size_type size) {}
     };
 
 }  // namespace AnimeDefendersEngine
