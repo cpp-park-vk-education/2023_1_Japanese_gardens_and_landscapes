@@ -5,7 +5,10 @@
 namespace AnimeDefendersEngine {
     namespace Audio {
 
-        class AudioSystem : public ISystem {};
+        class AudioSystem : public ISystem {
+         public:
+            auto playAudio(AudioSource* audioSource) -> void;
+        };
 
     }  // namespace Audio
 }  // namespace AnimeDefendersEngine
