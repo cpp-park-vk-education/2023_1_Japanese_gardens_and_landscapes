@@ -16,8 +16,8 @@ set(include_files
     include/AnimeFramework/Event.hpp
     include/AnimeFramework/EventManager.hpp
     include/AnimeFramework/GameLoop.hpp
-    include/AnimeFramework/MemoryMaster.hpp
     include/AnimeFramework/InputManager.hpp
+    include/AnimeFramework/MemoryMaster.hpp
     include/AnimeFramework/Scene.hpp
     include/AnimeFramework/SceneManager.hpp
     include/AudioSystem/AudioSource.hpp
@@ -33,6 +33,7 @@ set(include_files
     include/Graphics/Renderer.hpp
     include/Graphics/Texture.hpp
     include/Logger/Logger.hpp
+    include/Math/Coords2d.hpp
     include/Math/Graph.hpp
     include/Math/Matrix.hpp
     include/Math/Vector2.hpp
@@ -51,6 +52,7 @@ set(include_files
     include/SpriteComponent/Sprite.hpp
     include/SpriteComponent/SpriteSystem.hpp
     include/Systems/ISystem.hpp
+    include/Systems/SystemMananger.hpp
     include/UiColorElementComponent/UiColorElement.hpp
     include/UiColorElementComponent/UiColorElementSystem.hpp
     include/UiElementComponent/UiElement.hpp
@@ -91,6 +93,10 @@ set(source
     src/CameraComponent/Camera.cpp
     src/CameraComponent/CameraSystem.cpp
     src/Graphics/Renderer.cpp
+    src/Logger/Logger.cpp
+    src/Math/Coords2d.cpp
+    src/Math/Graph.cpp
+    src/Math/Vector2.cpp
     src/OpenAlDependency/AudioPlayWrapper.cpp
     src/OpenGlDependency/DrawTextureWrapper.cpp
     src/OpenGlDependency/TransposeMathWrapper.cpp
@@ -104,6 +110,7 @@ set(source
     src/Physics/Shape.cpp
     src/SpriteComponent/Sprite.cpp
     src/SpriteComponent/SpriteSystem.cpp
+    src/Systems/SystemManager.cpp
     src/UiColorElementComponent/UiColorElement.cpp
     src/UiColorElementComponent/UiColorElementSystem.cpp
     src/UiElementComponent/UiElement.cpp
