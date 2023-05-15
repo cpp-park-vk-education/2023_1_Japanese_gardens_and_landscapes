@@ -1,6 +1,7 @@
 #pragma once
 
-static_assert(false, "Need to add propper headers for IEventManager and InputManager");
+// static_assert(false, "Need to add propper headers for IEventManager and InputManager");
+#include "InputManager.hpp"
 #include "SystemManager.hpp"
 
 #include <memory>

@@ -15,14 +15,14 @@ namespace AnimeDefendersEngine {
         };
 
         class Body : public IBody {
-         private:
-            BodyDefinition bodyDefinition;
-
          public:
             virtual auto applyForce(Math::Vector2<float> vec) -> void override;
             virtual auto applyImpulse(Math::Vector2<float> vec) -> void override;
             virtual auto getPosition() -> Math::Vector2<float> override;
             auto setType(BodyType type) -> void;
+
+         private:
+            BodyDefinition bodyDefinition;
         };
 
     }  // namespace PhysicsEngine

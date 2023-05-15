@@ -2,6 +2,8 @@
 
 using namespace AnimeDefendersEngine::Math;
 
-explicit Graph::Graph(const std::vector<Component*>& components, int resolution, std::pair<Point, Point> coordinatsRange) {}
+Graph::Graph(const std::vector<Component*>&, int, std::pair<Point, Point>) {}
 
-auto Graph::findPath(Graph::Point from, Graph::Point where) -> std::vector<Point> {}
+auto Graph::findPath(Graph::Point, Graph::Point) -> std::vector<Point> {
+    return {};
+}

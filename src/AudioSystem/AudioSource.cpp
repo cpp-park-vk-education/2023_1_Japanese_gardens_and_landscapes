@@ -2,4 +2,4 @@
 
 using namespace AnimeDefendersEngine::Audio;
 
-auto AudioSource::playAudio() -> void{};
+auto AudioSource::playAudio() -> void {}

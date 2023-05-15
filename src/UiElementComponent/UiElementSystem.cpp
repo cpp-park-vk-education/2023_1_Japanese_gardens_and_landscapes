@@ -2,8 +2,10 @@
 
 using namespace AnimeDefendersEngine::Graphics;
 
-auto UiElementSystem::applyUiElementTransform(const UiElement&) -> void const {}
+auto UiElementSystem::applyUiElementTransform(const UiElement&) -> void {}
 
-auto UiElementSystem::drawUiElement(const UiElement&) -> void const {}
+auto UiElementSystem::drawUiElement(const UiElement&) -> void {}
 
-auto UiElementSystem::checkByPointInclude(const UiElement&, int, int) -> bool const {}
+auto UiElementSystem::checkByPointInclude(const UiElement&, int, int) -> bool {
+    return false;
+}

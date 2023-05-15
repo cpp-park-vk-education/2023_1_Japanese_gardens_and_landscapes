@@ -1,4 +1,4 @@
-#pragma ones
+#pragma once
 
 #include "Color.hpp"
 #include "Coords2d.hpp"
@@ -13,15 +13,15 @@ namespace AnimeDefendersEngine {
 
         class UiLabel : public UiElement {
          public:
-            auto applyUiElementTransform() -> void const;
-            auto drawUiElement() -> void const;
-            auto checkByPointInclude(int, int) -> bool const;
+            auto applyUiElementTransform() -> void;
+            auto drawUiElement() -> void;
+            auto checkByPointInclude(int, int) -> bool;
 
             auto setPosition(int, int) -> void;
             auto setWidth(int) -> void;
             auto setHeidth(int) -> void;
             auto setEventOnClick(std::function<void(int, int, int)>) -> void;
-            auto setTextContent(const std::string&) -> void;
+            auto setTextContent(std::string) -> void;
             auto setTextColor(Color) -> void;
 
          private:
@@ -29,7 +29,7 @@ namespace AnimeDefendersEngine {
             int m_width;
             int m_heidth;
             std::function<void(int, int, int)> m_eventOnClick;
-            const std::string& textContent;
+            std::string textContent;
             Color m_textColor;
         };
 

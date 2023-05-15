@@ -1,4 +1,4 @@
-#pragma ones
+#pragma once
 
 #include "UiElementSystem.hpp"
 #include "UiTextureElement.hpp"
@@ -8,9 +8,9 @@ namespace AnimeDefendersEngine {
 
         class UiTextureElementSystem : public UiElementSystem {
          public:
-            static auto applyUiElementTransform(const UiTextureElement&) -> void const;
-            static auto drawUiElement(const UiTextureElement&) -> void const;
-            static auto checkByPointInclude(const UiTextureElement&, int, int) -> bool const;
+            static auto applyUiElementTransform(const UiTextureElement&) -> void;
+            static auto drawUiElement(const UiTextureElement&) -> void;
+            static auto checkByPointInclude(const UiTextureElement&, int, int) -> bool;
 
          private:
             UiTextureElementSystem();

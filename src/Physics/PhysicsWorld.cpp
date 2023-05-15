@@ -2,14 +2,16 @@
 
 using namespace AnimeDefendersEngine::PhysicsEngine;
 
-PhysicsWorld::PhysicsWorld(const float fixedDeltaTime) {}
+PhysicsWorld::PhysicsWorld(const float) {}
 
-auto PhysicsWorld::setFixedDeltaTime(const float fixedDeltaTime) -> void {}
+auto PhysicsWorld::setFixedDeltaTime(const float) -> void {}
 
-auto PhysicsWorld::update(const float timeStep) -> void {}
+auto PhysicsWorld::update(const float) -> void {}
 
-auto PhysicsWorld::addBody(const BodyDefinition& bodyDefinition) -> IBody* {}
+auto PhysicsWorld::addBody(const BodyDefinition&) -> IBody* {
+    return nullptr;
+}
 
-auto PhysicsWorld::removeBody(IBody* body) -> void {}
+auto PhysicsWorld::removeBody(IBody*) -> void {}
 
 auto PhysicsWorld::fixedUpdate() -> void {}

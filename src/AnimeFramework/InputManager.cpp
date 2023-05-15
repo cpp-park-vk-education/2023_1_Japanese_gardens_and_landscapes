@@ -2,4 +2,6 @@
 
 using namespace AnimeDefendersEngine;
 
-auto InputManager::setEventManager(EventManager eventManager) -> void {}
+InputManager::InputManager(Graphics::Window& window) : m_window(window) {}
+
+auto InputManager::setEventManager(EventManager) -> void {}

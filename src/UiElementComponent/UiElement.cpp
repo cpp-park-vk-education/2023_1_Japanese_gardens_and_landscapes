@@ -2,11 +2,13 @@
 
 using namespace AnimeDefendersEngine::Graphics;
 
-auto UiElement::applyUiElementTransform() -> void const {}
+auto UiElement::applyUiElementTransform() -> void {}
 
-auto UiElement::drawUiElement() -> void const {}
+auto UiElement::drawUiElement() -> void {}
 
-auto UiElement::checkByPointInclude(int, int) -> bool const {}
+auto UiElement::checkByPointInclude(int, int) -> bool {
+    return false;
+}
 
 auto UiElement::setPosition(int, int) -> void {}
 

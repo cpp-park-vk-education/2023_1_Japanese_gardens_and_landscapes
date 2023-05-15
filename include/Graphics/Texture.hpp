@@ -1,4 +1,4 @@
-#pragma ones
+#pragma once
 
 #include "FileSystem.hpp"
 
@@ -6,7 +6,7 @@ namespace AnimeDefendersEngine {
     namespace Graphics {
 
         struct Texture {
-            const Image& image;
+            const FileSystem::Image& image;
             int width;
             int heidth;
         };

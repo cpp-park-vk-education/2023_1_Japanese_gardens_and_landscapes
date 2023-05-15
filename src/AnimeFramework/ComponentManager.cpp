@@ -7,6 +7,8 @@
 
 using namespace AnimeDefendersEngine;
 
-void ComponentManager::addComponent(ComponentType typeId, Component* component) {}
+void ComponentManager::addComponent(ComponentType, Component*) {}
 
-auto ComponentManager::getComponents(ComponentType typeId) -> std::vector<Component*> {}
+auto ComponentManager::getComponents(ComponentType) -> std::vector<Component*> {
+    return {};
+}

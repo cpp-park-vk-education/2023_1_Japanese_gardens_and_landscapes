@@ -7,6 +7,7 @@ namespace AnimeDefendersEngine {
 
     class InputManager {
      public:
+        explicit InputManager(Graphics::Window&);
         auto setEventManager(EventManager eventManager) -> void;
 
      private:

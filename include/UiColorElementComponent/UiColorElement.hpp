@@ -1,4 +1,4 @@
-#pragma ones
+#pragma once
 
 #include "Color.hpp"
 #include "Coords2d.hpp"
@@ -12,9 +12,9 @@ namespace AnimeDefendersEngine {
 
         class UiColorElement : public UiElement {
          public:
-            auto applyUiElementTransform() -> void const;
-            auto drawUiElement() -> void const;
-            auto checkByPointInclude(int, int) -> bool const;
+            auto applyUiElementTransform() -> void;
+            auto drawUiElement() -> void;
+            auto checkByPointInclude(int, int) -> bool;
 
             auto setPosition(int, int) -> void;
             auto setWidth(int) -> void;

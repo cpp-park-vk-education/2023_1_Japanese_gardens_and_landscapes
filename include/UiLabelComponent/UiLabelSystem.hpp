@@ -1,4 +1,4 @@
-#pragma ones
+#pragma once
 
 #include "UiElementSystem.hpp"
 #include "UiLabel.hpp"
@@ -8,9 +8,9 @@ namespace AnimeDefendersEngine {
 
         class UiLabelSystem : public UiElementSystem {
          public:
-            static auto applyUiElementTransform(const UiLabel&) -> void const;
-            static auto drawUiElement(const UiLabel&) -> void const;
-            static auto checkByPointInclude(const UiLabel&, int, int) -> bool const;
+            static auto applyUiElementTransform(const UiLabel&) -> void;
+            static auto drawUiElement(const UiLabel&) -> void;
+            static auto checkByPointInclude(const UiLabel&, int, int) -> bool;
 
          private:
             UiLabelSystem();

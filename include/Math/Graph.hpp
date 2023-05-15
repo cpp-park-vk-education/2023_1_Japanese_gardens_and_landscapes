@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Component.hpp"
-#include "Matrix.hpp"
+#include "Matrix2d.hpp"
 
 #include <vector>
 

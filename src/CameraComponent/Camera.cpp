@@ -2,14 +2,14 @@
 
 using namespace AnimeDefendersEngine::Graphics;
 
-auto Camera::determineNewCameraTranspose() -> void {}
+auto Camera::determineNewCameraTransform() -> void {}
 
 auto Camera::applyCameraView() -> void {}
 
-auto Camera::setMotionRule(std::function<Transpose()>) -> void {}
+auto Camera::setMotionRule(std::function<Transform()>) -> void {}
 
-auto Camera::setExtraTranspose(Transpose) -> void {}
+auto Camera::setExtraTransform(Transform) -> void {}
 
-auto Camera::setExtraMotion(std::function<Transpose(Transpose)>) -> void {}
+auto Camera::setExtraMotion(std::function<Transform(Transform)>) -> void {}
 
 auto Camera::setIsActive(bool) -> void {}

@@ -7,15 +7,6 @@
 
 namespace AnimeDefendersEngine {
 
-    enum class ComponentType {
-        Sprite,
-        Camera,
-        UiElement,
-        Audio,
-        Collider2DComponent,
-        RigidBody2DComponent
-    };
-
     class Entity {
      public:
         auto addComponent(Component* component) -> void;

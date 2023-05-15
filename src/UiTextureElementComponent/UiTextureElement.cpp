@@ -2,11 +2,13 @@
 
 using namespace AnimeDefendersEngine::Graphics;
 
-auto UiTextureElement::applyUiElementTransform() -> void const {}
+auto UiTextureElement::applyUiElementTransform() -> void {}
 
-auto UiTextureElement::drawUiElement() -> void const {}
+auto UiTextureElement::drawUiElement() -> void {}
 
-auto UiTextureElement::checkByPointInclude(int, int) -> bool const {}
+auto UiTextureElement::checkByPointInclude(int, int) -> bool {
+    return false;
+}
 
 auto UiTextureElement::setPosition(int, int) -> void {}
 

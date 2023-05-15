@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.9)
 set(project_name AnimeDefenders)
 project(${project_name})
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 add_compile_options(-Wall -Wextra -Werror -Wpedantic)
 
 set(main_executable src/main.cpp)
@@ -24,6 +24,7 @@ set(include_files
     include/AudioSystem/AudioSystem.hpp
     include/CameraComponent/Camera.hpp
     include/CameraComponent/CameraSystem.hpp
+    include/FileSystem/FileSystem.hpp
     include/Graphics/Animaton.hpp
     include/Graphics/Color.hpp
     include/Graphics/IDrawTextureWrapper.hpp
@@ -35,7 +36,7 @@ set(include_files
     include/Logger/Logger.hpp
     include/Math/Coords2d.hpp
     include/Math/Graph.hpp
-    include/Math/Matrix.hpp
+    include/Math/Matrix2d.hpp
     include/Math/Vector2.hpp
     include/OpenAlDependency/AudioPlayWrapper.hpp
     include/OpenGlDependency/DrawTextureWrapper.hpp
@@ -66,6 +67,7 @@ set(include_locations
     include/AnimeFramework
     include/AudioSystem
     include/CameraComponent
+    include/FileSystem
     include/Graphics
     include/Logger
     include/Math
@@ -92,10 +94,12 @@ set(source
     src/AudioSystem/AudioSystem.cpp
     src/CameraComponent/Camera.cpp
     src/CameraComponent/CameraSystem.cpp
+    src/FileSystem/FileSystem.cpp
     src/Graphics/Renderer.cpp
     src/Logger/Logger.cpp
     src/Math/Coords2d.cpp
     src/Math/Graph.cpp
+    src/Math/Matrix2d.cpp
     src/Math/Vector2.cpp
     src/OpenAlDependency/AudioPlayWrapper.cpp
     src/OpenGlDependency/DrawTextureWrapper.cpp
@@ -146,7 +150,7 @@ if(ENABLE_CLANG_TIDY AND NOT ENABLE_TESTING AND NOT ENABLE_COVERAGE)
         ${main_executable}
         --
         ${clang_tidy_includes}
-        -std=c++20
+        -std=c++23
     )
 endif()
 
@@ -181,7 +185,7 @@ if(ENABLE_CPPCHECK)
         COMMAND cppcheck
         --enable=all
         --suppress=missingInclude
-        --std=c++20
+        --std=c++23
         ${source}
         ${include_files}
     )

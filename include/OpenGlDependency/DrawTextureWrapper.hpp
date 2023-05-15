@@ -1,5 +1,6 @@
 #pragma once
 
+#include "FileSystem.hpp"
 #include "IDrawTextureWrapper.hpp"
 
 namespace AnimeDefendersEngine {
@@ -7,7 +8,7 @@ namespace AnimeDefendersEngine {
 
         class DrawTextureWrapper : public IDrawTextureWrapper {
          public:
-            auto drawTexture(const Image&) -> void const override;
+            auto drawTexture(const FileSystem::Image&) -> void override;
         };
 
     }  // namespace Graphics

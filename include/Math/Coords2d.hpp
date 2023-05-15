@@ -1,4 +1,4 @@
-#pragma ones
+#pragma once
 
 namespace AnimeDefendersEngine {
     namespace Math {

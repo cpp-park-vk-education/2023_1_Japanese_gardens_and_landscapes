@@ -2,11 +2,13 @@
 
 using namespace AnimeDefendersEngine::Graphics;
 
-auto UiColorElement::applyUiElementTransform() -> void const {}
+auto UiColorElement::applyUiElementTransform() -> void {}
 
-auto UiColorElement::drawUiElement() -> void const {}
+auto UiColorElement::drawUiElement() -> void {}
 
-auto UiColorElement::checkByPointInclude(int, int) -> bool const {}
+auto UiColorElement::checkByPointInclude(int, int) -> bool {
+    return false;
+}
 
 auto UiColorElement::setPosition(int, int) -> void {}
 

@@ -1,6 +1,6 @@
-#pragma ones
+#pragma once
 
-#include "Coord2d.hpp"
+#include "Coords2d.hpp"
 #include "Texture.hpp"
 #include "UiElement.hpp"
 
@@ -12,9 +12,9 @@ namespace AnimeDefendersEngine {
 
         class UiTextureElement : public UiElement {
          public:
-            auto applyUiElementTransform() -> void const;
-            auto drawUiElement() -> void const;
-            auto checkByPointInclude(int, int) -> bool const;
+            auto applyUiElementTransform() -> void;
+            auto drawUiElement() -> void;
+            auto checkByPointInclude(int, int) -> bool;
 
             auto setPosition(int, int) -> void;
             auto setWidth(int) -> void;
@@ -23,7 +23,7 @@ namespace AnimeDefendersEngine {
             auto setTexture(Texture) -> void;
 
          private:
-            Math::Coords2d m_position;
+            Math::Coords2d<int> m_position;
             int m_width;
             int m_heidth;
             std::function<void(int, int, int)> m_eventOnClick;

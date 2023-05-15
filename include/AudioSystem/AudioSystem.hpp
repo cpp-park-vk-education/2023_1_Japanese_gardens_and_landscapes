@@ -1,5 +1,6 @@
 #pragma once
 
+#include "AudioSource.hpp"
 #include "ISystem.hpp"
 
 namespace AnimeDefendersEngine {
@@ -7,7 +8,7 @@ namespace AnimeDefendersEngine {
 
         class AudioSystem : public ISystem {
          public:
-            auto playAudio(AudioSource* audioSource) -> void;
+            auto playAudio(AudioSource*) -> void;
         };
 
     }  // namespace Audio

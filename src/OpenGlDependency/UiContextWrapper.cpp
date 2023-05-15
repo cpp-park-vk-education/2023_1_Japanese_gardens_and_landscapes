@@ -2,4 +2,4 @@
 
 using namespace AnimeDefendersEngine::Graphics;
 
-auto UiContextWrapper::applyUiViewPort(const UiElement&) -> void const {}
+auto UiContextWrapper::applyUiViewPort(const UiElement&) -> void {}

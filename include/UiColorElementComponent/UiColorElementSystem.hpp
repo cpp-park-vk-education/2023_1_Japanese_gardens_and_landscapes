@@ -1,4 +1,4 @@
-#pragma ones
+#pragma once
 
 #include "UiColorElement.hpp"
 #include "UiElementSystem.hpp"
@@ -8,9 +8,9 @@ namespace AnimeDefendersEngine {
 
         class UiColorElementSystem : public UiElementSystem {
          public:
-            static auto applyUiElementTransform(const UiColorElement&) -> void const;
-            static auto drawUiElement(const UiColorElement&) -> void const;
-            static auto checkByPointInclude(const UiColorElement&, int, int) -> bool const;
+            static auto applyUiElementTransform(const UiColorElement&) -> void;
+            static auto drawUiElement(const UiColorElement&) -> void;
+            static auto checkByPointInclude(const UiColorElement&, int, int) -> bool;
 
          private:
             UiColorElementSystem();

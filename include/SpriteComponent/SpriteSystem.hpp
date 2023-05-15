@@ -11,8 +11,8 @@ namespace AnimeDefendersEngine {
 
         class SpriteSystem : public ISystem {
          public:
-            static auto isSpriteVisibleToCamera(const Sprite&, const Camera&) -> bool const;
-            static auto drawSprite(const Sprite&) -> void const;
+            static auto isSpriteVisibleToCamera(const Sprite&, const Camera&) -> bool;
+            static auto drawSprite(const Sprite&) -> void;
 
          private:
             SpriteSystem();

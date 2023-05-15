@@ -1,5 +1,6 @@
-static_assert(false, "Need to include EventManager properly");
+// static_assert(false, "Need to include EventManager properly");
 
+#include "EventManager.hpp"
 #include "GameLoop.hpp"
 #include "SystemManager.hpp"
 

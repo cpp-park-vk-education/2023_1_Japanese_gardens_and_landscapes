@@ -1,4 +1,4 @@
-#pragma ones
+#pragma once
 
 #include "UiElement.hpp"
 
@@ -7,7 +7,7 @@ namespace AnimeDefendersEngine {
 
         class IUiContextWrapper {
          public:
-            virtual auto applyUiViewPort(const UiElement&) -> void const = 0;
+            virtual auto applyUiViewPort(const UiElement&) -> void = 0;
         };
 
     }  // namespace Graphics

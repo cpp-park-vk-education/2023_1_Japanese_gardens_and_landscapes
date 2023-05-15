@@ -1,4 +1,4 @@
-#pragma ones
+#pragma once
 
 #include "FileSystem.hpp"
 
@@ -7,7 +7,7 @@ namespace AnimeDefendersEngine {
 
         class IDrawTextureWrapper {
          public:
-            virtual auto drawTexture(const Image&) -> void const = 0;
+            virtual auto drawTexture(const FileSystem::Image&) -> void = 0;
         };
 
     }  // namespace Graphics

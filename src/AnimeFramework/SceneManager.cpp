@@ -3,6 +3,8 @@
 
 using namespace AnimeDefendersEngine;
 
-auto SceneManager::getActiveScene() -> Scene& {}
+auto SceneManager::getActiveScene() -> Scene* {
+    return nullptr;
+}
 
-void SceneManager::loadScene(int sceneId) {}
+void SceneManager::loadScene(int) {}

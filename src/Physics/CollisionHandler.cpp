@@ -2,12 +2,16 @@
 
 using namespace AnimeDefendersEngine::PhysicsEngine;
 
-auto CollisionHandler::broadPhase(const std::vector<IBody*>& bodies) -> std::vector<Manifold> {}
+auto CollisionHandler::broadPhase(const std::vector<IBody*>&) -> std::vector<Manifold> {
+    return {};
+}
 
-auto CollisionHandler::narrowPhase(std::vector<Manifold>& bodies) -> void {}
+auto CollisionHandler::narrowPhase(std::vector<Manifold>&) -> void {}
 
-auto CollisionHandler::hasCollision(IBody* bodyA, IBody* bodyB) -> bool {}
+auto CollisionHandler::hasCollision(IBody*, IBody*) -> bool {
+    return false;
+}
 
-auto CollisionHandler::specifyCollision(Manifold contact) -> void {}
+auto CollisionHandler::specifyCollision(Manifold) -> void {}
 
-auto CollisionHandler::resolveCollision(Manifold contact) -> void {}
+auto CollisionHandler::resolveCollision(Manifold) -> void {}

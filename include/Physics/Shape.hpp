@@ -13,7 +13,7 @@ namespace AnimeDefendersEngine {
         class Shape {
          public:
             virtual ~Shape();
-            auto getType() -> ShapeType const;
+            auto getType() -> ShapeType;
 
          protected:
             ShapeType m_type;

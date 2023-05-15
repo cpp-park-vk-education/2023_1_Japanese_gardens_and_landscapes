@@ -11,15 +11,15 @@ namespace AnimeDefendersEngine {
 
         class Sprite : public Component {
          public:
-            auto isSpriteVisibleToCamera(const Camera&) -> bool const;
-            auto drawSprite() -> void const;
+            auto isSpriteVisibleToCamera(const Camera&) -> bool;
+            auto drawSprite() -> void;
 
-            auto setTransform(const Transform&) -> void;
+            auto setTransform(const Transform*) -> void;
             auto setTexture(Texture) -> void;
             auto setAnimation(Animation) -> void;
 
          private:
-            const Transform& m_transform;
+            const Transform* m_transform;
             Texture m_texture;
             Animation m_animation;
         };

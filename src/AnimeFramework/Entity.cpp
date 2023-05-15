@@ -2,6 +2,8 @@
 
 using namespace AnimeDefendersEngine;
 
-auto Entity::addComponent(Component* component) -> void {}
+auto Entity::addComponent(Component*) -> void {}
 
-auto Entity::getComponent(ComponentType componentType) -> Component* {}
+auto Entity::getComponent(ComponentType) -> Component* {
+    return nullptr;
+}
