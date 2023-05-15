@@ -4,8 +4,6 @@
 #include "GameLoop.hpp"
 #include "SystemManager.hpp"
 
-#include <memory>
-
 using namespace AnimeDefendersEngine;
 
 void GameLoop::run() {}

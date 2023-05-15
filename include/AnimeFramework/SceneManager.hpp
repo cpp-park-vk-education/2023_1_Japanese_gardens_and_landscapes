@@ -2,6 +2,7 @@
 #include "Scene.hpp"
 
 namespace AnimeDefendersEngine {
+
     class ISceneManager {
      public:
         virtual auto getActiveScene() -> Scene* = 0;

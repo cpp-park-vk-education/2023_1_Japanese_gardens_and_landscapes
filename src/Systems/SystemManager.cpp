@@ -1,4 +1,3 @@
-#include "ISystem.hpp"
 #include "SystemManager.hpp"
 
 using namespace AnimeDefendersEngine;
