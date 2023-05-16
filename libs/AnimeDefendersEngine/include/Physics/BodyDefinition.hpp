@@ -28,7 +28,7 @@ namespace AnimeDefendersEngine {
             bool isTrigger;
             BodyDefinition(size_t id, std::unique_ptr<Shape>&& shapeUPtr, BodyType bodyType, Transform transform,
                            Math::Vector2<float> velocity, size_t layers, Math::Vector2<float> force, bool isTrigger);
-            BodyDefinition(BodyDefinition&& bodyDefinition);
+            BodyDefinition(BodyDefinition&& other);
         };
     }  // namespace Physics
 }  // namespace AnimeDefendersEngine
