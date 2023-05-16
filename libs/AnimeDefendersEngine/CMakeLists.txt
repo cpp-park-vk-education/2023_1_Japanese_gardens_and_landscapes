@@ -4,7 +4,6 @@ set(project_name AnimeDefendersEngine)
 project(${project_name})
 
 set(CMAKE_CXX_STANDARD 23)
-add_compile_options(-Wall -Wextra -Werror -Wpedantic)
 
 set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/AnimeFramework.hpp
@@ -23,10 +22,8 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/CameraComponent/Camera.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/CameraComponent/CameraSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/FileSystem/FileSystem.hpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/Animaton.hpp <-------------
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/Color.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/IDrawTextureWrapper.hpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/ITrasnposeMathWrapper.hpp <-------
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/IUiContextWrapper.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/IWindow.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/Renderer.hpp
@@ -51,7 +48,6 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/SpriteComponent/Sprite.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/SpriteComponent/SpriteSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Systems/ISystem.hpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/include/Systems/SystemMananger.hpp <----
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiColorElementComponent/UiColorElement.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiColorElementComponent/UiColorElementSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiElementComponent/UiElement.hpp
@@ -61,6 +57,7 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiTextureElementComponent/UiTextureElement.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiTextureElementComponent/UiTextureElementSystem.hpp
 )
+
 set(include_locations
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AudioSystem
@@ -79,6 +76,7 @@ set(include_locations
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiLabelComponent
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiTextureElementComponent
 )
+
 set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/AnimeFramework.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/ComponentManager.cpp
@@ -121,16 +119,6 @@ set(source
 )
 
 set(tests_folder tests)
-
-if(DEBUG OR ENABLE_COVERAGE OR ENABLE_SANITIZERS OR ENABLE_TESTING)
-    add_compile_options(-g -O0)
-elseif()
-    add_compile_options(-Ofast)
-endif()
-
-if(ENABLE_COVERAGE)
-    add_compile_options(-fprofile-arcs -ftest-coverage)
-endif()
 
 if(ENABLE_CLANG_TIDY AND NOT ENABLE_TESTING AND NOT ENABLE_COVERAGE)
     string(REPLACE "${PROJECT_SOURCE_DIR}" "-I${PROJECT_SOURCE_DIR}" clang_tidy_includes "${include_locations}")
@@ -182,11 +170,6 @@ if(ENABLE_CPPCHECK)
         ${source}
         ${include_files}
     )
-endif()
-
-if(ENABLE_SANITIZERS)
-    add_compile_options(-fsanitize=address -fsanitize=leak -fsanitize=undefined)
-    add_link_options(-fsanitize=address -fsanitize=leak -fsanitize=undefined)
 endif()
 
 add_library(${project_name} STATIC ${source})
