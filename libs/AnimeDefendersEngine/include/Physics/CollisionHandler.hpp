@@ -15,8 +15,8 @@ namespace AnimeDefendersEngine {
 
          protected:
             virtual auto hasCollision(IBody* bodyA, IBody* bodyB) -> bool = 0;
-            virtual auto specifyCollision(Manifold contact) -> void = 0;
-            virtual auto resolveCollision(Manifold contact) -> void = 0;
+            virtual auto specifyCollision(Manifold& contact) -> void = 0;
+            virtual auto resolveCollision(Manifold& contact) -> void = 0;
         };
 
         class CollisionHandler : public ICollisionHandler {
@@ -26,8 +26,8 @@ namespace AnimeDefendersEngine {
 
          private:
             virtual auto hasCollision(IBody* bodyA, IBody* bodyB) -> bool override;
-            virtual auto specifyCollision(Manifold contact) -> void override;
-            virtual auto resolveCollision(Manifold contact) -> void override;
+            virtual auto specifyCollision(Manifold& contact) -> void override;
+            virtual auto resolveCollision(Manifold& contact) -> void override;
         };
 
     }  // namespace Physics
