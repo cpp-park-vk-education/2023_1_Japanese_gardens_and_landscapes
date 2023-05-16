@@ -1,15 +1,37 @@
 #pragma once
 
+#include <memory>
+#include <ostream>
 #include <string>
 
 namespace AnimeDefendersEngine {
     namespace Logger {
 
+        enum class LogLevel : char {
+            NoLog = 0,
+            OnlyErrors,
+            ErrorsAndWarnings,
+            AllLog
+        };
+
+        inline auto operator<(LogLevel a, LogLevel b) -> bool {
+            return static_cast<char>(a) < static_cast<char>(b);
+        }
+
         class BasicLogger {
          public:
-            auto operator<<(const std::string&) -> BasicLogger&;
+            explicit BasicLogger(std::unique_ptr<std::ostream> stream) : m_stream{std::move(stream)} {}
+
+            auto operator<<(const std::string& message) -> BasicLogger&;
+
+            auto printMessage(const std::string& message) -> BasicLogger&;
+            auto printError(const std::string& message) -> BasicLogger&;
+            auto printWarning(const std::string& message) -> BasicLogger&;
+
+         private:
+            LogLevel m_level{LogLevel::AllLog};
+            std::unique_ptr<std::ostream> m_stream;
         };
-        // static_assert(false, "NoFinished");
 
         extern BasicLogger deafult_log;
 
