@@ -11,7 +11,7 @@ namespace AnimeDefendersEngine {
         class ICollisionHandler {
          public:
             virtual auto broadPhase(const std::vector<IBody*>& bodies) -> std::vector<Manifold> = 0;
-            virtual auto narrowPhase(std::vector<Manifold>& bodies) -> void = 0;
+            virtual auto narrowPhase(std::vector<Manifold>& contacts) -> void = 0;
 
          protected:
             virtual auto hasCollision(IBody* bodyA, IBody* bodyB) -> bool = 0;
