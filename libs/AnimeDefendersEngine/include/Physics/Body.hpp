@@ -4,7 +4,7 @@
 #include "Vector2.hpp"
 
 namespace AnimeDefendersEngine {
-    namespace PhysicsEngine {
+    namespace Physics {
 
         class IBody {
          public:
@@ -25,5 +25,5 @@ namespace AnimeDefendersEngine {
             BodyDefinition bodyDefinition;
         };
 
-    }  // namespace PhysicsEngine
+    }  // namespace Physics
 }  // namespace AnimeDefendersEngine
