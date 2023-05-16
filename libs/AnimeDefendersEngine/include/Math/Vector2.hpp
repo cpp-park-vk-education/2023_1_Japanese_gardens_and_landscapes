@@ -8,7 +8,7 @@ namespace AnimeDefendersEngine {
         template <typename T>
         class Vector2 {
          public:
-            explicit Vector2(T val1 = T{}, T val2 = T{}) {}
+            explicit Vector2(T val1 = T{}, T val2 = T{}) { std::swap(val1, val2); }
             auto operator[](std::size_t i) -> T& {}
 
          private:
