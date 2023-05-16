@@ -7,8 +7,10 @@
 
 using namespace AnimeDefendersEngine;
 
-void ComponentManager::addComponent(ComponentType, Component*) {}
+void ComponentManager::addComponent(std::type_index typeId, Component* component) {
+    m_components[typeId].emplace_back(component);
+}
 
-auto ComponentManager::getComponents(ComponentType) -> std::vector<Component*> {
-    return {};
+auto ComponentManager::getComponents(std::type_index typeId) -> std::vector<Component*> {
+    return m_components[typeId];
 }

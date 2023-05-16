@@ -2,6 +2,7 @@
 
 #include "ComponentManager.hpp"
 
+#include <memory>
 #include <typeindex>
 
 namespace AnimeDefendersEngine {
@@ -19,24 +20,20 @@ namespace AnimeDefendersEngine {
 
     class Component {
      public:
-        Component(std::type_index typeId, ComponentManager& compManager) : m_typeId{typeId}, m_compManager{compManager} {
-            m_compManager.addComponent(m_typeId, this);
+        Component(std::type_index typeId, std::weak_ptr<IComponentManager> compManager) : m_typeId{typeId}, m_compManager{compManager} {
+            m_compManager.lock()->addComponent(m_typeId, this);
         }
 
         virtual ~Component() {
-            if (is_ComponentManagerExists) {
-                m_compManager.deleteComponent(m_typeId, this);
+            if (!m_compManager.expired()) {
+                m_compManager.lock()->deleteComponent(m_typeId, this);
             }
         }
 
      private:
-        friend class ComponentManager;
-        void m_componentManagerDestroyed() { is_ComponentManagerExists = false; }
-
      private:
-        bool is_ComponentManagerExists{true};
         std::type_index m_typeId;
-        ComponentManager& m_compManager;
+        std::weak_ptr<IComponentManager> m_compManager;
     };
 
 }  // namespace AnimeDefendersEngine

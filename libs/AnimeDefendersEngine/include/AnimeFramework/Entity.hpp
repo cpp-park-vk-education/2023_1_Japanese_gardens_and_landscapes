@@ -10,7 +10,7 @@ namespace AnimeDefendersEngine {
     class Entity {
      public:
         auto addComponent(Component* component) -> void;
-        auto getComponent(ComponentType componentType) -> Component*;
+        auto getComponent(std::type_index componentType) -> Component*;
 
      private:
         std::string m_entityId;
