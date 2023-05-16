@@ -23,3 +23,13 @@ auto Body::getVelocity() -> Math::Vector2<float> {
 auto Body::setVelocity(const Math::Vector2<float>& newVelocity) -> void {
     Math::Vector2<float> vel = newVelocity;
 }
+
+Body::Body(BodyDefinition&& bodyDefinition)
+    : m_id(bodyDefinition.id),
+      m_shapeUptr(std::move(bodyDefinition.shapeUPtr)),
+      m_bodyType(bodyDefinition.bodyType),
+      m_transform(bodyDefinition.transform),
+      m_velocity(bodyDefinition.velocity),
+      m_layers(bodyDefinition.layers),
+      m_force(bodyDefinition.force),
+      m_isTrigger(bodyDefinition.isTrigger){};

@@ -19,6 +19,7 @@ namespace AnimeDefendersEngine {
 
         class Body : public IBody {
          public:
+            Body(BodyDefinition&& bodyDefinition);
             virtual auto applyForce(Math::Vector2<float> vec) -> void override;
             virtual auto applyImpulse(Math::Vector2<float> vec) -> void override;
             virtual auto getPosition() -> Math::Vector2<float> override;
