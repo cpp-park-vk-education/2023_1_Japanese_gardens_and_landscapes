@@ -28,6 +28,14 @@ auto Body::setVelocity(const Math::Vector2<float>& newVelocity) -> void {
     m_velocity = newVelocity;
 }
 
+auto Body::getShape() -> Shape* {
+    return m_shapeUptr.get();
+};
+
+auto Body::getShapeType() const -> ShapeType {
+    return m_shapeUptr->getType();
+}
+
 Body::Body(BodyDefinition&& bodyDefinition)
     : m_id(bodyDefinition.id),
       m_shapeUptr(std::move(bodyDefinition.shapeUPtr)),
