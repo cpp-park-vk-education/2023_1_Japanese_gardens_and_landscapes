@@ -79,11 +79,6 @@ jobs:
           gcc: true
           cmake: true
 
-      - name: Merge in main
-        run: |
-          git checkout main
-          git merge ${GITHUB_REF##*/}
-
       - name: Build
         run: |
           cmake -DDEBUG=ON . -B build 
