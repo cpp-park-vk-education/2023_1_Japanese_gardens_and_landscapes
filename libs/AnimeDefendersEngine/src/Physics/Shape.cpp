@@ -4,7 +4,7 @@ using namespace AnimeDefendersEngine::Physics;
 
 Shape::~Shape() {}
 
-auto Shape::getType() -> ShapeType const {
+auto Shape::getType() const -> ShapeType {
     return ShapeType::circle;
 }
 
