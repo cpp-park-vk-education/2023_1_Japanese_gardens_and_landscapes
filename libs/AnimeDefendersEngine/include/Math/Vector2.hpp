@@ -6,6 +6,7 @@ namespace AnimeDefendersEngine {
         template <typename T>
         struct Vector2 {
             explicit Vector2(T val1 = T{}, T val2 = T{});
+            auto norm() -> T&;
             auto operator+(const Vector2& vec1, const Vector2& vec2) -> Vector2&;
             auto operator-(const Vector2& vec1, const Vector2& vec2) -> Vector2&;
             auto operator*(const Vector2& vec1, const Vector2& vec2) -> T&;
