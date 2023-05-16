@@ -95,10 +95,7 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/FileSystem/FileSystem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Graphics/Renderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger/Logger.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Coords2d.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Graph.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Matrix2d.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Vector2.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenAlDependency/AudioPlayWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp

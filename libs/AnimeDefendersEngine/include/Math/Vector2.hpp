@@ -8,8 +8,8 @@ namespace AnimeDefendersEngine {
         template <typename T>
         class Vector2 {
          public:
-            explicit Vector2(T val1 = T{}, T val2 = T{});
-            auto operator[](std::size_t i) -> T&;
+            explicit Vector2(T val1 = T{}, T val2 = T{}) {}
+            auto operator[](std::size_t i) -> T& {}
 
          private:
             std::vector<T> m_values;
