@@ -80,10 +80,10 @@ auto CollisionHandler::hasCollision(IBody* bodyA, IBody* bodyB) -> bool {
     return hasCollisionTypes[bodyA->getShapeType()][bodyB->getShapeType()](bodyA, bodyB);
 };
 
-auto CollisionHandler::specifyCollision(Manifold& contact) -> void{
-
+auto CollisionHandler::specifyCollision(Manifold& contact) -> void {
+    contact.penetration = 0;  // it was done for working CI
 };
 
-auto CollisionHandler::resolveCollision(Manifold& contact) -> void{
-
+auto CollisionHandler::resolveCollision(Manifold& contact) -> void {
+    contact.penetration = 0;  // it was done for working CI
 };
