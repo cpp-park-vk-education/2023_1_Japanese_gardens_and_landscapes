@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.9)
 set(project_name AnimeDefenders)
 project(${project_name})
 
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 20)
 add_compile_options(-Wall -Wextra -Werror -Wpedantic)
 
 set(main_executable ${PROJECT_SOURCE_DIR}/src/main.cpp)
@@ -19,6 +19,7 @@ set(source
 )
 
 set(libs_names AnimeDefendersEngine)
+add_subdirectory(${PROJECT_SOURCE_DIR}/libs/AnimeDefendersEngine)
 
 set(tests_folder ${PROJECT_SOURCE_DIR}/tests)
 
@@ -44,7 +45,7 @@ if(ENABLE_CLANG_TIDY AND NOT ENABLE_TESTING AND NOT ENABLE_COVERAGE)
         ${main_executable}
         --
         ${clang_tidy_includes}
-        -std=c++2b
+        -std=c++20
         DEPENDS AnimeDefendersEngine_TIDY_TARGET
     )
 endif()
@@ -82,7 +83,7 @@ if(ENABLE_CPPCHECK)
         COMMAND cppcheck
         --enable=all
         --suppress=missingInclude
-        --std=c++23
+        --std=c++20
         ${source}
         ${include_files}
         DEPENDS AnimeDefendersEngine_CPPCHECK_TARGET
@@ -96,7 +97,6 @@ endif()
 
 include_directories(${include_locations})
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/libs/AnimeDefendersEngine)
 add_executable(${project_name} ${main_executable})
 
 add_library(${project_name}_lib ${source})
