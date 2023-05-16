@@ -14,6 +14,8 @@ namespace AnimeDefendersEngine {
             virtual auto getVelocity() -> Math::Vector2<float> = 0;
             virtual auto setPosition(const Math::Vector2<float>& newPosition) -> void = 0;
             virtual auto setVelocity(const Math::Vector2<float>& newVelocity) -> void = 0;
+            virtual auto getShape() -> Shape* = 0;
+            virtual auto getShapeType() -> ShapeType = 0;
             virtual auto isTrigger() -> bool = 0;
             virtual ~IBody(){};
         };
@@ -27,6 +29,8 @@ namespace AnimeDefendersEngine {
             virtual auto getVelocity() -> Math::Vector2<float> override;
             virtual auto setPosition(const Math::Vector2<float>& newPosition) -> void override;
             virtual auto setVelocity(const Math::Vector2<float>& newVelocity) -> void override;
+            virtual auto getShape() -> Shape* override;
+            auto Body::getShapeType() -> ShapeType override;
             virtual auto isTrigger() -> bool override;
             auto setType(BodyType type) -> void;
 
