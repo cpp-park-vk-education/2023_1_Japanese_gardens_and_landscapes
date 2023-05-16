@@ -10,7 +10,7 @@ namespace AnimeDefendersEngine {
             IBody* bodyB;
             float penetration;
             Math::Vector2<float> normal;
-            explicit Manifold(IBody* bodyA, IBody* bodyB);
+            explicit Manifold(IBody* bodyA = nullptr, IBody* bodyB = nullptr);
         };
     }  // namespace Physics
 }  // namespace AnimeDefendersEngine
