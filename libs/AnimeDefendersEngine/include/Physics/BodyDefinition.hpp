@@ -9,26 +9,26 @@ namespace AnimeDefendersEngine {
     namespace Physics {
 
         enum class BodyType {
-            staticBody = 0,
+            staticBody,
             dynamicBody
         };
 
-        class Transform {
-         public:
+        struct Transform {
             Math::Vector2<float> position;
         };
 
         struct BodyDefinition {
             size_t id;
-            std::unique_ptr<Shape> shape;
+            std::unique_ptr<Shape> shapeUPtr;
             BodyType bodyType;
             Transform transform;
             Math::Vector2<float> velocity;
             size_t layers;
             Math::Vector2<float> force;
             bool isTrigger;
-            BodyDefinition(const Shape& shape, Transform transform);
+            BodyDefinition(size_t id, std::unique_ptr<Shape>&& shapeUPtr, BodyType bodyType, Transform transform,
+                           Math::Vector2<float> velocity, size_t layers, Math::Vector2<float> force, bool isTrigger);
+            BodyDefinition(BodyDefinition&& bodyDefinition);
         };
-
     }  // namespace Physics
 }  // namespace AnimeDefendersEngine
