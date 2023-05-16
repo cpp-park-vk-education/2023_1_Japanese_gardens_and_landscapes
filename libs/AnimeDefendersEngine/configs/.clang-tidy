@@ -1,0 +1,2 @@
+Checks: 'bugprone-*, cert-*, clang-analyzer-*, concurrency-*, cppcoreguidelines-*, google-*, hicpp-*, linuxkernel-*, misc-*, modernize-*, performance-*, portability-*, readability-* '
+WarningsAsErrors: 'bugprone-*, cert-*, clang-analyzer-*, concurrency-*, cppcoreguidelines-*, google-*, hicpp-*, linuxkernel-*, misc-*, modernize-*, portability-*, readability-* '

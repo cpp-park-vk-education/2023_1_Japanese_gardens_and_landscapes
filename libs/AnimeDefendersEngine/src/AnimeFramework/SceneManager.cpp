@@ -1,5 +1,5 @@
-#include "Scene.hpp"
 #include "SceneManager.hpp"
+#include "Scene.hpp"
 
 using namespace AnimeDefendersEngine;
 

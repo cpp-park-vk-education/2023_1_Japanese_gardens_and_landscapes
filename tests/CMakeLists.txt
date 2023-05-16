@@ -13,7 +13,7 @@ set(AnimeFramework_test ${PROJECT_SOURCE_DIR}/tests/AnimeFramework.cpp)
 
 add_executable(${AnimeFramework_test_name}_tests_run ${AnimeFramework_test})
 
-set(libs ${project_name}_lib gtest_main gtest gmock gcov)
+set(libs gtest_main gtest gmock gcov)
 
 target_link_libraries(${AnimeFramework_test_name}_tests_run ${libs})
 

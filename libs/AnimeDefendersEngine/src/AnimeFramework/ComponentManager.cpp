@@ -1,5 +1,5 @@
-#include "Component.hpp"
 #include "ComponentManager.hpp"
+#include "Component.hpp"
 #include "MemoryMaster.hpp"
 
 #include <unordered_map>
