@@ -6,6 +6,7 @@
 #include <typeindex>
 
 namespace AnimeDefendersEngine {
+
     class Component {
      public:
         Component(std::type_index typeId, std::weak_ptr<IComponentManager> compManager) : m_typeId{typeId}, m_compManager{compManager} {
@@ -18,7 +19,6 @@ namespace AnimeDefendersEngine {
             }
         }
 
-     private:
      private:
         std::type_index m_typeId;
         std::weak_ptr<IComponentManager> m_compManager;
