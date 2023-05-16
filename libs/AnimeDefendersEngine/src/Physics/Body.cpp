@@ -11,3 +11,5 @@ auto Body::applyImpulse(Math::Vector2<float>) -> void {}
 auto Body::getPosition() -> Math::Vector2<float> {
     return Math::Vector2<float>{0, 0};
 }
+
+auto Body::setPosition(const Math::Vector2<float>& newPos) -> void {}
