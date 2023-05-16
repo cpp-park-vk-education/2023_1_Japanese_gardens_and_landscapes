@@ -8,6 +8,7 @@
 #include <vector>
 
 namespace AnimeDefendersEngine {
+
     class Component;
 
     class IComponentManager {
@@ -31,7 +32,7 @@ namespace AnimeDefendersEngine {
          * @return
          * Range of pointers to components with type T
          */
-        
+
         template <std::derived_from<Component> T>
         auto getComponentsSecured() {
             auto helper = [](Component* comp) { return (dynamic_cast<T>(comp) != nullptr); };
@@ -48,4 +49,5 @@ namespace AnimeDefendersEngine {
      private:
         std::unordered_map<std::type_index, std::vector<Component*>> m_components;
     };
+    
 }  // namespace AnimeDefendersEngine
