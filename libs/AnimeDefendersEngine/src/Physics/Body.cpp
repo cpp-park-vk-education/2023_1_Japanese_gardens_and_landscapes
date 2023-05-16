@@ -13,7 +13,7 @@ auto Body::getPosition() -> Math::Vector2<float> {
 }
 
 auto Body::setPosition(const Math::Vector2<float>& newPosition) -> void {
-    newPosition;
+    Math::Vector2<float> pos = newPosition;
 }
 
 auto Body::getVelocity() -> Math::Vector2<float> {
@@ -21,5 +21,5 @@ auto Body::getVelocity() -> Math::Vector2<float> {
 }
 
 auto Body::setVelocity(const Math::Vector2<float>& newVelocity) -> void {
-    newVelocity;
+    Math::Vector2<float> vel = newVelocity;
 }
