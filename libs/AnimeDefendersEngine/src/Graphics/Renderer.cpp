@@ -1,4 +1,6 @@
+#include "Camera.hpp"
 #include "Renderer.hpp"
+#include "Sprite.hpp"
 #include "UiElement.hpp"
 
 #include <cassert>
@@ -13,9 +15,9 @@ Renderer::Renderer(std::shared_ptr<IWindow> window) : m_window(window) {
 auto Renderer::renderObjects(const Scene& scene) -> void {
     auto componentManager = scene.getComponentManager();
 
-    auto cameras = componentManager->getComponents(ComponentType::Camera);
-    auto sprites = componentManager->getComponents(ComponentType::Sprite);
-    auto uiElements = componentManager->getComponents(ComponentType::UiElement);
+    auto cameras = componentManager->getComponents(typeid(Camera));
+    auto sprites = componentManager->getComponents(typeid(Sprite));
+    auto uiElements = componentManager->getComponents(typeid(UiElement));
 
     std::vector<Component*> activeCameras =
         std::as_const(cameras) | std::ranges::views::filter([](const auto& camera) { return camera->isCameraActive(); });
