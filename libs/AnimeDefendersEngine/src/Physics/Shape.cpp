@@ -1,6 +1,6 @@
 #include "Shape.hpp"
 
-using namespace AnimeDefendersEngine::PhysicsEngine;
+using namespace AnimeDefendersEngine::Physics;
 
 Shape::~Shape() {}
 

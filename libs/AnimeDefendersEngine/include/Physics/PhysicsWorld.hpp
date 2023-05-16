@@ -5,7 +5,7 @@
 #include "Manifold.hpp"
 
 namespace AnimeDefendersEngine {
-    namespace PhysicsEngine {
+    namespace Physics {
 
         class PhysicsWorld {
          public:
@@ -23,5 +23,5 @@ namespace AnimeDefendersEngine {
             float m_fixedDeltaTime;
         };
 
-    }  // namespace PhysicsEngine
+    }  // namespace Physics
 }  // namespace AnimeDefendersEngine

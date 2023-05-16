@@ -4,7 +4,7 @@
 #include "Vector2.hpp"
 
 namespace AnimeDefendersEngine {
-    namespace PhysicsEngine {
+    namespace Physics {
 
         class Manifold {
             Body* bodyA;
@@ -13,5 +13,5 @@ namespace AnimeDefendersEngine {
             Math::Vector2<float> normal;
         };
 
-    }  // namespace PhysicsEngine
+    }  // namespace Physics
 }  // namespace AnimeDefendersEngine

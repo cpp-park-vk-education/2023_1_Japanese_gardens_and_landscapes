@@ -6,7 +6,7 @@
 #include "Vector2.hpp"
 
 namespace AnimeDefendersEngine {
-    namespace PhysicsEngine {
+    namespace Physics {
 
         enum class BodyType {
             staticBody = 0,
@@ -30,5 +30,5 @@ namespace AnimeDefendersEngine {
             BodyDefinition(const Shape& shape, Transform transform);
         };
 
-    }  // namespace PhysicsEngine
+    }  // namespace Physics
 }  // namespace AnimeDefendersEngine

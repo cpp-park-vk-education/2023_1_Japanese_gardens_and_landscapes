@@ -6,7 +6,7 @@
 #include "Manifold.hpp"
 
 namespace AnimeDefendersEngine {
-    namespace PhysicsEngine {
+    namespace Physics {
 
         class ICollisionHandler {
          public:
@@ -30,5 +30,5 @@ namespace AnimeDefendersEngine {
             virtual auto resolveCollision(Manifold contact) -> void override;
         };
 
-    }  // namespace PhysicsEngine
+    }  // namespace Physics
 }  // namespace AnimeDefendersEngine

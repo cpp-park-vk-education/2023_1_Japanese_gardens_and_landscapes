@@ -1,6 +1,6 @@
 #include "Body.hpp"
 
-using namespace AnimeDefendersEngine::PhysicsEngine;
+using namespace AnimeDefendersEngine::Physics;
 
 auto Body::setType(BodyType) -> void {}
 
