@@ -12,8 +12,12 @@ auto Body::getPosition() -> Math::Vector2<float> {
     return Math::Vector2<float>{0, 0};
 }
 
+auto Body::isTrigger() -> bool {
+    return m_isTrigger;
+}
+
 auto Body::setPosition(const Math::Vector2<float>& newPosition) -> void {
-    Math::Vector2<float> pos = newPosition;
+    m_transform.position = newPosition;
 }
 
 auto Body::getVelocity() -> Math::Vector2<float> {
@@ -21,7 +25,7 @@ auto Body::getVelocity() -> Math::Vector2<float> {
 }
 
 auto Body::setVelocity(const Math::Vector2<float>& newVelocity) -> void {
-    Math::Vector2<float> vel = newVelocity;
+    m_velocity = newVelocity;
 }
 
 Body::Body(BodyDefinition&& bodyDefinition)
