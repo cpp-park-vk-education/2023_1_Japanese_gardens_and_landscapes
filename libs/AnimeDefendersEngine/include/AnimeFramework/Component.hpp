@@ -6,18 +6,6 @@
 #include <typeindex>
 
 namespace AnimeDefendersEngine {
-
-    /*
-    enum class ComponentType {
-        Sprite,
-        Camera,
-        UiElement,
-        Audio,
-        Collider2DComponent,
-        RigidBody2DComponent
-    };
-    */
-
     class Component {
      public:
         Component(std::type_index typeId, std::weak_ptr<IComponentManager> compManager) : m_typeId{typeId}, m_compManager{compManager} {
