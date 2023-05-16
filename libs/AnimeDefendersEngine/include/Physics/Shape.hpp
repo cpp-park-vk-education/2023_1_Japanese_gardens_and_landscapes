@@ -5,7 +5,7 @@
 namespace AnimeDefendersEngine {
     namespace Physics {
 
-        enum class ShapeType {
+        enum ShapeType {
             circle = 0,
             rectangle
         };
@@ -13,7 +13,7 @@ namespace AnimeDefendersEngine {
         class Shape {
          public:
             virtual ~Shape();
-            auto getType() -> ShapeType const;
+            auto getType() const -> ShapeType;
             static constexpr int shapeCount = 2;
 
          protected:
