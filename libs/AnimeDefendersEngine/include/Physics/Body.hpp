@@ -28,7 +28,14 @@ namespace AnimeDefendersEngine {
             auto setType(BodyType type) -> void;
 
          private:
-            BodyDefinition bodyDefinition;
+            size_t m_id;
+            std::unique_ptr<Shape> m_shapeUptr;
+            BodyType m_bodyType;
+            Transform m_transform;
+            Math::Vector2<float> m_velocity;
+            size_t m_layers;
+            Math::Vector2<float> m_force;
+            bool m_isTrigger;
         };
 
     }  // namespace Physics
