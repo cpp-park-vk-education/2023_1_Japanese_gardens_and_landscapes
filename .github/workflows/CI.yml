@@ -104,11 +104,6 @@ jobs:
       
       - uses: snickerbockers/submodules-init@v4
 
-      - name: Merge in main
-        run: |
-          git checkout main
-          git merge ${GITHUB_REF##*/}
-
       - name: Build
         run: |
           cmake -DDEBUG=ON -DENABLE_TESTING=ON . -B build 
@@ -125,11 +120,6 @@ jobs:
         with:
           gcc: true
           cmake: true
-          
-      - name: Merge in main
-        run: |
-          git checkout main
-          git merge ${GITHUB_REF##*/}
 
       - uses: snickerbockers/submodules-init@v4
       - name: Run tests
@@ -156,11 +146,6 @@ jobs:
         run: | 
           sudo apt-get update -y
           sudo apt-get install -y valgrind  
-      
-      - name: Merge in main
-        run: |
-          git checkout main
-          git merge ${GITHUB_REF##*/}
 
       - name: Run valgrind
         run: |
@@ -182,11 +167,6 @@ jobs:
         with:
           cmake: true
           gcovr: true
-
-      - name: Merge in main
-        run: |
-          git checkout main
-          git merge ${GITHUB_REF##*/}
 
       - name: Run tests
         run: |
