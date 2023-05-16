@@ -10,11 +10,11 @@ namespace AnimeDefendersEngine {
 
         class Renderer {
          public:
-            Renderer();
+            Renderer(std::shared_ptr<IWindow>);
             auto renderObjects(const Scene&) -> void;
 
          private:
-            std::unique_ptr<IWindow> m_window;
+            std::shared_ptr<IWindow> m_window;
         };
 
     }  // namespace Graphics
