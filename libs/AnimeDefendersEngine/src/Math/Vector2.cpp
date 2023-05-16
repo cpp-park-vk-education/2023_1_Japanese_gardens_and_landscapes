@@ -3,10 +3,10 @@
 using namespace AnimeDefendersEngine::Math;
 
 template <typename T>
-auto Vector2<T>::operator+(const Vector2& vec1, const Vector2& vec2) -> Vector2& {};
+auto operator+(const Vector2<T>& vec1, const Vector2<T>& vec2) -> Vector2<T>{};
 template <typename T>
-auto Vector2<T>::operator-(const Vector2& vec1, const Vector2& vec2) -> Vector2& {};
+auto operator-(const Vector2<T>& vec1, const Vector2<T>& vec2) -> Vector2<T>{};
 template <typename T>
-auto Vector2<T>::operator*(const Vector2& vec1, const Vector2& vec2) -> T& {};
+auto operator*(const Vector2<T>& vec1, const Vector2<T>& vec2) -> T{};
 template <typename T>
-auto Vector2<T>::operator*(const T& const1, const Vector2& vec1) -> Vector2& {};
+auto operator*(const T& const1, const Vector2<T>& vec1) -> Vector2<T>{};
