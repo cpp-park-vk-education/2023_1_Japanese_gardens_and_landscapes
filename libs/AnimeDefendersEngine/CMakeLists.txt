@@ -123,10 +123,10 @@ set(tests_folder tests)
 if(ENABLE_CLANG_TIDY AND NOT ENABLE_TESTING AND NOT ENABLE_COVERAGE)
     string(REPLACE "${PROJECT_SOURCE_DIR}" "-I${PROJECT_SOURCE_DIR}" clang_tidy_includes "${include_locations}")
 
-    find_program(CLANG_TIDY "clang-tidy-15")
+    find_program(CLANG_TIDY "clang-tidy")
     add_custom_target(
         AnimeDefendersEngine_TIDY_TARGET ALL
-        COMMAND clang-tidy-15
+        COMMAND clang-tidy
         --config-file=${PROJECT_SOURCE_DIR}/configs/.clang-tidy
         ${source}
         ${main_executable}
