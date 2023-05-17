@@ -21,7 +21,7 @@ auto Body::setPosition(const Math::Vector2<float>& newPosition) -> void {
 }
 
 auto Body::getVelocity() -> Math::Vector2<float> {
-    return Math::Vector2<float>{0, 0};
+    return m_velocity;
 }
 
 auto Body::setVelocity(const Math::Vector2<float>& newVelocity) -> void {
