@@ -22,5 +22,3 @@ BodyDefinition::BodyDefinition(BodyDefinition&& other)
       layers(other.layers),
       force(other.force),
       isTrigger(other.isTrigger) {}
-
-BodyDefinition::BodyDefinition() : id(), shapeUPtr(nullptr), bodyType(), transform(), velocity(), layers(), force(), isTrigger() {}
