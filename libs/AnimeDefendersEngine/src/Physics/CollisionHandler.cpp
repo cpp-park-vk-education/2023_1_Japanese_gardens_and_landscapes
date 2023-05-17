@@ -44,13 +44,18 @@ static auto hasCollisionCircleCircle(Body* bodyA, Body* bodyB) -> bool {
 static auto hasCollisionRectangleCircle(Body* bodyA, Body* bodyB) -> bool {
     Rectangle* rectangleA = dynamic_cast<Rectangle*>(bodyA->getShape());
     Circle* circleB = dynamic_cast<Circle*>(bodyB->getShape());
+
     AnimeDefendersEngine::Math::Vector2<float> distance = bodyB->getPosition() - bodyA->getPosition();
     AnimeDefendersEngine::Math::Vector2<float> closestVertexToCircleCenter = distance;
     float x_extent = rectangleA->size.x / 2;
     float y_extent = rectangleA->size.y / 2;
+
     closestVertexToCircleCenter.x = std::min(closestVertexToCircleCenter.x, x_extent);
+
     closestVertexToCircleCenter.x = std::max(closestVertexToCircleCenter.x, -x_extent);
+
     closestVertexToCircleCenter.y = std::min(closestVertexToCircleCenter.y, y_extent);
+
     closestVertexToCircleCenter.y = std::max(closestVertexToCircleCenter.y, -y_extent);
 
     AnimeDefendersEngine::Math::Vector2<float> normal = distance - closestVertexToCircleCenter;
