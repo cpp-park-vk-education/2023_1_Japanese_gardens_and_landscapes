@@ -47,12 +47,12 @@ auto BasicLogger::printError(const std::string& message) -> BasicLogger& {
     return *this;
 }
 
-void BasicLogger::setLogLevel(LogLevel logLevel) noexcept {
+auto BasicLogger::setLogLevel(LogLevel logLevel) noexcept -> void {
     m_logLevel = logLevel;
 }
 
 namespace AnimeDefendersEngine::Logger {
 
-    BasicLogger deafult_log{std::move(std::make_unique<std::ofstream>("log.txt"))};
+    BasicLogger defaultLog{std::move(std::make_unique<std::ofstream>("log.txt"))};
 
 }  // namespace AnimeDefendersEngine::Logger

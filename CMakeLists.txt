@@ -100,7 +100,9 @@ include_directories(${include_locations})
 add_executable(${project_name} ${main_executable})
 
 add_library(${project_name}_lib ${source})
-target_link_libraries(${project_name} ${libs_names} ${project_name}_lib)
+target_link_libraries(${project_name}_lib ${libs_names})
+
+target_link_libraries(${project_name} ${project_name}_lib)
 
 add_custom_target(EXE_TARGET DEPENDS ${project_name})
 

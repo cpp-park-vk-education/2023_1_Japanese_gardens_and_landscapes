@@ -26,14 +26,14 @@ namespace AnimeDefendersEngine {
             auto printError(const std::string& message) -> BasicLogger&;
             auto printWarning(const std::string& message) -> BasicLogger&;
 
-            void setLogLevel(LogLevel) noexcept;
+            auto setLogLevel(LogLevel) noexcept -> void;
 
          private:
             LogLevel m_logLevel{LogLevel::ErrorsWarningsAndMessages};
             std::unique_ptr<std::ostream> m_stream;
         };
 
-        extern BasicLogger deafult_log;
+        extern BasicLogger defaultLog;
 
     }  // namespace Logger
 }  // namespace AnimeDefendersEngine
