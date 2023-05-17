@@ -20,7 +20,7 @@ namespace AnimeDefendersEngine {
 
             std::vector<std::unique_ptr<Body>> m_bodies;
             std::vector<Manifold> m_contacts;
-            float m_fixedDeltaTime;
+            float m_fixedDeltaTime{};
         };
 
     }  // namespace Physics
