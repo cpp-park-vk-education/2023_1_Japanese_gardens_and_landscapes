@@ -2,7 +2,9 @@
 
 using namespace AnimeDefendersEngine::Physics;
 
-auto Body::setType(BodyType) -> void {}
+auto Body::setType(BodyType bodyType) -> void {
+    m_bodyType = bodyType;
+}
 
 auto Body::applyForce(Math::Vector2<float>) -> void {}
 
