@@ -18,7 +18,7 @@ namespace AnimeDefendersEngine {
             virtual auto getShape() -> Shape*;
             virtual auto getShapeType() const -> ShapeType;
             virtual auto isTrigger() -> bool;
-            auto setType(BodyType type) -> void;
+            virtual auto setType(BodyType type) -> void;
 
          private:
             size_t m_id;
