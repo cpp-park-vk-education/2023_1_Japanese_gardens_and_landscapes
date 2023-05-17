@@ -6,11 +6,11 @@
 namespace AnimeDefendersEngine {
     namespace Physics {
         struct Manifold {
-            IBody* bodyA;
-            IBody* bodyB;
+            Body* bodyA;
+            Body* bodyB;
             float penetration;
             Math::Vector2<float> normal;
-            explicit Manifold(IBody* bodyA = nullptr, IBody* bodyB = nullptr);
+            explicit Manifold(Body* bodyA = nullptr, Body* bodyB = nullptr);
         };
     }  // namespace Physics
 }  // namespace AnimeDefendersEngine

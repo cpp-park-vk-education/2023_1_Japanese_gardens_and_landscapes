@@ -4,12 +4,12 @@
 
 using namespace AnimeDefendersEngine::Physics;
 
-auto CollisionHandler::broadPhase(const std::vector<IBody*>& bodies) -> std::vector<Manifold> {
+auto CollisionHandler::broadPhase(const std::vector<Body*>& bodies) -> std::vector<Manifold> {
     std::vector<Manifold> contacts(bodies.size());
     for (size_t i = 0; i < bodies.size(); ++i) {
-        IBody* bodyA = bodies.at(i);
+        Body* bodyA = bodies.at(i);
         for (size_t j = i + 1; j < bodies.size(); ++j) {
-            IBody* bodyB = bodies.at(i);
+            Body* bodyB = bodies.at(i);
             Manifold contact(bodyA, bodyB);
             contacts.push_back(contact);
         }
@@ -32,14 +32,14 @@ auto CollisionHandler::narrowPhase(std::vector<Manifold>& contacts) -> void {
     }
 };
 
-static auto hasCollisionCircleCircle(IBody* bodyA, IBody* bodyB) -> bool {
+static auto hasCollisionCircleCircle(Body* bodyA, Body* bodyB) -> bool {
     Circle* circleA = dynamic_cast<Circle*>(bodyA->getShape());
     Circle* circleB = dynamic_cast<Circle*>(bodyB->getShape());
     float distance = (bodyA->getPosition() - bodyB->getPosition()).norm();
     return distance < circleA->radius + circleB->radius;
 }
 
-static auto hasCollisionRectangleCircle(IBody* bodyA, IBody* bodyB) -> bool {
+static auto hasCollisionRectangleCircle(Body* bodyA, Body* bodyB) -> bool {
     Rectangle* rectangleA = dynamic_cast<Rectangle*>(bodyA->getShape());
     Circle* circleB = dynamic_cast<Circle*>(bodyB->getShape());
     AnimeDefendersEngine::Math::Vector2<float> distance = bodyB->getPosition() - bodyA->getPosition();
@@ -56,11 +56,11 @@ static auto hasCollisionRectangleCircle(IBody* bodyA, IBody* bodyB) -> bool {
     return normal.norm() < circleB->radius;
 };
 
-static auto hasCollisionCircleRectangle(IBody* bodyA, IBody* bodyB) -> bool {
+static auto hasCollisionCircleRectangle(Body* bodyA, Body* bodyB) -> bool {
     return hasCollisionRectangleCircle(bodyB, bodyA);
 };
 
-static auto hasCollisionRectangleRectangle(IBody* bodyA, IBody* bodyB) -> bool {
+static auto hasCollisionRectangleRectangle(Body* bodyA, Body* bodyB) -> bool {
     Rectangle* rectangleA = dynamic_cast<Rectangle*>(bodyA->getShape());
     Rectangle* rectangleB = dynamic_cast<Rectangle*>(bodyB->getShape());
 
@@ -69,14 +69,14 @@ static auto hasCollisionRectangleRectangle(IBody* bodyA, IBody* bodyB) -> bool {
     return xOverlap > 0;
 };
 
-using hasCollisionFunctionPtr = bool (*)(IBody* bodyA, IBody* bodyB);
+using hasCollisionFunctionPtr = bool (*)(Body* bodyA, Body* bodyB);
 
 static hasCollisionFunctionPtr hasCollisionTypes[Shape::shapeCount][Shape::shapeCount] = {
     {hasCollisionCircleCircle,    hasCollisionCircleRectangle   },
     {hasCollisionRectangleCircle, hasCollisionRectangleRectangle}
 };
 
-auto CollisionHandler::hasCollision(IBody* bodyA, IBody* bodyB) -> bool {
+auto CollisionHandler::hasCollision(Body* bodyA, Body* bodyB) -> bool {
     return hasCollisionTypes[bodyA->getShapeType()][bodyB->getShapeType()](bodyA, bodyB);
 };
 
