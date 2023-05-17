@@ -15,6 +15,7 @@ namespace AnimeDefendersEngine {
 
         struct Transform {
             Math::Vector2<float> position;
+            Transform(Math::Vector2<float> position = Math::Vector2<float>()) : position(position){};
         };
 
         struct BodyDefinition {
