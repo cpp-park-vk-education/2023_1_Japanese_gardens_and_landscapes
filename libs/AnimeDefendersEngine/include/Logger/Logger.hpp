@@ -22,8 +22,6 @@ namespace AnimeDefendersEngine {
          public:
             explicit BasicLogger(std::unique_ptr<std::ostream>&& stream) : m_stream{std::move(stream)} {}
 
-            auto operator<<(const std::string& message) -> BasicLogger&;
-
             auto printMessage(const std::string& message) -> BasicLogger&;
             auto printError(const std::string& message) -> BasicLogger&;
             auto printWarning(const std::string& message) -> BasicLogger&;
