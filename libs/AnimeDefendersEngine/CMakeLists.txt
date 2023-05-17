@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.9)
 set(project_name AnimeDefendersEngine)
 project(${project_name})
 
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 20)
 
 set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/AnimeFramework.hpp
