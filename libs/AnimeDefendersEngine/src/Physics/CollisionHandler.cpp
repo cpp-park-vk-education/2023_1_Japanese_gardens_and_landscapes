@@ -32,7 +32,7 @@ auto CollisionHandler::narrowPhase(std::vector<Manifold>& contacts) -> void {
             contacts.erase(contactIterator);
         }
     }
-};
+}
 
 static auto hasCollisionCircleCircle(Body* bodyA, Body* bodyB) -> bool {
     Circle* circleA = dynamic_cast<Circle*>(bodyA->getShape());
@@ -61,11 +61,11 @@ static auto hasCollisionRectangleCircle(Body* bodyA, Body* bodyB) -> bool {
     AnimeDefendersEngine::Math::Vector2<float> normal = distance - closestVertexToCircleCenter;
 
     return normal.norm() < circleB->radius;
-};
+}
 
 static auto hasCollisionCircleRectangle(Body* bodyA, Body* bodyB) -> bool {
     return hasCollisionRectangleCircle(bodyB, bodyA);
-};
+}
 
 static auto hasCollisionRectangleRectangle(Body* bodyA, Body* bodyB) -> bool {
     Rectangle* rectangleA = dynamic_cast<Rectangle*>(bodyA->getShape());
@@ -80,7 +80,7 @@ static auto hasCollisionRectangleRectangle(Body* bodyA, Body* bodyB) -> bool {
         }
     }
     return false;
-};
+}
 
 using hasCollisionFunctionPtr = bool (*)(Body* bodyA, Body* bodyB);
 
@@ -91,12 +91,12 @@ static hasCollisionFunctionPtr hasCollisionTypes[Shape::shapeCount][Shape::shape
 
 auto CollisionHandler::hasCollision(Body* bodyA, Body* bodyB) -> bool {
     return hasCollisionTypes[bodyA->getShapeType()][bodyB->getShapeType()](bodyA, bodyB);
-};
+}
 
 auto CollisionHandler::specifyCollision(Manifold& contact) -> void {
     contact.penetration = 0;  // it was done for working CI
-};
+}
 
 auto CollisionHandler::resolveCollision(Manifold& contact) -> void {
     contact.penetration = 0;  // it was done for working CI
-};
+}

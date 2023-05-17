@@ -11,7 +11,7 @@ BodyDefinition::BodyDefinition(size_t id, std::unique_ptr<Shape>&& shapeUPtr, Bo
       velocity(velocity),
       layers(layers),
       force(force),
-      isTrigger(isTrigger){};
+      isTrigger(isTrigger) {}
 
 BodyDefinition::BodyDefinition(BodyDefinition&& other)
     : id(other.id),
