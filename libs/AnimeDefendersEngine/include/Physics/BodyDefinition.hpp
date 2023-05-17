@@ -32,5 +32,6 @@ namespace AnimeDefendersEngine {
             BodyDefinition(BodyDefinition&& other);
             BodyDefinition();
         };
+
     }  // namespace Physics
 }  // namespace AnimeDefendersEngine
