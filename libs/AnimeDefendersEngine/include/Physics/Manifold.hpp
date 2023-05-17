@@ -5,6 +5,7 @@
 
 namespace AnimeDefendersEngine {
     namespace Physics {
+
         struct Manifold {
             Body* bodyA;
             Body* bodyB;
