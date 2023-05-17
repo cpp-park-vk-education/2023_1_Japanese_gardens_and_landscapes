@@ -32,7 +32,7 @@ auto Body::setVelocity(const Math::Vector2<float>& newVelocity) -> void {
 
 auto Body::getShape() -> Shape* {
     return m_shapeUptr.get();
-};
+}
 
 auto Body::getShapeType() const -> ShapeType {
     return m_shapeUptr->getType();
@@ -46,4 +46,4 @@ Body::Body(BodyDefinition&& bodyDefinition)
       m_velocity(bodyDefinition.velocity),
       m_layers(bodyDefinition.layers),
       m_force(bodyDefinition.force),
-      m_isTrigger(bodyDefinition.isTrigger){};
+      m_isTrigger(bodyDefinition.isTrigger) {}
