@@ -9,15 +9,18 @@ namespace AnimeDefendersEngine {
         class Body {
          public:
             Body(BodyDefinition&& bodyDefinition);
+
             virtual auto applyForce(Math::Vector2<float> vec) -> void;
             virtual auto applyImpulse(Math::Vector2<float> vec) -> void;
+
             virtual auto getPosition() -> Math::Vector2<float>;
             virtual auto getVelocity() -> Math::Vector2<float>;
-            virtual auto setPosition(const Math::Vector2<float>& newPosition) -> void;
-            virtual auto setVelocity(const Math::Vector2<float>& newVelocity) -> void;
             virtual auto getShape() -> Shape*;
             virtual auto getShapeType() const -> ShapeType;
             virtual auto isTrigger() -> bool;
+
+            virtual auto setPosition(const Math::Vector2<float>& newPosition) -> void;
+            virtual auto setVelocity(const Math::Vector2<float>& newVelocity) -> void;
             virtual auto setType(BodyType type) -> void;
 
          private:
