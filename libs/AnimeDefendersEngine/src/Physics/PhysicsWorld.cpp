@@ -8,10 +8,10 @@ auto PhysicsWorld::setFixedDeltaTime(const float) -> void {}
 
 auto PhysicsWorld::update(const float) -> void {}
 
-auto PhysicsWorld::addBody(const BodyDefinition&) -> IBody* {
+auto PhysicsWorld::addBody(const BodyDefinition&) -> Body* {
     return nullptr;
 }
 
-auto PhysicsWorld::removeBody(IBody*) -> void {}
+auto PhysicsWorld::removeBody(Body*) -> void {}
 
 auto PhysicsWorld::fixedUpdate() -> void {}

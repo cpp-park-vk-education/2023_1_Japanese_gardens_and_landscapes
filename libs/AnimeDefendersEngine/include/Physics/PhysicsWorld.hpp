@@ -12,13 +12,13 @@ namespace AnimeDefendersEngine {
             PhysicsWorld(const float fixedDeltaTime);
             auto setFixedDeltaTime(const float fixedDeltaTime) -> void;
             auto update(const float timeStep) -> void;
-            auto addBody(const BodyDefinition& bodyDefinition) -> IBody*;
-            auto removeBody(IBody* body) -> void;
+            auto addBody(const BodyDefinition& bodyDefinition) -> Body*;
+            auto removeBody(Body* body) -> void;
 
          private:
             auto fixedUpdate() -> void;
 
-            std::vector<std::unique_ptr<IBody>> m_bodies;
+            std::vector<std::unique_ptr<Body>> m_bodies;
             std::vector<Manifold> m_contacts;
             float m_fixedDeltaTime;
         };
