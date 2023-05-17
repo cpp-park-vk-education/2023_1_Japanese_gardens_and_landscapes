@@ -99,10 +99,6 @@ jobs:
       
       - uses: snickerbockers/submodules-init@v4
 
-      #- name: Merge in main
-      #  run: |
-      #    git checkout main
-      #    git merge ${GITHUB_REF##*/}
 
       - name: Build
         run: |

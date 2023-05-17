@@ -3,7 +3,7 @@
 #include "Vector2.hpp"
 
 namespace AnimeDefendersEngine {
-    namespace PhysicsEngine {
+    namespace Physics {
 
         enum class ShapeType {
             circle = 0,
@@ -13,7 +13,8 @@ namespace AnimeDefendersEngine {
         class Shape {
          public:
             virtual ~Shape();
-            auto getType() -> ShapeType;
+            auto getType() -> ShapeType const;
+            static constexpr int shapeCount = 2;
 
          protected:
             ShapeType m_type;
@@ -31,5 +32,5 @@ namespace AnimeDefendersEngine {
             Math::Vector2<float> size;
         };
 
-    }  // namespace PhysicsEngine
+    }  // namespace Physics
 }  // namespace AnimeDefendersEngine

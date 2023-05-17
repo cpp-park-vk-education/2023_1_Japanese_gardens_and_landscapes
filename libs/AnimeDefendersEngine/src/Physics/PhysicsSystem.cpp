@@ -1,6 +1,6 @@
 #include "PhysicsSystem.hpp"
 
-using namespace AnimeDefendersEngine::PhysicsEngine;
+using namespace AnimeDefendersEngine::Physics;
 
 PhysicsSystem::PhysicsSystem(float fixedDeltaTime) : physicsWorld(fixedDeltaTime) {}
 

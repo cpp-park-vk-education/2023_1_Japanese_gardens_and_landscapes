@@ -1,6 +1,6 @@
 #include "CollisionHandler.hpp"
 
-using namespace AnimeDefendersEngine::PhysicsEngine;
+using namespace AnimeDefendersEngine::Physics;
 
 auto CollisionHandler::broadPhase(const std::vector<IBody*>&) -> std::vector<Manifold> {
     return {};

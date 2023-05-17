@@ -1,6 +1,6 @@
 #include "PhysicsWorld.hpp"
 
-using namespace AnimeDefendersEngine::PhysicsEngine;
+using namespace AnimeDefendersEngine::Physics;
 
 PhysicsWorld::PhysicsWorld(const float) {}
 

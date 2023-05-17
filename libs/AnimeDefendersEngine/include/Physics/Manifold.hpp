@@ -4,14 +4,13 @@
 #include "Vector2.hpp"
 
 namespace AnimeDefendersEngine {
-    namespace PhysicsEngine {
-
-        class Manifold {
-            Body* bodyA;
-            Body* bodyB;
+    namespace Physics {
+        struct Manifold {
+            IBody* bodyA;
+            IBody* bodyB;
             float penetration;
             Math::Vector2<float> normal;
+            explicit Manifold(IBody* bodyA, IBody* bodyB);
         };
-
-    }  // namespace PhysicsEngine
+    }  // namespace Physics
 }  // namespace AnimeDefendersEngine
