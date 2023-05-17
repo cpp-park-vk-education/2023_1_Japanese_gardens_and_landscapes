@@ -2,6 +2,8 @@
 #include "Body.hpp"
 #include "Vector2.hpp"
 
+#include <cmath>
+
 using namespace AnimeDefendersEngine::Physics;
 
 auto CollisionHandler::broadPhase(const std::vector<Body*>& bodies) -> std::vector<Manifold> {
@@ -65,8 +67,14 @@ static auto hasCollisionRectangleRectangle(Body* bodyA, Body* bodyB) -> bool {
     Rectangle* rectangleB = dynamic_cast<Rectangle*>(bodyB->getShape());
 
     AnimeDefendersEngine::Math::Vector2<float> normal = bodyB->getPosition() - bodyA->getPosition();
-    float xOverlap = (rectangleA->size.x + rectangleB->size.x) / 2 - normal.norm();
-    return xOverlap > 0;
+    float xOverlap = (rectangleA->size.x + rectangleB->size.x) / 2 - std::abs(normal.x);
+    if (xOverlap > 0) {
+        float yOverlap = (rectangleA->size.y + rectangleB->size.y) / 2 - std::abs(normal.y);
+        if (yOverlap > 0) {
+            return true;
+        }
+    }
+    return false;
 };
 
 using hasCollisionFunctionPtr = bool (*)(Body* bodyA, Body* bodyB);
