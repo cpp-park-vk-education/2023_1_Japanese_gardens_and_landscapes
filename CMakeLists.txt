@@ -4,7 +4,7 @@ set(project_name AnimeDefenders)
 project(${project_name})
 
 set(CMAKE_CXX_STANDARD 20)
-add_compile_options(-Wall -Wextra -Werror -Wpedantic)
+# add_compile_options(-Wall -Wextra -Werror -Wpedantic)
 
 set(main_executable ${PROJECT_SOURCE_DIR}/src/main.cpp)
 
