@@ -9,7 +9,7 @@ auto Body::applyForce(Math::Vector2<float>) -> void {}
 auto Body::applyImpulse(Math::Vector2<float>) -> void {}
 
 auto Body::getPosition() -> Math::Vector2<float> {
-    return Math::Vector2<float>{0, 0};
+    return m_transform.position;
 }
 
 auto Body::isTrigger() -> bool {
