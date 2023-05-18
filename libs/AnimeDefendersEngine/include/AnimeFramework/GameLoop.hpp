@@ -12,9 +12,15 @@ namespace AnimeDefendersEngine {
 
     class GameLoop {
      public:
-        void run();
-        void setSystemManager(std::unique_ptr<ISystemManager>);
-        void setEventManager(std::unique_ptr<IEventManager>);
+        GameLoop(std::unique_ptr<ISystemManager>&& systemManager, std::unique_ptr<IEventManager>&& eventManager,
+                 std::unique_ptr<InputManager>&& inputManager, std::unique_ptr<Graphics::Renderer>&& renderer, SceneManager* sceneManager,
+                 ComponentManager* componentManager, float fixedDeltaTime, float maxDeltaTime);
+        auto run() -> void;
+
+        auto setSystemManager(std::unique_ptr<ISystemManager>&& systemManager) -> void;
+        auto setEventManager(std::unique_ptr<IEventManager>&& eventManager) -> void;
+        auto setInputManager(std::unique_ptr<InputManager>&& inputManager) -> void;
+        auto setRenderer(std::unique_ptr<Graphics::Renderer>&& renderer) -> void;
 
      private:
         bool m_isRunning{true};
