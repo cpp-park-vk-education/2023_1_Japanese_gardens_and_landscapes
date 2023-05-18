@@ -13,7 +13,7 @@ using namespace AnimeDefendersEngine;
 
 GameLoop::GameLoop(std::unique_ptr<ISystemManager>&& systemManager, std::unique_ptr<IEventManager>&& eventManager,
                    std::unique_ptr<InputManager>&& inputManager, std::unique_ptr<Graphics::Renderer>&& renderer, SceneManager& sceneManager,
-                   ComponentManager* componentManager, float fixedDeltaTime, float maxDeltaTime)
+                   float fixedDeltaTime, float maxDeltaTime)
     : m_sceneManager(sceneManager), m_fixedDeltaTime(fixedDeltaTime), m_maxDeltaTime(maxDeltaTime), m_isRunning(true) {
     setSystemManager(std::move(systemManager));
     setEventManager(std::move(eventManager));

@@ -29,7 +29,7 @@ namespace AnimeDefendersEngine {
      public:
         GameLoop(std::unique_ptr<ISystemManager>&& systemManager, std::unique_ptr<IEventManager>&& eventManager,
                  std::unique_ptr<InputManager>&& inputManager, std::unique_ptr<Graphics::Renderer>&& renderer, SceneManager& sceneManager,
-                 ComponentManager* componentManager, float fixedDeltaTime, float maxDeltaTime);
+                 float fixedDeltaTime = 1.0f / defaultMinUpdateFrequency, float maxDeltaTime = 1.0f / defaultFixedUpdateFrequency);
         auto run() -> void;
 
         auto setSystemManager(std::unique_ptr<ISystemManager>&& systemManager) -> void;
@@ -39,8 +39,8 @@ namespace AnimeDefendersEngine {
 
      private:
         bool m_isRunning{true};
-        float m_maxDeltaTime{1.0f / defaultMinUpdateFrequency};
-        float m_fixedDeltaTime{1.0f / defaultFixedUpdateFrequency};
+        float m_maxDeltaTime;
+        float m_fixedDeltaTime;
 
         std::unique_ptr<ISystemManager> m_systemManager;
         std::unique_ptr<IEventManager> m_eventManager;
