@@ -1,6 +1,13 @@
 #pragma once
 
-#include "ISystem.hpp"
+#include <vector>
+
+namespace AnimeDefendersEngine {
+
+    class SceneManager;
+    class ISystem;
+
+}  // namespace AnimeDefendersEngine
 
 namespace AnimeDefendersEngine {
 
