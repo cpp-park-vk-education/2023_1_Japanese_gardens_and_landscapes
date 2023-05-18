@@ -8,12 +8,9 @@ using namespace AnimeDefendersEngine::Physics;
 auto CollisionHandler::broadPhase(const std::vector<Body*>& bodies) -> std::vector<Manifold> {
     std::vector<Manifold> contacts;
     contacts.reserve(bodies.size());
-    for (size_t i = 0; i < bodies.size(); ++i) {
-        Body* bodyA = bodies.at(i);
-        for (size_t j = i + 1; j < bodies.size(); ++j) {
-            Body* bodyB = bodies.at(i);
-            Manifold contact(bodyA, bodyB);
-            contacts.emplace_back(bodyA, bodyB);
+    for (auto bodyAIter = bodies.begin(); bodyAIter != bodies.end(); ++bodyAIter) {
+        for (auto bodyBIter = bodyAIter + 1; bodyBIter != bodies.end(); ++bodyBIter) {
+            contacts.emplace_back(*bodyAIter, *bodyBIter);
         }
     }
     return contacts;
@@ -49,16 +46,13 @@ namespace {
 
         AnimeDefendersEngine::Math::Vector2<float> distance = bodyB->getPosition() - bodyA->getPosition();
         AnimeDefendersEngine::Math::Vector2<float> closestVertexToCircleCenter = distance;
-        float x_extent = rectangleA->size.x / 2;
-        float y_extent = rectangleA->size.y / 2;
+        float xExtent = rectangleA->size.x / 2;
+        float yExtent = rectangleA->size.y / 2;
 
-        closestVertexToCircleCenter.x = std::min(closestVertexToCircleCenter.x, x_extent);
-
-        closestVertexToCircleCenter.x = std::max(closestVertexToCircleCenter.x, -x_extent);
-
-        closestVertexToCircleCenter.y = std::min(closestVertexToCircleCenter.y, y_extent);
-
-        closestVertexToCircleCenter.y = std::max(closestVertexToCircleCenter.y, -y_extent);
+        closestVertexToCircleCenter.x = std::min(closestVertexToCircleCenter.x, xExtent);
+        closestVertexToCircleCenter.x = std::max(closestVertexToCircleCenter.x, -xExtent);
+        closestVertexToCircleCenter.y = std::min(closestVertexToCircleCenter.y, yExtent);
+        closestVertexToCircleCenter.y = std::max(closestVertexToCircleCenter.y, -yExtent);
 
         AnimeDefendersEngine::Math::Vector2<float> normal = distance - closestVertexToCircleCenter;
 
@@ -81,6 +75,7 @@ namespace {
         }
         return false;
     }
+
 }  // namespace
 
 using hasCollisionFunctionPtr = bool (*)(Body* bodyA, Body* bodyB);
