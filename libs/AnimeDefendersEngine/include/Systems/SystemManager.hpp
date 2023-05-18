@@ -6,12 +6,12 @@ namespace AnimeDefendersEngine {
 
     class ISystemManager {
      public:
-        virtual void updateSystems(ComponentManager&, float) = 0;
+        virtual void updateSystems(SceneManager&, float) = 0;
     };
 
     class SystemManager : public ISystemManager {
      public:
-        void updateSystems(ComponentManager&, float) override;
+        void updateSystems(SceneManager&, float) override;
 
      private:
         std::vector<ISystem*> m_systems;
