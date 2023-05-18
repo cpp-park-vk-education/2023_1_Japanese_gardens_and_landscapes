@@ -12,12 +12,12 @@ namespace AnimeDefendersEngine {
      public:
         void run();
         void setSystemManager(std::unique_ptr<ISystemManager>);
-        void setEventManager(std::unique_ptr<IEventManager>);
+        void setEventManager(std::unique_ptr<EventManager>);
 
      private:
         bool is_running{true};
         std::unique_ptr<ISystemManager> m_systemManager;
-        std::unique_ptr<IEventManager> m_eventManager;
+        std::unique_ptr<EventManager> m_eventManager;
         std::unique_ptr<InputManager> m_input;
     };
 
