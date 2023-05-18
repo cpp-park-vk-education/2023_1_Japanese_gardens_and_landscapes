@@ -4,7 +4,6 @@
 #include "UiElement.hpp"
 
 #include <cassert>
-#include <ranges>
 
 using namespace AnimeDefendersEngine::Graphics;
 
@@ -19,19 +18,37 @@ auto Renderer::renderObjects(const Scene& scene) -> void {
     auto sprites = componentManager->getComponents(typeid(Sprite));
     auto uiElements = componentManager->getComponents(typeid(UiElement));
 
-    std::vector<Component*> activeCameras =
-        std::as_const(cameras) | std::ranges::views::filter([](const auto& camera) { return camera->isCameraActive(); });
+    Camera* activeCamera{};
+    Camera* nextCamera{};
+    for (auto* nextCompenent : cameras) {
+        nextCamera = static_cast<Camera*>(nextCompenent);
 
-    assert(activeCameras.size() == 1);
+        if (nextCamera->isCameraActive()) {
+            assert(!activeCamera);
+            activeCamera = nextCamera;
+        }
+    }
 
-    auto activeCamera = activeCameras.at(0);
+    assert(activeCamera);
+
     activeCamera->determineNewCameraTransform();
     activeCamera->applyCameraView();
 
-    std::as_const(sprites) | std::ranges::views::filter([](const auto& sprite) { return sprite->isSpriteVisibleToCamera(activeCamera); }) |
-        std::ranges::views::transform([](const auto& sprite) { return sprite->drawSprite(); });
+    Sprite* nextSprite{};
+    for (auto* nextComponent : sprites) {
+        nextSprite = static_cast<Sprite*>(nextComponent);
 
-    std::as_const(uiElements) | std::ranges::views::transform([](const auto& uiElement) { return uiElement->drawUiElement(); });
+        if (nextSprite->isSpriteVisibleToCamera(activeCamera)) {
+            nextSprite->drawSprite();
+        }
+    }
+
+    UiElement* nextUiElement{};
+    for (auto* nextComponent : uiElements) {
+        nextUiElement = static_cast<UiElement*>(nextComponent);
+
+        nextUiElement->drawUiElement();
+    }
 
     m_window->updateFrame();
 }
