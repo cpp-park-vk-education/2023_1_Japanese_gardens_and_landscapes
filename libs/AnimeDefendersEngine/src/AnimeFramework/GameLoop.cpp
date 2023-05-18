@@ -2,7 +2,11 @@
 
 #include "GameLoop.hpp"
 #include "EventManager.hpp"
+#include "Renderer.hpp"
+#include "SceneManager.hpp"
 #include "SystemManager.hpp"
+
+#include <chrono>
 
 using namespace AnimeDefendersEngine;
 
@@ -20,8 +24,6 @@ GameLoop::GameLoop(std::unique_ptr<ISystemManager>&& systemManager, std::unique_
     setRenderer(std::move(renderer));
 }
 
-auto GameLoop::run() -> void {}
-
 auto GameLoop::setSystemManager(std::unique_ptr<ISystemManager>&& systemManager) -> void {
     m_systemManager = std::move(systemManager);
 }
@@ -36,4 +38,42 @@ auto GameLoop::setInputManager(std::unique_ptr<InputManager>&& inputManager) -> 
 
 auto GameLoop::setRenderer(std::unique_ptr<Graphics::Renderer>&& renderer) -> void {
     m_renderer = std::move(renderer);
+}
+
+namespace {
+
+    class Timer {
+     public:
+        Timer() { reset(); }
+        void reset() { m_startTime = std::chrono::high_resolution_clock::now(); }
+        float getCurrentTimeInMilliseconds() {
+            return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - m_startTime).count();
+        };
+
+     private:
+        std::chrono::time_point<std::chrono::high_resolution_clock> m_startTime;
+    };
+
+}  // namespace
+
+auto GameLoop::run() -> void {
+    Timer timer;
+    float timeElapsedSinceLastUpdate = timer.getCurrentTimeInMilliseconds();
+    float accumulator{};
+    while (m_isRunning) {
+        float newTime = timer.getCurrentTimeInMilliseconds();
+        float deltaTime = newTime - timeElapsedSinceLastUpdate;
+        timeElapsedSinceLastUpdate = newTime;
+
+        accumulator += deltaTime;
+        if (accumulator > m_maxDeltaTime) {
+            accumulator = m_maxDeltaTime;
+        }
+        while (accumulator >= m_fixedDeltaTime) {
+            // m_inputManager->processInput();
+            m_systemManager->updateSystems(*m_componentManager, m_fixedDeltaTime);
+            accumulator -= m_fixedDeltaTime;
+        }
+        m_renderer->renderObjects(*m_sceneManager->getActiveScene());
+    }
 }
