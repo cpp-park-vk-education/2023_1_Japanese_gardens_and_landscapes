@@ -12,13 +12,9 @@
 using namespace AnimeDefendersEngine;
 
 GameLoop::GameLoop(std::unique_ptr<ISystemManager>&& systemManager, std::unique_ptr<IEventManager>&& eventManager,
-                   std::unique_ptr<InputManager>&& inputManager, std::unique_ptr<Graphics::Renderer>&& renderer, SceneManager* sceneManager,
+                   std::unique_ptr<InputManager>&& inputManager, std::unique_ptr<Graphics::Renderer>&& renderer, SceneManager& sceneManager,
                    ComponentManager* componentManager, float fixedDeltaTime, float maxDeltaTime)
-    : m_sceneManager(sceneManager),
-      m_componentManager(componentManager),
-      m_fixedDeltaTime(fixedDeltaTime),
-      m_maxDeltaTime(maxDeltaTime),
-      m_isRunning(true) {
+    : m_sceneManager(sceneManager), m_fixedDeltaTime(fixedDeltaTime), m_maxDeltaTime(maxDeltaTime), m_isRunning(true) {
     setSystemManager(std::move(systemManager));
     setEventManager(std::move(eventManager));
     setInputManager(std::move(inputManager));
@@ -72,9 +68,9 @@ auto GameLoop::run() -> void {
         }
         while (accumulator >= m_fixedDeltaTime) {
             // m_inputManager->processInput();
-            m_systemManager->updateSystems(*m_componentManager, m_fixedDeltaTime);
+            m_systemManager->updateSystems(m_sceneManager, m_fixedDeltaTime);
             accumulator -= m_fixedDeltaTime;
         }
-        m_renderer->renderObjects(*m_sceneManager->getActiveScene());
+        m_renderer->renderObjects(*m_sceneManager.getActiveScene());
     }
 }
