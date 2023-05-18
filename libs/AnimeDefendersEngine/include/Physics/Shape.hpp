@@ -2,35 +2,33 @@
 
 #include "Vector2.hpp"
 
-namespace AnimeDefendersEngine {
-    namespace Physics {
+namespace AnimeDefendersEngine::Physics {
 
-        enum ShapeType {
-            circle = 0,
-            rectangle
-        };
+    enum ShapeType {
+        circle = 0,
+        rectangle
+    };
 
-        class Shape {
-         public:
-            virtual ~Shape();
-            auto getType() const -> ShapeType;
-            static constexpr int shapeCount = 2;
+    class Shape {
+     public:
+        virtual ~Shape();
+        auto getType() const -> ShapeType;
+        static constexpr int shapeCount = 2;
 
-         protected:
-            ShapeType m_type;
-        };
+     protected:
+        ShapeType m_type;
+    };
 
-        class Circle : public Shape {
-         public:
-            explicit Circle(float radius);
-            float radius;
-        };
+    class Circle : public Shape {
+     public:
+        explicit Circle(float radius);
+        float radius;
+    };
 
-        class Rectangle : public Shape {
-         public:
-            explicit Rectangle(Math::Vector2<float> size);
-            Math::Vector2<float> size;
-        };
+    class Rectangle : public Shape {
+     public:
+        explicit Rectangle(Math::Vector2<float> size);
+        Math::Vector2<float> size;
+    };
 
-    }  // namespace Physics
-}  // namespace AnimeDefendersEngine
+}  // namespace AnimeDefendersEngine::Physics

@@ -1,41 +1,44 @@
 #pragma once
 
 #include <memory>
-
 #include "Shape.hpp"
 #include "Vector2.hpp"
 
-namespace AnimeDefendersEngine {
-    namespace Physics {
+namespace AnimeDefendersEngine::Physics {
 
-        enum class BodyType {
-            staticBody,
-            dynamicBody
-        };
+    enum class BodyType {
+        dynamicBody,
+        staticBody
+    };
 
-        struct Transform {
-            Math::Vector2<float> position;
-            Transform(Math::Vector2<float> position = Math::Vector2<float>()) : position(position){};
-        };
+    struct Transform {
+        Transform(Math::Vector2<float> position = Math::Vector2<float>()) : position(position){};
+        Math::Vector2<float> position;
+    };
 
-        struct BodyDefinition {
-            size_t id{};
-            std::unique_ptr<Shape> shapeUPtr{nullptr};
-            BodyType bodyType{};
-            Transform transform{};
-            Math::Vector2<float> velocity{};
-            size_t layers{};
-            Math::Vector2<float> force{};
-            bool isTrigger{};
-            BodyDefinition(size_t id, std::unique_ptr<Shape>&& shapeUPtr, BodyType bodyType, Transform transform,
-                           Math::Vector2<float> velocity, size_t layers, Math::Vector2<float> force, bool isTrigger);
-            BodyDefinition(BodyDefinition&& other);
-            BodyDefinition(){};
-            BodyDefinition(const BodyDefinition& other) = delete;
-            BodyDefinition& operator=(const BodyDefinition& other) = delete;
-            BodyDefinition& operator=(BodyDefinition&& other) = delete;
-            ~BodyDefinition(){};
-        };
+    struct BodyDefinition {
+        BodyDefinition() = default;
+        BodyDefinition(size_t id, std::unique_ptr<Shape>&& shape, BodyType bodyType, Transform transform, Math::Vector2<float> velocity,
+                       size_t layers, Math::Vector2<float> force, bool isTrigger);
+        BodyDefinition(BodyDefinition&& other);
 
-    }  // namespace Physics
-}  // namespace AnimeDefendersEngine
+        BodyDefinition(const BodyDefinition& other) = delete;
+        BodyDefinition& operator=(const BodyDefinition& other) = delete;
+        BodyDefinition& operator=(BodyDefinition&& other) = delete;
+
+        ~BodyDefinition() = default;
+
+        size_t id{0};
+        BodyType bodyType{BodyType::dynamicBody};
+        bool isTrigger{false};
+
+        std::unique_ptr<Shape> shape;
+
+        Transform transform;
+        Math::Vector2<float> velocity;
+        Math::Vector2<float> force;
+
+        size_t layers{0};
+    };
+
+}  // namespace AnimeDefendersEngine::Physics
