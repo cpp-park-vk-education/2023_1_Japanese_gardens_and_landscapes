@@ -1,12 +1,24 @@
 #pragma once
 
 // static_assert(false, "Need to add propper headers for IEventManager and InputManager");
-#include "InputManager.hpp"
-#include "Renderer.hpp"
-#include "SceneManager.hpp"
-#include "SystemManager.hpp"
 
 #include <memory>
+
+namespace AnimeDefendersEngine {
+
+    class ISystemManager;
+    class IEventManager;
+    class InputManager;
+    class SceneManager;
+    class ComponentManager;
+
+    namespace Graphics {
+
+        class Renderer;
+
+    }
+
+}  // namespace AnimeDefendersEngine
 
 namespace AnimeDefendersEngine {
 
