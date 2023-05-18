@@ -1,23 +1,19 @@
 #pragma once
 
-#include "Event.hpp"
-
-#include <queue>
+#include <map>
 #include <string>
+#include "Event.hpp"
+#include "EventListener.hpp"
 
 namespace AnimeDefendersEngine {
 
-    class IEventManager {
+    class EventManager {
      public:
-        virtual auto hasEvent(std::string eventName) -> bool = 0;
-    };
-
-    class EventManager : public IEventManager {
-     public:
-        auto hasEvent(std::string eventName) -> bool override;
+        auto addListener(IEventListener& listener) -> void;
+        auto removeListener(IEventListener& listener) -> void;
 
      private:
-        std::priority_queue<Event> m_events;
+        std::map<IEventListener*, IEventListener*> eventListeners;
     };
 
 }  // namespace AnimeDefendersEngine

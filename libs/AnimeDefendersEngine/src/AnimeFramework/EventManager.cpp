@@ -2,6 +2,6 @@
 
 using namespace AnimeDefendersEngine;
 
-auto EventManager::hasEvent(std::string) -> bool {
-    return false;
-}
+auto EventManager::addListener(IEventListener& listener) -> void{
+    eventListeners.insert({listener});
+};

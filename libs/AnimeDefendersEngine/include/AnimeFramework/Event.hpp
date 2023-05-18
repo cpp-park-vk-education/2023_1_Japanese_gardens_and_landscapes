@@ -5,6 +5,14 @@
 namespace AnimeDefendersEngine {
 
     enum class EventType {
+        None = 0,
+        KeyPressed,
+        KeyReleased,
+        OnKeyDown,
+        MouseButtonPressed,
+        MouseButtonReleased,
+        MouseMoved,
+        MouseScrolled
     };
 
     class Event {
