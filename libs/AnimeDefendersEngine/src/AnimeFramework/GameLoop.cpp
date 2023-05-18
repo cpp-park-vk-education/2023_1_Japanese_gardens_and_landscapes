@@ -2,6 +2,7 @@
 
 #include "GameLoop.hpp"
 #include "EventManager.hpp"
+#include "InputManager.hpp"
 #include "Renderer.hpp"
 #include "SceneManager.hpp"
 #include "SystemManager.hpp"
