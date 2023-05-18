@@ -76,14 +76,14 @@ namespace {
         return false;
     }
 
+    using hasCollisionFunctionPtr = bool (*)(Body* bodyA, Body* bodyB);
+
+    hasCollisionFunctionPtr hasCollisionTypes[Shape::shapeCount][Shape::shapeCount] = {
+        {hasCollisionCircleCircle,    hasCollisionCircleRectangle   },
+        {hasCollisionRectangleCircle, hasCollisionRectangleRectangle}
+    };
+
 }  // namespace
-
-using hasCollisionFunctionPtr = bool (*)(Body* bodyA, Body* bodyB);
-
-static hasCollisionFunctionPtr hasCollisionTypes[Shape::shapeCount][Shape::shapeCount] = {
-    {hasCollisionCircleCircle,    hasCollisionCircleRectangle   },
-    {hasCollisionRectangleCircle, hasCollisionRectangleRectangle}
-};
 
 auto CollisionHandler::hasCollision(Body* bodyA, Body* bodyB) -> bool {
     return hasCollisionTypes[bodyA->getShapeType()][bodyB->getShapeType()](bodyA, bodyB);
