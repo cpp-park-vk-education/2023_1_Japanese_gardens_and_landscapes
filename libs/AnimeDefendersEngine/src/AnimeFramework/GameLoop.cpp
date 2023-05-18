@@ -46,8 +46,8 @@ namespace {
     class Timer {
      public:
         Timer() { reset(); }
-        void reset() { m_startTime = std::chrono::high_resolution_clock::now(); }
-        float getCurrentTimeInMilliseconds() {
+        auto reset() -> void { m_startTime = std::chrono::high_resolution_clock::now(); }
+        auto getCurrentTimeInMilliseconds() -> float {
             return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - m_startTime).count();
         };
 
