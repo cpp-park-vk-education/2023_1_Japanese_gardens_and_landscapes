@@ -14,6 +14,9 @@ namespace AnimeDefendersEngine::Physics {
 
 namespace AnimeDefendersEngine::Physics {
 
+    constexpr float defaultFixedUpdateFrequency = 60.0f;
+    constexpr float defaultMinUpdateFrequency = 25.0f;
+
     class PhysicsWorld {
      public:
         PhysicsWorld(std::unique_ptr<CollisionHandler>&& collisionHandler, float fixedDeltaTime, float maxDeltaTime);
@@ -30,7 +33,7 @@ namespace AnimeDefendersEngine::Physics {
 
         float m_fixedDeltaTime{};
         float m_maxDeltaTime{};
-        float m_accumulator{};
+        float m_accumulator{0};
     };
 
 }  // namespace AnimeDefendersEngine::Physics
