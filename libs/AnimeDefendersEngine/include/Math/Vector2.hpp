@@ -29,5 +29,7 @@ namespace AnimeDefendersEngine {
             friend auto operator*<T>(const T& const1, const Vector2<T>& vec1) -> Vector2<T>;
         };
 
+        using Vector2f = Vector2<float>;
+
     }  // namespace Math
 }  // namespace AnimeDefendersEngine

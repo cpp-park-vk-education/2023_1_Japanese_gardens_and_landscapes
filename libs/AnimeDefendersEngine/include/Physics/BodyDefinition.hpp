@@ -12,14 +12,14 @@ namespace AnimeDefendersEngine::Physics {
     };
 
     struct Transform {
-        Transform(Math::Vector2<float> position = Math::Vector2<float>()) : position(position){};
-        Math::Vector2<float> position;
+        Transform(Math::Vector2f position = Math::Vector2f()) : position(position){};
+        Math::Vector2f position;
     };
 
     struct BodyDefinition {
         BodyDefinition() = default;
-        BodyDefinition(size_t id, std::unique_ptr<Shape>&& shape, BodyType bodyType, Transform transform, Math::Vector2<float> velocity,
-                       size_t layers, Math::Vector2<float> force, bool isTrigger);
+        BodyDefinition(size_t id, std::unique_ptr<Shape>&& shape, BodyType bodyType, Transform transform, Math::Vector2f velocity,
+                       size_t layers, Math::Vector2f force, bool isTrigger);
         BodyDefinition(BodyDefinition&& other);
 
         BodyDefinition(const BodyDefinition& other) = delete;
@@ -33,10 +33,9 @@ namespace AnimeDefendersEngine::Physics {
         bool isTrigger{false};
 
         std::unique_ptr<Shape> shape;
-
         Transform transform;
-        Math::Vector2<float> velocity;
-        Math::Vector2<float> force;
+        Math::Vector2f velocity;
+        Math::Vector2f force;
 
         size_t layers{0};
     };

@@ -44,8 +44,8 @@ namespace {
         auto rectangleA = dynamic_cast<Rectangle*>(bodyA->getShape());
         auto circleB = dynamic_cast<Circle*>(bodyB->getShape());
 
-        AnimeDefendersEngine::Math::Vector2<float> distance = bodyB->getPosition() - bodyA->getPosition();
-        AnimeDefendersEngine::Math::Vector2<float> closestVertexToCircleCenter = distance;
+        AnimeDefendersEngine::Math::Vector2f distance = bodyB->getPosition() - bodyA->getPosition();
+        AnimeDefendersEngine::Math::Vector2f closestVertexToCircleCenter = distance;
         float xExtent = rectangleA->size.x / 2;
         float yExtent = rectangleA->size.y / 2;
 
@@ -54,7 +54,7 @@ namespace {
         closestVertexToCircleCenter.y = std::min(closestVertexToCircleCenter.y, yExtent);
         closestVertexToCircleCenter.y = std::max(closestVertexToCircleCenter.y, -yExtent);
 
-        AnimeDefendersEngine::Math::Vector2<float> normal = distance - closestVertexToCircleCenter;
+        AnimeDefendersEngine::Math::Vector2f normal = distance - closestVertexToCircleCenter;
 
         return normal.norm() < circleB->radius;
     }

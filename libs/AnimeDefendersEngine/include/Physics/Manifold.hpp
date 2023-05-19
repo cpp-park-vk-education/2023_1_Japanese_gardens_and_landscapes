@@ -8,8 +8,8 @@ namespace AnimeDefendersEngine::Physics {
     struct Manifold {
         Body* bodyA;
         Body* bodyB;
-        float penetration{};
-        Math::Vector2<float> normal;
+        float penetration{0};
+        Math::Vector2f normal;
         explicit Manifold(Body* bodyA, Body* bodyB);
         Manifold() = default;
     };
