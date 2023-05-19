@@ -19,7 +19,9 @@ namespace AnimeDefendersEngine::Physics {
 
     class PhysicsWorld {
      public:
-        PhysicsWorld(std::unique_ptr<CollisionHandler>&& collisionHandler, float fixedDeltaTime, float maxDeltaTime);
+        explicit PhysicsWorld(std::unique_ptr<CollisionHandler>&& collisionHandler,
+                              float fixedDeltaTime = 1.0f / defaultFixedUpdateFrequency,
+                              float maxDeltaTime = 1.0f / defaultMinUpdateFrequency);
         auto setFixedDeltaTime(float fixedDeltaTime) -> void;
         auto update(float deltaTime) -> void;
         [[nodiscard]] auto addBody(BodyDefinition&& bodyDefinition) -> Body*;
@@ -31,8 +33,8 @@ namespace AnimeDefendersEngine::Physics {
         std::vector<std::unique_ptr<Body>> m_bodies;
         std::vector<Manifold> m_contacts;
 
-        float m_fixedDeltaTime{};
-        float m_maxDeltaTime{};
+        float m_fixedDeltaTime;
+        float m_maxDeltaTime;
         float m_accumulator{0};
     };
 
