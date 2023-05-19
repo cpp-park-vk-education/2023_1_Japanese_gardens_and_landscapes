@@ -6,4 +6,4 @@ auto PhysicsSystem::updateSystem(ComponentManager&) -> void {}
 
 auto PhysicsSystem::updateSystem(ComponentManager&, float) -> void {}
 
-auto PhysicsSystem::setFixedDeltaTime(float) -> void {}
+auto PhysicsSystem::setFixedDeltaTime(float) noexcept -> void {}

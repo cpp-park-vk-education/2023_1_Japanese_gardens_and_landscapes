@@ -4,6 +4,8 @@
 
 namespace AnimeDefendersEngine::Physics {
 
+    /// \details Числовые значения этого enum используются обработчиком коллизий CollisionHandler, для определения конкретной функции,
+    /// обрабатывающей конкретные формы
     enum class ShapeType : int {
         circle = 0,
         rectangle
@@ -27,8 +29,8 @@ namespace AnimeDefendersEngine::Physics {
 
     class Rectangle : public Shape {
      public:
-        explicit Rectangle(Math::Vector2<float> size);
-        Math::Vector2<float> size;
+        explicit Rectangle(const Math::Vector2f& size);
+        Math::Vector2f size;
     };
 
 }  // namespace AnimeDefendersEngine::Physics

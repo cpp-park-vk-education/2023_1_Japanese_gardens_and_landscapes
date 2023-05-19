@@ -9,22 +9,22 @@ namespace AnimeDefendersEngine::Physics {
      public:
         explicit Body(BodyDefinition&& bodyDefinition);
 
-        virtual auto applyForce(Math::Vector2f vec) -> void;
-        virtual auto applyImpulse(Math::Vector2f vec) -> void;
+        virtual auto applyForce(const Math::Vector2f& force) noexcept -> void;
+        virtual auto applyImpulse(const Math::Vector2f& velocity) noexcept -> void;
 
-        virtual auto integrateForce(float deltaTime) -> void;
-        virtual auto integrateVelocity(float deltaTime) -> void;
+        virtual auto integrateForce(float deltaTime) noexcept -> void;
+        virtual auto integrateVelocity(float deltaTime) noexcept -> void;
 
-        virtual auto getPosition() const -> Math::Vector2f;
-        virtual auto getVelocity() const -> Math::Vector2f;
-        virtual auto getType() const -> BodyType;
-        virtual auto getShape() const -> Shape*;
-        virtual auto getShapeType() const -> ShapeType;
-        virtual auto isTrigger() const -> bool;
+        virtual auto getPosition() const noexcept -> Math::Vector2f;
+        virtual auto getVelocity() const noexcept -> Math::Vector2f;
+        virtual auto getType() const noexcept -> BodyType;
+        virtual auto getShape() const noexcept -> Shape*;
+        virtual auto getShapeType() const noexcept -> ShapeType;
+        virtual auto isTrigger() const noexcept -> bool;
 
-        virtual auto setPosition(const Math::Vector2f& newPosition) -> void;
-        virtual auto setVelocity(const Math::Vector2f& newVelocity) -> void;
-        virtual auto setType(BodyType type) -> void;
+        virtual auto setPosition(const Math::Vector2f& newPosition) noexcept -> void;
+        virtual auto setVelocity(const Math::Vector2f& newVelocity) noexcept -> void;
+        virtual auto setType(BodyType type) noexcept -> void;
 
         virtual auto clearForce() -> void;
 
