@@ -9,8 +9,8 @@ namespace AnimeDefendersEngine {
 
         class Window : public IWindow {
          public:
-            auto createWindow() -> void override;
-            auto destroyWindow() -> void override;
+            Window(int, int, const std::string&);
+            ~Window();
             auto updateFrame() const -> void override;
 
             auto setWindowMouseListener(void (*)(int, int, int, int)) const -> void;
@@ -19,6 +19,8 @@ namespace AnimeDefendersEngine {
 
          private:
             int m_windowId{};
+            int m_windowWidth{};
+            int m_windowHeidth{};
         };
 
     }  // namespace Graphics
