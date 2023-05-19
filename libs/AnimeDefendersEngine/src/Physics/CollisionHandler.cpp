@@ -34,18 +34,18 @@ auto CollisionHandler::narrowPhase(std::vector<Manifold>& contacts) const -> voi
 namespace {
 
     auto hasCollisionCircleCircle(Body* bodyA, Body* bodyB) -> bool {
-        auto circleA = dynamic_cast<Circle*>(bodyA->getShape());
-        auto circleB = dynamic_cast<Circle*>(bodyB->getShape());
+        const auto circleA = dynamic_cast<Circle*>(bodyA->getShape());
+        const auto circleB = dynamic_cast<Circle*>(bodyB->getShape());
         float distance = (bodyA->getPosition() - bodyB->getPosition()).norm();
         return distance < circleA->radius + circleB->radius;
     }
 
     auto hasCollisionRectangleCircle(Body* bodyA, Body* bodyB) -> bool {
-        auto rectangleA = dynamic_cast<Rectangle*>(bodyA->getShape());
-        auto circleB = dynamic_cast<Circle*>(bodyB->getShape());
+        const auto rectangleA = dynamic_cast<Rectangle*>(bodyA->getShape());
+        const auto circleB = dynamic_cast<Circle*>(bodyB->getShape());
 
-        AnimeDefendersEngine::Math::Vector2f distance = bodyB->getPosition() - bodyA->getPosition();
-        AnimeDefendersEngine::Math::Vector2f closestVertexToCircleCenter = distance;
+        const auto distance = bodyB->getPosition() - bodyA->getPosition();
+        auto closestVertexToCircleCenter = distance;
         float xExtent = rectangleA->size.x / 2;
         float yExtent = rectangleA->size.y / 2;
 
@@ -54,7 +54,7 @@ namespace {
         closestVertexToCircleCenter.y = std::min(closestVertexToCircleCenter.y, yExtent);
         closestVertexToCircleCenter.y = std::max(closestVertexToCircleCenter.y, -yExtent);
 
-        AnimeDefendersEngine::Math::Vector2f normal = distance - closestVertexToCircleCenter;
+        auto normal = distance - closestVertexToCircleCenter;
 
         return normal.norm() < circleB->radius;
     }
@@ -78,6 +78,7 @@ namespace {
 
     using hasCollisionFunctionPtr = bool (*)(Body* bodyA, Body* bodyB);
 
+    /// \details Массив указателей на функции проверки коллизий. В позиции (i, j) проверка коллизии формы i с формой j
     hasCollisionFunctionPtr hasCollisionTypes[Shape::shapeCount][Shape::shapeCount] = {
         {hasCollisionCircleCircle,    hasCollisionCircleRectangle   },
         {hasCollisionRectangleCircle, hasCollisionRectangleRectangle}
