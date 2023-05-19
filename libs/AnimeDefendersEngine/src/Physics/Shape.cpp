@@ -1,10 +1,10 @@
 #include "Shape.hpp"
 
-using namespace AnimeDefendersEngine::PhysicsEngine;
+using namespace AnimeDefendersEngine::Physics;
 
 Shape::~Shape() {}
 
-auto Shape::getType() -> ShapeType {
+auto Shape::getType() -> ShapeType const {
     return ShapeType::circle;
 }
 

@@ -4,7 +4,7 @@
 #include "PhysicsWorld.hpp"
 
 namespace AnimeDefendersEngine {
-    namespace PhysicsEngine {
+    namespace Physics {
 
         class PhysicsSystem : public ISystem {
          public:
@@ -17,5 +17,5 @@ namespace AnimeDefendersEngine {
             PhysicsWorld physicsWorld;
         };
 
-    }  // namespace PhysicsEngine
+    }  // namespace Physics
 }  // namespace AnimeDefendersEngine
