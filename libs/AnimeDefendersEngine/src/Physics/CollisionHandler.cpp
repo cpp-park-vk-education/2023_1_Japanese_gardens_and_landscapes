@@ -86,7 +86,7 @@ namespace {
 }  // namespace
 
 auto CollisionHandler::hasCollision(Body* bodyA, Body* bodyB) -> bool {
-    return hasCollisionTypes[bodyA->getShapeType()][bodyB->getShapeType()](bodyA, bodyB);
+    return hasCollisionTypes[static_cast<int>(bodyA->getShapeType())][static_cast<int>(bodyB->getShapeType())](bodyA, bodyB);
 }
 
 auto CollisionHandler::specifyCollision(Manifold& contact) -> void {

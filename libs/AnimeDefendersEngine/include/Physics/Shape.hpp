@@ -4,7 +4,7 @@
 
 namespace AnimeDefendersEngine::Physics {
 
-    enum ShapeType {
+    enum class ShapeType : int {
         circle = 0,
         rectangle
     };
