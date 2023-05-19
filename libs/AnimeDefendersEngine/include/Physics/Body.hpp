@@ -17,6 +17,7 @@ namespace AnimeDefendersEngine::Physics {
 
         virtual auto getPosition() const -> Math::Vector2f;
         virtual auto getVelocity() const -> Math::Vector2f;
+        virtual auto getType() const -> BodyType;
         virtual auto getShape() const -> Shape*;
         virtual auto getShapeType() const -> ShapeType;
         virtual auto isTrigger() const -> bool;
@@ -24,6 +25,8 @@ namespace AnimeDefendersEngine::Physics {
         virtual auto setPosition(const Math::Vector2f& newPosition) -> void;
         virtual auto setVelocity(const Math::Vector2f& newVelocity) -> void;
         virtual auto setType(BodyType type) -> void;
+
+        virtual auto clearForce() -> void;
 
      private:
         size_t m_id;

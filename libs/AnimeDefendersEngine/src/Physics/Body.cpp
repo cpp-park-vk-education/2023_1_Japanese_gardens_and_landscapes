@@ -38,12 +38,20 @@ auto Body::setVelocity(const Math::Vector2f& newVelocity) -> void {
     m_velocity = newVelocity;
 }
 
+auto Body::getType() const -> BodyType {
+    return m_bodyType;
+}
+
 auto Body::getShape() const -> Shape* {
     return m_shape.get();
 }
 
 auto Body::getShapeType() const -> ShapeType {
     return m_shape->getType();
+}
+
+auto Body::clearForce() -> void {
+    m_force = AnimeDefendersEngine::Math::Vector2f(0, 0);
 }
 
 Body::Body(BodyDefinition&& bodyDefinition)
