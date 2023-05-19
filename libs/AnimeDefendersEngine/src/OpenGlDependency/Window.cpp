@@ -6,14 +6,31 @@
 
 using namespace AnimeDefendersEngine::Graphics;
 
-auto Window::createWindow() const -> void {
-    // int* argc{};
-    // char* argv{};
-    // glutInit(argc, &argv);
+auto Window::createWindow() -> void {
+    int argc{};
+    glutInit(&argc, nullptr);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+    glutInitWindowSize(500, 500);
+    m_windowId = glutCreateWindow("Game");
 }
 
-auto Window::destroyWindow() const -> void {}
+auto Window::destroyWindow() -> void {
+    glutDestroyWindow(m_windowId);
+}
 
-auto Window::setWindowListener(std::function<void(int, int, int)>) const -> void {}
+auto Window::updateFrame() const -> void {
+    glutSwapBuffers();
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
 
-auto Window::updateFrame() const -> void {}
+auto Window::setWindowMouseListener(void (*listener)(int, int, int, int)) const -> void {
+    glutMouseFunc(listener);
+}
+
+auto Window::setWindowMotionListener(void (*listener)(int, int)) const -> void {
+    glutMotionFunc(listener);
+}
+
+auto Window::setWindowKeyboardListener(void (*listener)(unsigned char, int, int)) const -> void {
+    glutKeyboardFunc(listener);
+}
