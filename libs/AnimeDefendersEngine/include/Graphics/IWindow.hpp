@@ -7,10 +7,12 @@ namespace AnimeDefendersEngine {
 
         class IWindow {
          public:
-            virtual auto createWindow() -> void = 0;
-            virtual auto destroyWindow() -> void = 0;
-            virtual auto setWindowListener(std::function<void(int, int, int)>) -> void = 0;
-            virtual auto updateFrame() -> void = 0;
+            virtual auto createWindow() const -> void = 0;
+            virtual auto destroyWindow() const -> void = 0;
+            virtual auto setWindowListener(std::function<void(int, int, int)>) const -> void = 0;
+            virtual auto updateFrame() const -> void = 0;
+
+            // virtual ~IWindow() = default;
         };
 
     }  // namespace Graphics
