@@ -2,26 +2,41 @@
 
 #include "ComponentManager.hpp"
 
+#include <iostream>
 #include <memory>
 #include <typeindex>
 
 namespace AnimeDefendersEngine {
 
-    class Component {
-     public:
-        Component(std::type_index typeId, std::weak_ptr<IComponentManager> compManager) : m_typeId{typeId}, m_compManager{compManager} {
-            m_compManager.lock()->addComponent(m_typeId, this);
-        }
+    class ComponentManager;
 
-        virtual ~Component() {
-            if (!m_compManager.expired()) {
-                m_compManager.lock()->deleteComponent(m_typeId, this);
-            }
-        }
+    template <typename T>
+    class BaseComponent;
+
+}  // namespace AnimeDefendersEngine
+
+namespace AnimeDefendersEngine {
+
+    class Component {};
+
+    /**
+     * @example
+     * class Sample : public AnimeDefendersEngine::BaseComponent<Sample> {
+     *  public:
+     *      Sample(AnimeDefendersEngine::ComponentManager& compManager) : AnimeDefendersEngine::BaseComponent<Sample>(compManager) {}
+     * };
+     */
+
+    template <typename T>
+    class BaseComponent : public Component {
+     public:
+        explicit BaseComponent(ComponentManager& compManager) : m_compManager{compManager} { compManager.addComponent<T>(this); }
+        BaseComponent(const BaseComponent& component) : BaseComponent{component.m_compManager} {}
+
+        virtual ~BaseComponent() { m_compManager.deleteComponent<T>(this); }
 
      private:
-        std::type_index m_typeId;
-        std::weak_ptr<IComponentManager> m_compManager;
+        ComponentManager& m_compManager;
     };
 
 }  // namespace AnimeDefendersEngine

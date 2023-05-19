@@ -2,52 +2,57 @@
 
 #include "MemoryMaster.hpp"
 
-#include <ranges>
-#include <typeindex>
 #include <unordered_map>
-#include <vector>
+#include <unordered_set>
 
 namespace AnimeDefendersEngine {
 
     class Component;
 
-    class IComponentManager {
+    template <typename T>
+    class BaseComponent;
+
+}  // namespace AnimeDefendersEngine
+
+namespace AnimeDefendersEngine {
+
+    class ComponentManager {
      public:
-        virtual void addComponent(std::type_index typeId, Component* component) = 0;
-        virtual void deleteComponent(std::type_index typeId, Component* compoment) = 0;
+        ComponentManager() = default;
+
+        ComponentManager(const ComponentManager&) = delete;
+        ComponentManager(ComponentManager&&) = delete;
+
+        auto operator=(const ComponentManager&) -> ComponentManager& = delete;
+        auto operator=(ComponentManager&&) -> ComponentManager& = delete;
 
         /**
          * @brief
-         * Returns std::vector of pointers to components.
-         * It is not guaranteed that all components have type which is passed using typeid(T)
-         * because type_index can be the same for different type.
-         *
-         * @warning
-         * Requires downcast type check. Consider using getComponentsSecured<T>() instead.
+         * Returns std::unordered_set of pointers to components of certain type.
          */
-
-        virtual auto getComponents(std::type_index typeId) -> std::vector<Component*> = 0;
-
-        /**
-         * @return
-         * Range of pointers to components with type T
-         */
+        template <std::derived_from<Component> T>
+        [[nodiscard]] auto getComponents() -> std::unordered_set<Component*>& {
+            static std::unordered_map<ComponentManager*, std::unordered_set<Component*>> components;
+            return components[this];
+        }
 
         template <std::derived_from<Component> T>
-        auto getComponentsSecured() {
-            auto helper = [](Component* comp) { return (dynamic_cast<T>(comp) != nullptr); };
-            return this->getComponents(typeid(T)) | std::views::filter(helper);
+        auto addComponent(Component* component) -> void {
+            auto& components = getComponents<T>();
+
+            if (!components.contains(component)) {
+                components.emplace(component);
+            }
+        }
+
+        template <std::derived_from<Component> T>
+        auto deleteComponent(Component* component) -> void {
+            auto& components = getComponents<T>();
+
+            if (components.contains(component)) {
+                components.erase(component);
+            }
         }
     };
 
-    class ComponentManager : public IComponentManager {
-     public:
-        void addComponent(std::type_index typeId, Component* component) override;
-        void deleteComponent(std::type_index typeId, Component* compoment) override;
-        auto getComponents(std::type_index typeId) -> std::vector<Component*> override;
-
-     private:
-        std::unordered_map<std::type_index, std::vector<Component*>> m_components;
-    };
-    
 }  // namespace AnimeDefendersEngine
