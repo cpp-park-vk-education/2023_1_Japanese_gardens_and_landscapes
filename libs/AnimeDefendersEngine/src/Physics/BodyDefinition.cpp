@@ -3,7 +3,7 @@
 using namespace AnimeDefendersEngine::Physics;
 
 BodyDefinition::BodyDefinition(size_t id, std::unique_ptr<Shape>&& shape, BodyType bodyType, Transform transform,
-                               Math::Vector2<float> velocity, size_t layers, Math::Vector2<float> force, bool isTrigger)
+                               const Math::Vector2f& velocity, size_t layers, const Math::Vector2f& force, bool isTrigger)
     : id(id),
       shape(std::move(shape)),
       bodyType(bodyType),

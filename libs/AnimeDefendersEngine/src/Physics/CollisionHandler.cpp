@@ -5,7 +5,7 @@
 
 using namespace AnimeDefendersEngine::Physics;
 
-auto CollisionHandler::broadPhase(const std::vector<Body*>& bodies) -> std::vector<Manifold> {
+auto CollisionHandler::broadPhase(const std::vector<Body*>& bodies) const -> std::vector<Manifold> {
     std::vector<Manifold> contacts;
     contacts.reserve(bodies.size());
     for (auto bodyAIter = bodies.begin(); bodyAIter != bodies.end(); ++bodyAIter) {
@@ -16,7 +16,7 @@ auto CollisionHandler::broadPhase(const std::vector<Body*>& bodies) -> std::vect
     return contacts;
 }
 
-auto CollisionHandler::narrowPhase(std::vector<Manifold>& contacts) -> void {
+auto CollisionHandler::narrowPhase(std::vector<Manifold>& contacts) const -> void {
     for (auto contactIterator = contacts.begin(); contactIterator != contacts.end();) {
         if (hasCollision(contactIterator->bodyA, contactIterator->bodyB)) {
             if (contactIterator->bodyA->isTrigger() || contactIterator->bodyB->isTrigger()) {
@@ -68,7 +68,7 @@ namespace {
         auto rectangleB = dynamic_cast<Rectangle*>(bodyB->getShape());
 
         AnimeDefendersEngine::Math::Vector2<float> normal = bodyB->getPosition() - bodyA->getPosition();
-        float xOverlap = (rectangleA->size.x + rectangleB->size.x) / 2 - std::abs(normal.x);
+        const auto xOverlap = (rectangleA->size.x + rectangleB->size.x) / 2 - std::abs(normal.x);
         if (xOverlap > 0) {
             const auto yOverlap = (rectangleA->size.y + rectangleB->size.y) / 2 - std::abs(normal.y);
             return yOverlap > 0;
@@ -85,14 +85,14 @@ namespace {
 
 }  // namespace
 
-auto CollisionHandler::hasCollision(Body* bodyA, Body* bodyB) -> bool {
+auto CollisionHandler::hasCollision(Body* bodyA, Body* bodyB) const -> bool {
     return hasCollisionTypes[static_cast<int>(bodyA->getShapeType())][static_cast<int>(bodyB->getShapeType())](bodyA, bodyB);
 }
 
-auto CollisionHandler::specifyCollision(Manifold& contact) -> void {
+auto CollisionHandler::specifyCollision(Manifold& contact) const -> void {
     contact.penetration = 0;  // it was done for working CI
 }
 
-auto CollisionHandler::resolveCollision(Manifold& contact) -> void {
+auto CollisionHandler::resolveCollision(Manifold& contact) const -> void {
     contact.penetration = 0;  // it was done for working CI
 }

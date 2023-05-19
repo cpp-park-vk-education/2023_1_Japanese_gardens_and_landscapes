@@ -8,6 +8,10 @@ auto Shape::getType() const -> ShapeType {
     return ShapeType::circle;
 }
 
-Circle::Circle(float radius) : radius(radius) {}
+Circle::Circle(float radius) : radius(radius) {
+    m_type = ShapeType::circle;
+}
 
-Rectangle::Rectangle(const Math::Vector2f& size) : size(size) {}
+Rectangle::Rectangle(const Math::Vector2f& size) : size(size) {
+    m_type = ShapeType::rectangle;
+}
