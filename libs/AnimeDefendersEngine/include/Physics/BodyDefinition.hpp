@@ -20,9 +20,10 @@ namespace AnimeDefendersEngine::Physics {
         BodyDefinition() = default;
         BodyDefinition(size_t id, std::unique_ptr<Shape>&& shape, BodyType bodyType, Transform transform, Math::Vector2f velocity,
                        size_t layers, Math::Vector2f force, bool isTrigger);
-        BodyDefinition(BodyDefinition&& other);
 
+        BodyDefinition(BodyDefinition&& other);
         BodyDefinition(const BodyDefinition& other) = delete;
+
         BodyDefinition& operator=(const BodyDefinition& other) = delete;
         BodyDefinition& operator=(BodyDefinition&& other) = delete;
 

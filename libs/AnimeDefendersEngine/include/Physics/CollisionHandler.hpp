@@ -6,6 +6,15 @@
 
 namespace AnimeDefendersEngine::Physics {
 
+    /**
+     * @brief Класс, ответственный за распознавание коллизий, их уточнение и разрешение
+     *
+     * На широкой стадии (broadPhase) формируется массив пар, которые могут иметь коллизию.
+     * На узкой стадии (narrowPhase) из этого списка находятся те, что действительно пересекаются.
+     * Для этих пар происходит уточнение коллизий (specifyCollision), в которой определяется направление, в котором нужно будет
+     * переместить объекты, и степень внедрения, которое задает величину перемещения.
+     * Наконец, на стадии resolveCollision объекты перемещаются чтобы избавиться от внедрения.
+     */
     class ICollisionHandler {
      public:
         virtual auto broadPhase(const std::vector<Body*>& bodies) -> std::vector<Manifold> = 0;
@@ -17,11 +26,11 @@ namespace AnimeDefendersEngine::Physics {
 
     class CollisionHandler : public ICollisionHandler {
      public:
-        virtual auto broadPhase(const std::vector<Body*>& bodies) -> std::vector<Manifold> override;
-        virtual auto narrowPhase(std::vector<Manifold>& bodies) -> void override;
-        virtual auto hasCollision(Body* bodyA, Body* bodyB) -> bool override;
-        virtual auto specifyCollision(Manifold& contact) -> void override;
-        virtual auto resolveCollision(Manifold& contact) -> void override;
+        virtual auto broadPhase(const std::vector<Body*>& bodies) -> std::vector<Manifold> override final;
+        virtual auto narrowPhase(std::vector<Manifold>& bodies) -> void override final;
+        virtual auto hasCollision(Body* bodyA, Body* bodyB) -> bool override final;
+        virtual auto specifyCollision(Manifold& contact) -> void override final;
+        virtual auto resolveCollision(Manifold& contact) -> void override final;
     };
 
 }  // namespace AnimeDefendersEngine::Physics
