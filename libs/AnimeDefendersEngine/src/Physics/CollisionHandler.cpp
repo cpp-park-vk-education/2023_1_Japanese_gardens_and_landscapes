@@ -5,7 +5,7 @@
 
 using namespace AnimeDefendersEngine::Physics;
 
-auto CollisionHandler::broadPhase(const std::vector<Body*>& bodies) -> std::vector<Manifold> {
+auto CollisionHandler::broadPhase(const std::vector<Body*>& bodies) const -> std::vector<Manifold> {
     std::vector<Manifold> contacts;
     contacts.reserve(bodies.size());
     for (auto bodyAIter = bodies.begin(); bodyAIter != bodies.end(); ++bodyAIter) {
@@ -16,7 +16,7 @@ auto CollisionHandler::broadPhase(const std::vector<Body*>& bodies) -> std::vect
     return contacts;
 }
 
-auto CollisionHandler::narrowPhase(std::vector<Manifold>& contacts) -> void {
+auto CollisionHandler::narrowPhase(std::vector<Manifold>& contacts) const -> void {
     for (auto contactIterator = contacts.begin(); contactIterator != contacts.end();) {
         if (hasCollision(contactIterator->bodyA, contactIterator->bodyB)) {
             if (contactIterator->bodyA->isTrigger() || contactIterator->bodyB->isTrigger()) {
@@ -34,18 +34,18 @@ auto CollisionHandler::narrowPhase(std::vector<Manifold>& contacts) -> void {
 namespace {
 
     auto hasCollisionCircleCircle(Body* bodyA, Body* bodyB) -> bool {
-        auto circleA = dynamic_cast<Circle*>(bodyA->getShape());
-        auto circleB = dynamic_cast<Circle*>(bodyB->getShape());
+        const auto circleA = dynamic_cast<Circle*>(bodyA->getShape());
+        const auto circleB = dynamic_cast<Circle*>(bodyB->getShape());
         float distance = (bodyA->getPosition() - bodyB->getPosition()).norm();
         return distance < circleA->radius + circleB->radius;
     }
 
     auto hasCollisionRectangleCircle(Body* bodyA, Body* bodyB) -> bool {
-        auto rectangleA = dynamic_cast<Rectangle*>(bodyA->getShape());
-        auto circleB = dynamic_cast<Circle*>(bodyB->getShape());
+        const auto rectangleA = dynamic_cast<Rectangle*>(bodyA->getShape());
+        const auto circleB = dynamic_cast<Circle*>(bodyB->getShape());
 
-        AnimeDefendersEngine::Math::Vector2f distance = bodyB->getPosition() - bodyA->getPosition();
-        AnimeDefendersEngine::Math::Vector2f closestVertexToCircleCenter = distance;
+        const auto distance = bodyB->getPosition() - bodyA->getPosition();
+        auto closestVertexToCircleCenter = distance;
         float xExtent = rectangleA->size.x / 2;
         float yExtent = rectangleA->size.y / 2;
 
@@ -54,7 +54,7 @@ namespace {
         closestVertexToCircleCenter.y = std::min(closestVertexToCircleCenter.y, yExtent);
         closestVertexToCircleCenter.y = std::max(closestVertexToCircleCenter.y, -yExtent);
 
-        AnimeDefendersEngine::Math::Vector2f normal = distance - closestVertexToCircleCenter;
+        auto normal = distance - closestVertexToCircleCenter;
 
         return normal.norm() < circleB->radius;
     }
@@ -64,11 +64,11 @@ namespace {
     }
 
     auto hasCollisionRectangleRectangle(Body* bodyA, Body* bodyB) -> bool {
-        auto rectangleA = dynamic_cast<Rectangle*>(bodyA->getShape());
-        auto rectangleB = dynamic_cast<Rectangle*>(bodyB->getShape());
+        const auto rectangleA = dynamic_cast<Rectangle*>(bodyA->getShape());
+        const auto rectangleB = dynamic_cast<Rectangle*>(bodyB->getShape());
 
         AnimeDefendersEngine::Math::Vector2<float> normal = bodyB->getPosition() - bodyA->getPosition();
-        float xOverlap = (rectangleA->size.x + rectangleB->size.x) / 2 - std::abs(normal.x);
+        const auto xOverlap = (rectangleA->size.x + rectangleB->size.x) / 2 - std::abs(normal.x);
         if (xOverlap > 0) {
             const auto yOverlap = (rectangleA->size.y + rectangleB->size.y) / 2 - std::abs(normal.y);
             return yOverlap > 0;
@@ -78,6 +78,7 @@ namespace {
 
     using hasCollisionFunctionPtr = bool (*)(Body* bodyA, Body* bodyB);
 
+    /// \details Массив указателей на функции проверки коллизий. В позиции (i, j) проверка коллизии формы i с формой j
     hasCollisionFunctionPtr hasCollisionTypes[Shape::shapeCount][Shape::shapeCount] = {
         {hasCollisionCircleCircle,    hasCollisionCircleRectangle   },
         {hasCollisionRectangleCircle, hasCollisionRectangleRectangle}
@@ -85,15 +86,15 @@ namespace {
 
 }  // namespace
 
-auto CollisionHandler::hasCollision(Body* bodyA, Body* bodyB) -> bool {
+auto CollisionHandler::hasCollision(Body* bodyA, Body* bodyB) const -> bool {
     return hasCollisionTypes[static_cast<int>(bodyA->getShapeType())][static_cast<int>(bodyB->getShapeType())](bodyA, bodyB);
 }
 
 namespace {
 
     auto specifyCollisionCircleCircle(Manifold& contact) -> void {
-        auto circleA = dynamic_cast<Circle*>(contact.bodyA);
-        auto circleB = dynamic_cast<Circle*>(contact.bodyB);
+        const auto circleA = dynamic_cast<Circle*>(contact.bodyA);
+        const auto circleB = dynamic_cast<Circle*>(contact.bodyB);
         auto direction = contact.bodyB->getPosition() - contact.bodyA->getPosition();
         float distance = direction.norm();
         float totalRadius = circleA->radius + circleB->radius;
@@ -102,8 +103,8 @@ namespace {
     }
 
     auto specifyCollisionRectangleCircle(Manifold& contact) -> void {
-        auto rectangleA = dynamic_cast<Rectangle*>(contact.bodyA->getShape());
-        auto circleB = dynamic_cast<Circle*>(contact.bodyB->getShape());
+        const auto rectangleA = dynamic_cast<Rectangle*>(contact.bodyA->getShape());
+        const auto circleB = dynamic_cast<Circle*>(contact.bodyB->getShape());
 
         auto distance = contact.bodyB->getPosition() - contact.bodyA->getPosition();
         auto closestVertexToCircleCenter = distance;
@@ -125,14 +126,14 @@ namespace {
     }
 
     auto specifyCollisionRectangleRectangle(Manifold& contact) -> void {
-        auto rectangleA = dynamic_cast<Rectangle*>(contact.bodyA->getShape());
-        auto rectangleB = dynamic_cast<Rectangle*>(contact.bodyB->getShape());
+        const auto rectangleA = dynamic_cast<Rectangle*>(contact.bodyA->getShape());
+        const auto rectangleB = dynamic_cast<Rectangle*>(contact.bodyB->getShape());
 
         auto direction = contact.bodyB->getPosition() - contact.bodyA->getPosition();
         const auto xOverlap = (rectangleA->size.x + rectangleB->size.x) / 2 - std::abs(direction.x);
         const auto yOverlap = (rectangleA->size.y + rectangleB->size.y) / 2 - std::abs(direction.y);
 
-        if (xOverlap > yOverlap) {
+        if (xOverlap < yOverlap) {
             if (direction.x < 0) {
                 contact.normal = AnimeDefendersEngine::Math::Vector2f(-1, 0);
             } else {
@@ -158,13 +159,13 @@ namespace {
 
 }  // namespace
 
-auto CollisionHandler::specifyCollision(Manifold& contact) -> void {
+auto CollisionHandler::specifyCollision(Manifold& contact) const -> void {
     specifyCollisionTypes[static_cast<int>(contact.bodyA->getShapeType())][static_cast<int>(contact.bodyB->getShapeType())](contact);
 };
 
-constexpr float correctionPercent = 0.3f;
+constexpr float correctionPercent = 0.5f;
 
-auto CollisionHandler::resolveCollision(Manifold& contact) -> void {
+auto CollisionHandler::resolveCollision(Manifold& contact) const -> void {
     using AnimeDefendersEngine::Math::Vector2f;
 
     Vector2f relativeVelocity = contact.bodyB->getVelocity() - contact.bodyA->getVelocity();
