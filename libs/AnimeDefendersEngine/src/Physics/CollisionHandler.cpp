@@ -89,10 +89,6 @@ auto CollisionHandler::hasCollision(Body* bodyA, Body* bodyB) -> bool {
     return hasCollisionTypes[static_cast<int>(bodyA->getShapeType())][static_cast<int>(bodyB->getShapeType())](bodyA, bodyB);
 }
 
-auto CollisionHandler::specifyCollision(Manifold& contact) -> void {
-    contact.penetration = 0;  // it was done for working CI
-}
-
 namespace {
 
     auto specifyCollisionCircleCircle(Manifold& contact) -> void {
