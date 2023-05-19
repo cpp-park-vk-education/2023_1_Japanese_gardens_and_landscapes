@@ -1,7 +1,10 @@
 #pragma once
 
+#include "Component.hpp"
 #include "MemoryMaster.hpp"
 
+#include <iostream>
+#include <string>
 #include <unordered_map>
 #include <unordered_set>
 
@@ -9,14 +12,14 @@ namespace AnimeDefendersEngine {
 
     class Component;
 
-    template <typename T>
-    class BaseComponent;
-
 }  // namespace AnimeDefendersEngine
 
 namespace AnimeDefendersEngine {
 
     class ComponentManager {
+     public:
+        using ComponentsContainer = std::unordered_map<std::string, Component*>;
+
      public:
         ComponentManager() = default;
 
@@ -28,11 +31,11 @@ namespace AnimeDefendersEngine {
 
         /**
          * @brief
-         * Returns std::unordered_set of pointers to components of certain type.
+         * Returns std::unordered_map with values - pointers to components of certain type and keys - entityIds.
          */
         template <std::derived_from<Component> T>
-        [[nodiscard]] auto getComponents() -> std::unordered_set<Component*>& {
-            static std::unordered_map<ComponentManager*, std::unordered_set<Component*>> components;
+        [[nodiscard]] auto getComponents() -> ComponentsContainer& {
+            static std::unordered_map<ComponentManager*, ComponentsContainer> components;
             return components[this];
         }
 
@@ -40,17 +43,15 @@ namespace AnimeDefendersEngine {
         auto addComponent(Component* component) -> void {
             auto& components = getComponents<T>();
 
-            if (!components.contains(component)) {
-                components.emplace(component);
-            }
+            components[component->getEntityId()] = component;
         }
 
         template <std::derived_from<Component> T>
         auto deleteComponent(Component* component) -> void {
             auto& components = getComponents<T>();
 
-            if (components.contains(component)) {
-                components.erase(component);
+            if (components.contains(component->getEntityId()) && components[component->getEntityId()] == component) {
+                components.erase(component->getEntityId());
             }
         }
     };

@@ -1,42 +1,18 @@
 #pragma once
 
-#include "ComponentManager.hpp"
-
-#include <iostream>
-#include <memory>
+#include <string>
 #include <typeindex>
 
 namespace AnimeDefendersEngine {
 
-    class ComponentManager;
-
-    template <typename T>
-    class BaseComponent;
-
-}  // namespace AnimeDefendersEngine
-
-namespace AnimeDefendersEngine {
-
-    class Component {};
-
-    /**
-     * @example
-     * class Sample : public AnimeDefendersEngine::BaseComponent<Sample> {
-     *  public:
-     *      Sample(AnimeDefendersEngine::ComponentManager& compManager) : AnimeDefendersEngine::BaseComponent<Sample>(compManager) {}
-     * };
-     */
-
-    template <typename T>
-    class BaseComponent : public Component {
+    class Component {
      public:
-        explicit BaseComponent(ComponentManager& compManager) : m_compManager{compManager} { compManager.addComponent<T>(this); }
-        BaseComponent(const BaseComponent& component) : BaseComponent{component.m_compManager} {}
+        explicit Component(const std::string& entityId) : m_entityId{entityId} {}
 
-        virtual ~BaseComponent() { m_compManager.deleteComponent<T>(this); }
+        [[nodiscard]] auto getEntityId() const noexcept -> std::string { return m_entityId; }
 
      private:
-        ComponentManager& m_compManager;
+        std::string m_entityId;
     };
 
 }  // namespace AnimeDefendersEngine
