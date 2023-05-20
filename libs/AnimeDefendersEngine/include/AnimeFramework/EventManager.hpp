@@ -1,25 +1,25 @@
 #pragma once
 
+#include <queue>
 #include <string>
 #include <unordered_map>
+#include "Entity.hpp"
 #include "Event.hpp"
 #include "EventListener.hpp"
-#include "Entity.hpp"
-#include <queue>
 
 namespace AnimeDefendersEngine {
 
     class EventManager {
      public:
-        auto update() -> void;
+        static auto update() -> void;
         static auto addListener(Entity* ent, IEventListener* listener) -> void;
         static auto removeListener(Entity* ent, IEventListener* listener) -> void;
-        static auto dispatch(Event& event) -> void;
-        static auto addEvent(Event& event) ->void;
+        static auto dispatch(std::unique_ptr<Event>&& event) -> void;
+        static auto addEvent(std::unique_ptr<Event>&& event) -> void;
 
      private:
-        static std::unordered_map<Entity*, IEventListener*> eventListeners;
-        static inline std::priority_queue<Event&> eventQueue{};
+        // static std::unordered_map<Entity*, IEventListener*> eventListeners;
+        static inline std::priority_queue<std::unique_ptr<Event>> eventQueue{};
     };
 
 }  // namespace AnimeDefendersEngine

@@ -1,6 +1,5 @@
 #pragma once
 
 namespace AnimeDefendersEngine {
-    class IEventListener {
-    };
+    class IEventListener {};
 }  // namespace AnimeDefendersEngine

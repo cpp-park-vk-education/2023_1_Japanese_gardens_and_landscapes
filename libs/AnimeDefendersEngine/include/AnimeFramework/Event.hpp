@@ -17,11 +17,12 @@ namespace AnimeDefendersEngine {
 
     class Event {
      private:
-        std::string m_name;
-        std::string m_additional;
-        EventType m_eventType;
+        std::string m_name{};
+        std::string m_additional{};
+        EventType m_eventType{};
 
      public:
+        Event() = default;
         Event(std::string name, EventType type, std::string add = "") : m_name(name), m_eventType(type), m_additional(add) {}
         auto getType() -> EventType { return m_eventType; }
         auto getName() -> std::string { return m_name; }
