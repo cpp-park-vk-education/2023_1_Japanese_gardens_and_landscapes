@@ -1,9 +1,10 @@
 #include "PhysicsWorld.hpp"
-#include <memory>
 #include "Body.hpp"
 #include "BodyDefinition.hpp"
 #include "CollisionHandler.hpp"
 #include "Manifold.hpp"
+
+#include <memory>
 
 using namespace AnimeDefendersEngine::Physics;
 

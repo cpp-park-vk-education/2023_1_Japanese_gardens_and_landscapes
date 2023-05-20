@@ -1,10 +1,11 @@
 #include "PhysicsSystem.hpp"
-#include <memory>
-#include "BaseComponent.hpp"
 #include "Body.hpp"
 #include "BodyDefinition.hpp"
 #include "Component.hpp"
 #include "ComponentManager.hpp"
+
+#include <memory>
+
 using namespace AnimeDefendersEngine::Physics;
 
 class RigidBody2DComponent : public AnimeDefendersEngine::BaseComponent<RigidBody2DComponent> {
