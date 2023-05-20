@@ -4,32 +4,24 @@
 #include "Camera.hpp"
 #include "Component.hpp"
 #include "Texture.hpp"
-#include "Transpose.hpp"
-
-#include <memory>
+#include "Transform.hpp"
 
 namespace AnimeDefendersEngine {
     namespace Graphics {
 
         class Sprite : public Component {
          public:
-            Sprite(Transpose, Texture*, Animation*);
+            auto isSpriteVisibleToCamera(const Camera*) -> bool;
+            auto drawSprite() -> void;
 
-            auto isSpriteVisibleToCamera(Camera*) const -> bool;
-            auto drawSprite() const -> void;
-
-            auto setTranspose(Transpose) -> void;
-            auto setTexture(Texture*) -> void;
-            auto setAnimation(Animation*) -> void;
-
-            auto getTranspose() const -> Transpose;
-            auto getTexture() const -> Texture*;
-            auto getAnimation() const -> Animation*;
+            auto setTransform(const Transform*) -> void;
+            auto setTexture(Texture) -> void;
+            auto setAnimation(Animation) -> void;
 
          private:
-            Transpose m_transpose;
-            Texture* m_texture;
-            Animation* m_animation;
+            const Transform* m_transform;
+            Texture m_texture;
+            Animation m_animation;
         };
 
     }  // namespace Graphics
