@@ -175,8 +175,12 @@ if(ENABLE_CPPCHECK)
     )
 endif()
 
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/libs/stb)
+
 add_library(${project_name} STATIC ${source})
 target_include_directories(${project_name} PUBLIC ${include_locations})
+add_dependencies(${project_name} STB_Image)
+link_libraries(${project_name} STB_Image)
 
 if(ENABLE_CLANG_FORMAT)
     add_dependencies(${project_name} AnimeDefendersEngine_FORMAT_TARGET)
