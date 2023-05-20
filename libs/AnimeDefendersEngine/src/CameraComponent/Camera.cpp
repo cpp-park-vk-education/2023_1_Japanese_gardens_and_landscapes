@@ -1,19 +1,41 @@
 #include "Camera.hpp"
+#include "CameraSystem.hpp"
 
 using namespace AnimeDefendersEngine::Graphics;
 
-auto Camera::determineNewCameraTransform() -> void {}
+Camera::Camera(
+    Transpose transpose = Transpose{}, std::function<Transpose()> motionRule = []() { return Transpose{}; },
+    std::function<Transpose(Transpose)> extraMotion = [](Transpose trnaspose) { return transpose }, bool isActive = true)
+    : m_transose(transpose), m_motionRule(motionRule), m_extraMotion(extraMotion), m_isActive(isActive) {}
 
-auto Camera::applyCameraView() -> void {}
-
-auto Camera::isCameraActive() -> bool {
-    return false;
+auto Camera::determineNewCameraTranspose() const -> void {
+    m_transpose = m_extraMotion(m_motionRule());
 }
 
-auto Camera::setMotionRule(std::function<Transform()>) -> void {}
+auto Camera::applyCameraView() const -> void {
+    CameraSystem::applyCameraView(this);
+}
 
-auto Camera::setExtraTransform(Transform) -> void {}
+auto Camera::setTranspose(Transpose transpose) -> void {
+    m_transpose = transpose;
+}
 
-auto Camera::setExtraMotion(std::function<Transform(Transform)>) -> void {}
+auto Camera::setMotionRule(std::function<Transpose()> motionRule) -> void {
+    m_motionRule = motionRule;
+}
 
-auto Camera::setIsActive(bool) -> void {}
+auto Camera::setExtraMotion(std::function<Transpose(Transpose)> extraMotion) -> void {
+    m_extraMotion = extraMotion;
+}
+
+auto Camera::setIsActive(bool isActive) -> void {
+    m_isActive = isActive;
+}
+
+auto Camera::getCameraTranspose() const -> Transpose {
+    return m_transpose;
+}
+
+auto Camera::isActive() const -> bool {
+    return m_isActive;
+}
