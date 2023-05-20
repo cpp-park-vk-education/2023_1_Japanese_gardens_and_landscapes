@@ -172,12 +172,11 @@ auto CollisionHandler::resolveCollision(Manifold& contact) const -> void {
     float relativeVelocityProjection = relativeVelocity * contact.normal;
     if (relativeVelocityProjection > 0) return;
 
-    float impulseMagnitude = -relativeVelocityProjection;
+    float impulseMagnitude = -2 * relativeVelocityProjection / (contact.bodyA->getInverseMass() + contact.bodyB->getInverseMass());
     Vector2f impulse = impulseMagnitude * contact.normal;
 
-    contact.bodyA->setVelocity(contact.bodyA->getVelocity() - impulse);
-    contact.bodyB->setVelocity(contact.bodyB->getVelocity() + impulse);
+    contact.bodyA->setVelocity(contact.bodyA->getVelocity() - contact.bodyA->getInverseMass() * impulse);
+    contact.bodyB->setVelocity(contact.bodyB->getVelocity() + contact.bodyB->getInverseMass() * impulse);
 
-    contact.bodyA->setPosition(contact.bodyA->getPosition() - correctionPercent * contact.penetration * contact.normal);
-    contact.bodyB->setPosition(contact.bodyB->getPosition() + correctionPercent * contact.penetration * contact.normal);
+    contact.correctPositions();
 }

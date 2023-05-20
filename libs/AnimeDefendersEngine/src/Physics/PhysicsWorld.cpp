@@ -40,11 +40,13 @@ auto PhysicsWorld::fixedUpdate() -> void {
         }
         bodies.push_back(body.get());
     }
+
     std::vector<Manifold> currentContacts = m_collisionHandler->broadPhase(bodies);
     m_collisionHandler->narrowPhase(currentContacts);
 
     for (const auto& body : m_bodies) {
         body->clearForce();
+        body->clearVelocity();
     }
     std::swap(m_contacts, currentContacts);
 }
