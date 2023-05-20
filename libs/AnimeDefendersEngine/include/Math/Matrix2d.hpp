@@ -60,7 +60,10 @@ namespace AnimeDefendersEngine {
 
             [[nodiscard]] auto begin() -> typename std::vector<T>::iterator { return m_values.begin(); }
             [[nodiscard]] auto end() -> typename std::vector<T>::iterator { return m_values.end(); }
-            [[nodiscard]] auto size() const -> std::size_t { return m_columns * m_rows; }
+            [[nodiscard]] auto size() const noexcept -> std::size_t { return m_columns * m_rows; }
+
+            [[nodiscard]] auto rows() const noexcept -> std::size_t { return m_rows; }
+            [[nodiscard]] auto columns() const noexcept -> std::size_t { return m_columns; }
 
          private:
             [[nodiscard]] auto m_getIndex(const std::size_t i, const std::size_t j) const noexcept -> std::size_t {
