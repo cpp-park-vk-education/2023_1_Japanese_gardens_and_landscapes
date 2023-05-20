@@ -58,6 +58,10 @@ auto Body::getShapeType() const noexcept -> ShapeType {
     return m_shape->getType();
 }
 
+auto Body::getID() const noexcept -> size_t {
+    return m_id;
+}
+
 auto Body::clearForce() noexcept -> void {
     m_force = AnimeDefendersEngine::Math::Vector2f(0, 0);
 }
