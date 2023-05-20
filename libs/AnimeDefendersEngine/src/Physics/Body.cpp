@@ -38,6 +38,10 @@ auto Body::getVelocity() const noexcept -> Math::Vector2f {
     return m_velocity;
 }
 
+auto Body::getInverseMass() const noexcept -> float {
+    return m_inverseMass;
+}
+
 auto Body::setVelocity(const Math::Vector2f& newVelocity) noexcept -> void {
     m_velocity = newVelocity;
 }
@@ -54,8 +58,12 @@ auto Body::getShapeType() const noexcept -> ShapeType {
     return m_shape->getType();
 }
 
-auto Body::clearForce() -> void {
+auto Body::clearForce() noexcept -> void {
     m_force = AnimeDefendersEngine::Math::Vector2f(0, 0);
+}
+
+auto Body::clearVelocity() noexcept -> void {
+    m_velocity = AnimeDefendersEngine::Math::Vector2f(0, 0);
 }
 
 Body::Body(BodyDefinition&& bodyDefinition)
@@ -66,4 +74,10 @@ Body::Body(BodyDefinition&& bodyDefinition)
       m_velocity(bodyDefinition.velocity),
       m_layers(bodyDefinition.layers),
       m_force(bodyDefinition.force),
-      m_isTrigger(bodyDefinition.isTrigger) {}
+      m_isTrigger(bodyDefinition.isTrigger) {
+    if (bodyDefinition.bodyType == BodyType::staticBody) {
+        m_inverseMass = 0;
+    } else {
+        m_inverseMass = 1.0f / bodyDefinition.mass;
+    }
+}
