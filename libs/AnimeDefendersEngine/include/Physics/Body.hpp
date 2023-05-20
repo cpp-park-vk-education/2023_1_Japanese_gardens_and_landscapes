@@ -15,13 +15,13 @@ namespace AnimeDefendersEngine::Physics {
         virtual auto integrateForce(float deltaTime) noexcept -> void;
         virtual auto integrateVelocity(float deltaTime) noexcept -> void;
 
-        virtual auto getPosition() const noexcept -> Math::Vector2f;
-        virtual auto getVelocity() const noexcept -> Math::Vector2f;
-        virtual auto getType() const noexcept -> BodyType;
-        virtual auto getInverseMass() const noexcept -> float;
-        virtual auto getShape() const noexcept -> Shape*;
-        virtual auto getShapeType() const noexcept -> ShapeType;
-        virtual auto isTrigger() const noexcept -> bool;
+        [[nodiscard]] virtual auto getPosition() const noexcept -> Math::Vector2f;
+        [[nodiscard]] virtual auto getVelocity() const noexcept -> Math::Vector2f;
+        [[nodiscard]] virtual auto getType() const noexcept -> BodyType;
+        [[nodiscard]] virtual auto getInverseMass() const noexcept -> float;
+        [[nodiscard]] virtual auto getShape() const noexcept -> Shape*;
+        [[nodiscard]] virtual auto getShapeType() const noexcept -> ShapeType;
+        [[nodiscard]] virtual auto isTrigger() const noexcept -> bool;
 
         virtual auto setPosition(const Math::Vector2f& newPosition) noexcept -> void;
         virtual auto setVelocity(const Math::Vector2f& newVelocity) noexcept -> void;
