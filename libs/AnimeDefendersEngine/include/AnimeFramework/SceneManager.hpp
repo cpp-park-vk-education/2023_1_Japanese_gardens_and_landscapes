@@ -11,19 +11,16 @@ namespace AnimeDefendersEngine {
 
     class ISceneManager {
      public:
-        virtual auto getActiveScene() -> Scene& = 0;
+        [[nodiscard]] virtual auto getActiveScene() -> Scene& = 0;
         virtual auto setActiveScene(int sceneId) -> void = 0;
     };
 
     class SceneManager : public ISceneManager {
      public:
-        auto getActiveScene() -> Scene& override {
-            auto scenePointer = m_scenes.at(m_activeSceneId).get();
-            return *scenePointer;
-        };
-        auto setActiveScene(int sceneId) -> void override { m_activeSceneId = sceneId; };
+        [[nodiscard]] auto getActiveScene() -> Scene& override;
+        auto setActiveScene(int sceneId) noexcept -> void override;
 
-        auto addScene(std::unique_ptr<Scene>&& scene) -> void override { m_scenes[scene->getSceneId()] = std::move(scene); };
+        auto addScene(std::unique_ptr<Scene>&& scene) -> void;
 
      private:
         int m_activeSceneId{};

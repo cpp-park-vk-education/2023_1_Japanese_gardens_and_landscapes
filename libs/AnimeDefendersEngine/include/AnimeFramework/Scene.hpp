@@ -1,9 +1,12 @@
 #pragma once
 
+#include "ComponentManager.hpp"
+
 #include <concepts>
 #include <memory>
 #include <queue>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 namespace AnimeDefendersEngine {
@@ -16,29 +19,23 @@ namespace AnimeDefendersEngine {
 
 namespace AnimeDefendersEngine {
 
-    template <typename T>
-    concept EntityCreator = requires(T x) {
-        { x(std::string{}, Scene{10}) } -> std::same_as<std::shared_ptr<Entity>>;
+    template <typename T, typename SceneReplacer>
+    concept EntityCreator = requires(T x, SceneReplacer scene) {
+        { x(std::string{}, scene) } -> std::same_as<std::shared_ptr<Entity>>;
     };
 
     class Scene {
      public:
-        explicit Scene(int id) : m_sceneId{id} {}
+        explicit Scene(int id = 0);
 
-        auto addEntity(std::string id, EntityCreator auto create) -> void { m_entities[id] = create(id, *this); };
-        auto destroyEntity(const std::string& entityId) -> void { m_entityIdsToDestroy.push_back(entityId); }
+        auto addEntity(std::string id, EntityCreator<Scene> auto create) -> void { m_entities[id] = create(id, *this); }
+        auto destroyEntity(const std::string& entityId) -> void;
 
-        [[nodiscard]] auto getComponentManager() -> ComponentManager& { return m_components; };
+        [[nodiscard]] auto getComponentManager() -> ComponentManager&;
 
-        auto updateScene() -> void {
-            while (!m_entityIdsToDestroy.empty()) {
-                const auto& id = m_entityIdsToDestroy.back();
-                m_entities.erase(id);
-                m_entityIdsToDestroy.pop_back();
-            }
-        }
+        auto updateScene() -> void;
 
-        auto getSceneId() const noexcept -> int { return m_sceneId; }
+        auto getSceneId() const noexcept -> int;
 
      private:
         int m_sceneId{};
