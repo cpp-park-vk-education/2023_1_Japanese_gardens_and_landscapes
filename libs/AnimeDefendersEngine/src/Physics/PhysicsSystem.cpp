@@ -8,26 +8,6 @@
 
 using namespace AnimeDefendersEngine::Physics;
 
-class RigidBody2DComponent : public AnimeDefendersEngine::BaseComponent<RigidBody2DComponent> {
- public:
-    RigidBody2DComponent(AnimeDefendersEngine::ComponentManager& compManager)
-        : AnimeDefendersEngine::BaseComponent<RigidBody2DComponent>(compManager) {}
-
-    AnimeDefendersEngine::Math::Vector2f velocity;
-};
-
-class Collider2DComponent : public AnimeDefendersEngine::BaseComponent<Collider2DComponent> {
- public:
-    Collider2DComponent(AnimeDefendersEngine::ComponentManager& compManager)
-        : AnimeDefendersEngine::BaseComponent<Collider2DComponent>(compManager) {}
-
-    AnimeDefendersEngine::Math::Vector2f size;
-    RigidBody2DComponent* rigidBody2DComponent;
-    TransformComponent* transformComponent;
-};
-
-// У коллайдера ссылка на трансформ и риджид бади
-
 auto PhysicsSystem::updateSystem(SceneManager& sceneManager, float fixedDeltaTime) -> void {
     using AnimeDefendersEngine::Math::Vector2f;
 
