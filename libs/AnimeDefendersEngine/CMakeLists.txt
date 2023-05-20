@@ -79,44 +79,44 @@ set(include_locations
 )
 
 set(source
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/AnimeFramework.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/ComponentManager.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/Entity.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/EventManager.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/GameLoop.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/InputManager.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/Scene.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/SceneManager.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/AudioSystem/AudioSource.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/AudioSystem/AudioSystem.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/CameraComponent/Camera.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/CameraComponent/CameraSystem.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/FileSystem/FileSystem.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/Graphics/Renderer.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger/Logger.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Graph.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenAlDependency/AudioPlayWrapper.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/UiContextWrapper.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/AnimeFramework.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/ComponentManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/Entity.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/EventManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/GameLoop.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/InputManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/Scene.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/SceneManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AudioSystem/AudioSource.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AudioSystem/AudioSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/CameraComponent/Camera.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/CameraComponent/CameraSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/FileSystem/FileSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Graphics/Renderer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger/Logger.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Graph.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenAlDependency/AudioPlayWrapper.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/UiContextWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/Window.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Body.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/BodyDefinition.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/CollisionHandler.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/PhysicsSystem.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/PhysicsWorld.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Shape.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/SpriteComponent/Sprite.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/SpriteComponent/SpriteSystem.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/SystemManager.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/UiColorElementComponent/UiColorElement.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/UiColorElementComponent/UiColorElementSystem.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/UiElementComponent/UiElement.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/UiElementComponent/UiElementSystem.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/UiLabelComponent/UiLabel.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/UiLabelComponent/UiLabelSystem.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/UiTextureElementComponent/UiTextureElement.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/UiTextureElementComponent/UiTextureElementSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Body.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/BodyDefinition.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/CollisionHandler.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/PhysicsSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/PhysicsWorld.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Shape.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/SpriteComponent/Sprite.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/SpriteComponent/SpriteSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/SystemManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/UiColorElementComponent/UiColorElement.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/UiColorElementComponent/UiColorElementSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/UiElementComponent/UiElement.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/UiElementComponent/UiElementSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/UiLabelComponent/UiLabel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/UiLabelComponent/UiLabelSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/UiTextureElementComponent/UiTextureElement.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/UiTextureElementComponent/UiTextureElementSystem.cpp
 )
 
 set(tests_folder tests)
@@ -180,8 +180,6 @@ find_package(GLUT COMPONENTS GLUT REQUIRED)
 include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
 
 target_link_libraries(${project_name} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
-
-# target_link_libraries(${project_name} PRIVATE OpenGL::OpenGL GLU GLEW)
 
 if(ENABLE_CLANG_FORMAT)
     add_dependencies(${project_name} AnimeDefendersEngine_FORMAT_TARGET)
