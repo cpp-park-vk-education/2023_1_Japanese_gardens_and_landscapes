@@ -12,7 +12,7 @@ auto EventManager::removeListener(Entity* ent, IEventListener* listener) -> void
 };
 
 auto EventManager::addEvent(std::unique_ptr<Event>&& event) -> void {
-    eventQueue.push(event);
+    eventQueue.push(std::move(event));
 }
 
 auto EventManager::dispatch(std::unique_ptr<Event>&& event) -> void {
