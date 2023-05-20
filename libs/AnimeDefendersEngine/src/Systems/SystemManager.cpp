@@ -2,4 +2,4 @@
 
 using namespace AnimeDefendersEngine;
 
-void SystemManager::updateSystems(ComponentManager&) {}
+void SystemManager::updateSystems(SceneManager&, float) {}
