@@ -12,6 +12,7 @@ namespace AnimeDefendersEngine {
          public:
             auto determineNewCameraTransform() -> void;
             auto applyCameraView() -> void;
+            auto isCameraActive() -> bool;
 
             auto setMotionRule(std::function<Transform()>) -> void;
             auto setExtraTransform(Transform) -> void;
