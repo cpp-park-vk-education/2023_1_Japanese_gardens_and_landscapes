@@ -18,6 +18,7 @@ namespace AnimeDefendersEngine {
         static auto dispatch(std::unique_ptr<Event>&& event) -> void;
         static auto addEvent(std::unique_ptr<Event>&& event) -> void;
         static auto hasEvent(std::string eventName) -> bool;
+
      private:
         static inline std::vector<IEventListener*> eventListeners{};
         static inline std::vector<std::unique_ptr<Event>> eventQueue{};
