@@ -24,11 +24,10 @@ namespace AnimeDefendersEngine::Physics {
                               float maxDeltaTime = 1.0f / defaultMinUpdateFrequency);
         auto setFixedDeltaTime(float fixedDeltaTime) -> void;
         auto update(float deltaTime) -> void;
+        auto fixedUpdate() -> void;
         [[nodiscard]] auto addBody(BodyDefinition&& bodyDefinition) -> Body*;
 
      private:
-        auto fixedUpdate() -> void;
-
         std::unique_ptr<CollisionHandler> m_collisionHandler;
         std::vector<std::unique_ptr<Body>> m_bodies;
         std::vector<Manifold> m_contacts;
