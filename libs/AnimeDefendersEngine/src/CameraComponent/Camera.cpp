@@ -6,6 +6,10 @@ auto Camera::determineNewCameraTransform() -> void {}
 
 auto Camera::applyCameraView() -> void {}
 
+auto Camera::isCameraActive() -> bool {
+    return false;
+}
+
 auto Camera::setMotionRule(std::function<Transform()>) -> void {}
 
 auto Camera::setExtraTransform(Transform) -> void {}
