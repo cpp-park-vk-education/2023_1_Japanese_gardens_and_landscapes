@@ -5,7 +5,7 @@ using namespace AnimeDefendersEngine::Physics;
 Shape::~Shape() {}
 
 auto Shape::getType() const -> ShapeType {
-    return ShapeType::circle;
+    return m_type;
 }
 
 Circle::Circle(float radius) : radius(radius) {
