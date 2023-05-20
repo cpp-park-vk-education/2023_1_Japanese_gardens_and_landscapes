@@ -11,6 +11,7 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/ComponentManager.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Entity.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Event.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/EventListener.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/EventManager.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/GameLoop.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/InputManager.hpp
@@ -94,7 +95,6 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Graphics/Renderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger/Logger.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Graph.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Vector2.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenAlDependency/AudioPlayWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
@@ -103,7 +103,6 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Body.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/BodyDefinition.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/CollisionHandler.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Manifold.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/PhysicsSystem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/PhysicsWorld.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Shape.cpp
@@ -175,6 +174,12 @@ endif()
 
 add_library(${project_name} STATIC ${source})
 target_include_directories(${project_name} PUBLIC ${include_locations})
+
+find_package(OpenGL COMPONENTS OpenGL REQUIRED)
+find_package(GLUT COMPONENTS GLUT REQUIRED)
+include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
+
+target_link_libraries(${project_name} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
 
 if(ENABLE_CLANG_FORMAT)
     add_dependencies(${project_name} AnimeDefendersEngine_FORMAT_TARGET)
