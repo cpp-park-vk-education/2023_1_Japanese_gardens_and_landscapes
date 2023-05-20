@@ -13,6 +13,10 @@ Window::Window(int windowWidth, int windowHeidth, const std::string& windowTitle
     glutInitWindowSize(m_windowWidth, m_windowHeidth);
 
     m_windowId = glutCreateWindow(windowTitle.c_str());
+
+    glMatrixMode(GL_PROJECTION);
+    gluPerspective(120, 1., 0.1, 100.);
+    glMatrixMode(GL_MODELVIEW);
 }
 
 Window::~Window() {
