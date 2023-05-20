@@ -1,20 +1,14 @@
 #pragma once
 
-#include <GLFW/glfw3.h>
+#include "GL/glut.h"
 #include "EventManager.hpp"
 #include "Window.hpp"
+#include "Event.hpp"
 
 namespace AnimeDefendersEngine {
-
-    class InputManager {
-     public:
-        explicit InputManager(Graphics::Window&);
-        auto setEventManager(EventManager eventManager) -> void;
-        auto keyCallback() -> void;
-
-     private:
-        EventManager m_events;
-        Graphics::Window& m_window;
-    };
-
+namespace InputManager
+{
+    auto keyboardHandler(unsigned char key, int x, int y) -> void;
+      auto initInputManager(Graphics::Window& window) -> void;
+    }
 }  // namespace AnimeDefendersEngine
