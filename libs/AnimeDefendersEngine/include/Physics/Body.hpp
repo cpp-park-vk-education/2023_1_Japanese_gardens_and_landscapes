@@ -18,6 +18,7 @@ namespace AnimeDefendersEngine::Physics {
         virtual auto getPosition() const noexcept -> Math::Vector2f;
         virtual auto getVelocity() const noexcept -> Math::Vector2f;
         virtual auto getType() const noexcept -> BodyType;
+        virtual auto getInverseMass() const noexcept -> float;
         virtual auto getShape() const noexcept -> Shape*;
         virtual auto getShapeType() const noexcept -> ShapeType;
         virtual auto isTrigger() const noexcept -> bool;
@@ -26,7 +27,8 @@ namespace AnimeDefendersEngine::Physics {
         virtual auto setVelocity(const Math::Vector2f& newVelocity) noexcept -> void;
         virtual auto setType(BodyType type) noexcept -> void;
 
-        virtual auto clearForce() -> void;
+        virtual auto clearForce() noexcept -> void;
+        virtual auto clearVelocity() noexcept -> void;
 
      private:
         size_t m_id;
@@ -34,6 +36,7 @@ namespace AnimeDefendersEngine::Physics {
         BodyType m_bodyType;
         Transform m_transform;
         Math::Vector2f m_velocity;
+        float m_inverseMass;
         size_t m_layers;
         Math::Vector2f m_force;
         bool m_isTrigger;
