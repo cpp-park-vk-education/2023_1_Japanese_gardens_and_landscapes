@@ -1,16 +1,25 @@
 #include "InputManager.hpp"
 #include <memory>
+
+
 auto AnimeDefendersEngine::InputManager::keyboardHandler(unsigned char key, int x, int y) -> void {
-    if (key == 'w') {
-        auto event = std::make_unique<Event>("MoveForward", EventType::KeyPressed);
+        auto event = std::make_unique<Event>("Key" + key, EventType::KeyPressed);
         EventManager::addEvent(std::move(event));
     }
-    if (key == 's') {
-        auto event = std::make_unique<Event>("MoveBackwards", EventType::KeyPressed);
-        EventManager::addEvent(std::move(event));
-    }
+
+auto AnimeDefendersEngine::InputManager::motionHandler(int x, int y) -> void {
+    //  auto event = std::make_unique<Event>("Mouse" + key, EventType::MouseMoved);
+    // EventManager::addEvent(std::move(event));
 }
 
 auto AnimeDefendersEngine::InputManager::initInputManager(Graphics::Window& window) -> void {
     window.setWindowKeyboardListener(keyboardHandler);
+    window.setWindowMouseListener(mouseHandler);
+    window.setWindowMotionListener(motionHandler);
 }
+
+auto getButtonDown(unsigned char button) -> bool
+{
+    return AnimeDefendersEngine::EventManager::hasEvent("Key" + button);
+}
+
