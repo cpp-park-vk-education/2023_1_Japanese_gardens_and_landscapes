@@ -11,5 +11,10 @@ namespace AnimeDefendersEngine {
         auto motionHandler(int x, int y) -> void;
         auto mouseHandler(int, int, int, int) -> void;
         auto initInputManager(Graphics::Window& window) -> void;
+
+        struct MousePosition {
+            int x;
+            int y;
+        };
     }  // namespace InputManager
 }  // namespace AnimeDefendersEngine

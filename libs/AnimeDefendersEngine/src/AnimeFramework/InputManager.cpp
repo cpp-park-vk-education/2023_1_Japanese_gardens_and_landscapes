@@ -1,5 +1,5 @@
 #include "InputManager.hpp"
-#include <memory>
+#include "Vector2.hpp"
 
 
 auto AnimeDefendersEngine::InputManager::keyboardHandler(unsigned char key, int x, int y) -> void {
@@ -8,8 +8,6 @@ auto AnimeDefendersEngine::InputManager::keyboardHandler(unsigned char key, int 
     }
 
 auto AnimeDefendersEngine::InputManager::motionHandler(int x, int y) -> void {
-    //  auto event = std::make_unique<Event>("Mouse" + key, EventType::MouseMoved);
-    // EventManager::addEvent(std::move(event));
 }
 
 auto AnimeDefendersEngine::InputManager::initInputManager(Graphics::Window& window) -> void {
