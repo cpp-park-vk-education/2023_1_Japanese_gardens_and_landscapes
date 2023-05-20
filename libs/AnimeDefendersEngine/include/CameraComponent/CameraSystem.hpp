@@ -12,8 +12,9 @@ namespace AnimeDefendersEngine {
             static auto applyCameraView(const Camera*) -> void;
 
          private:
-            static constexpr TransposeMathWrapper transposeMathWrapper{};
             CameraSystem();
+
+            static constexpr TransposeMathWrapper transposeMathWrapper{};
         };
 
     }  // namespace Graphics
