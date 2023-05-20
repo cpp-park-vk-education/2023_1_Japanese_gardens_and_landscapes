@@ -5,18 +5,21 @@
 #include "Event.hpp"
 #include "EventListener.hpp"
 #include "Entity.hpp"
+#include <queue>
 
 namespace AnimeDefendersEngine {
 
     class EventManager {
      public:
         auto update() -> void;
-        auto addListener(Entity* ent, IEventListener* listener) -> void;
-        auto removeListener(Entity* ent, IEventListener* listener) -> void;
-        auto dispatch(Event& event) const -> void;
+        static auto addListener(Entity* ent, IEventListener* listener) -> void;
+        static auto removeListener(Entity* ent, IEventListener* listener) -> void;
+        static auto dispatch(Event& event) -> void;
+        static auto addEvent(Event& event) ->void;
 
      private:
-        std::unordered_map<Entity*, IEventListener*> eventListeners;
+        static std::unordered_map<Entity*, IEventListener*> eventListeners;
+        static inline std::priority_queue<Event&> eventQueue{};
     };
 
 }  // namespace AnimeDefendersEngine
