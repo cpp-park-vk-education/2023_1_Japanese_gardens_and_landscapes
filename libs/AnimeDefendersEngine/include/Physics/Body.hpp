@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include "BodyDefinition.hpp"
 #include "Vector2.hpp"
 
@@ -21,7 +22,7 @@ namespace AnimeDefendersEngine::Physics {
         virtual auto getInverseMass() const noexcept -> float;
         virtual auto getShape() const noexcept -> Shape*;
         virtual auto getShapeType() const noexcept -> ShapeType;
-        virtual auto getID() const noexcept -> size_t;
+        virtual auto getID() const noexcept -> std::string;
         virtual auto isTrigger() const noexcept -> bool;
 
         virtual auto setPosition(const Math::Vector2f& newPosition) noexcept -> void;
@@ -32,7 +33,7 @@ namespace AnimeDefendersEngine::Physics {
         virtual auto clearVelocity() noexcept -> void;
 
      private:
-        size_t m_id;
+        std::string m_id;
         std::unique_ptr<Shape> m_shape;
         BodyType m_bodyType;
         Transform m_transform;

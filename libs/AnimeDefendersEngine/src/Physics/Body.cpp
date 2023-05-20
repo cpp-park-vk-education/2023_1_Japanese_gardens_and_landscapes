@@ -58,7 +58,7 @@ auto Body::getShapeType() const noexcept -> ShapeType {
     return m_shape->getType();
 }
 
-auto Body::getID() const noexcept -> size_t {
+auto Body::getID() const noexcept -> std::string {
     return m_id;
 }
 
