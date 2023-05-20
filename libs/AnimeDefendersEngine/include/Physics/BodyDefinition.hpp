@@ -1,8 +1,9 @@
 #pragma once
 
-#include <memory>
 #include "Shape.hpp"
 #include "Vector2.hpp"
+
+#include <memory>
 
 namespace AnimeDefendersEngine::Physics {
 

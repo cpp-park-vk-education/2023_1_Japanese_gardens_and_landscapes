@@ -2,67 +2,67 @@
 
 using namespace AnimeDefendersEngine::Physics;
 
-auto Body::setType(BodyType bodyType) noexcept -> void {
+auto Body::setType(BodyType bodyType) -> void {
     m_bodyType = bodyType;
 }
 
-auto Body::applyForce(const Math::Vector2f& force) noexcept -> void {
+auto Body::applyForce(const Math::Vector2f& force) -> void {
     m_force = m_force + force;
 }
 
-auto Body::applyImpulse(const Math::Vector2f& velocity) noexcept -> void {
+auto Body::applyImpulse(const Math::Vector2f& velocity) -> void {
     m_velocity = m_velocity + velocity;
 }
 
-auto Body::integrateForce(float deltaTime) noexcept -> void {
+auto Body::integrateForce(float deltaTime) -> void {
     m_velocity = m_velocity + deltaTime * m_force;
 }
 
-auto Body::integrateVelocity(float deltaTime) noexcept -> void {
+auto Body::integrateVelocity(float deltaTime) -> void {
     m_transform.position = m_transform.position + deltaTime * m_velocity;
 }
 
-auto Body::getPosition() const noexcept -> Math::Vector2f {
+auto Body::getPosition() const -> Math::Vector2f {
     return m_transform.position;
 }
 
-auto Body::isTrigger() const noexcept -> bool {
+auto Body::isTrigger() const -> bool {
     return m_isTrigger;
 }
 
-auto Body::setPosition(const Math::Vector2f& newPosition) noexcept -> void {
+auto Body::setPosition(const Math::Vector2f& newPosition) -> void {
     m_transform.position = newPosition;
 }
 
-auto Body::getVelocity() const noexcept -> Math::Vector2f {
+auto Body::getVelocity() const -> Math::Vector2f {
     return m_velocity;
 }
 
-auto Body::getInverseMass() const noexcept -> float {
+auto Body::getInverseMass() const -> float {
     return m_inverseMass;
 }
 
-auto Body::setVelocity(const Math::Vector2f& newVelocity) noexcept -> void {
+auto Body::setVelocity(const Math::Vector2f& newVelocity) -> void {
     m_velocity = newVelocity;
 }
 
-auto Body::getType() const noexcept -> BodyType {
+auto Body::getType() const -> BodyType {
     return m_bodyType;
 }
 
-auto Body::getShape() const noexcept -> Shape* {
+auto Body::getShape() const -> Shape* {
     return m_shape.get();
 }
 
-auto Body::getShapeType() const noexcept -> ShapeType {
+auto Body::getShapeType() const -> ShapeType {
     return m_shape->getType();
 }
 
-auto Body::clearForce() noexcept -> void {
+auto Body::clearForce() -> void {
     m_force = AnimeDefendersEngine::Math::Vector2f(0, 0);
 }
 
-auto Body::clearVelocity() noexcept -> void {
+auto Body::clearVelocity() -> void {
     m_velocity = AnimeDefendersEngine::Math::Vector2f(0, 0);
 }
 

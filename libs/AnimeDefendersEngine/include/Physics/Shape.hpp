@@ -13,7 +13,7 @@ namespace AnimeDefendersEngine::Physics {
 
     class Shape {
      public:
-        virtual ~Shape();
+        virtual ~Shape() = default;
         auto getType() const -> ShapeType;
         static constexpr int shapeCount = 2;
 
@@ -29,7 +29,7 @@ namespace AnimeDefendersEngine::Physics {
 
     class Rectangle : public Shape {
      public:
-        explicit Rectangle(const Math::Vector2f& size);
+        explicit Rectangle(Math::Vector2f size);
         Math::Vector2f size;
     };
 
