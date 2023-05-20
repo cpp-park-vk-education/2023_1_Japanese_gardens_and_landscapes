@@ -4,9 +4,10 @@ namespace AnimeDefendersEngine {
     namespace Graphics {
 
         struct Color {
-            float red;
-            float green;
-            float blue;
+            unsigned char red{};
+            unsigned char green{};
+            unsigned char blue{};
+            unsigned char alpha{};
         };
 
     }  // namespace Graphics
