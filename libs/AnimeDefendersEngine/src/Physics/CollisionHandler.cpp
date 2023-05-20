@@ -1,6 +1,8 @@
 #include "CollisionHandler.hpp"
 #include <cmath>
 #include "Body.hpp"
+
+#include "Manifold.hpp"
 #include "Vector2.hpp"
 
 using namespace AnimeDefendersEngine::Physics;

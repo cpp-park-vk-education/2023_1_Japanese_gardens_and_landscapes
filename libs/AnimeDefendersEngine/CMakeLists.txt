@@ -41,6 +41,7 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/Body.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/BodyDefinition.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/CollisionHandler.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/ICollisionHandler.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/Manifold.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/PhysicsSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/PhysicsWorld.hpp
