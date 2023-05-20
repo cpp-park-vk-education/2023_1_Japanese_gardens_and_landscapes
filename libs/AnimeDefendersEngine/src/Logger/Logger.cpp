@@ -5,6 +5,17 @@
 #include <fstream>
 
 namespace {
+    constexpr auto redColor = "\033[1;31m";
+    constexpr auto yellowColor = "\033[1;33m";
+    constexpr auto noColor = "\033[0m";
+}  // namespace
+
+namespace {
+    using AnimeDefendersEngine::Logger::LogLevel;
+    [[nodiscard]] inline auto operator<(LogLevel a, LogLevel b) noexcept -> bool {
+        return static_cast<char>(a) < static_cast<char>(b);
+    }
+
     struct CurrentTime {};
 
     auto operator<<(std::ostream& stream, [[maybe_unused]] CurrentTime) -> std::ostream& {
@@ -20,28 +31,26 @@ namespace {
 
 using AnimeDefendersEngine::Logger::BasicLogger;
 
-auto BasicLogger::printMessage(const std::string& message) -> BasicLogger& {
+BasicLogger::BasicLogger(std::unique_ptr<std::ostream>&& stream) : m_stream{std::move(stream)} {}
+
+auto BasicLogger::printMessage(const std::string& message) const -> const BasicLogger& {
     if (m_logLevel >= LogLevel::ErrorsWarningsAndMessages) {
-        (*m_stream) << "Message [" << CurrentTime{} << "] " << message << '\n';
+        *m_stream << "Message [" << CurrentTime{} << "] " << message << '\n';
     }
     return *this;
 }
 
-auto BasicLogger::printWarning(const std::string& message) -> BasicLogger& {
-    auto yellowColor = "\033[1;33m";
-    auto noColor = "\033[0m";
+auto BasicLogger::printWarning(const std::string& message) const -> const BasicLogger& {
     if (m_logLevel >= LogLevel::ErrorsAndWarnings) {
-        (*m_stream) << yellowColor << "Warning [" << CurrentTime{} << "] " << message << noColor << '\n';
+        *m_stream << yellowColor << "Warning [" << CurrentTime{} << "] " << message << noColor << '\n';
     }
 
     return *this;
 }
 
-auto BasicLogger::printError(const std::string& message) -> BasicLogger& {
-    auto redColor = "\033[1;31m";
-    auto noColor = "\033[0m";
+auto BasicLogger::printError(const std::string& message) const -> const BasicLogger& {
     if (m_logLevel >= LogLevel::OnlyErrors) {
-        (*m_stream) << redColor << "Error [" << CurrentTime{} << "] " << message << noColor << '\n';
+        *m_stream << redColor << "Error [" << CurrentTime{} << "] " << message << noColor << '\n';
     }
 
     return *this;

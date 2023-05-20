@@ -14,17 +14,13 @@ namespace AnimeDefendersEngine {
             ErrorsWarningsAndMessages
         };
 
-        [[nodiscard]] inline auto operator<(LogLevel a, LogLevel b) noexcept -> bool {
-            return static_cast<char>(a) < static_cast<char>(b);
-        }
-
         class BasicLogger {
          public:
-            explicit BasicLogger(std::unique_ptr<std::ostream>&& stream) : m_stream{std::move(stream)} {}
+            explicit BasicLogger(std::unique_ptr<std::ostream>&& stream);
 
-            auto printMessage(const std::string& message) -> BasicLogger&;
-            auto printError(const std::string& message) -> BasicLogger&;
-            auto printWarning(const std::string& message) -> BasicLogger&;
+            auto printMessage(const std::string& message) const -> const BasicLogger&;
+            auto printError(const std::string& message) const -> const BasicLogger&;
+            auto printWarning(const std::string& message) const -> const BasicLogger&;
 
             auto setLogLevel(LogLevel) noexcept -> void;
 
