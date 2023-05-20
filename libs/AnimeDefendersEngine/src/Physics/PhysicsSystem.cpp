@@ -11,35 +11,37 @@ using namespace AnimeDefendersEngine::Physics;
 auto PhysicsSystem::updateSystem(SceneManager& sceneManager, float fixedDeltaTime) -> void {
     using AnimeDefendersEngine::Math::Vector2f;
 
-    ComponentManager& componentManager = sceneManager.getActiveScene().getComponentManager();
-    auto colliders = componentManager.getComponents<Collider2DComponent>();
+    // Нужно сделать компоненты
 
-    std::vector<Body*> bodies;
-    bodies.reserve(colliders.size());
-    for (auto collider : colliders) {
-        BodyDefinition bodyDef;
-        bodyDef.id = collider.getEntityID();
-        bodyDef.shape = std::make_unique<Rectangle>(collider.size);
-        bodyDef.transform.position = collider.transformComponent.position;
+        // ComponentManager& componentManager = sceneManager.getActiveScene().getComponentManager();
+    // auto colliders = componentManager.getComponents<Collider2DComponent>();
 
-        Body* body = m_physicsWorld.addBody(std::move(bodyDef));
+    // std::vector<Body*> bodies;
+    // bodies.reserve(colliders.size());
+    // for (auto collider : colliders) {
+    //     BodyDefinition bodyDef;
+    //     bodyDef.id = collider.getEntityID();
+    //     bodyDef.shape = std::make_unique<Rectangle>(collider.size);
+    //     bodyDef.transform.position = collider.transformComponent.position;
 
-        if (collider.rigidBody2DComponent == nullptr) {
-            body->setType(BodyType::staticBody);
-        } else {
-            body->setType(BodyType::dynamicBody);
-            body->applyImpulse(collider.rigidBody2DComponent.velocity);
-        }
+    //     Body* body = m_physicsWorld.addBody(std::move(bodyDef));
 
-        bodies.push_back(body);
-    }
+    //     if (collider.rigidBody2DComponent == nullptr) {
+    //         body->setType(BodyType::staticBody);
+    //     } else {
+    //         body->setType(BodyType::dynamicBody);
+    //         body->applyImpulse(collider.rigidBody2DComponent.velocity);
+    //     }
 
-    m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
-    m_physicsWorld.fixedUpdate();
+    //     bodies.push_back(body);
+    // }
 
-    for (auto body : bodies) {
-        colliders.at(body->getID()).transformComponent.position = body->getPosition();
-    }
+    // m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
+    // m_physicsWorld.fixedUpdate();
+
+    // for (auto body : bodies) {
+    //     colliders.at(body->getID()).transformComponent.position = body->getPosition();
+    // }
 }
 
 auto PhysicsSystem::setFixedDeltaTime(float fixedDeltaTime) noexcept -> void {
