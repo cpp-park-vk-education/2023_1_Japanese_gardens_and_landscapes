@@ -82,6 +82,6 @@ Body::Body(BodyDefinition&& bodyDefinition)
     if (bodyDefinition.bodyType == BodyType::staticBody) {
         m_inverseMass = 0;
     } else {
-        m_inverseMass = 1.0f / bodyDefinition.mass;
+        m_inverseMass = 1.f / bodyDefinition.mass;
     }
 }
