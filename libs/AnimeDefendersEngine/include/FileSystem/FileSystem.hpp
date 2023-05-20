@@ -7,7 +7,6 @@
 #include <string>
 #include <unordered_map>
 
-#define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
 namespace AnimeDefendersEngine {
@@ -20,6 +19,7 @@ namespace AnimeDefendersEngine {
             pixel.red = pixelOffset[0];
             pixel.green = pixelOffset[1];
             pixel.blue = pixelOffset[2];
+            pixel.alpha = pixelOffset[3];
 
             return pixel;
         }
@@ -49,7 +49,7 @@ namespace AnimeDefendersEngine {
             auto loadItem(const std::string& name) -> void {
                 if (m_paths.at(name).extension().string() == ".png") {
                     int x{}, y{}, comps{};
-                    unsigned char* data = stbi_load(m_paths.at(name).c_str(), &x, &y, &comps, 1);
+                    unsigned char* data = stbi_load(m_paths.at(name).c_str(), &x, &y, &comps, 0);
 
                     std::vector<Color> pixels;
                     pixels.reserve(x * y);

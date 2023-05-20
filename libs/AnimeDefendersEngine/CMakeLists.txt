@@ -182,6 +182,14 @@ target_include_directories(${project_name} PUBLIC ${include_locations})
 add_dependencies(${project_name} STB_Image)
 link_libraries(${project_name} STB_Image)
 
+find_package(OpenGL COMPONENTS OpenGL REQUIRED)
+find_package(GLUT COMPONENTS GLUT REQUIRED)
+include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
+
+target_link_libraries(${project_name} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+
+# target_link_libraries(${project_name} PRIVATE OpenGL::OpenGL GLU GLEW)
+
 if(ENABLE_CLANG_FORMAT)
     add_dependencies(${project_name} AnimeDefendersEngine_FORMAT_TARGET)
 endif()

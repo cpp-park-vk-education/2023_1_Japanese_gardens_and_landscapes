@@ -1,0 +1,9 @@
+// Format:
+// SceneId
+// EntityType EntityId
+
+
+// Legend
+    // SceneId
+    // EntityType (string defined by engine user)
+    // Args (defined by )

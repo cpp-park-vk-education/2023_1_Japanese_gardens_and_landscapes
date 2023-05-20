@@ -1,0 +1,2 @@
+//Format: type name filepath
+image-png Wall /home/boris/Technopark/C++/2023_1_Japanese_gardens_and_landscapes/GameFiles/Wall.png

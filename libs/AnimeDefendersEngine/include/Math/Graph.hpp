@@ -19,8 +19,8 @@ namespace AnimeDefendersEngine {
             explicit Graph(const std::vector<Component*>& components, int resolution, std::pair<Point, Point> coordinatsRange);
             auto findPath(Point from, Point where) -> std::vector<Point>;
 
-         private:
-            Matrix2d<int> m_matrix;
+            // rivate:
+            //   Matrix2d<int> m_matrix;
         };
 
     }  // namespace Math

@@ -16,7 +16,7 @@ namespace AnimeDefendersEngine {
         class Matrix2d {
          public:
             explicit Matrix2d(std::size_t rows = 0, std::size_t columns = 0, T val = T{})
-                : m_rows{rows}, m_columns{m_columns}, m_values(rows * columns, val) {}
+                : m_rows{rows}, m_columns{columns}, m_values(rows * columns, val) {}
 
             Matrix2d(std::size_t rows, std::size_t columns, std::ranges::sized_range auto values) : m_rows{rows}, m_columns{columns} {
                 if (m_rows * m_columns != std::ranges::size(values)) {
@@ -36,7 +36,7 @@ namespace AnimeDefendersEngine {
              */
             [[nodiscard]] auto getElement(const std::size_t i, const std::size_t j) -> T& {
                 if (i >= m_rows || j >= m_columns) {
-                    throw std::out_of_range{"Indexing Matrix2d"};
+                    throw std::out_of_range{"Indexing Matrix2d i =" + std::to_string(i) + "  j = " + std::to_string(j)};
                 }
                 return m_values[m_getIndex(i, j)];
             }
