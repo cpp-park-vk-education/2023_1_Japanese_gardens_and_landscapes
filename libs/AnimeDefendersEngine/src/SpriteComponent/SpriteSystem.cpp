@@ -7,14 +7,17 @@ auto SpriteSystem::isSpriteVisibleToCamera(const Sprite*, const Camera*) -> bool
 }
 
 auto SpriteSystem::drawSprite(const Sprite* sprite) -> void {
+    Transpose transpose = sprite->getTranspose();
     Animation* animation = sprite->getAnimation();
     Texture* texture = sprite->getTexture();
+
+    SpriteSystem::transposeMathWrapper.applyTransposeMatrix(transpose);
 
     if (animation) {
         return;
     }
 
     if (texture) {
-        drawTextureWrapper.drawTexture(texture);
+        SpriteSystem::drawTextureWrapper.drawTexture(texture);
     }
 }

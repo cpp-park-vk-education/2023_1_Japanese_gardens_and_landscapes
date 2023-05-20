@@ -3,9 +3,8 @@
 #include "Animation.hpp"
 #include "Camera.hpp"
 #include "Component.hpp"
-#include "DrawTextureWrapper.hpp"
 #include "Texture.hpp"
-#include "Transform.hpp"
+#include "Transpose.hpp"
 
 #include <memory>
 
@@ -14,21 +13,21 @@ namespace AnimeDefendersEngine {
 
         class Sprite : public Component {
          public:
-            Sprite(Transform*);
+            Sprite(Transpose, Texture*, Animation*);
 
             auto isSpriteVisibleToCamera(Camera*) const -> bool;
             auto drawSprite() const -> void;
 
-            auto setTransform(Transform*) -> void;
+            auto setTranspose(Transpose) -> void;
             auto setTexture(Texture*) -> void;
             auto setAnimation(Animation*) -> void;
 
-            auto getTransform() const -> Transform*;
+            auto getTranspose() const -> Transpose;
             auto getTexture() const -> Texture*;
             auto getAnimation() const -> Animation*;
 
          private:
-            Transform* m_transform;
+            Transpose m_transpose;
             Texture* m_texture;
             Animation* m_animation;
         };

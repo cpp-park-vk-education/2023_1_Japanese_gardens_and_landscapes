@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Camera.hpp"
+#include "DrawTextureWrapper.hpp"
 #include "ISystem.hpp"
 #include "Sprite.hpp"
+#include "TransposeMathWrapper.hpp"
 
 #include <vector>
 
@@ -17,6 +19,7 @@ namespace AnimeDefendersEngine {
          private:
             SpriteSystem();
 
+            static constexpr TransposeMathWrapper transposeMathWrapper{};
             static constexpr DrawTextureWrapper drawTextureWrapper{};
         };
 
