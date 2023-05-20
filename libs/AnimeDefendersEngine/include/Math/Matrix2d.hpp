@@ -58,8 +58,8 @@ namespace AnimeDefendersEngine {
 
             // auto operator[](std::size_t i, std::size_t j) -> T&; // must have exactly one argumentGCC
 
-            [[nodiscard]] auto begin() -> std::vector<T>::iterator { return m_values.begin(); }
-            [[nodiscard]] auto end() -> std::vector<T>::iterator { return m_values.end(); }
+            [[nodiscard]] auto begin() -> typename std::vector<T>::iterator { return m_values.begin(); }
+            [[nodiscard]] auto end() -> typename std::vector<T>::iterator { return m_values.end(); }
             [[nodiscard]] auto size() const -> std::size_t { return m_columns * m_rows; }
 
          private:
