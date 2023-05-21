@@ -32,7 +32,7 @@ auto DrawTextureWrapper::drawTexture(const Texture& texture) const -> void {
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
     glVertexPointer(2, GL_FLOAT, 0, &*Texture::vertexCoords.begin());
-    glTexCoordPointer(2, GL_FLOAT, 0, &*Texture::texureCoords.begin());
+    glTexCoordPointer(2, GL_FLOAT, 0, &*Texture::textureCoords.begin());
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
     glDisableClientState(GL_VERTEX_ARRAY);
