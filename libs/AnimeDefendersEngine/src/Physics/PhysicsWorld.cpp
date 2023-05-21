@@ -9,11 +9,14 @@
 
 namespace AnimeDefendersEngine::Physics {
 
-    PhysicsWorld::PhysicsWorld(std::unique_ptr<CollisionHandler>&& collisionHandler, float fixedDeltaTime, float maxDeltaTime)
+    PhysicsWorld::PhysicsWorld(std::unique_ptr<CollisionHandler> collisionHandler, float fixedDeltaTime, float maxDeltaTime)
         : m_collisionHandler(std::move(collisionHandler)),
           m_fixedDeltaTime(fixedDeltaTime),
           m_maxDeltaTime(maxDeltaTime),
-          m_accumulator(0) {}
+          m_accumulator(0) {
+        BodyDefinition def;
+        BodyDefinition def2(std::move(def));
+    }
 
     auto PhysicsWorld::setFixedDeltaTime(float fixedDeltaTime) -> void {}
 

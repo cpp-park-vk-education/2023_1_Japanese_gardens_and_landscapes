@@ -15,15 +15,4 @@ namespace AnimeDefendersEngine::Physics {
           force(force),
           isTrigger(isTrigger) {}
 
-    // BodyDefinition::BodyDefinition(BodyDefinition&& other)
-    //     : id(other.id),
-    //       shape(std::move(other.shape)),
-    //       bodyType(other.bodyType),
-    //       transform(other.transform),
-    //       velocity(other.velocity),
-    //       mass(other.mass),
-    //       layers(other.layers),
-    //       force(other.force),
-    //       isTrigger(other.isTrigger) {}
-
 }  // namespace AnimeDefendersEngine::Physics
