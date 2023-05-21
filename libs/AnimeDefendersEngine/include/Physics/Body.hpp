@@ -40,7 +40,7 @@ namespace AnimeDefendersEngine::Physics {
         Transform m_transform;
         Math::Vector2f m_velocity;
         float m_inverseMass;
-        size_t m_layers;
+        std::size_t m_layers;
         Math::Vector2f m_force;
         bool m_isTrigger;
     };
