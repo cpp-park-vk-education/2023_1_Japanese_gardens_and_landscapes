@@ -9,6 +9,8 @@ namespace AnimeDefendersEngine {
 
         class CameraSystem : public ISystem {
          public:
+            auto updateSystem(ComponentManager&) -> void;
+
             static auto applyCameraView(const Camera*) -> void;
 
          private:

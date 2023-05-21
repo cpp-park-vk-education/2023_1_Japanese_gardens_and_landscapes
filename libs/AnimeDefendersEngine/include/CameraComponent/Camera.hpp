@@ -1,33 +1,33 @@
 #pragma once
 
 #include "Component.hpp"
-#include "Transpose.hpp"
+// #include "Transpose.hpp"
 
 #include <functional>
-
+typedef int Transpose;
 namespace AnimeDefendersEngine {
     namespace Graphics {
 
         class Camera : public Component {
          public:
-            Camera(Transpose, std::function<Transpose()>, std::function<Transpose(Transpose)>, bool);
+            Camera(Transpose*, std::function<void(Transpose*)>, std::function<void(Transpose*)>, bool);
 
             auto determineNewCameraTranspose() const -> void;
             auto applyCameraView() const -> void;
 
-            auto setTranspose(Transpose) -> void;
-            auto setMotionRule(std::function<Transpose()>) -> void;
-            auto setExtraMotion(std::function<Transpose(Transpose)>) -> void;
+            auto setTranspose(Transpose*) -> void;
+            auto setMotionRule(std::function<void(Transpose*)>) -> void;
+            auto setExtraMotion(std::function<void(Transpose*)>) -> void;
             auto setIsActive(bool) -> void;
 
-            auto getCameraTranspose() const -> Transpose;
-            auto isActive() const -> bool;
+            [[nodiscard]] auto getCameraTranspose() const -> Transpose*;
+            [[nodiscard]] auto isActive() const -> bool;
 
          private:
-            Transpose m_transpose;
-            std::function<Transpose()> m_motionRule;
-            std::function<Transpose(Transpose)> m_extraMotion;
-            bool m_isActive;
+            Transpose* m_transpose;
+            std::function<void(Transpose*)> m_motionRule;
+            std::function<void(Transpose*)> m_extraMotion;
+            bool m_isActive{false};
         };
 
     }  // namespace Graphics
