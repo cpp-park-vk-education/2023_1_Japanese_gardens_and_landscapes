@@ -2,18 +2,18 @@
 
 #include "ISystem.hpp"
 #include "PhysicsWorld.hpp"
+#include "SceneManager.hpp"
 
 namespace AnimeDefendersEngine::Physics {
 
     class PhysicsSystem : public ISystem {
      public:
         explicit PhysicsSystem(float fixedDeltaTime);
-        virtual auto updateSystem(ComponentManager& componentManager) -> void override final;
-        auto updateSystem(ComponentManager& componentManager, float timeStep) -> void;
+        auto updateSystem(SceneManager& sceneManager, float timeStep) -> void;
         auto setFixedDeltaTime(float fixedDeltaTime) noexcept -> void;
 
      private:
-        PhysicsWorld physicsWorld;
+        PhysicsWorld m_physicsWorld;
     };
 
 }  // namespace AnimeDefendersEngine::Physics

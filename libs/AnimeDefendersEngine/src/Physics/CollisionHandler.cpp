@@ -1,7 +1,9 @@
 #include "CollisionHandler.hpp"
-#include <cmath>
 #include "Body.hpp"
+#include "Manifold.hpp"
 #include "Vector2.hpp"
+
+#include <cmath>
 
 using namespace AnimeDefendersEngine::Physics;
 
@@ -36,7 +38,7 @@ namespace {
     auto hasCollisionCircleCircle(Body* bodyA, Body* bodyB) -> bool {
         const auto circleA = dynamic_cast<Circle*>(bodyA->getShape());
         const auto circleB = dynamic_cast<Circle*>(bodyB->getShape());
-        float distance = (bodyA->getPosition() - bodyB->getPosition()).norm();
+        const auto distance = (bodyA->getPosition() - bodyB->getPosition()).norm();
         return distance < circleA->radius + circleB->radius;
     }
 
@@ -46,8 +48,8 @@ namespace {
 
         const auto distance = bodyB->getPosition() - bodyA->getPosition();
         auto closestVertexToCircleCenter = distance;
-        float xExtent = rectangleA->size.x / 2;
-        float yExtent = rectangleA->size.y / 2;
+        const auto xExtent = rectangleA->size.x / 2;
+        const auto yExtent = rectangleA->size.y / 2;
 
         closestVertexToCircleCenter.x = std::min(closestVertexToCircleCenter.x, xExtent);
         closestVertexToCircleCenter.x = std::max(closestVertexToCircleCenter.x, -xExtent);
@@ -67,7 +69,7 @@ namespace {
         const auto rectangleA = dynamic_cast<Rectangle*>(bodyA->getShape());
         const auto rectangleB = dynamic_cast<Rectangle*>(bodyB->getShape());
 
-        AnimeDefendersEngine::Math::Vector2<float> normal = bodyB->getPosition() - bodyA->getPosition();
+        const auto normal = bodyB->getPosition() - bodyA->getPosition();
         const auto xOverlap = (rectangleA->size.x + rectangleB->size.x) / 2 - std::abs(normal.x);
         if (xOverlap > 0) {
             const auto yOverlap = (rectangleA->size.y + rectangleB->size.y) / 2 - std::abs(normal.y);
@@ -96,10 +98,10 @@ namespace {
         const auto circleA = dynamic_cast<Circle*>(contact.bodyA);
         const auto circleB = dynamic_cast<Circle*>(contact.bodyB);
         auto direction = contact.bodyB->getPosition() - contact.bodyA->getPosition();
-        float distance = direction.norm();
-        float totalRadius = circleA->radius + circleB->radius;
+        const auto distance = direction.norm();
+        const auto totalRadius = circleA->radius + circleB->radius;
         contact.penetration = totalRadius - distance;
-        contact.normal = (1.0f / distance) * direction;
+        contact.normal = (1.f / distance) * direction;
     }
 
     auto specifyCollisionRectangleCircle(Manifold& contact) -> void {
@@ -108,8 +110,8 @@ namespace {
 
         auto distance = contact.bodyB->getPosition() - contact.bodyA->getPosition();
         auto closestVertexToCircleCenter = distance;
-        float xExtent = rectangleA->size.x / 2;
-        float yExtent = rectangleA->size.y / 2;
+        const auto xExtent = rectangleA->size.x / 2;
+        const auto yExtent = rectangleA->size.y / 2;
 
         closestVertexToCircleCenter.x = std::min(closestVertexToCircleCenter.x, xExtent);
         closestVertexToCircleCenter.x = std::max(closestVertexToCircleCenter.x, -xExtent);
@@ -168,16 +170,15 @@ constexpr float correctionPercent = 0.5f;
 auto CollisionHandler::resolveCollision(Manifold& contact) const -> void {
     using AnimeDefendersEngine::Math::Vector2f;
 
-    Vector2f relativeVelocity = contact.bodyB->getVelocity() - contact.bodyA->getVelocity();
-    float relativeVelocityProjection = relativeVelocity * contact.normal;
+    const auto relativeVelocity = contact.bodyB->getVelocity() - contact.bodyA->getVelocity();
+    const auto relativeVelocityProjection = relativeVelocity * contact.normal;
     if (relativeVelocityProjection > 0) return;
 
-    float impulseMagnitude = -relativeVelocityProjection;
+    const auto impulseMagnitude = -2 * relativeVelocityProjection / (contact.bodyA->getInverseMass() + contact.bodyB->getInverseMass());
     Vector2f impulse = impulseMagnitude * contact.normal;
 
-    contact.bodyA->setVelocity(contact.bodyA->getVelocity() - impulse);
-    contact.bodyB->setVelocity(contact.bodyB->getVelocity() + impulse);
+    contact.bodyA->setVelocity(contact.bodyA->getVelocity() - contact.bodyA->getInverseMass() * impulse);
+    contact.bodyB->setVelocity(contact.bodyB->getVelocity() + contact.bodyB->getInverseMass() * impulse);
 
-    contact.bodyA->setPosition(contact.bodyA->getPosition() - correctionPercent * contact.penetration * contact.normal);
-    contact.bodyB->setPosition(contact.bodyB->getPosition() + correctionPercent * contact.penetration * contact.normal);
+    contact.correctPositions();
 }

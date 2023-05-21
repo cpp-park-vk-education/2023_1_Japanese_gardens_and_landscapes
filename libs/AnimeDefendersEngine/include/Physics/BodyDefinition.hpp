@@ -21,8 +21,8 @@ namespace AnimeDefendersEngine::Physics {
 
     struct BodyDefinition {
         BodyDefinition() = default;
-        BodyDefinition(size_t id, std::unique_ptr<Shape>&& shape, BodyType bodyType, Transform transform, const Math::Vector2f& velocity,
-                       float mass, size_t layers, const Math::Vector2f& force, bool isTrigger);
+        BodyDefinition(std::string id, std::unique_ptr<Shape>&& shape, BodyType bodyType, Transform transform,
+                       const Math::Vector2f& velocity, float mass, size_t layers, const Math::Vector2f& force, bool isTrigger);
 
         BodyDefinition(BodyDefinition&& other);
         BodyDefinition(const BodyDefinition& other) = delete;
@@ -32,7 +32,7 @@ namespace AnimeDefendersEngine::Physics {
 
         ~BodyDefinition() = default;
 
-        size_t id{0};
+        std::string id{};
         BodyType bodyType{BodyType::dynamicBody};
         bool isTrigger{false};
 

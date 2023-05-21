@@ -11,10 +11,13 @@ namespace AnimeDefendersEngine::Physics {
         rectangle
     };
 
+    /// \details Статическая переменная в этом классе используется обработчиком коллизий (это размер массива функций обработки)
     class Shape {
      public:
-        virtual ~Shape();
+        virtual ~Shape() = default;
         auto getType() const -> ShapeType;
+
+     public:
         static constexpr int shapeCount = 2;
 
      protected:
@@ -29,7 +32,7 @@ namespace AnimeDefendersEngine::Physics {
 
     class Rectangle : public Shape {
      public:
-        explicit Rectangle(const Math::Vector2f& size);
+        explicit Rectangle(Math::Vector2f size);
         Math::Vector2f size;
     };
 
