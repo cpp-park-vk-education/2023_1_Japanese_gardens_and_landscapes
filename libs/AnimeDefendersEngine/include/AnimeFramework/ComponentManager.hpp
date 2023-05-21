@@ -4,6 +4,7 @@
 #include "MemoryMaster.hpp"
 
 #include <iostream>
+#include <set>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
@@ -21,13 +22,7 @@ namespace AnimeDefendersEngine {
         using ComponentsContainer = std::unordered_map<std::string, Component*>;
 
      public:
-        ComponentManager() = default;
-
-        ComponentManager(const ComponentManager&) = delete;
-        ComponentManager(ComponentManager&&) = delete;
-
-        auto operator=(const ComponentManager&) -> ComponentManager& = delete;
-        auto operator=(ComponentManager&&) -> ComponentManager& = delete;
+        explicit ComponentManager(std::size_t id) : m_id{id} {}
 
         /**
          * @brief
@@ -35,8 +30,8 @@ namespace AnimeDefendersEngine {
          */
         template <std::derived_from<Component> T>
         [[nodiscard]] auto getComponents() -> ComponentsContainer& {
-            static std::unordered_map<ComponentManager*, ComponentsContainer> components;
-            return components[this];
+            static std::unordered_map<std::size_t, ComponentsContainer> components;
+            return components[m_id];
         }
 
         template <std::derived_from<Component> T>
@@ -49,11 +44,11 @@ namespace AnimeDefendersEngine {
         template <std::derived_from<Component> T>
         auto deleteComponent(Component* component) -> void {
             auto& components = getComponents<T>();
-
-            if (components.contains(component->getEntityId()) && components[component->getEntityId()] == component) {
-                components.erase(component->getEntityId());
-            }
+            components.erase(component->getEntityId());
         }
+
+     private:
+        std::size_t m_id{};
     };
 
 }  // namespace AnimeDefendersEngine
