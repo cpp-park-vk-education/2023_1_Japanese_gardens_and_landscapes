@@ -16,7 +16,7 @@ namespace AnimeDefendersEngine {
         template <typename T>
         struct Vector2 {
             explicit Vector2(T val1 = T{}, T val2 = T{});
-            auto norm() -> T&;
+            auto norm() const -> T&;
             T x;
             T y;
 

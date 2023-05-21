@@ -7,15 +7,20 @@
 #include <iostream>
 #include <memory>
 
-using namespace AnimeDefendersEngine::Physics;
+namespace AnimeDefendersEngine::Physics {
 
-PhysicsWorld::PhysicsWorld(std::unique_ptr<CollisionHandler>&& collisionHandler, float fixedDeltaTime, float maxDeltaTime)
-    : m_collisionHandler(std::move(collisionHandler)), m_fixedDeltaTime(fixedDeltaTime), m_maxDeltaTime(maxDeltaTime), m_accumulator(0) {}
+    PhysicsWorld::PhysicsWorld(std::unique_ptr<CollisionHandler>&& collisionHandler, float fixedDeltaTime, float maxDeltaTime)
+        : m_collisionHandler(std::move(collisionHandler)),
+          m_fixedDeltaTime(fixedDeltaTime),
+          m_maxDeltaTime(maxDeltaTime),
+          m_accumulator(0) {}
 
-auto PhysicsWorld::setFixedDeltaTime(float fixedDeltaTime) -> void {}
+    auto PhysicsWorld::setFixedDeltaTime(float fixedDeltaTime) -> void {}
 
-auto PhysicsWorld::update(float deltaTime) -> void {}
+    auto PhysicsWorld::update(float deltaTime) -> void {}
 
-auto PhysicsWorld::addBody(BodyDefinition&& bodyDefinition) -> Body* {}
+    auto PhysicsWorld::addBody(BodyDefinition&& bodyDefinition) -> Body* {}
 
-auto PhysicsWorld::fixedUpdate() -> void {}
+    auto PhysicsWorld::fixedUpdate() -> void {}
+
+}  // namespace AnimeDefendersEngine::Physics

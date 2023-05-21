@@ -13,11 +13,11 @@ namespace AnimeDefendersEngine::Physics {
     };
 
     struct Transform {
-        Transform(Math::Vector2f position = Math::Vector2f()) : position(position){};
+        Transform(Math::Vector2f position = Math::Vector2f{}) : position(position){};
         Math::Vector2f position;
     };
 
-    constexpr float defaultMass = 1.0f;
+    constexpr float defaultMass = 1.f;
 
     struct BodyDefinition {
         BodyDefinition() = default;
