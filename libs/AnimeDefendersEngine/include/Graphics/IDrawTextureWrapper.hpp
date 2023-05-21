@@ -1,13 +1,16 @@
 #pragma once
 
-#include "FileSystem.hpp"
+#include "Color.hpp"
+#include "Matrix2d.hpp"
+#include "Texture.hpp"
 
 namespace AnimeDefendersEngine {
     namespace Graphics {
 
         class IDrawTextureWrapper {
          public:
-            virtual auto drawTexture(const FileSystem::Image&) -> void = 0;
+            virtual auto loadTexture(const Math::Matrix2d<Color>&) const -> Texture = 0;
+            virtual auto drawTexture(const Texture&) const -> void = 0;
         };
 
     }  // namespace Graphics
