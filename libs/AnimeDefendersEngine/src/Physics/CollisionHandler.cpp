@@ -172,7 +172,10 @@ auto CollisionHandler::resolveCollision(Manifold& contact) const -> void {
 
     const auto relativeVelocity = contact.bodyB->getVelocity() - contact.bodyA->getVelocity();
     const auto relativeVelocityProjection = relativeVelocity * contact.normal;
-    if (relativeVelocityProjection > 0) return;
+
+    if (relativeVelocityProjection > 0) {
+        return;
+    }
 
     const auto impulseMagnitude = -2 * relativeVelocityProjection / (contact.bodyA->getInverseMass() + contact.bodyB->getInverseMass());
     Vector2f impulse = impulseMagnitude * contact.normal;

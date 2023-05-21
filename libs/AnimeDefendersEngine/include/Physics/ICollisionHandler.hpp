@@ -27,7 +27,7 @@ namespace AnimeDefendersEngine::Physics {
         virtual auto hasCollision(Body* bodyA, Body* bodyB) const -> bool = 0;
         virtual auto specifyCollision(Manifold& contact) const -> void = 0;
         virtual auto resolveCollision(Manifold& contact) const -> void = 0;
-        virtual ~ICollisionHandler(){};
+        virtual ~ICollisionHandler() = default;
     };
 
 }  // namespace AnimeDefendersEngine::Physics

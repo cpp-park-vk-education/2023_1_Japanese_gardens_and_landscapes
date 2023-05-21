@@ -6,12 +6,13 @@
 namespace AnimeDefendersEngine::Physics {
 
     struct Manifold {
-        explicit Manifold(Body* bodyA, Body* bodyB);
+        Manifold(Body* bodyA, Body* bodyB);
         Manifold() = default;
 
         auto correctPositions() -> void;
-        Body* bodyA;
-        Body* bodyB;
+
+        Body* bodyA{nullptr};
+        Body* bodyB{nullptr};
         float penetration{0};
         Math::Vector2f normal;
     };

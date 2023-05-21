@@ -15,11 +15,11 @@ auto Body::applyImpulse(const Math::Vector2f& velocity) noexcept -> void {
 }
 
 auto Body::integrateForce(float deltaTime) noexcept -> void {
-    m_velocity = m_velocity + deltaTime * m_force;
+    m_velocity = m_velocity + (deltaTime * m_force);
 }
 
 auto Body::integrateVelocity(float deltaTime) noexcept -> void {
-    m_transform.position = m_transform.position + deltaTime * m_velocity;
+    m_transform.position = m_transform.position + (deltaTime * m_velocity);
 }
 
 auto Body::getPosition() const noexcept -> Math::Vector2f {
@@ -58,7 +58,7 @@ auto Body::getShapeType() const noexcept -> ShapeType {
     return m_shape->getType();
 }
 
-auto Body::getID() const noexcept -> std::string {
+auto Body::getID() const noexcept -> const std::string& {
     return m_id;
 }
 

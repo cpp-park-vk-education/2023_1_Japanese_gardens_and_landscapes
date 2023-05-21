@@ -9,7 +9,7 @@ constexpr float tolerance = 0.05f;
 
 auto Manifold::correctPositions() -> void {
     const auto correction =
-        correctionPercent * std::max(penetration - tolerance, 0.0f) / (bodyA->getInverseMass() + bodyB->getInverseMass()) * normal;
+        correctionPercent * std::max(penetration - tolerance, 0.f) / (bodyA->getInverseMass() + bodyB->getInverseMass()) * normal;
     bodyA->setPosition(bodyA->getPosition() - correctionPercent * bodyA->getInverseMass() * correction);
     bodyB->setPosition(bodyB->getPosition() + correctionPercent * bodyB->getInverseMass() * correction);
 }
