@@ -79,11 +79,6 @@ jobs:
           gcc: true
           cmake: true
 
-      #- name: Merge in main
-      #  run: |
-      #    git checkout main
-      #    git merge ${GITHUB_REF##*/}
-
       - name: Build
         run: |
           cmake -DDEBUG=ON . -B build 
@@ -104,10 +99,6 @@ jobs:
       
       - uses: snickerbockers/submodules-init@v4
 
-      #- name: Merge in main
-      #  run: |
-      #    git checkout main
-      #    git merge ${GITHUB_REF##*/}
 
       - name: Build
         run: |
@@ -125,11 +116,6 @@ jobs:
         with:
           gcc: true
           cmake: true
-          
-      #- name: Merge in main
-      #  run: |
-      #    git checkout main
-      #    git merge ${GITHUB_REF##*/}
 
       - uses: snickerbockers/submodules-init@v4
       - name: Run tests
@@ -156,11 +142,6 @@ jobs:
         run: | 
           sudo apt-get update -y
           sudo apt-get install -y valgrind  
-      
-      #- name: Merge in main
-      #  run: |
-      #    git checkout main
-      #    git merge ${GITHUB_REF##*/}
 
       - name: Run valgrind
         run: |
@@ -183,11 +164,6 @@ jobs:
           cmake: true
           gcovr: true
 
-      #- name: Merge in main
-      #  run: |
-      #    git checkout main
-      #    git merge ${GITHUB_REF##*/}
-
       - name: Run tests
         run: |
           cmake -DDEBUG=ON -DENABLE_COVERAGE=ON . -B build 
@@ -206,23 +182,23 @@ jobs:
           name: Code_coverage_report
           path: coverage_report 
               
-      #- name: Code Coverage Report
-      #  uses: irongut/CodeCoverageSummary@v1.3.0
-      #  with:
-      #    filename: ./coverage_report/coverage.xml
-      #    badge: true
-      #    fail_below_min: false
-      #    format: markdown
-      #    hide_branch_rate: false
-      #    hide_complexity: false
-      #    indicators: true
-      #    output: both
-      #    thresholds: '70 90'
+      - name: Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: ./coverage_report/coverage.xml
+          badge: true
+          fail_below_min: false
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: false
+          indicators: true
+          output: both
+          thresholds: '70 90'
 
-      #- uses: jwalton/gh-find-current-pr@v1
-      #  id: finder
-      #- uses: marocchino/sticky-pull-request-comment@v2
-      #  with:
-      #    number: ${{ steps.finder.outputs.pr }}
-      #    recreate: true
-      #    path: code-coverage-results.md
+      - uses: jwalton/gh-find-current-pr@v1
+        id: finder
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          number: ${{ steps.finder.outputs.pr }}
+          recreate: true
+          path: code-coverage-results.md
