@@ -14,23 +14,24 @@ auto Physics::PhysicsSystem::updateSystem(SceneManager& sceneManager, float fixe
     using AnimeDefendersEngine::Math::Vector2f;
 
     ComponentManager& componentManager = sceneManager.getActiveScene().getComponentManager();
-    auto colliders = componentManager.getComponents<Collider2DComponent>();
+    auto components = componentManager.getComponents<Collider2DComponent>();
 
     std::vector<Physics::Body*> bodies;
-    bodies.reserve(colliders.size());
-    for (auto collider : colliders) {
+    bodies.reserve(components.size());
+    for (auto component : components) {
+        auto collider = static_cast<Collider2DComponent*>(component.second);
         Physics::BodyDefinition bodyDef;
-        bodyDef.id = collider.second->getEntityId();
-        bodyDef.shape = std::make_unique<Physics::Rectangle>(collider.second->size);
-        bodyDef.transform.position = collider.second->transformComponent.position;
+        bodyDef.id = collider->getEntityId();
+        bodyDef.shape = std::make_unique<Physics::Rectangle>(collider->size);
+        bodyDef.transform.position = collider->transformComponent.position;
 
         Physics::Body* body = m_physicsWorld.addBody(std::move(bodyDef));
 
-        if (collider.second->rigidBody2DComponent == nullptr) {
+        if (collider->rigidBody2DComponent == nullptr) {
             body->setType(Physics::BodyType::staticBody);
         } else {
             body->setType(Physics::BodyType::dynamicBody);
-            body->applyImpulse(collider.second->rigidBody2DComponent.velocity);
+            body->applyImpulse(collider->rigidBody2DComponent->velocity);
         }
 
         bodies.push_back(body);
@@ -40,7 +41,7 @@ auto Physics::PhysicsSystem::updateSystem(SceneManager& sceneManager, float fixe
     m_physicsWorld.fixedUpdate();
 
     for (auto body : bodies) {
-        colliders.at(body->getID()).transformComponent.position = body->getPosition();
+        static_cast<Collider2DComponent*>(components.at(body->getID()))->transformComponent.position = body->getPosition();
     }
 }
 
