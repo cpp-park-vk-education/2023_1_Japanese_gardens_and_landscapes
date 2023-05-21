@@ -90,7 +90,9 @@ namespace AnimeDefendersEngine::Physics {
     }  // namespace
 
     auto CollisionHandler::hasCollision(Body* bodyA, Body* bodyB) const -> bool {
-        return hasCollisionTypes[static_cast<int>(bodyA->getShapeType())][static_cast<int>(bodyB->getShapeType())](bodyA, bodyB);
+        const auto typeA = static_cast<int>(bodyA->getShapeType());
+        const auto typeB = static_cast<int>(bodyB->getShapeType());
+        return hasCollisionTypes[typeA][typeB](bodyA, bodyB);
     }
 
     namespace {
@@ -128,6 +130,8 @@ namespace AnimeDefendersEngine::Physics {
         }
 
         auto specifyCollisionRectangleRectangle(Manifold& contact) -> void {
+            using AnimeDefendersEngine::Math::Vector2f;
+
             const auto rectangleA = dynamic_cast<Rectangle*>(contact.bodyA->getShape());
             const auto rectangleB = dynamic_cast<Rectangle*>(contact.bodyB->getShape());
 
@@ -136,18 +140,10 @@ namespace AnimeDefendersEngine::Physics {
             const auto yOverlap = (rectangleA->size.y + rectangleB->size.y) / 2 - std::abs(direction.y);
 
             if (xOverlap < yOverlap) {
-                if (direction.x < 0) {
-                    contact.normal = AnimeDefendersEngine::Math::Vector2f(-1, 0);
-                } else {
-                    contact.normal = AnimeDefendersEngine::Math::Vector2f(1, 0);
-                }
+                contact.normal = direction.x * Vector2f(1, 0);
                 contact.penetration = xOverlap;
             } else {
-                if (direction.y < 0) {
-                    contact.normal = AnimeDefendersEngine::Math::Vector2f(0, -1);
-                } else {
-                    contact.normal = AnimeDefendersEngine::Math::Vector2f(0, 1);
-                }
+                contact.normal = direction.y * Vector2f(0, 1);
                 contact.penetration = yOverlap;
             }
         }
@@ -162,13 +158,9 @@ namespace AnimeDefendersEngine::Physics {
     }  // namespace
 
     auto CollisionHandler::specifyCollision(Manifold& contact) const -> void {
-        specifyCollisionTypes
-
-            [static_cast<int>(contact.bodyA->getShapeType())]
-
-            [static_cast<int>(contact.bodyB->getShapeType())]
-
-            (contact);
+        const auto typeA = static_cast<int>(contact.bodyA->getShapeType());
+        const auto typeB = static_cast<int>(contact.bodyB->getShapeType());
+        specifyCollisionTypes[typeA][typeB](contact);
     };
 
     namespace {
