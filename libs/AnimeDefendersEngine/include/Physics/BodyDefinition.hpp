@@ -1,8 +1,9 @@
 #pragma once
 
-#include <memory>
 #include "Shape.hpp"
 #include "Vector2.hpp"
+
+#include <memory>
 
 namespace AnimeDefendersEngine::Physics {
 
@@ -16,10 +17,12 @@ namespace AnimeDefendersEngine::Physics {
         Math::Vector2f position;
     };
 
+    constexpr float defaultMass = 1.0f;
+
     struct BodyDefinition {
         BodyDefinition() = default;
         BodyDefinition(size_t id, std::unique_ptr<Shape>&& shape, BodyType bodyType, Transform transform, const Math::Vector2f& velocity,
-                       size_t layers, const Math::Vector2f& force, bool isTrigger);
+                       float mass, size_t layers, const Math::Vector2f& force, bool isTrigger);
 
         BodyDefinition(BodyDefinition&& other);
         BodyDefinition(const BodyDefinition& other) = delete;
@@ -36,6 +39,7 @@ namespace AnimeDefendersEngine::Physics {
         std::unique_ptr<Shape> shape;
         Transform transform;
         Math::Vector2f velocity;
+        float mass{defaultMass};
         Math::Vector2f force;
 
         size_t layers{0};
