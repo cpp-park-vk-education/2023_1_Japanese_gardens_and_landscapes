@@ -6,7 +6,7 @@
 namespace AnimeDefendersEngine::Graphics {
 
     Window::Window(int windowWidth, int windowHeidth, const std::string& windowTitle)
-        : m_windowWidth(windowWidth), m_windowHeidth(windowHeidth) {
+        : m_windowWidth(windowWidth), m_windowHeidth(windowHeidth) noexcept {
         int argc{};
         glutInit(&argc, nullptr);
         glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
@@ -19,25 +19,25 @@ namespace AnimeDefendersEngine::Graphics {
         glMatrixMode(GL_MODELVIEW);
     }
 
-    Window::~Window() {
+    Window::~Window() noexcept {
         glutDestroyWindow(m_windowId);
     }
 
-    auto Window::updateFrame() const -> void {
+    auto Window::updateFrame() const noexcept -> void {
         glutReshapeWindow(m_windowWidth, m_windowHeidth);
         glutSwapBuffers();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
-    auto Window::setWindowMouseHandler(void (*handler)(int, int, int, int)) const -> void {
+    auto Window::setWindowMouseHandler(void (*handler)(int, int, int, int)) const noexcept -> void {
         glutMouseFunc(handler);
     }
 
-    auto Window::setWindowMotionHandler(void (*handler)(int, int)) const -> void {
+    auto Window::setWindowMotionHandler(void (*handler)(int, int)) const noexcept -> void {
         glutMotionFunc(handler);
     }
 
-    auto Window::setWindowKeyboardHandler(void (*handler)(unsigned char, int, int)) const -> void {
+    auto Window::setWindowKeyboardHandler(void (*handler)(unsigned char, int, int)) const noexcept -> void {
         glutKeyboardFunc(handler);
     }
 
