@@ -1,34 +1,48 @@
 #pragma once
 
-#include <memory>
-
 #include "Shape.hpp"
 #include "Vector2.hpp"
 
-namespace AnimeDefendersEngine {
-    namespace Physics {
+#include <memory>
 
-        enum class BodyType {
-            staticBody,
-            dynamicBody
-        };
+namespace AnimeDefendersEngine::Physics {
 
-        struct Transform {
-            Math::Vector2<float> position;
-        };
+    enum class BodyType {
+        dynamicBody,
+        staticBody
+    };
 
-        struct BodyDefinition {
-            size_t id;
-            std::unique_ptr<Shape> shapeUPtr;
-            BodyType bodyType;
-            Transform transform;
-            Math::Vector2<float> velocity;
-            size_t layers;
-            Math::Vector2<float> force;
-            bool isTrigger;
-            BodyDefinition(size_t id, std::unique_ptr<Shape>&& shapeUPtr, BodyType bodyType, Transform transform,
-                           Math::Vector2<float> velocity, size_t layers, Math::Vector2<float> force, bool isTrigger);
-            BodyDefinition(BodyDefinition&& bodyDefinition);
-        };
-    }  // namespace Physics
-}  // namespace AnimeDefendersEngine
+    struct Transform {
+        Transform(Math::Vector2f position = Math::Vector2f{}) : position(position){};
+        Math::Vector2f position;
+    };
+
+    constexpr float defaultMass = 1.f;
+
+    struct BodyDefinition {
+        BodyDefinition() = default;
+        BodyDefinition(std::string id, std::unique_ptr<Shape> shape, BodyType bodyType, Transform transform, const Math::Vector2f& velocity,
+                       float mass, std::size_t layers, const Math::Vector2f& force, bool isTrigger);
+
+        BodyDefinition(BodyDefinition&& other) = default;
+        BodyDefinition(const BodyDefinition& other) = delete;
+
+        BodyDefinition& operator=(const BodyDefinition& other) = delete;
+        BodyDefinition& operator=(BodyDefinition&& other) = delete;
+
+        ~BodyDefinition() = default;
+
+        std::string id;
+        BodyType bodyType{BodyType::dynamicBody};
+        bool isTrigger{false};
+
+        std::unique_ptr<Shape> shape;
+        Transform transform;
+        Math::Vector2f velocity;
+        float mass{defaultMass};
+        Math::Vector2f force;
+
+        std::size_t layers{0};
+    };
+
+}  // namespace AnimeDefendersEngine::Physics
