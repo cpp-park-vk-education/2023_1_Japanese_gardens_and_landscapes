@@ -95,6 +95,7 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Graphics/Renderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger/Logger.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Graph.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Vector2.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenAlDependency/AudioPlayWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
@@ -103,6 +104,7 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Body.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/BodyDefinition.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/CollisionHandler.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Manifold.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/PhysicsSystem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/PhysicsWorld.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Shape.cpp
@@ -135,7 +137,6 @@ if(ENABLE_CLANG_TIDY AND NOT ENABLE_TESTING AND NOT ENABLE_COVERAGE)
         ${clang_tidy_includes}
         -std=c++20
     )
-    
 endif()
 
 if(ENABLE_CLANG_FORMAT)
