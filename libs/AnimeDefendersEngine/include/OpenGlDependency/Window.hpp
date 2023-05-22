@@ -6,7 +6,7 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    class Window : public IWindow {
+    class Window final : public IWindow {
      public:
         Window(int, int, const std::string&);
         ~Window();
