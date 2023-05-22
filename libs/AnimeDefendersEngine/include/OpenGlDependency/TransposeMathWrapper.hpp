@@ -6,8 +6,8 @@ namespace AnimeDefendersEngine::Graphics {
 
     class TransposeMathWrapper final : public ITransposeMathWrapper {
      public:
-        auto applyTransposeMatrix(const Transpose*) const -> void override;
-        auto dropLastMatrix() const -> void override;
+        auto applyTransposeMatrix(const Transpose*) const noexcept -> void override;
+        auto dropLastMatrix() const noexcept -> void override;
     };
 
 }  // namespace AnimeDefendersEngine::Graphics
