@@ -24,12 +24,16 @@ namespace AnimeDefendersEngine::Graphics {
             nextCamera = static_cast<Camera*>(nextCompenent);
 
             if (nextCamera->isCameraActive()) {
-                assert(!activeCamera);
+                if (activeCamera) {
+                    throw std::runtime_error("Active camera must be the only one!");
+                }
                 activeCamera = nextCamera;
             }
         }
 
-        assert(activeCamera);
+        if (!activeCamera) {
+            throw std::runtime_error("One of all cameras must be active!");
+        }
 
         activeCamera->determineNewCameraTransform();
         activeCamera->applyCameraView();
