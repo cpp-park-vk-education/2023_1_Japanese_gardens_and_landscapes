@@ -1,23 +1,27 @@
 name: CI
 
 on:
-  push: 
+  push:
     branches:
-      - '*'
-      - '*/*'
-      - '**' 
-      - '!main'
+      - "*"
+      - "*/*"
+      - "**"
+      - "!main"
 
 env:
   BUILD_TYPE: Debug
 
 jobs:    
+jobs:    
+
+jobs:
 
   cppcheck:
     runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
+      - uses: openrndr/setup-opengl@v1.1
 
       - name: Install cppcheck
         uses: aminya/setup-cpp@v1
@@ -26,15 +30,16 @@ jobs:
           cmake: true
 
       - name: Run cppcheck
-        run: | 
+        run: |
           cmake -DENABLE_CPPCHECK=ON . -B build
           cmake --build build -t CPPCHECK_TARGET
-  
+
   clang-tidy:
     runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
+      - uses: openrndr/setup-opengl@v1.1
 
       - name: Install clang-tidy
         uses: aminya/setup-cpp@v1
@@ -44,7 +49,7 @@ jobs:
           cmake: true
 
       - name: Run clang-tidy
-        run: | 
+        run: |
           cmake -DENABLE_CLANG_TIDY=ON . -B build
           cmake --build build -t TIDY_TARGET
 
@@ -53,6 +58,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: openrndr/setup-opengl@v1.1
 
       - name: Install clang-tidy
         uses: aminya/setup-cpp@v1
@@ -62,16 +68,17 @@ jobs:
           cmake: true
 
       - name: Run clang-format
-        run: | 
+        run: |
           cmake -DENABLE_CLANG_FORMAT=ON . -B build
           cmake --build build -t FORMAT_CHECK_TARGET
 
   build:
-    needs: [ cppcheck, clang-tidy, clang-format ]
+    needs: [cppcheck, clang-tidy, clang-format]
     runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
+      - uses: openrndr/setup-opengl@v1.1
 
       - name: Install cmake
         uses: aminya/setup-cpp@v1
@@ -83,22 +90,22 @@ jobs:
         run: |
           cmake -DDEBUG=ON . -B build 
           cmake --build build -t EXE_TARGET
-      
+
   tests:
-    needs: [ build ]
+    needs: [build]
     runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
+      - uses: openrndr/setup-opengl@v1.1
 
       - name: Install cmake
         uses: aminya/setup-cpp@v1
         with:
           gcc: true
           cmake: true
-      
-      - uses: snickerbockers/submodules-init@v4
 
+      - uses: snickerbockers/submodules-init@v4
 
       - name: Build
         run: |
@@ -106,11 +113,13 @@ jobs:
           cmake --build build -t TESTS_TARGET
 
   test_with_sanitizers:
-    needs: [ tests ]
+    needs: [tests]
     runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
+      - uses: openrndr/setup-opengl@v1.1
+
       - name: Install cmake
         uses: aminya/setup-cpp@v1
         with:
@@ -121,14 +130,15 @@ jobs:
       - name: Run tests
         run: |
           cmake -DDEBUG=ON -DENABLE_TESTING=ON -DENABLE_SANITIZERS=ON . -B build 
-          cmake --build build -t TESTS_TARGET 
+          cmake --build build -t TESTS_TARGET
 
   test_with_valgrind:
-    needs: [ tests ]  
+    needs: [tests]
     runs-on: ubuntu-22.04
-    
+
     steps:
       - uses: actions/checkout@v3
+      - uses: openrndr/setup-opengl@v1.1
 
       - name: Install cmake
         uses: aminya/setup-cpp@v1
@@ -139,9 +149,9 @@ jobs:
       - uses: snickerbockers/submodules-init@v4
 
       - name: Install valgrind # Я не нашёл сценария который подгружает valgrind :(
-        run: | 
+        run: |
           sudo apt-get update -y
-          sudo apt-get install -y valgrind  
+          sudo apt-get install -y valgrind
 
       - name: Run valgrind
         run: |
@@ -149,13 +159,14 @@ jobs:
           cmake --build build -t VALGRIND_TARGET
 
   coverage_report:
-    needs: [ tests ]  
+    needs: [tests]
     runs-on: ubuntu-22.04
 
     permissions: write-all
 
     steps:
       - uses: actions/checkout@v3
+      - uses: openrndr/setup-opengl@v1.1
       - uses: snickerbockers/submodules-init@v4
 
       - name: Install cmake
@@ -173,7 +184,7 @@ jobs:
         run: |
           mkdir -p coverage_report
           gcovr --exclude "googletest|tests|src/main.cpp" --exclude-throw-branches --xml ./coverage_report/coverage.xml
-      
+
       - name: Generate coverage report for PR comment
         run: gcovr --exclude "googletest|tests|src/main.cpp" --exclude-throw-branches --html-details coverage_report/main.html
 
@@ -193,7 +204,7 @@ jobs:
           hide_complexity: false
           indicators: true
           output: both
-          thresholds: '70 90'
+          thresholds: "70 90"
 
       - uses: jwalton/gh-find-current-pr@v1
         id: finder
