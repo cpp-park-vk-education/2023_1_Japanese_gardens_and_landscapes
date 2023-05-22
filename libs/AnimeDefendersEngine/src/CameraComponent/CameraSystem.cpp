@@ -1,9 +1,9 @@
 #include "CameraSystem.hpp"
 
-using namespace AnimeDefendersEngine::Graphics;
+namespace AnimeDefendersEngine::Graphics::CameraSystem {
 
-auto CameraSystem::updateSystem(ComponentManager&) -> void {}
+    auto applyCameraView(const Camera* camera) -> void {
+        transposeMathWrapper.applyTransposeMatrix(camera->getCameraTranspose());
+    }
 
-auto CameraSystem::applyCameraView(const Camera* camera) -> void {
-    transposeMathWrapper.applyTransposeMatrix(camera->getCameraTranspose());
-}
+}  // namespace AnimeDefendersEngine::Graphics::CameraSystem
