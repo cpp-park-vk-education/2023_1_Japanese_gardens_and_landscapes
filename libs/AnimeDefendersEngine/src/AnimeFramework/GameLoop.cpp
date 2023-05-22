@@ -9,5 +9,3 @@ using namespace AnimeDefendersEngine;
 void GameLoop::run() {}
 
 void GameLoop::setSystemManager(std::unique_ptr<ISystemManager>) {}
-
-void GameLoop::setEventManager(std::unique_ptr<EventManager>) {}
