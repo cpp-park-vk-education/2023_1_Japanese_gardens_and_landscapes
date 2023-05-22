@@ -12,21 +12,21 @@ namespace AnimeDefendersEngine::Graphics {
 
     class Sprite final : public Component {
      public:
-        Sprite(Transpose, Texture*, Animation*);
+        Sprite(Transpose*, Texture*, Animation*) noexcept;
 
         [[nodiscard]] auto isSpriteVisibleToCamera(Camera*) const -> bool;
         auto drawSprite() const noexcept -> void;
 
-        auto setTranspose(Transpose) -> void;
-        auto setTexture(Texture*) -> void;
-        auto setAnimation(Animation*) -> void;
+        auto setTranspose(Transpose*) noexcept -> void;
+        auto setTexture(Texture*) noexcept -> void;
+        auto setAnimation(Animation*) noexcept -> void;
 
-        [[nodiscard]] auto getTranspose() const -> Transpose;
-        [[nodiscard]] auto getTexture() const -> Texture*;
-        [[nodiscard]] auto getAnimation() const -> Animation*;
+        [[nodiscard]] auto getTranspose() const noexcept -> Transpose*;
+        [[nodiscard]] auto getTexture() const noexcept -> Texture*;
+        [[nodiscard]] auto getAnimation() const noexcept -> Animation*;
 
      private:
-        Transpose m_transpose;
+        Transpose* m_transpose;
         Texture* m_texture;
         Animation* m_animation;
     };

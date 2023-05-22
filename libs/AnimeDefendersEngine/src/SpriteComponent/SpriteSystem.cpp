@@ -7,7 +7,7 @@ namespace AnimeDefendersEngine::Graphics::SpriteSystem {
     }
 
     auto drawSprite(const Sprite* sprite) const noexcept -> void {
-        Transpose transpose = sprite->getTranspose();
+        Transpose* transpose = sprite->getTranspose();
         Animation* animation = sprite->getAnimation();
         Texture* texture = sprite->getTexture();
 
