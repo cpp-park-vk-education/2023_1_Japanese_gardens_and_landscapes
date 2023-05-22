@@ -14,16 +14,16 @@ namespace AnimeDefendersEngine::Graphics {
      public:
         Sprite(Transpose, Texture*, Animation*);
 
-        auto isSpriteVisibleToCamera(Camera*) const -> bool;
-        auto drawSprite() const -> void;
+        [[nodiscard]] auto isSpriteVisibleToCamera(Camera*) const -> bool;
+        auto drawSprite() const noexcept -> void;
 
         auto setTranspose(Transpose) -> void;
         auto setTexture(Texture*) -> void;
         auto setAnimation(Animation*) -> void;
 
-        auto getTranspose() const -> Transpose;
-        auto getTexture() const -> Texture*;
-        auto getAnimation() const -> Animation*;
+        [[nodiscard]] auto getTranspose() const -> Transpose;
+        [[nodiscard]] auto getTexture() const -> Texture*;
+        [[nodiscard]] auto getAnimation() const -> Animation*;
 
      private:
         Transpose m_transpose;

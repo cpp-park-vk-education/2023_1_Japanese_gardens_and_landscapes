@@ -6,7 +6,7 @@ namespace AnimeDefendersEngine::Graphics {
     Sprite::Sprite(Transpose transpose = Transpose{}, Texture* texture = nullptr, Animation* animation = nullptr)
         : m_transpose(transpose), m_texture(texture), m_animation(animation) {}
 
-    auto Sprite::isSpriteVisibleToCamera(Camera* camera) const -> bool {
+    auto Sprite::isSpriteVisibleToCamera(Camera* camera) const noexcept -> bool {
         return SpriteSystem::isSpriteVisibleToCamera(this, camera);
     }
 
