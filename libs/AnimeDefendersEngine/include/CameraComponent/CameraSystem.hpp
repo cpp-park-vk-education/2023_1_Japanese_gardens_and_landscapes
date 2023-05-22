@@ -4,20 +4,10 @@
 #include "ISystem.hpp"
 #include "TransposeMathWrapper.hpp"
 
-namespace AnimeDefendersEngine {
-    namespace Graphics {
+namespace AnimeDefendersEngine::Graphics::CameraSystem {
 
-        class CameraSystem : public ISystem {
-         public:
-            auto updateSystem(ComponentManager&) -> void;
+    auto applyCameraView(const Camera*) -> void;
 
-            static auto applyCameraView(const Camera*) -> void;
+    constexpr TransposeMathWrapper transposeMathWrapper{};
 
-         private:
-            CameraSystem();
-
-            static constexpr TransposeMathWrapper transposeMathWrapper{};
-        };
-
-    }  // namespace Graphics
-}  // namespace AnimeDefendersEngine
+}  // namespace AnimeDefendersEngine::Graphics::CameraSystem

@@ -1,34 +1,32 @@
 #pragma once
 
 #include "Component.hpp"
-// #include "Transpose.hpp"
+#include "Transpose.hpp"
 
 #include <functional>
-typedef int Transpose;
-namespace AnimeDefendersEngine {
-    namespace Graphics {
 
-        class Camera : public Component {
-         public:
-            Camera(Transpose*, std::function<void(Transpose*)>, std::function<void(Transpose*)>, bool);
+namespace AnimeDefendersEngine::Graphics {
 
-            auto determineNewCameraTranspose() const -> void;
-            auto applyCameraView() const -> void;
+    class Camera final : public Component {
+     public:
+        Camera(Transpose*, std::function<void(Transpose*)>, std::function<void(Transpose*)>, bool);
 
-            auto setTranspose(Transpose*) -> void;
-            auto setMotionRule(std::function<void(Transpose*)>) -> void;
-            auto setExtraMotion(std::function<void(Transpose*)>) -> void;
-            auto setIsActive(bool) -> void;
+        auto determineNewCameraTranspose() const -> void;
+        auto applyCameraView() const -> void;
 
-            [[nodiscard]] auto getCameraTranspose() const -> Transpose*;
-            [[nodiscard]] auto isActive() const -> bool;
+        auto setTranspose(Transpose*) -> void;
+        auto setMotionRule(std::function<void(Transpose*)>) -> void;
+        auto setExtraMotion(std::function<void(Transpose*)>) -> void;
+        auto setIsActive(bool) -> void;
 
-         private:
-            Transpose* m_transpose;
-            std::function<void(Transpose*)> m_motionRule;
-            std::function<void(Transpose*)> m_extraMotion;
-            bool m_isActive{false};
-        };
+        [[nodiscard]] auto getCameraTranspose() const -> Transpose*;
+        [[nodiscard]] auto isActive() const -> bool;
 
-    }  // namespace Graphics
-}  // namespace AnimeDefendersEngine
+     private:
+        Transpose* m_transpose;
+        std::function<void(Transpose*)> m_motionRule;
+        std::function<void(Transpose*)> m_extraMotion;
+        bool m_isActive{false};
+    };
+
+}  // namespace AnimeDefendersEngine::Graphics
