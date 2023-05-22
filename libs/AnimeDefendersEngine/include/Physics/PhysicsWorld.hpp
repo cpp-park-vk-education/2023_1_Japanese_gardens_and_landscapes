@@ -19,9 +19,8 @@ namespace AnimeDefendersEngine::Physics {
 
     class PhysicsWorld {
      public:
-        explicit PhysicsWorld(std::unique_ptr<CollisionHandler>&& collisionHandler,
-                              float fixedDeltaTime = 1.0f / defaultFixedUpdateFrequency,
-                              float maxDeltaTime = 1.0f / defaultMinUpdateFrequency);
+        PhysicsWorld(std::unique_ptr<CollisionHandler> collisionHandler, float fixedDeltaTime = 1.f / defaultFixedUpdateFrequency,
+                     float maxDeltaTime = 1.f / defaultMinUpdateFrequency);
         auto setFixedDeltaTime(float fixedDeltaTime) -> void;
         auto update(float deltaTime) -> void;
         auto fixedUpdate() -> void;

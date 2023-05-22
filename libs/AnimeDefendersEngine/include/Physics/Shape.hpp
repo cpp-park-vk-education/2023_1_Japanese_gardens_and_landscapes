@@ -24,9 +24,11 @@ namespace AnimeDefendersEngine::Physics {
         ShapeType m_type;
     };
 
+    constexpr float defaultRadius = 1.f;
+
     class Circle : public Shape {
      public:
-        explicit Circle(float radius);
+        explicit Circle(float radius = defaultRadius);
         float radius;
     };
 

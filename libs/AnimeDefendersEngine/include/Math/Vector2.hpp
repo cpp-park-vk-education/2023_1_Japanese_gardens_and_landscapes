@@ -8,7 +8,8 @@ namespace AnimeDefendersEngine {
 
         template <typename T>
         struct Vector2 {
-            explicit Vector2(T val1 = T{}, T val2 = T{}) : x(val1), y(val2) {}
+            explicit Vector2(T val1 = T{}, T val2 = T{});
+            auto norm() const -> T&;
             T x;
             T y;
 

@@ -13,18 +13,18 @@ namespace AnimeDefendersEngine::Physics {
     };
 
     struct Transform {
-        Transform(Math::Vector2f position = Math::Vector2f()) : position(position){};
+        Transform(Math::Vector2f position = Math::Vector2f{}) : position(position){};
         Math::Vector2f position;
     };
 
-    constexpr float defaultMass = 1.0f;
+    constexpr float defaultMass = 1.f;
 
     struct BodyDefinition {
         BodyDefinition() = default;
-        BodyDefinition(size_t id, std::unique_ptr<Shape>&& shape, BodyType bodyType, Transform transform, const Math::Vector2f& velocity,
-                       float mass, size_t layers, const Math::Vector2f& force, bool isTrigger);
+        BodyDefinition(std::string id, std::unique_ptr<Shape> shape, BodyType bodyType, Transform transform, const Math::Vector2f& velocity,
+                       float mass, std::size_t layers, const Math::Vector2f& force, bool isTrigger);
 
-        BodyDefinition(BodyDefinition&& other);
+        BodyDefinition(BodyDefinition&& other) = default;
         BodyDefinition(const BodyDefinition& other) = delete;
 
         BodyDefinition& operator=(const BodyDefinition& other) = delete;
@@ -32,7 +32,7 @@ namespace AnimeDefendersEngine::Physics {
 
         ~BodyDefinition() = default;
 
-        size_t id{0};
+        std::string id;
         BodyType bodyType{BodyType::dynamicBody};
         bool isTrigger{false};
 
@@ -42,7 +42,7 @@ namespace AnimeDefendersEngine::Physics {
         float mass{defaultMass};
         Math::Vector2f force;
 
-        size_t layers{0};
+        std::size_t layers{0};
     };
 
 }  // namespace AnimeDefendersEngine::Physics
