@@ -1,23 +1,25 @@
 #include "SpriteSystem.hpp"
 
-using namespace AnimeDefendersEngine::Graphics;
+namespace AnimeDefendersEngine::Graphics::SpriteSystem {
 
-auto SpriteSystem::isSpriteVisibleToCamera(const Sprite*, const Camera*) -> bool {
-    return true;
-}
-
-auto SpriteSystem::drawSprite(const Sprite* sprite) -> void {
-    Transpose transpose = sprite->getTranspose();
-    Animation* animation = sprite->getAnimation();
-    Texture* texture = sprite->getTexture();
-
-    SpriteSystem::transposeMathWrapper.applyTransposeMatrix(transpose);
-
-    if (animation) {
-        return;
+    auto isSpriteVisibleToCamera(const Sprite*, const Camera*) const -> bool {
+        return true;
     }
 
-    if (texture) {
-        SpriteSystem::drawTextureWrapper.drawTexture(texture);
+    auto drawSprite(const Sprite* sprite) -> void {
+        Transpose transpose = sprite->getTranspose();
+        Animation* animation = sprite->getAnimation();
+        Texture* texture = sprite->getTexture();
+
+        SpriteSystem::transposeMathWrapper.applyTransposeMatrix(transpose);
+
+        if (animation) {
+            return;
+        }
+
+        if (texture) {
+            SpriteSystem::drawTextureWrapper.drawTexture(texture);
+        }
     }
-}
+
+}  // namespace AnimeDefendersEngine::Graphics::SpriteSystem
