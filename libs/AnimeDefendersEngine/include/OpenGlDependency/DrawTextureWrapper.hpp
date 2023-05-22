@@ -6,8 +6,8 @@ namespace AnimeDefendersEngine::Graphics {
 
     class DrawTextureWrapper final : public IDrawTextureWrapper {
      public:
-        auto loadTexture(const Math::Matrix2d<Color>&) const -> Texture override;
-        auto drawTexture(const Texture&) const -> void override;
+        auto loadTexture(const Math::Matrix2d<Color>&) const noexcept -> Texture override;
+        auto drawTexture(const Texture&) const noexcept -> void override;
     };
 
 }  // namespace AnimeDefendersEngine::Graphics

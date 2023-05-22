@@ -4,7 +4,7 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    auto DrawTextureWrapper::loadTexture(const Math::Matrix2d<Color>& imageData) const -> Texture {
+    auto DrawTextureWrapper::loadTexture(const Math::Matrix2d<Color>& imageData) const noexcept -> Texture {
         Texture newTexture;
         glGenTextures(1, &newTexture.textureId);
         glBindTexture(GL_TEXTURE_2D, newTexture.textureId);
@@ -21,7 +21,7 @@ namespace AnimeDefendersEngine::Graphics {
         return newTexture;
     }
 
-    auto DrawTextureWrapper::drawTexture(const Texture& texture) const -> void {
+    auto DrawTextureWrapper::drawTexture(const Texture& texture) const noexcept -> void {
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, texture.textureId);
         glPushMatrix();
