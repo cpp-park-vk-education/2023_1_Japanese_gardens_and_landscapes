@@ -32,7 +32,7 @@ namespace AnimeDefendersEngine::Physics {
 
         ~BodyDefinition() = default;
 
-        std::string id{};
+        std::string id;
         BodyType bodyType{BodyType::dynamicBody};
         bool isTrigger{false};
 
