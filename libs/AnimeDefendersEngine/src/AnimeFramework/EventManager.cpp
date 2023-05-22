@@ -1,37 +1,36 @@
 #include "EventManager.hpp"
 #include <memory>
 
-using namespace AnimeDefendersEngine;
-
-auto EventManager::hasEvent(std::string eventName) -> bool {
+auto AnimeDefendersEngine::EventManager::hasEvent(std::string& eventName) -> bool {
     for (const auto& event : eventQueue) {
         if (event->getName() == eventName) {
             return true;
         }
     }
     return false;
-};
+}
 
-auto EventManager::update() -> void {
+auto AnimeDefendersEngine::EventManager::update() -> void {
     for (auto& event : eventQueue) {
         EventManager::dispatch(std::move(event));
     }
+    eventQueue.clear();
 }
 
-auto EventManager::addListener(Entity* ent, IEventListener* listener) -> void {
+auto AnimeDefendersEngine::EventManager::addListener(std::function<void()>& listener) -> void {
     eventListeners.push_back(listener);
 };
 
-auto EventManager::removeListener(Entity* ent, IEventListener* listener) -> void {
+auto AnimeDefendersEngine::EventManager::removeListener(std::function<void()>& listener) -> void {
     eventListeners.erase(std::find(eventListeners.begin(), eventListeners.end(), listener));
 };
 
-auto EventManager::addEvent(std::unique_ptr<Event>&& event) -> void {
+auto AnimeDefendersEngine::EventManager::addEvent(std::unique_ptr<Event>&& event) -> void {
     eventQueue.emplace(eventQueue.begin(), std::move(event));
 }
 
-auto EventManager::dispatch(std::unique_ptr<Event>&& event) -> void {
-    for (auto listener : eventListeners) {
-        listener->onEvent(*event);
+auto AnimeDefendersEngine::EventManager::dispatch(std::unique_ptr<Event>&& event) -> void {
+    for (const auto& listener : eventListeners) {
+        listener();
     }
 }

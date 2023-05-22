@@ -6,22 +6,17 @@
 #include <vector>
 #include "Entity.hpp"
 #include "Event.hpp"
-#include "EventListener.hpp"
 
 namespace AnimeDefendersEngine {
+    namespace EventManager {
+        auto update() -> void;
+        auto addListener(std::function<void()>& listener) -> void;
+        auto removeListener(std::function<void()>& listener) -> void;
+        auto dispatch(std::unique_ptr<Event>&& event) -> void;
+        auto addEvent(std::unique_ptr<Event>&& event) -> void;
+        auto hasEvent(std::string& eventName) -> bool;
 
-    class EventManager {
-     public:
-        static auto update() -> void;
-        static auto addListener(Entity* ent, IEventListener* listener) -> void;
-        static auto removeListener(Entity* ent, IEventListener* listener) -> void;
-        static auto dispatch(std::unique_ptr<Event>&& event) -> void;
-        static auto addEvent(std::unique_ptr<Event>&& event) -> void;
-        static auto hasEvent(std::string eventName) -> bool;
-
-     private:
-        static inline std::vector<IEventListener*> eventListeners{};
-        static inline std::vector<std::unique_ptr<Event>> eventQueue{};
-    };
-
+        std::vector<std::function<void()>> eventListeners{};
+        std::vector<std::unique_ptr<Event>> eventQueue{};
+    }  // namespace EventManager
 }  // namespace AnimeDefendersEngine
