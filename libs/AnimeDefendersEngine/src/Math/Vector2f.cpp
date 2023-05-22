@@ -10,7 +10,7 @@ auto AnimeDefendersEngine::Math::inverseSquareRoot(float number) -> float {
     return y;
 }
 
-auto AnimeDefendersEngine::Math::Vector2f::norm() -> float {
+auto AnimeDefendersEngine::Math::Vector2f::norm() const -> float {
     return 1 / inverseSquareRoot((*this) * (*this));
 }
 

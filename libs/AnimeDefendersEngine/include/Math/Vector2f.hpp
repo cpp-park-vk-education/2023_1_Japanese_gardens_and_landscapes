@@ -12,7 +12,7 @@ namespace AnimeDefendersEngine {
         */
         struct Vector2f {
             explicit Vector2f(float val1 = float{}, float val2 = float{}) : x(val1), y(val2) {}
-            auto norm() -> float;
+            auto norm() const -> float;
             float x;
             float y;
         };
