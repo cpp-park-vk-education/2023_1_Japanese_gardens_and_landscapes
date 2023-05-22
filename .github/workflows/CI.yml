@@ -10,6 +10,8 @@ on:
 
 env:
   BUILD_TYPE: Debug
+  DISPLAY: ":99" # Display number to use for the X server
+  GALLIUM_DRIVER: llvmpipe # Use Mesa 3D software OpenGL renderer
 
 jobs:    
 
@@ -17,7 +19,10 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+
+      - name: Install OpenGL
+        run: sudo apt install freeglut3-dev
 
       - name: Install cppcheck
         uses: aminya/setup-cpp@v1
@@ -36,6 +41,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install OpenGL
+        run: sudo apt install freeglut3-dev
+
       - name: Install clang-tidy
         uses: aminya/setup-cpp@v1
         with:
@@ -53,6 +61,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install OpenGL
+        run: sudo apt install freeglut3-dev
 
       - name: Install clang-tidy
         uses: aminya/setup-cpp@v1
@@ -73,6 +84,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install OpenGL
+        run: sudo apt install freeglut3-dev
+
       - name: Install cmake
         uses: aminya/setup-cpp@v1
         with:
@@ -90,6 +104,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install OpenGL
+        run: sudo apt install freeglut3-dev
 
       - name: Install cmake
         uses: aminya/setup-cpp@v1
@@ -111,6 +128,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install OpenGL
+        run: sudo apt install freeglut3-dev
+
       - name: Install cmake
         uses: aminya/setup-cpp@v1
         with:
@@ -130,6 +151,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install OpenGL
+        run: sudo apt install freeglut3-dev
+
       - name: Install cmake
         uses: aminya/setup-cpp@v1
         with:
@@ -137,6 +161,9 @@ jobs:
           cmake: true
 
       - uses: snickerbockers/submodules-init@v4
+
+      - name: Install OpenGL
+        run: sudo apt install freeglut3-dev
 
       - name: Install valgrind # Я не нашёл сценария который подгружает valgrind :(
         run: | 
@@ -157,6 +184,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: snickerbockers/submodules-init@v4
+
+      - name: Install OpenGL
+        run: sudo apt install freeglut3-dev
 
       - name: Install cmake
         uses: aminya/setup-cpp@v1
