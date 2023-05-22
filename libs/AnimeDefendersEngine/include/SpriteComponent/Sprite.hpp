@@ -1,3 +1,6 @@
+#pragma once
+
+#include "Animation.hpp"
 #include "Camera.hpp"
 #include "Component.hpp"
 #include "Texture.hpp"
