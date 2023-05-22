@@ -30,8 +30,10 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/Texture.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Logger/Logger.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Coords2d.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Coords3d.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Graph.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Matrix2d.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Transpose.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Vector2.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenAlDependency/AudioPlayWrapper.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenGlDependency/DrawTextureWrapper.hpp
