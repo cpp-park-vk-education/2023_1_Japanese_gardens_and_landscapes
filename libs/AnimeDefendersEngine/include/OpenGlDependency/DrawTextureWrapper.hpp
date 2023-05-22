@@ -6,7 +6,7 @@ namespace AnimeDefendersEngine::Graphics {
 
     class DrawTextureWrapper final : public IDrawTextureWrapper {
      public:
-        auto loadTexture(const Math::Matrix2d<Color>&) const noexcept -> Texture override;
+        [[nodiscard]] auto loadTexture(const Math::Matrix2d<Color>&) const noexcept -> Texture override;
         auto drawTexture(const Texture&) const noexcept -> void override;
     };
 
