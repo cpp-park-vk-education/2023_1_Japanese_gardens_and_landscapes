@@ -14,8 +14,13 @@ namespace AnimeDefendersEngine::Physics {
 
 namespace AnimeDefendersEngine::Physics {
 
-    constexpr float defaultFixedUpdateFrequency = 60.0f;
-    constexpr float defaultMinUpdateFrequency = 25.0f;
+    struct CollisionEvent {
+        std::pair<std::string> IDs;
+
+    }
+
+    constexpr float defaultFixedUpdateFrequency = 60.f;
+    constexpr float defaultMinUpdateFrequency = 25.f;
 
     class PhysicsWorld {
      public:
@@ -23,7 +28,7 @@ namespace AnimeDefendersEngine::Physics {
                      float maxDeltaTime = 1.f / defaultMinUpdateFrequency);
         auto setFixedDeltaTime(float fixedDeltaTime) -> void;
         auto update(float deltaTime) -> void;
-        auto fixedUpdate() -> void;
+        auto fixedUpdate() -> std::vector<CollisionEvent>;
         [[nodiscard]] auto addBody(BodyDefinition&& bodyDefinition) -> Body*;
 
      private:
