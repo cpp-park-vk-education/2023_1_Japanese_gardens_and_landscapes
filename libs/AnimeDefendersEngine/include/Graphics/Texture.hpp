@@ -1,17 +1,13 @@
 #pragma once
 
-#include "FileSystem.hpp"
-
 #include <array>
 
-namespace AnimeDefendersEngine {
-    namespace Graphics {
+namespace AnimeDefendersEngine::Graphics {
 
-        struct Texture {
-            unsigned int textureId{};
-            static constexpr std::array<float, 8> vertexCoords{-1, -1, 1, -1, 1, 1, -1, 1};
-            static constexpr std::array<float, 8> textureCoords{0, 0, 1, 0, 1, 1, 0, 1};
-        };
+    struct Texture {
+        unsigned int textureId{};
+        static constexpr std::array<float, 8> vertexCoords{-1, -1, 1, -1, 1, 1, -1, 1};
+        static constexpr std::array<float, 8> textureCoords{0, 0, 1, 0, 1, 1, 0, 1};
+    };
 
-    }  // namespace Graphics
-}  // namespace AnimeDefendersEngine
+}  // namespace AnimeDefendersEngine::Graphics

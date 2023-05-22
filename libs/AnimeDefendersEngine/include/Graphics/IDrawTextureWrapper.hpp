@@ -4,14 +4,12 @@
 #include "Matrix2d.hpp"
 #include "Texture.hpp"
 
-namespace AnimeDefendersEngine {
-    namespace Graphics {
+namespace AnimeDefendersEngine::Graphics {
 
-        class IDrawTextureWrapper {
-         public:
-            virtual auto loadTexture(const Math::Matrix2d<Color>&) const -> Texture = 0;
-            virtual auto drawTexture(const Texture&) const -> void = 0;
-        };
+    class IDrawTextureWrapper {
+     public:
+        virtual auto loadTexture(const Math::Matrix2d<Color>&) const -> Texture = 0;
+        virtual auto drawTexture(const Texture&) const -> void = 0;
+    };
 
-    }  // namespace Graphics
-}  // namespace AnimeDefendersEngine
+}  // namespace AnimeDefendersEngine::Graphics
