@@ -10,8 +10,6 @@ on:
 
 env:
   BUILD_TYPE: Debug
-  DISPLAY: ":99" # Display number to use for the X server
-  GALLIUM_DRIVER: llvmpipe # Use Mesa 3D software OpenGL renderer
 
 jobs:    
 
