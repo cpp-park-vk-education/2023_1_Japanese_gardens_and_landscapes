@@ -2,6 +2,8 @@
 
 #include "IWindow.hpp"
 
+#include <string>
+
 namespace AnimeDefendersEngine::Graphics {
 
     class Window final : public IWindow {

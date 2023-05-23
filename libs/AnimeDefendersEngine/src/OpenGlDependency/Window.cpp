@@ -2,8 +2,6 @@
 
 #include <GL/glut.h>
 
-#include <memory>
-
 namespace AnimeDefendersEngine::Graphics {
 
     Window::Window(int windowWidth, int windowHeidth, const std::string& windowTitle) noexcept
