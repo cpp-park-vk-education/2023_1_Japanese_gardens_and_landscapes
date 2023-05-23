@@ -1,6 +1,7 @@
 #include "Window.hpp"
 
 #include <GL/glut.h>
+
 #include <memory>
 
 namespace AnimeDefendersEngine::Graphics {
