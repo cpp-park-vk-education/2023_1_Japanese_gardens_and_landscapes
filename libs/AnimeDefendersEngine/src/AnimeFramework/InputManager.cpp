@@ -16,7 +16,7 @@ auto AnimeDefendersEngine::InputManager::initInputManager(Graphics::Window& wind
     window.setWindowMotionListener(motionHandler);
 }
 
-auto getButtonDown(unsigned char button) -> bool
+auto getButtonDown(const unsigned char button) -> bool
 {
     return AnimeDefendersEngine::EventManager::hasEvent("Key" + button);
 }
