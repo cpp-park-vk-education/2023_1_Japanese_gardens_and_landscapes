@@ -9,7 +9,8 @@ namespace AnimeDefendersEngine::Graphics {
 
     class Camera final : public Component {
      public:
-        explicit Camera(Math::Transpose*, std::function<void(Math::Transpose*)>, std::function<void(Math::Transpose*)>, bool) noexcept;
+        explicit Camera(const std::string&, Math::Transpose*, std::function<void(Math::Transpose*)>, std::function<void(Math::Transpose*)>,
+                        bool) noexcept;
 
         auto determineNewCameraTranspose() const -> void;
         auto applyCameraView() const noexcept -> void;
