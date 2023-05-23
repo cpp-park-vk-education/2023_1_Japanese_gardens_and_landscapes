@@ -2,7 +2,7 @@
 
 namespace AnimeDefendersEngine::Graphics::SpriteSystem {
 
-    auto isSpriteVisibleToCamera(const Sprite*, const Camera*) -> bool {
+    auto isSpriteVisibleToCamera(const Sprite*, const Camera*) noexcept -> bool {
         return true;
     }
 

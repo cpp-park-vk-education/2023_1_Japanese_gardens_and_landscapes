@@ -3,10 +3,11 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    Sprite::Sprite(Math::Transpose* transpose, Texture* texture = nullptr, Animation* animation = nullptr) noexcept
-        : m_transpose(transpose), m_texture(texture), m_animation(animation) {}
+    explicit Sprite::Sprite(const std::string& entityId, Math::Transpose* transpose, Texture* texture = nullptr,
+                            Animation* animation = nullptr) noexcept
+        : Component(entityId), m_transpose(transpose), m_texture(texture), m_animation(animation) {}
 
-    auto Sprite::isSpriteVisibleToCamera(Camera* camera) const noexcept -> bool {
+    auto Sprite::isSpriteVisibleToCamera(const Camera* camera) const noexcept -> bool {
         return SpriteSystem::isSpriteVisibleToCamera(this, camera);
     }
 

@@ -4,11 +4,9 @@
 #include "Sprite.hpp"
 #include "TransposeMathWrapper.hpp"
 
-#include <vector>
-
 namespace AnimeDefendersEngine::Graphics::SpriteSystem {
 
-    auto isSpriteVisibleToCamera(const Sprite*, const Camera*) -> bool;
+    auto isSpriteVisibleToCamera(const Sprite*, const Camera*) noexcept -> bool;
     auto drawSprite(const Sprite*) noexcept -> void;
 
     constexpr TransposeMathWrapper transposeMathWrapper{};

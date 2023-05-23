@@ -12,9 +12,9 @@ namespace AnimeDefendersEngine::Graphics {
 
     class Sprite final : public Component {
      public:
-        Sprite(Math::Transpose*, Texture*, Animation*) noexcept;
+        explicit Sprite(const std::string&, Math::Transpose*, Texture*, Animation*) noexcept;
 
-        [[nodiscard]] auto isSpriteVisibleToCamera(Camera*) const -> bool;
+        [[nodiscard]] auto isSpriteVisibleToCamera(const Camera*) const -> bool;
         auto drawSprite() const noexcept -> void;
 
         auto setTranspose(Math::Transpose*) noexcept -> void;
