@@ -4,47 +4,54 @@
 #include "Collider2DComponent.hpp"
 #include "Component.hpp"
 #include "ComponentManager.hpp"
+#include "Scene.hpp"
 #include "SceneManager.hpp"
 
 #include <memory>
 
-using namespace AnimeDefendersEngine;
+namespace AnimeDefendersEngine::Physics {
 
-auto Physics::PhysicsSystem::updateSystem(SceneManager& sceneManager, float fixedDeltaTime) -> void {
-    using AnimeDefendersEngine::Math::Vector2f;
+    PhysicsSystem::PhysicsSystem(float fixedDeltaTime) : m_physicsWorld(std::make_unique<CollisionHandler>()) {
+        m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
+    }
 
-    ComponentManager& componentManager = sceneManager.getActiveScene().getComponentManager();
-    auto components = componentManager.getComponents<Collider2DComponent>();
+    auto PhysicsSystem::updateSystem(SceneManager& sceneManager, float fixedDeltaTime) -> void {
+        using AnimeDefendersEngine::Math::Vector2f;
 
-    std::vector<Physics::Body*> bodies;
-    bodies.reserve(components.size());
-    for (auto component : components) {
-        auto collider = static_cast<Collider2DComponent*>(component.second);
-        Physics::BodyDefinition bodyDef;
-        bodyDef.id = collider->getEntityId();
-        bodyDef.shape = std::make_unique<Physics::Rectangle>(collider->size);
-        bodyDef.transform.position = collider->transformComponent.position;
+        ComponentManager& componentManager = sceneManager.getActiveScene().getComponentManager();
+        auto components = componentManager.getComponents<Collider2DComponent>();
 
-        Physics::Body* body = m_physicsWorld.addBody(std::move(bodyDef));
+        std::vector<Body*> bodies;
+        bodies.reserve(components.size());
+        for (auto component : components) {
+            auto collider = static_cast<Collider2DComponent*>(component.second);
+            BodyDefinition bodyDef;
+            bodyDef.id = collider->getEntityId();
+            bodyDef.shape = std::make_unique<Rectangle>(collider->size);
+            bodyDef.transform.position = collider->transformComponent.position;
 
-        if (collider->rigidBody2DComponent == nullptr) {
-            body->setType(Physics::BodyType::staticBody);
-        } else {
-            body->setType(Physics::BodyType::dynamicBody);
-            body->applyImpulse(collider->rigidBody2DComponent->velocity);
+            Body* body = m_physicsWorld.addBody(std::move(bodyDef));
+
+            if (collider->rigidBody2DComponent == nullptr) {
+                body->setType(BodyType::staticBody);
+            } else {
+                body->setType(BodyType::dynamicBody);
+                body->applyImpulse(collider->rigidBody2DComponent->velocity);
+            }
+
+            bodies.push_back(body);
         }
 
-        bodies.push_back(body);
+        m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
+        m_physicsWorld.fixedUpdate();
+
+        for (auto body : bodies) {
+            static_cast<Collider2DComponent*>(components.at(body->getID()))->transformComponent.position = body->getPosition();
+        }
     }
 
-    m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
-    m_physicsWorld.fixedUpdate();
-
-    for (auto body : bodies) {
-        static_cast<Collider2DComponent*>(components.at(body->getID()))->transformComponent.position = body->getPosition();
+    auto PhysicsSystem::setFixedDeltaTime(float fixedDeltaTime) noexcept -> void {
+        m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
     }
-}
 
-auto Physics::PhysicsSystem::setFixedDeltaTime(float fixedDeltaTime) noexcept -> void {
-    m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
-}
+}  // namespace AnimeDefendersEngine::Physics
