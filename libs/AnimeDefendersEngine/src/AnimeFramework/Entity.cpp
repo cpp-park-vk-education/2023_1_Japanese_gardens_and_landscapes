@@ -9,6 +9,6 @@ auto Entity::destroy() -> void {
 
 Entity::Entity(const std::string& id, Scene& scene) : m_entityId{id}, m_scene{scene} {}
 
-auto Entity::getId() -> std::string const {
+[[nodiscard]] auto Entity::getId() const noexcept -> const std::string& {
     return m_entityId;
 }

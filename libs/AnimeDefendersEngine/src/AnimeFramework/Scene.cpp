@@ -10,17 +10,16 @@ auto Scene::destroyEntity(const std::string& entityId) -> void {
 }
 
 [[nodiscard]] auto Scene::getComponentManager() -> ComponentManager& {
-    return m_components;
+    return m_componentManager;
 }
 
 auto Scene::updateScene() -> void {
-    while (!m_entityIdsToDestroy.empty()) {
-        const auto& id = m_entityIdsToDestroy.back();
+    for (const auto& id : m_entityIdsToDestroy) {
         m_entities.erase(id);
-        m_entityIdsToDestroy.pop_back();
     }
+    m_entities.clear();
 }
 
-auto Scene::getSceneId() const noexcept -> int {
+[[nodiscard]] auto Scene::getSceneId() const noexcept -> int {
     return m_sceneId;
 }

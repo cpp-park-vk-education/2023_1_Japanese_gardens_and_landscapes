@@ -14,9 +14,9 @@ namespace AnimeDefendersEngine {
     class Entity {
      public:
         explicit Entity(const std::string& id, Scene& scene);
-        virtual ~Entity(){};
+        virtual ~Entity() = default;
 
-        auto getId() -> std::string const;
+        [[nodiscard]] auto getId() const noexcept -> const std::string&;
         virtual auto update() -> void{};
 
         auto destroy() -> void;

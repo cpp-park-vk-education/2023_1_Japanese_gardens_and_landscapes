@@ -20,7 +20,7 @@ namespace AnimeDefendersEngine {
 namespace AnimeDefendersEngine {
 
     template <typename T, typename SceneReplacer>
-    concept EntityCreator = requires(T x, SceneReplacer scene) {
+    concept EntityCreator = requires(const T& x, SceneReplacer& scene) {
         { x(std::string{}, scene) } -> std::same_as<std::shared_ptr<Entity>>;
     };
 
@@ -28,19 +28,23 @@ namespace AnimeDefendersEngine {
      public:
         explicit Scene(int id = 0);
 
-        auto addEntity(std::string id, EntityCreator<Scene> auto create) -> void { m_entities[id] = create(id, *this); }
+        auto addEntity(const std::string& info, const EntityCreator<Scene> auto& create) -> void {
+            auto entity = create(info, *this);
+
+            m_entities[entity->getId()] = entity;
+        }
         auto destroyEntity(const std::string& entityId) -> void;
 
         [[nodiscard]] auto getComponentManager() -> ComponentManager&;
 
         auto updateScene() -> void;
 
-        auto getSceneId() const noexcept -> int;
+        [[nodiscard]] auto getSceneId() const noexcept -> int;
 
      private:
         int m_sceneId{};
         std::unordered_map<std::string, std::shared_ptr<Entity>> m_entities;
-        ComponentManager m_components;
+        ComponentManager m_componentManager;
         std::vector<std::string> m_entityIdsToDestroy;
     };
 
