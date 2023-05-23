@@ -6,32 +6,36 @@
 #include <vector>
 
 namespace AnimeDefendersEngine {
-    class TableReader {
-     public:
-        using valueType = std::string;
-        using keyType = std::string;
 
-     public:
-        explicit TableReader(std::unique_ptr<std::istream>&& dataStream, const char separator = ' ');
+    namespace FileSystem {
 
-        [[nodiscard]] auto operator[](const keyType& key) -> valueType&;
+        class TableReader {
+         public:
+            using valueType = std::string;
+            using keyType = std::string;
 
-        [[nodiscard]] auto operator[](const keyType& key) const -> valueType;
+         public:
+            explicit TableReader(std::unique_ptr<std::istream> dataStream, char separator = ' ');
 
-        [[nodiscard]] auto endOfStream() const -> bool;
+            [[nodiscard]] auto operator[](const keyType& key) -> valueType&;
+            [[nodiscard]] auto operator[](const keyType& key) const -> const valueType&;
 
-        auto readNewRow() -> void;
+            [[nodiscard]] auto endOfTable() const -> bool;
 
-     private:
-        [[nodiscard]] auto is_ValuesReadable() const -> bool;
+            auto readNewRow() -> void;
 
-     private:
-        std::unique_ptr<std::istream> m_dataStream;
-        std::unordered_map<keyType, valueType> m_lineValues;
-        std::vector<keyType> m_columnsNames;
+         private:
+            [[nodiscard]] auto isValuesReadable() const -> bool;
 
-     private:
-        const char m_wordsInRowSeparator = ' ';
-    };
+         private:
+            std::unique_ptr<std::istream> m_dataStream;
+            std::unordered_map<keyType, valueType> m_lineValues;
+            std::vector<keyType> m_columnsNames;
+
+         private:
+            const char m_wordsInRowSeparator = ' ';
+        };
+
+    }  // namespace FileSystem
 
 }  // namespace AnimeDefendersEngine
