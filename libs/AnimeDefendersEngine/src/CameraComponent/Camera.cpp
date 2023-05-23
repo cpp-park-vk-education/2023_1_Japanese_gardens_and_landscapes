@@ -4,8 +4,8 @@
 namespace AnimeDefendersEngine::Graphics {
 
     Camera::Camera(
-        Transpose* transpose, std::function<void(Transpose*)> motionRule = [](Transpose*) {},
-        std::function<void(Transpose*)> extraMotion = [](Transpose*) {}, bool isActive = true) noexcept
+        Math::Transpose* transpose, std::function<void(Math::Transpose*)> motionRule = [](Math::Transpose*) {},
+        std::function<void(Math::Transpose*)> extraMotion = [](Math::Transpose*) {}, bool isActive = true) noexcept
         : m_transpose(transpose), m_motionRule(motionRule), m_extraMotion(extraMotion), m_isActive(isActive) {}
 
     auto Camera::determineNewCameraTranspose() const -> void {
@@ -17,15 +17,15 @@ namespace AnimeDefendersEngine::Graphics {
         CameraSystem::applyCameraView(this);
     }
 
-    auto Camera::setTranspose(Transpose* transpose) noexcept -> void {
+    auto Camera::setTranspose(Math::Transpose* transpose) noexcept -> void {
         m_transpose = transpose;
     }
 
-    auto Camera::setMotionRule(std::function<void(Transpose*)> motionRule) noexcept -> void {
+    auto Camera::setMotionRule(std::function<void(Math::Transpose*)> motionRule) noexcept -> void {
         m_motionRule = motionRule;
     }
 
-    auto Camera::setExtraMotion(std::function<void(Transpose*)> extraMotion) noexcept -> void {
+    auto Camera::setExtraMotion(std::function<void(Math::Transpose*)> extraMotion) noexcept -> void {
         m_extraMotion = extraMotion;
     }
 
@@ -33,7 +33,7 @@ namespace AnimeDefendersEngine::Graphics {
         m_isActive = isActive;
     }
 
-    auto Camera::getCameraTranspose() const noexcept -> Transpose* {
+    auto Camera::getCameraTranspose() const noexcept -> Math::Transpose* {
         return m_transpose;
     }
 
