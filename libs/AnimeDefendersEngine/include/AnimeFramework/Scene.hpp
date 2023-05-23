@@ -16,7 +16,7 @@ namespace AnimeDefendersEngine {
 
      private:
         std::vector<std::shared_ptr<Entity>> m_entities;
-        std::shared_ptr<IComponentManager> m_components;
+        std::shared_ptr<ComponentManager> m_components;
         int m_sceneId{};
     };
 

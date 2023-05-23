@@ -4,6 +4,6 @@ using namespace AnimeDefendersEngine;
 
 auto Entity::addComponent(Component*) -> void {}
 
-auto Entity::getComponent(ComponentType) -> Component* {
+auto Entity::getComponent(std::type_index) -> Component* {
     return nullptr;
 }

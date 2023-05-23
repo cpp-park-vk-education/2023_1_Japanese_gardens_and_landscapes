@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/AnimeFramework.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Component.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/BaseComponent.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/ComponentManager.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Entity.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Event.hpp
@@ -81,7 +82,7 @@ set(include_locations
 
 set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/AnimeFramework.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/ComponentManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/Component.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/Entity.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/EventManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/GameLoop.cpp
@@ -122,7 +123,9 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/UiTextureElementComponent/UiTextureElementSystem.cpp
 )
 
-set(tests_folder tests)
+if(ENABLE_COVERAGE)
+    add_compile_options(-fprofile-arcs -ftest-coverage)
+endif()
 
 if(ENABLE_CLANG_TIDY AND NOT ENABLE_TESTING AND NOT ENABLE_COVERAGE)
     string(REPLACE "${PROJECT_SOURCE_DIR}" "-I${PROJECT_SOURCE_DIR}" clang_tidy_includes "${include_locations}")
@@ -178,6 +181,12 @@ endif()
 add_library(${project_name} STATIC ${source})
 target_include_directories(${project_name} PUBLIC ${include_locations})
 
+find_package(OpenGL COMPONENTS OpenGL REQUIRED)
+find_package(GLUT COMPONENTS GLUT REQUIRED)
+include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
+
+target_link_libraries(${project_name} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+
 if(ENABLE_CLANG_FORMAT)
     add_dependencies(${project_name} AnimeDefendersEngine_FORMAT_TARGET)
 endif()
@@ -188,4 +197,8 @@ endif()
 
 if(ENABLE_CPPCHECK)
     add_dependencies(${project_name} AnimeDefendersEngine_CPPCHECK_TARGET)
+endif()
+
+if(ENABLE_COVERAGE)
+    target_link_libraries(${project_name} gcov)
 endif()
