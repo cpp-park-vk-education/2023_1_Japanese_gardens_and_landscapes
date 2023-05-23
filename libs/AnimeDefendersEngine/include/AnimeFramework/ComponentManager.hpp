@@ -1,13 +1,9 @@
 #pragma once
 
 #include "Component.hpp"
-#include "MemoryMaster.hpp"
 
-#include <iostream>
-#include <set>
 #include <string>
 #include <unordered_map>
-#include <unordered_set>
 
 namespace AnimeDefendersEngine {
 

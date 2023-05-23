@@ -1,14 +1,16 @@
 #include "Entity.hpp"
 #include "Scene.hpp"
 
-using namespace AnimeDefendersEngine;
+namespace AnimeDefendersEngine {
 
-auto Entity::destroy() -> void {
-    m_scene.destroyEntity(m_entityId);
-}
+    auto Entity::destroy() -> void {
+        m_scene.destroyEntity(m_entityId);
+    }
 
-Entity::Entity(const std::string& id, Scene& scene) : m_entityId{id}, m_scene{scene} {}
+    Entity::Entity(std::string entityId, Scene& scene) : m_entityId{std::move(entityId)}, m_scene{scene} {}
 
-[[nodiscard]] auto Entity::getId() const noexcept -> const std::string& {
-    return m_entityId;
-}
+    [[nodiscard]] auto Entity::getId() const noexcept -> const std::string& {
+        return m_entityId;
+    }
+
+}  // namespace AnimeDefendersEngine
