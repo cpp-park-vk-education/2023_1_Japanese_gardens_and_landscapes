@@ -1,15 +1,20 @@
 #include "Shape.hpp"
+#include "Vector2.hpp"
 
-using namespace AnimeDefendersEngine::Physics;
+#include <utility>
 
-auto Shape::getType() const -> ShapeType {
-    return m_type;
-}
+namespace AnimeDefendersEngine::Physics {
 
-Circle::Circle(float radius) : radius(radius) {
-    m_type = ShapeType::circle;
-}
+    auto Shape::getType() const -> ShapeType {
+        return m_type;
+    }
 
-Rectangle::Rectangle(Math::Vector2f size) : size(std::move(size)) {
-    m_type = ShapeType::rectangle;
-}
+    Circle::Circle(float radius) : radius(radius) {
+        m_type = ShapeType::circle;
+    }
+
+    Rectangle::Rectangle(Math::Vector2f size) : size(std::move(size)) {
+        m_type = ShapeType::rectangle;
+    }
+
+}  // namespace AnimeDefendersEngine::Physics

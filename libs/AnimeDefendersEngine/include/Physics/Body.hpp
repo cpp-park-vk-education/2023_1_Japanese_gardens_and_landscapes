@@ -23,7 +23,7 @@ namespace AnimeDefendersEngine::Physics {
         [[nodiscard]] virtual auto getInverseMass() const noexcept -> float;
         [[nodiscard]] virtual auto getShape() const noexcept -> Shape*;
         [[nodiscard]] virtual auto getShapeType() const noexcept -> ShapeType;
-        [[nodiscard]] virtual auto getID() const noexcept -> std::string;
+        [[nodiscard]] virtual auto getID() const noexcept -> const std::string&;
         [[nodiscard]] virtual auto isTrigger() const noexcept -> bool;
 
         virtual auto setPosition(const Math::Vector2f& newPosition) noexcept -> void;
@@ -40,7 +40,7 @@ namespace AnimeDefendersEngine::Physics {
         Transform m_transform;
         Math::Vector2f m_velocity;
         float m_inverseMass;
-        size_t m_layers;
+        std::size_t m_layers;
         Math::Vector2f m_force;
         bool m_isTrigger;
     };
