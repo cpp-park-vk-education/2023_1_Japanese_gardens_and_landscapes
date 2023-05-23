@@ -10,7 +10,7 @@ namespace AnimeDefendersEngine::Graphics {
      public:
         Window(int, int, const std::string&) noexcept;
 
-        ~Window() noexcept;
+        ~Window() noexcept override;
         Window(const Window&) = delete;
         Window(Window&&) = delete;
         auto operator=(const Window&) -> Window& = delete;
@@ -18,9 +18,9 @@ namespace AnimeDefendersEngine::Graphics {
 
         auto updateFrame() const noexcept -> void override;
 
-        auto setWindowMouseHandler(std::function<void(int, int, int, int)>) const noexcept -> void;
-        auto setWindowMotionHandler(std::function<void(int, int)>) const noexcept -> void;
-        auto setWindowKeyboardHandler(std::function<void(unsigned char, int, int)>) const noexcept -> void;
+        auto setMouseClickHandler(mouseClickHandler) const noexcept -> void override;
+        auto setMouseMotionhandler(mouseMotionHandler) const noexcept -> void override;
+        auto setKeyPressHandler(keyPressHandler) const noexcept -> void override;
 
      private:
         int m_windowId{};
