@@ -3,7 +3,7 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    Sprite::Sprite(Transpose* transpose, Texture* texture = nullptr, Animation* animation = nullptr) noexcept
+    Sprite::Sprite(Math::Transpose* transpose, Texture* texture = nullptr, Animation* animation = nullptr) noexcept
         : m_transpose(transpose), m_texture(texture), m_animation(animation) {}
 
     auto Sprite::isSpriteVisibleToCamera(Camera* camera) const noexcept -> bool {
@@ -14,7 +14,7 @@ namespace AnimeDefendersEngine::Graphics {
         return SpriteSystem::drawSprite(this);
     }
 
-    auto Sprite::setTranspose(Transpose* transpose) noexcept -> void {
+    auto Sprite::setTranspose(Math::Transpose* transpose) noexcept -> void {
         m_transpose = transpose;
     }
 
@@ -26,7 +26,7 @@ namespace AnimeDefendersEngine::Graphics {
         m_animation = animation;
     }
 
-    auto Sprite::getTranspose() const noexcept -> Transpose* {
+    auto Sprite::getTranspose() const noexcept -> Math::Transpose* {
         return m_transpose;
     }
 

@@ -2,12 +2,12 @@
 
 namespace AnimeDefendersEngine::Graphics::SpriteSystem {
 
-    auto isSpriteVisibleToCamera(const Sprite*, const Camera*) const -> bool {
+    auto isSpriteVisibleToCamera(const Sprite*, const Camera*) -> bool {
         return true;
     }
 
-    auto drawSprite(const Sprite* sprite) const noexcept -> void {
-        Transpose* transpose = sprite->getTranspose();
+    auto drawSprite(const Sprite* sprite) noexcept -> void {
+        Math::Transpose* transpose = sprite->getTranspose();
         Animation* animation = sprite->getAnimation();
         Texture* texture = sprite->getTexture();
 

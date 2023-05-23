@@ -8,8 +8,8 @@
 
 namespace AnimeDefendersEngine::Graphics::SpriteSystem {
 
-    auto isSpriteVisibleToCamera(const Sprite*, const Camera*) const -> bool;
-    auto drawSprite(const Sprite*) const noexcept -> void;
+    auto isSpriteVisibleToCamera(const Sprite*, const Camera*) -> bool;
+    auto drawSprite(const Sprite*) noexcept -> void;
 
     constexpr TransposeMathWrapper transposeMathWrapper{};
     constexpr DrawTextureWrapper drawTextureWrapper{};
