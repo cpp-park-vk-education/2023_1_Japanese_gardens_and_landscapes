@@ -4,7 +4,7 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    auto DrawTextureWrapper::loadTexture(const Math::Matrix2d<Color>& imageData) const noexcept -> Texture {
+    auto DrawTextureWrapper::loadTexture(const Math::Matrix2d<Color>& pixelMatrix) const noexcept -> Texture {
         Texture newTexture;
         glGenTextures(1, &newTexture.textureId);
         glBindTexture(GL_TEXTURE_2D, newTexture.textureId);
@@ -14,7 +14,8 @@ namespace AnimeDefendersEngine::Graphics {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageData.columns(), imageData.rows(), 0, GL_RGBA, GL_UNSIGNED_BYTE, &*imageData.begin());
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, pixelMatrix.columns(), pixelMatrix.rows(), 0, GL_RGBA, GL_UNSIGNED_BYTE,
+                     &*pixelMatrix.begin());
 
         glBindTexture(GL_TEXTURE_2D, 0);
 
