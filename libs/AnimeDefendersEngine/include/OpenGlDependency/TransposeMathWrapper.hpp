@@ -1,14 +1,14 @@
 #pragma once
 
 #include "ITransposeMathWrapper.hpp"
-#include "Transform.hpp"
+#include "Transpose.hpp"
 
 namespace AnimeDefendersEngine {
     namespace Graphics {
 
         class TransposeMathWrapper : public ITransposeMathWrapper {
             auto initialIdentityMatrix() -> void override;
-            auto applyTransposeMatrix(const Transform&) -> void override;
+            auto applyTransposeMatrix(const Math::Transpose&) -> void override;
             auto dropLastMatrix() -> void override;
         };
 
