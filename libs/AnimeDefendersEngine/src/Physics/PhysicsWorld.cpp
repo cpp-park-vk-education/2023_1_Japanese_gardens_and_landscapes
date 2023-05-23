@@ -2,6 +2,7 @@
 #include "Body.hpp"
 #include "BodyDefinition.hpp"
 #include "CollisionHandler.hpp"
+#include "ContactEvent.hpp"
 #include "Manifold.hpp"
 
 #include <memory>
@@ -32,6 +33,24 @@ namespace AnimeDefendersEngine::Physics {
         return m_bodies.back().get();
     }
 
+    auto PhysicsWorld::getEvents(std::unordered_set<Manifold> currentContacts) -> std::vector<ContactEvent> {
+        std::vector<ContactEvent> events;
+        events.reserve(currentContacts.size());
+        for (auto currentContact : currentContacts) {
+            if (m_contacts.contains(currentContact)) {
+                events.emplace_back(currentContact.bodyA->getID(), currentContact.bodyB->getID(), ContactEventType::ContactStay);
+                m_contacts.erase(currentContact);
+            } else {
+                events.emplace_back(currentContact.bodyA->getID(), currentContact.bodyB->getID(), ContactEventType::ContactEnter);
+            }
+        }
+
+        for (auto leftContact : m_contacts) {
+            events.emplace_back(leftContact.bodyA->getID(), leftContact.bodyB->getID(), ContactEventType::ContactExit);
+        }
+        return events;
+    }
+
     auto PhysicsWorld::fixedUpdate() -> std::vector<ContactEvent> {
         std::vector<Body*> bodies;
         bodies.reserve((m_bodies.size()));
@@ -51,20 +70,11 @@ namespace AnimeDefendersEngine::Physics {
             body->clearVelocity();
         }
 
-        std::vector<ContactEvent> events;
-        events.reserve(currentContacts.size());
-        for (auto currentContact : currentContacts) {
-            if (m_contacts.contains(currentContact)) {
-                events.emplace_back(currentContact.bodyA->getID(), currentContact.bodyB->getID(), ContactEventType::ContactStay);
-                m_contacts.erase(currentContact);
-            } else {
-                events.emplace_back(currentContact.bodyA->getID(), currentContact.bodyB->getID(), ContactEventType::ContactEnter);
-            }
-        }
-        for (auto leftContact : m_contacts) {
-            events.emplace_back(leftContact.bodyA->getID(), leftContact.bodyB->getID(), ContactEventType::ContactExit);
-        }
+        std::vector<ContactEvent> events = getEvents(currentContacts);
+
         std::swap(m_contacts, currentContacts);
+
+        return events;
     }
 
 }  // namespace AnimeDefendersEngine::Physics

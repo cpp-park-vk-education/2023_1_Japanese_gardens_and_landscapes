@@ -12,23 +12,11 @@ namespace AnimeDefendersEngine::Physics {
     struct BodyDefinition;
     class Body;
     class CollisionHandler;
+    struct ContactEvent;
 
 }  // namespace AnimeDefendersEngine::Physics
 
 namespace AnimeDefendersEngine::Physics {
-
-    enum class ContactEventType {
-        ContactEnter,
-        ContactStay,
-        ContactExit
-    };
-
-    struct ContactEvent {
-        ContactEvent(std::string bodyAID, std::string bodyBID, ContactEventType type);
-        std::string bodyAID;
-        std::string bodyBID;
-        ContactEventType type;
-    };
 
     constexpr float defaultFixedUpdateFrequency = 60.f;
     constexpr float defaultMinUpdateFrequency = 25.f;
@@ -43,6 +31,8 @@ namespace AnimeDefendersEngine::Physics {
         [[nodiscard]] auto addBody(BodyDefinition&& bodyDefinition) -> Body*;
 
      private:
+        auto getEvents(std::unordered_set<Manifold> currentContacts) -> std::vector<ContactEvent>;
+
         std::unique_ptr<CollisionHandler> m_collisionHandler;
         std::vector<std::unique_ptr<Body>> m_bodies;
         std::unordered_set<Manifold> m_contacts;
