@@ -1,12 +1,12 @@
 #include "Vector2f.hpp"
 
 auto AnimeDefendersEngine::Math::inverseSquareRoot(float number) -> float {
-    const float threeHalves = 1.5;
+    const float threeHalves = 1.5f;
     float y = number;
     long i = *(long*)&y;
     i = 0x5f3759df - (i >> 1);
     y = *(float*)&i;
-    y = y * (threeHalves - (number * 0.5 * y * y));
+    y = y * (threeHalves - (number * 0.5f * y * y));
     return y;
 }
 
