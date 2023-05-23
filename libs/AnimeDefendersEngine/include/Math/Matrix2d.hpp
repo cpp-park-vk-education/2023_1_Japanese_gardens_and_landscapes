@@ -14,7 +14,7 @@ namespace AnimeDefendersEngine {
         class Matrix2d {
          public:
             explicit Matrix2d(std::size_t rows = 0, std::size_t columns = 0, T val = T{})
-                : m_rows{rows}, m_columns{m_columns}, m_values(rows * columns, val) {}
+                : m_rows{rows}, m_columns{columns}, m_values(rows * columns, val) {}
 
             Matrix2d(std::size_t rows, std::size_t columns, const std::ranges::sized_range auto& values)
                 : m_rows{rows}, m_columns{columns} {

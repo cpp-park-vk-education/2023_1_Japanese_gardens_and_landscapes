@@ -1,5 +1,7 @@
 #include "AnimeFramework.hpp"
 
-using namespace AnimeDefendersEngine;
+namespace AnimeDefendersEngine {
 
-void AnimeFramework::run() {}
+    void AnimeFramework::run() {}
+
+}  // namespace AnimeDefendersEngine
