@@ -20,11 +20,12 @@ namespace AnimeDefendersEngine::Physics {
         bodyB->setPosition(bodyB->getPosition() + correctionPercent * bodyB->getInverseMass() * correction);
     }
 
+    inline auto getIDs(const Manifold& manifold) {
+        return std::tie(manifold.bodyA->getID(), manifold.bodyB->getID());
+    }
+
     auto operator==(const Manifold& left, const Manifold& right) -> bool {
-        const auto leftIDs = std::make_tuple(left.bodyA->getID(), left.bodyB->getID());
-        const auto rightIDs = std::make_tuple(right.bodyA->getID(), right.bodyB->getID());
-        const auto reverseRightIDs = std::make_tuple(right.bodyB->getID(), right.bodyA->getID());
-        return std::tie(leftIDs) == std::tie(rightIDs) || std::tie(leftIDs) == std::tie(reverseRightIDs);
+        return getIDs(left) == getIDs(right);
     }
 
 }  // namespace AnimeDefendersEngine::Physics
