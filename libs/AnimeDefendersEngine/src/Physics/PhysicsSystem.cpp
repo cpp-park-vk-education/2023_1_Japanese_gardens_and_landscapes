@@ -1,11 +1,18 @@
 #include "PhysicsSystem.hpp"
+#include "Body.hpp"
+#include "BodyDefinition.hpp"
+#include "Component.hpp"
+#include "ComponentManager.hpp"
+#include "SceneManager.hpp"
 
-using namespace AnimeDefendersEngine::Physics;
+#include <memory>
 
-PhysicsSystem::PhysicsSystem(float fixedDeltaTime) : physicsWorld(fixedDeltaTime) {}
+namespace AnimeDefendersEngine::Physics {
 
-auto PhysicsSystem::updateSystem(ComponentManager&) -> void {}
+    auto PhysicsSystem::updateSystem(SceneManager& sceneManager, float fixedDeltaTime) -> void {}
 
-auto PhysicsSystem::updateSystem(ComponentManager&, float) -> void {}
+    auto PhysicsSystem::setFixedDeltaTime(float fixedDeltaTime) noexcept -> void {
+        m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
+    }
 
-auto PhysicsSystem::setFixedDeltaTime(float) -> void {}
+}  // namespace AnimeDefendersEngine::Physics
