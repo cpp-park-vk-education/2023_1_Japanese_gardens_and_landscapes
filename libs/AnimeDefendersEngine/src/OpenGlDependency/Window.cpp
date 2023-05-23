@@ -40,4 +40,16 @@ namespace AnimeDefendersEngine::Graphics {
         glutKeyboardFunc(handler.target<void(unsigned char, int, int)>());
     }
 
+    auto Window::isShiftPressd() const noexcept -> bool {
+        return glutGetModifiers() & GLUT_ACTIVE_SHIFT;
+    }
+
+    auto Window::isCtrlPressd() const noexcept -> bool {
+        return glutGetModifiers() & GLUT_ACTIVE_CTRL;
+    }
+
+    auto Window::isAltPressd() const noexcept -> bool {
+        return glutGetModifiers() & GLUT_ACTIVE_ALT;
+    }
+
 }  // namespace AnimeDefendersEngine::Graphics
