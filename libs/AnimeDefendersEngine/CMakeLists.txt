@@ -23,6 +23,7 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/CameraComponent/Camera.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/CameraComponent/CameraSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/FileSystem/FileSystem.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/FileSystem/TableReader.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/Color.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/IDrawTextureWrapper.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/IUiContextWrapper.hpp
@@ -82,7 +83,6 @@ set(include_locations
 
 set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/AnimeFramework.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/Component.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/Entity.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/EventManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/GameLoop.cpp
@@ -94,6 +94,7 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/CameraComponent/Camera.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/CameraComponent/CameraSystem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/FileSystem/FileSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/FileSystem/TableReader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Graphics/Renderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger/Logger.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Graph.cpp
