@@ -37,8 +37,8 @@ namespace AnimeDefendersEngine::Physics {
         std::vector<std::unique_ptr<Body>> m_bodies;
         std::unordered_set<Manifold> m_contacts;
 
-        float m_fixedDeltaTime;
-        float m_maxDeltaTime;
+        float m_fixedDeltaTime{1.f / defaultFixedUpdateFrequency};
+        float m_maxDeltaTime{1.f / defaultMinUpdateFrequency};
         float m_accumulator{0};
     };
 
