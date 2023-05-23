@@ -17,7 +17,7 @@ namespace AnimeDefendersEngine {
 
      private:
         std::unique_ptr<ISceneManager> m_sceneManager;
-        std::unique_ptr<IComponentManager> m_componentManager;
+        std::shared_ptr<ComponentManager> m_globalComponentsManager;
         GameLoop m_gameloop;
     };
 }  // namespace AnimeDefendersEngine

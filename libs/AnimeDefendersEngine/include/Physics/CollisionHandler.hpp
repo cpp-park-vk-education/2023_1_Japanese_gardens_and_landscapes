@@ -1,34 +1,25 @@
 #pragma once
 
+#include "ICollisionHandler.hpp"
+
 #include <vector>
 
-#include "Body.hpp"
-#include "Manifold.hpp"
+namespace AnimeDefendersEngine::Physics {
 
-namespace AnimeDefendersEngine {
-    namespace Physics {
+    class Body;
+    struct Manifold;
 
-        class ICollisionHandler {
-         public:
-            virtual auto broadPhase(const std::vector<IBody*>& bodies) -> std::vector<Manifold> = 0;
-            virtual auto narrowPhase(std::vector<Manifold>& bodies) -> void = 0;
+}  // namespace AnimeDefendersEngine::Physics
 
-         protected:
-            virtual auto hasCollision(IBody* bodyA, IBody* bodyB) -> bool = 0;
-            virtual auto specifyCollision(Manifold contact) -> void = 0;
-            virtual auto resolveCollision(Manifold contact) -> void = 0;
-        };
+namespace AnimeDefendersEngine::Physics {
 
-        class CollisionHandler : public ICollisionHandler {
-         public:
-            virtual auto broadPhase(const std::vector<IBody*>& bodies) -> std::vector<Manifold> override;
-            virtual auto narrowPhase(std::vector<Manifold>& bodies) -> void override;
+    class CollisionHandler final : public ICollisionHandler {
+     public:
+        [[nodiscard]] virtual auto broadPhase(const std::vector<Body*>& bodies) const -> std::vector<Manifold> override;
+        virtual auto narrowPhase(std::vector<Manifold>& bodies) const -> void override;
+        [[nodiscard]] virtual auto hasCollision(Body* bodyA, Body* bodyB) const -> bool override;
+        virtual auto specifyCollision(Manifold& contact) const -> void override;
+        virtual auto resolveCollision(Manifold& contact) const -> void override;
+    };
 
-         private:
-            virtual auto hasCollision(IBody* bodyA, IBody* bodyB) -> bool override;
-            virtual auto specifyCollision(Manifold contact) -> void override;
-            virtual auto resolveCollision(Manifold contact) -> void override;
-        };
-
-    }  // namespace Physics
-}  // namespace AnimeDefendersEngine
+}  // namespace AnimeDefendersEngine::Physics

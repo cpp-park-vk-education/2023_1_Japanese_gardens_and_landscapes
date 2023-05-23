@@ -2,35 +2,40 @@
 
 #include "Vector2.hpp"
 
-namespace AnimeDefendersEngine {
-    namespace Physics {
+namespace AnimeDefendersEngine::Physics {
 
-        enum class ShapeType {
-            circle = 0,
-            rectangle
-        };
+    /// \details Числовые значения этого enum используются обработчиком коллизий CollisionHandler, для определения конкретной функции,
+    /// обрабатывающей конкретные формы
+    enum class ShapeType : int {
+        circle = 0,
+        rectangle
+    };
 
-        class Shape {
-         public:
-            virtual ~Shape();
-            auto getType() -> ShapeType const;
-            static constexpr int shapeCount = 2;
+    /// \details Статическая переменная в этом классе используется обработчиком коллизий (это размер массива функций обработки)
+    class Shape {
+     public:
+        virtual ~Shape() = default;
+        auto getType() const -> ShapeType;
 
-         protected:
-            ShapeType m_type;
-        };
+     public:
+        static constexpr int shapeCount = 2;
 
-        class Circle : public Shape {
-         public:
-            explicit Circle(float radius);
-            float radius;
-        };
+     protected:
+        ShapeType m_type;
+    };
 
-        class Rectangle : public Shape {
-         public:
-            explicit Rectangle(Math::Vector2<float> size);
-            Math::Vector2<float> size;
-        };
+    constexpr float defaultRadius = 1.f;
 
-    }  // namespace Physics
-}  // namespace AnimeDefendersEngine
+    class Circle : public Shape {
+     public:
+        explicit Circle(float radius = defaultRadius);
+        float radius;
+    };
+
+    class Rectangle : public Shape {
+     public:
+        explicit Rectangle(Math::Vector2f size);
+        Math::Vector2f size;
+    };
+
+}  // namespace AnimeDefendersEngine::Physics

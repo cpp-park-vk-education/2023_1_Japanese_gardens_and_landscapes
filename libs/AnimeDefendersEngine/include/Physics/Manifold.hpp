@@ -3,14 +3,18 @@
 #include "Body.hpp"
 #include "Vector2.hpp"
 
-namespace AnimeDefendersEngine {
-    namespace Physics {
-        struct Manifold {
-            IBody* bodyA;
-            IBody* bodyB;
-            float penetration;
-            Math::Vector2<float> normal;
-            explicit Manifold(IBody* bodyA, IBody* bodyB);
-        };
-    }  // namespace Physics
-}  // namespace AnimeDefendersEngine
+namespace AnimeDefendersEngine::Physics {
+
+    struct Manifold {
+        Manifold(Body* bodyA, Body* bodyB);
+        Manifold() = default;
+
+        auto correctPositions() -> void;
+
+        Body* bodyA{nullptr};
+        Body* bodyB{nullptr};
+        float penetration{0};
+        Math::Vector2f normal;
+    };
+
+}  // namespace AnimeDefendersEngine::Physics
