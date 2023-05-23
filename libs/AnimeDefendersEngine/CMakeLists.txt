@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/AnimeFramework.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Component.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/BaseComponent.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/ComponentManager.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Entity.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Event.hpp
@@ -22,6 +23,7 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/CameraComponent/Camera.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/CameraComponent/CameraSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/FileSystem/FileSystem.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/FileSystem/TableReader.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/Color.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/IDrawTextureWrapper.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/IUiContextWrapper.hpp
@@ -79,7 +81,6 @@ set(include_locations
 
 set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/AnimeFramework.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/ComponentManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/Entity.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/EventManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/GameLoop.cpp
@@ -91,6 +92,7 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/CameraComponent/Camera.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/CameraComponent/CameraSystem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/FileSystem/FileSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/FileSystem/TableReader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Graphics/Renderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger/Logger.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Graph.cpp
@@ -177,6 +179,12 @@ endif()
 
 add_library(${project_name} STATIC ${source})
 target_include_directories(${project_name} PUBLIC ${include_locations})
+
+find_package(OpenGL COMPONENTS OpenGL REQUIRED)
+find_package(GLUT COMPONENTS GLUT REQUIRED)
+include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
+
+target_link_libraries(${project_name} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
 
 if(ENABLE_CLANG_FORMAT)
     add_dependencies(${project_name} AnimeDefendersEngine_FORMAT_TARGET)

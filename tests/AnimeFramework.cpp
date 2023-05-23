@@ -6,5 +6,4 @@
 TEST(SampleTest, TestSoThisFileWontBeEmpty) {
     using namespace AnimeDefendersEngine::Logger;
     defaultLog.setLogLevel(LogLevel::NoLog);
-    ASSERT_TRUE(true);
 }

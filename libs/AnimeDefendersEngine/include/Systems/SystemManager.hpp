@@ -2,6 +2,8 @@
 
 #include "ISystem.hpp"
 
+#include <vector>
+
 namespace AnimeDefendersEngine {
 
     class ISystemManager {
