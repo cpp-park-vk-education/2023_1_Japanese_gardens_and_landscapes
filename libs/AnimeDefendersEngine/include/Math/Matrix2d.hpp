@@ -7,8 +7,6 @@
 #include <stdexcept>
 #include <vector>
 
-#include <iostream>
-
 namespace AnimeDefendersEngine {
     namespace Math {
 
@@ -18,7 +16,8 @@ namespace AnimeDefendersEngine {
             explicit Matrix2d(std::size_t rows = 0, std::size_t columns = 0, T val = T{})
                 : m_rows{rows}, m_columns{m_columns}, m_values(rows * columns, val) {}
 
-            Matrix2d(std::size_t rows, std::size_t columns, std::ranges::sized_range auto values) : m_rows{rows}, m_columns{columns} {
+            Matrix2d(std::size_t rows, std::size_t columns, const std::ranges::sized_range auto& values)
+                : m_rows{rows}, m_columns{columns} {
                 if (m_rows * m_columns != std::ranges::size(values)) {
                     throw std::invalid_argument{
                         "While constructing matrix got array of elements which does not work with numer of rows and columns"};
