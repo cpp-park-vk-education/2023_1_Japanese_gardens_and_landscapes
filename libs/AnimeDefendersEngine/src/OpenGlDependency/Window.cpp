@@ -30,16 +30,16 @@ namespace AnimeDefendersEngine::Graphics {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
-    auto Window::setWindowMouseHandler(void (*handler)(int, int, int, int)) const noexcept -> void {
-        glutMouseFunc(handler);
+    auto Window::setWindowMouseHandler(std::function<void(int, int, int, int)> handler) const noexcept -> void {
+        glutMouseFunc(handler.target<void(int, int, int, int)>());
     }
 
-    auto Window::setWindowMotionHandler(void (*handler)(int, int)) const noexcept -> void {
-        glutMotionFunc(handler);
+    auto Window::setWindowMotionHandler(std::function<void(int, int)> handler) const noexcept -> void {
+        glutMotionFunc(handler.target<void(int, int)>());
     }
 
-    auto Window::setWindowKeyboardHandler(void (*handler)(unsigned char, int, int)) const noexcept -> void {
-        glutKeyboardFunc(handler);
+    auto Window::setWindowKeyboardHandler(std::function<void(unsigned char, int, int)> handler) const noexcept -> void {
+        glutKeyboardFunc(handler.target<void(unsigned char, int, int)>());
     }
 
 }  // namespace AnimeDefendersEngine::Graphics

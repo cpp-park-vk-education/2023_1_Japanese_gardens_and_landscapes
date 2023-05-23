@@ -16,9 +16,9 @@ namespace AnimeDefendersEngine::Graphics {
 
         auto updateFrame() const noexcept -> void override;
 
-        auto setWindowMouseHandler(void (*)(int, int, int, int)) const noexcept -> void;
-        auto setWindowMotionHandler(void (*)(int, int)) const noexcept -> void;
-        auto setWindowKeyboardHandler(void (*)(unsigned char, int, int)) const noexcept -> void;
+        auto setWindowMouseHandler(std::function<void(int, int, int, int)>) const noexcept -> void;
+        auto setWindowMotionHandler(std::function<void(int, int)>) const noexcept -> void;
+        auto setWindowKeyboardHandler(std::function<void(unsigned char, int, int)>) const noexcept -> void;
 
      private:
         int m_windowId{};
