@@ -10,23 +10,7 @@
 namespace AnimeDefendersEngine {
     namespace EventManager {
 
-        class EventListener {
-         public:
-            explicit EventListener(const std::function<void()>& function, const std::string& name)
-                : listenerFunction(function), eventListenerName(name) {}
-            auto getName() const -> std::string { return eventListenerName; }
-            auto function() -> std::function<void()> { return listenerFunction; }
-            friend bool operator==(const EventListener& lhs, const EventListener& rhs);
-
-         private:
-            std::string eventListenerName;
-            std::function<void()> listenerFunction;
-        };
-
-        bool operator==(const EventListener& lhs, const EventListener& rhs) {
-            return lhs.getName() == rhs.getName();
-        }
-
+        auto operator==(const EventListener& lhs, const EventListener& rhs) -> bool;
         auto update() -> void;
         auto addListener(const EventListener& listener) -> void;
         auto removeListener(const EventListener& listener) -> void;

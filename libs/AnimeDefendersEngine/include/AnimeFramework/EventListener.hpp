@@ -1,13 +1,19 @@
 #pragma once
+
+#include <functional>
 #include "Event.hpp"
 
-namespace AnimeDefendersEngine {
-    class IEventListener {
+namespace AnimeDefendersEngine::EventManager {
+    class EventListener {
      public:
-        virtual auto onEvent(Event event) -> void = 0;
+        explicit EventListener(const std::function<void()>& function, const std::string& name)
+            : listenerFunction(function), eventListenerName(name) {}
+        auto getName() const -> const std::string&;
+        auto getFunction() -> std::function<void()>;
+
+     private:
+        std::string eventListenerName;
+        std::function<void()> listenerFunction;
     };
-    class EventListener : public IEventListener {
-     public:
-        auto onEvent(Event event) -> void override;
-    };
-}  // namespace AnimeDefendersEngine
+
+}  // namespace AnimeDefendersEngine::EventManager
