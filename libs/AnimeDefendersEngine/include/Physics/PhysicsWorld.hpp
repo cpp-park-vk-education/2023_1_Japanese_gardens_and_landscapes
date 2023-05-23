@@ -1,23 +1,34 @@
 #pragma once
 
+#include "Manifold.hpp"
+
 #include <memory>
+#include <string>
+#include <unordered_set>
 #include <vector>
 
 namespace AnimeDefendersEngine::Physics {
 
     struct BodyDefinition;
     class Body;
-    struct Manifold;
     class CollisionHandler;
 
 }  // namespace AnimeDefendersEngine::Physics
 
 namespace AnimeDefendersEngine::Physics {
 
-    struct CollisionEvent {
-        std::pair<std::string> IDs;
+    enum class ContactEventType {
+        ContactEnter,
+        ContactStay,
+        ContactExit
+    };
 
-    }
+    struct ContactEvent {
+        ContactEvent(std::string bodyAID, std::string bodyBID, ContactEventType type);
+        std::string bodyAID;
+        std::string bodyBID;
+        ContactEventType type;
+    };
 
     constexpr float defaultFixedUpdateFrequency = 60.f;
     constexpr float defaultMinUpdateFrequency = 25.f;
@@ -28,13 +39,13 @@ namespace AnimeDefendersEngine::Physics {
                      float maxDeltaTime = 1.f / defaultMinUpdateFrequency);
         auto setFixedDeltaTime(float fixedDeltaTime) -> void;
         auto update(float deltaTime) -> void;
-        auto fixedUpdate() -> std::vector<CollisionEvent>;
+        auto fixedUpdate() -> std::vector<ContactEvent>;
         [[nodiscard]] auto addBody(BodyDefinition&& bodyDefinition) -> Body*;
 
      private:
         std::unique_ptr<CollisionHandler> m_collisionHandler;
         std::vector<std::unique_ptr<Body>> m_bodies;
-        std::vector<Manifold> m_contacts;
+        std::unordered_set<Manifold> m_contacts;
 
         float m_fixedDeltaTime;
         float m_maxDeltaTime;

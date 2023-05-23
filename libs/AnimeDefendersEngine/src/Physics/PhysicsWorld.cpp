@@ -5,6 +5,7 @@
 #include "Manifold.hpp"
 
 #include <memory>
+#include <unordered_set>
 
 namespace AnimeDefendersEngine::Physics {
 
@@ -31,7 +32,7 @@ namespace AnimeDefendersEngine::Physics {
         return m_bodies.back().get();
     }
 
-    auto PhysicsWorld::fixedUpdate() -> void {
+    auto PhysicsWorld::fixedUpdate() -> std::vector<ContactEvent> {
         std::vector<Body*> bodies;
         bodies.reserve((m_bodies.size()));
         for (const auto& body : m_bodies) {
@@ -42,12 +43,26 @@ namespace AnimeDefendersEngine::Physics {
             bodies.push_back(body.get());
         }
 
-        std::vector<Manifold> currentContacts = m_collisionHandler->broadPhase(bodies);
+        std::unordered_set<Manifold> currentContacts = m_collisionHandler->broadPhase(bodies);
         m_collisionHandler->narrowPhase(currentContacts);
 
         for (const auto& body : m_bodies) {
             body->clearForce();
             body->clearVelocity();
+        }
+
+        std::vector<ContactEvent> events;
+        events.reserve(currentContacts.size());
+        for (auto currentContact : currentContacts) {
+            if (m_contacts.contains(currentContact)) {
+                events.emplace_back(currentContact.bodyA->getID(), currentContact.bodyB->getID(), ContactEventType::ContactStay);
+                m_contacts.erase(currentContact);
+            } else {
+                events.emplace_back(currentContact.bodyA->getID(), currentContact.bodyB->getID(), ContactEventType::ContactEnter);
+            }
+        }
+        for (auto leftContact : m_contacts) {
+            events.emplace_back(leftContact.bodyA->getID(), leftContact.bodyB->getID(), ContactEventType::ContactExit);
         }
         std::swap(m_contacts, currentContacts);
     }

@@ -18,4 +18,9 @@ namespace AnimeDefendersEngine::Physics {
         bodyB->setPosition(bodyB->getPosition() + correctionPercent * bodyB->getInverseMass() * correction);
     }
 
+    auto operator==(const Manifold& left, const Manifold& right) -> bool {
+        return left.bodyA->getID() == right.bodyA->getID() && left.bodyB->getID() == right.bodyB->getID() ||
+               left.bodyA->getID() == right.bodyB->getID() && left.bodyB->getID() == right.bodyA->getID();
+    }
+
 }  // namespace AnimeDefendersEngine::Physics

@@ -8,28 +8,29 @@
 
 namespace AnimeDefendersEngine::Physics {
 
-    auto CollisionHandler::broadPhase(const std::vector<Body*>& bodies) const -> std::vector<Manifold> {
-        std::vector<Manifold> contacts;
+    auto CollisionHandler::broadPhase(const std::vector<Body*>& bodies) const -> std::unordered_set<Manifold> {
+        std::unordered_set<Manifold> contacts;
         contacts.reserve(bodies.size());
         for (auto bodyAIter = bodies.begin(); bodyAIter != bodies.end(); ++bodyAIter) {
             for (auto bodyBIter = bodyAIter + 1; bodyBIter != bodies.end(); ++bodyBIter) {
-                contacts.emplace_back(*bodyAIter, *bodyBIter);
+                contacts.emplace(*bodyAIter, *bodyBIter);
             }
         }
         return contacts;
     }
 
-    auto CollisionHandler::narrowPhase(std::vector<Manifold>& contacts) const -> void {
+    auto CollisionHandler::narrowPhase(std::unordered_set<Manifold>& contacts) const -> void {
         for (auto contactIterator = contacts.begin(); contactIterator != contacts.end();) {
-            if (hasCollision(contactIterator->bodyA, contactIterator->bodyB)) {
-                if (contactIterator->bodyA->isTrigger() || contactIterator->bodyB->isTrigger()) {
+            auto contact = *contactIterator;
+            contacts.erase(contactIterator);
+            if (hasCollision(contact.bodyA, contact.bodyB)) {
+                if (contact.bodyA->isTrigger() || contact.bodyB->isTrigger()) {
                     continue;
                 }
-                specifyCollision(*contactIterator);
-                resolveCollision(*contactIterator);
+                specifyCollision(contact);
+                resolveCollision(contact);
+                contacts.insert(contact);
                 ++contactIterator;
-            } else {
-                contacts.erase(contactIterator);
             }
         }
     }
