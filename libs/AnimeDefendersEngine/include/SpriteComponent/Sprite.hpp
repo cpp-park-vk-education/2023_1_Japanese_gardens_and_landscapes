@@ -4,7 +4,7 @@
 #include "Camera.hpp"
 #include "Component.hpp"
 #include "Texture.hpp"
-#include "Transform.hpp"
+#include "Transpose.hpp"
 
 namespace AnimeDefendersEngine {
     namespace Graphics {
@@ -14,12 +14,12 @@ namespace AnimeDefendersEngine {
             auto isSpriteVisibleToCamera(const Camera&) -> bool;
             auto drawSprite() -> void;
 
-            auto setTransform(const Transform*) -> void;
+            auto setTranspose(const Math::Transpose*) -> void;
             auto setTexture(Texture) -> void;
             auto setAnimation(Animation) -> void;
 
          private:
-            const Transform* m_transform;
+            const Math::Transpose* m_Transpose;
             Texture m_texture;
             Animation m_animation;
         };

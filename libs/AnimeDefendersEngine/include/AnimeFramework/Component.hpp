@@ -1,16 +1,18 @@
 #pragma once
 
+#include <string>
+#include <typeindex>
+
 namespace AnimeDefendersEngine {
 
-    enum class ComponentType {
-        Sprite,
-        Camera,
-        UiElement,
-        Audio,
-        Collider2DComponent,
-        RigidBody2DComponent
-    };
+    class Component {
+     public:
+        explicit Component(const std::string& entityId);
 
-    struct Component {};
+        [[nodiscard]] auto getEntityId() const noexcept -> const std::string&;
+
+     private:
+        std::string m_entityId;
+    };
 
 }  // namespace AnimeDefendersEngine
