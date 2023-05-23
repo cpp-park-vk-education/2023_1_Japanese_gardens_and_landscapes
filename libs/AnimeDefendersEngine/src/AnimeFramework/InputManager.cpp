@@ -1,13 +1,31 @@
 #include "InputManager.hpp"
 #include "Vector2.hpp"
 
-
 auto AnimeDefendersEngine::InputManager::keyboardHandler(unsigned char key, int x, int y) -> void {
-        auto event = std::make_unique<Event>("Key" + key, EventType::KeyPressed);
-        EventManager::addEvent(std::move(event));
-    }
+    auto event = std::make_unique<Event>("Key" + key, EventType::KeyPressed);
+    EventManager::addEvent(std::move(event));
+}
 
-auto AnimeDefendersEngine::InputManager::motionHandler(int x, int y) -> void {
+auto AnimeDefendersEngine::InputManager::motionHandler(int x, int y) -> void {}
+
+auto AnimeDefendersEngine::InputManager::mouseHandler(int button, int state, int x, int y) -> void {
+    switch (button) {
+        case GLUT_LEFT_BUTTON:
+            if (state == GLUT_DOWN) {
+            };
+            break;
+        case GLUT_MIDDLE_BUTTON:
+            if (state == GLUT_DOWN) {
+                ;
+            }
+            break;
+        case GLUT_RIGHT_BUTTON:
+            if (state == GLUT_DOWN) {
+            };
+            break;
+        default:
+            break;
+    }
 }
 
 auto AnimeDefendersEngine::InputManager::initInputManager(Graphics::Window& window) -> void {
@@ -16,8 +34,6 @@ auto AnimeDefendersEngine::InputManager::initInputManager(Graphics::Window& wind
     window.setWindowMotionListener(motionHandler);
 }
 
-auto getButtonDown(const unsigned char button) -> bool
-{
+auto getButtonDown(const unsigned char button) -> bool {
     return AnimeDefendersEngine::EventManager::hasEvent("Key" + button);
 }
-
