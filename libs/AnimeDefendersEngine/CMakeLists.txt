@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/AnimeFramework.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Component.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/BaseComponent.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/ComponentManager.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Entity.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Event.hpp
@@ -22,6 +23,7 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/CameraComponent/Camera.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/CameraComponent/CameraSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/FileSystem/FileSystem.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/FileSystem/TableReader.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/Color.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/IDrawTextureWrapper.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/IUiContextWrapper.hpp
@@ -30,8 +32,10 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/Texture.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Logger/Logger.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Coords2d.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Coords3d.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Graph.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Matrix2d.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Transpose.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Vector2.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenAlDependency/AudioPlayWrapper.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenGlDependency/DrawTextureWrapper.hpp
@@ -79,7 +83,6 @@ set(include_locations
 
 set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/AnimeFramework.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/ComponentManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/Entity.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/EventManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/GameLoop.cpp
@@ -91,6 +94,7 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/CameraComponent/Camera.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/CameraComponent/CameraSystem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/FileSystem/FileSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/FileSystem/TableReader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Graphics/Renderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger/Logger.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Graph.cpp
@@ -120,7 +124,9 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/UiTextureElementComponent/UiTextureElementSystem.cpp
 )
 
-set(tests_folder tests)
+if(ENABLE_COVERAGE)
+    add_compile_options(-fprofile-arcs -ftest-coverage)
+endif()
 
 if(ENABLE_CLANG_TIDY AND NOT ENABLE_TESTING AND NOT ENABLE_COVERAGE)
     string(REPLACE "${PROJECT_SOURCE_DIR}" "-I${PROJECT_SOURCE_DIR}" clang_tidy_includes "${include_locations}")
@@ -192,4 +198,8 @@ endif()
 
 if(ENABLE_CPPCHECK)
     add_dependencies(${project_name} AnimeDefendersEngine_CPPCHECK_TARGET)
+endif()
+
+if(ENABLE_COVERAGE)
+    target_link_libraries(${project_name} gcov)
 endif()

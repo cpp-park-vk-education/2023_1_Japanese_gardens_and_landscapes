@@ -16,7 +16,7 @@ namespace AnimeDefendersEngine {
         template <typename T>
         struct Vector2 {
             explicit Vector2(T val1 = T{}, T val2 = T{});
-            auto norm() -> T&;
+            auto norm() const -> T&;
             T x;
             T y;
 
@@ -28,6 +28,8 @@ namespace AnimeDefendersEngine {
 
             friend auto operator*<T>(const T& const1, const Vector2<T>& vec1) -> Vector2<T>;
         };
+
+        using Vector2f = Vector2<float>;
 
     }  // namespace Math
 }  // namespace AnimeDefendersEngine
