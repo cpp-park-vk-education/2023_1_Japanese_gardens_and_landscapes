@@ -11,6 +11,8 @@ namespace AnimeDefendersEngine::Physics {
     };
 
     struct ContactEvent {
+        ContactEvent(std::string bodyAID, std::string bodyDID, ContactEventType type) : bodyAID(bodyAID), bodyBID(bodyBID), type(type){};
+        ContactEvent() = default;
         std::string bodyAID;
         std::string bodyBID;
         ContactEventType type;
