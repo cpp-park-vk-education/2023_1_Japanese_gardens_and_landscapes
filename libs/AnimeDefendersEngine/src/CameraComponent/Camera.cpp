@@ -3,7 +3,7 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    Camera::Camera(
+    explicit Camera::Camera(
         Math::Transpose* transpose, std::function<void(Math::Transpose*)> motionRule = [](Math::Transpose*) {},
         std::function<void(Math::Transpose*)> extraMotion = [](Math::Transpose*) {}, bool isActive = true) noexcept
         : m_transpose(transpose), m_motionRule(motionRule), m_extraMotion(extraMotion), m_isActive(isActive) {}

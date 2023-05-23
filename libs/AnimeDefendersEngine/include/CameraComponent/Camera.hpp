@@ -17,7 +17,7 @@ namespace AnimeDefendersEngine::Graphics {
         auto setTranspose(Math::Transpose*) noexcept -> void;
         auto setMotionRule(std::function<void(Math::Transpose*)>) noexcept -> void;
         auto setExtraMotion(std::function<void(Math::Transpose*)>) noexcept -> void;
-        auto setIsActive(bool) -> void;
+        auto setIsActive(bool) noexcept -> void;
 
         [[nodiscard]] auto getCameraTranspose() const noexcept -> Math::Transpose*;
         [[nodiscard]] auto isActive() const noexcept -> bool;
