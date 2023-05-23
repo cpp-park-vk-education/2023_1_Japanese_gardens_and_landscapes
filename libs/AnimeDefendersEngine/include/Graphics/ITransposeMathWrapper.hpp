@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Transform.hpp"
+#include "Transpose.hpp"
 
 namespace AnimeDefendersEngine {
     namespace Graphics {
@@ -8,7 +8,7 @@ namespace AnimeDefendersEngine {
         class ITransposeMathWrapper {
          public:
             virtual auto initialIdentityMatrix() -> void = 0;
-            virtual auto applyTransposeMatrix(const Transform&) -> void = 0;
+            virtual auto applyTransposeMatrix(const Math::Transpose&) -> void = 0;
             virtual auto dropLastMatrix() -> void = 0;
         };
 

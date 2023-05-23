@@ -1,6 +1,9 @@
+#include "Logger.hpp"
+
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 TEST(SampleTest, TestSoThisFileWontBeEmpty) {
-    ASSERT_TRUE(true);
+    using namespace AnimeDefendersEngine::Logger;
+    defaultLog.setLogLevel(LogLevel::NoLog);
 }

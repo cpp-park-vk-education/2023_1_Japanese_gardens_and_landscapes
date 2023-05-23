@@ -2,7 +2,7 @@
 
 using namespace AnimeDefendersEngine;
 
-[[nodiscard]] auto Component::getEntityId() const noexcept -> std::string {
+[[nodiscard]] auto Component::getEntityId() const noexcept -> const std::string& {
     return m_entityId;
 }
 
