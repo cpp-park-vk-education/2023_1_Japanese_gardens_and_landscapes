@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/AnimeFramework.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Component.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/BaseComponent.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/ComponentManager.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Entity.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Event.hpp
@@ -177,6 +179,12 @@ endif()
 
 add_library(${project_name} STATIC ${source})
 target_include_directories(${project_name} PUBLIC ${include_locations})
+
+find_package(OpenGL COMPONENTS OpenGL REQUIRED)
+find_package(GLUT COMPONENTS GLUT REQUIRED)
+include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
+
+target_link_libraries(${project_name} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
 
 if(ENABLE_CLANG_FORMAT)
     add_dependencies(${project_name} AnimeDefendersEngine_FORMAT_TARGET)

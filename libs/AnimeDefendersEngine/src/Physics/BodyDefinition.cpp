@@ -2,15 +2,18 @@
 
 namespace AnimeDefendersEngine::Physics {
 
-    BodyDefinition::BodyDefinition(size_t id, std::unique_ptr<Shape>&& shapeUPtr, BodyType bodyType, Transform transform,
-                                   Math::Vector2<float> velocity, size_t layers, Math::Vector2<float> force, bool isTrigger)
+
+    BodyDefinition::BodyDefinition(std::string id, std::unique_ptr<Shape> shape, BodyType bodyType, Transform transform,
+                                   const Math::Vector2f& velocity, float mass, std::size_t layers, const Math::Vector2f& force,
+                                   bool isTrigger)
         : id(id),
-          shapeUPtr(std::move(shapeUPtr)),
+          shape(std::move(shape)),
           bodyType(bodyType),
           transform(transform),
           velocity(velocity),
+          mass(mass),
           layers(layers),
           force(force),
-          isTrigger(isTrigger){};
+          isTrigger(isTrigger) {}
 
-} // namespace AnimeDefendersEngine::Physics
+}  // namespace AnimeDefendersEngine::Physics
