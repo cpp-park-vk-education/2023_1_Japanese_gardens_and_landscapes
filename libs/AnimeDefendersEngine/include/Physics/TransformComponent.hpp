@@ -8,13 +8,12 @@
 
 namespace AnimeDefendersEngine {
 
-    class TransformComponent : public AnimeDefendersEngine::BaseComponent<TransformComponent> {
+    class TransformComponent : public BaseComponent<TransformComponent> {
      public:
-        TransformComponent(const std::string& entityId, AnimeDefendersEngine::ComponentManager& compManager,
-                           AnimeDefendersEngine::Math::Vector2<float> position)
-            : AnimeDefendersEngine::BaseComponent<TransformComponent>(entityId, compManager), position(position) {}
+        TransformComponent(const std::string& entityId, ComponentManager& compManager, Math::Vector2<float> position)
+            : BaseComponent<TransformComponent>(entityId, compManager), position(position) {}
 
-        AnimeDefendersEngine::Math::Vector2<float> position;
+        Math::Vector2f position;
     };
 
 }  // namespace AnimeDefendersEngine

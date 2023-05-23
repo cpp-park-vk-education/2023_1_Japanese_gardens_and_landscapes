@@ -21,7 +21,7 @@ namespace AnimeDefendersEngine {
               rigidBody2DComponent(rigidBody2DComponent),
               transformComponent(transformComponent) {}
 
-        AnimeDefendersEngine::Math::Vector2<float> size;
+        AnimeDefendersEngine::Math::Vector2f size;
         RigidBody2DComponent* rigidBody2DComponent;
         TransformComponent& transformComponent;
     };

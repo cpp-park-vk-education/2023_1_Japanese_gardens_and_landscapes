@@ -9,13 +9,13 @@ namespace AnimeDefendersEngine {
 
     constexpr float defaultMass = 1.f;
 
-    class RigidBody2DComponent : public AnimeDefendersEngine::BaseComponent<RigidBody2DComponent> {
+    class RigidBody2DComponent : public BaseComponent<RigidBody2DComponent> {
      public:
-        RigidBody2DComponent(const std::string& entityId, AnimeDefendersEngine::ComponentManager& compManager, float mass = defaultMass,
-                             AnimeDefendersEngine::Math::Vector2<float> velocity = AnimeDefendersEngine::Math::Vector2<float>(0, 0))
-            : AnimeDefendersEngine::BaseComponent<RigidBody2DComponent>(entityId, compManager), mass(mass), velocity(velocity) {}
+        RigidBody2DComponent(const std::string& entityId, ComponentManager& compManager, float mass = defaultMass,
+                             Math::Vector2f velocity = Math::Vector2f())
+            : BaseComponent<RigidBody2DComponent>(entityId, compManager), mass(mass), velocity(velocity) {}
 
-        AnimeDefendersEngine::Math::Vector2<float> velocity;
+        Math::Vector2f velocity;
         float mass;
     };
 
