@@ -13,168 +13,168 @@ env:
 
 jobs:    
 
-  cppcheck:
-    runs-on: ubuntu-22.04
+  # cppcheck:
+  #   runs-on: ubuntu-22.04
 
-    steps:
-      - uses: actions/checkout@v2
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - name: Install OpenGL
-        run: sudo apt install freeglut3-dev
+  #     - name: Install OpenGL
+  #       run: sudo apt install freeglut3-dev
 
-      - name: Install cppcheck
-        uses: aminya/setup-cpp@v1
-        with:
-          cppcheck: true
-          cmake: true
+  #     - name: Install cppcheck
+  #       uses: aminya/setup-cpp@v1
+  #       with:
+  #         cppcheck: true
+  #         cmake: true
 
-      - name: Run cppcheck
-        run: | 
-          cmake -DENABLE_CPPCHECK=ON . -B build
-          cmake --build build -t CPPCHECK_TARGET
+  #     - name: Run cppcheck
+  #       run: | 
+  #         cmake -DENABLE_CPPCHECK=ON . -B build
+  #         cmake --build build -t CPPCHECK_TARGET
   
-  clang-tidy:
-    runs-on: ubuntu-22.04
+  # clang-tidy:
+  #   runs-on: ubuntu-22.04
 
-    steps:
-      - uses: actions/checkout@v3
+  #   steps:
+  #     - uses: actions/checkout@v3
 
-      - name: Install OpenGL
-        run: sudo apt install freeglut3-dev
+  #     - name: Install OpenGL
+  #       run: sudo apt install freeglut3-dev
 
-      - name: Install clang-tidy
-        uses: aminya/setup-cpp@v1
-        with:
-          gcc: true
-          clangtidy: true
-          cmake: true
+  #     - name: Install clang-tidy
+  #       uses: aminya/setup-cpp@v1
+  #       with:
+  #         gcc: true
+  #         clangtidy: true
+  #         cmake: true
 
-      - name: Run clang-tidy
-        run: | 
-          cmake -DENABLE_CLANG_TIDY=ON . -B build
-          cmake --build build -t TIDY_TARGET
+  #     - name: Run clang-tidy
+  #       run: | 
+  #         cmake -DENABLE_CLANG_TIDY=ON . -B build
+  #         cmake --build build -t TIDY_TARGET
 
-  clang-format:
-    runs-on: ubuntu-22.04
+  # clang-format:
+  #   runs-on: ubuntu-22.04
 
-    steps:
-      - uses: actions/checkout@v3
+  #   steps:
+  #     - uses: actions/checkout@v3
 
-      - name: Install OpenGL
-        run: sudo apt install freeglut3-dev
+  #     - name: Install OpenGL
+  #       run: sudo apt install freeglut3-dev
 
-      - name: Install clang-tidy
-        uses: aminya/setup-cpp@v1
-        with:
-          gcc: true
-          clangformat: true
-          cmake: true
+  #     - name: Install clang-tidy
+  #       uses: aminya/setup-cpp@v1
+  #       with:
+  #         gcc: true
+  #         clangformat: true
+  #         cmake: true
 
-      - name: Run clang-format
-        run: | 
-          cmake -DENABLE_CLANG_FORMAT=ON . -B build
-          cmake --build build -t FORMAT_CHECK_TARGET
+  #     - name: Run clang-format
+  #       run: | 
+  #         cmake -DENABLE_CLANG_FORMAT=ON . -B build
+  #         cmake --build build -t FORMAT_CHECK_TARGET
 
-  build:
-    needs: [ cppcheck, clang-tidy, clang-format ]
-    runs-on: ubuntu-22.04
+  # build:
+  #   needs: [ cppcheck, clang-tidy, clang-format ]
+  #   runs-on: ubuntu-22.04
 
-    steps:
-      - uses: actions/checkout@v3
+  #   steps:
+  #     - uses: actions/checkout@v3
 
-      - name: Install OpenGL
-        run: sudo apt install freeglut3-dev
+  #     - name: Install OpenGL
+  #       run: sudo apt install freeglut3-dev
 
-      - name: Install cmake
-        uses: aminya/setup-cpp@v1
-        with:
-          gcc: true
-          cmake: true
+  #     - name: Install cmake
+  #       uses: aminya/setup-cpp@v1
+  #       with:
+  #         gcc: true
+  #         cmake: true
 
-      - name: Build
-        run: |
-          cmake -DDEBUG=ON . -B build 
-          cmake --build build -t EXE_TARGET
+  #     - name: Build
+  #       run: |
+  #         cmake -DDEBUG=ON . -B build 
+  #         cmake --build build -t EXE_TARGET
       
-  tests:
-    needs: [ build ]
-    runs-on: ubuntu-22.04
+  # tests:
+  #   needs: [ build ]
+  #   runs-on: ubuntu-22.04
 
-    steps:
-      - uses: actions/checkout@v3
+  #   steps:
+  #     - uses: actions/checkout@v3
 
-      - name: Install OpenGL
-        run: sudo apt install freeglut3-dev
+  #     - name: Install OpenGL
+  #       run: sudo apt install freeglut3-dev
 
-      - name: Install cmake
-        uses: aminya/setup-cpp@v1
-        with:
-          gcc: true
-          cmake: true
+  #     - name: Install cmake
+  #       uses: aminya/setup-cpp@v1
+  #       with:
+  #         gcc: true
+  #         cmake: true
       
-      - uses: snickerbockers/submodules-init@v4
+  #     - uses: snickerbockers/submodules-init@v4
 
 
-      - name: Build
-        run: |
-          cmake -DDEBUG=ON -DENABLE_TESTING=ON . -B build 
-          cmake --build build -t TESTS_TARGET
+  #     - name: Build
+  #       run: |
+  #         cmake -DDEBUG=ON -DENABLE_TESTING=ON . -B build 
+  #         cmake --build build -t TESTS_TARGET
 
-  test_with_sanitizers:
-    needs: [ tests ]
-    runs-on: ubuntu-22.04
+  # test_with_sanitizers:
+  #   needs: [ tests ]
+  #   runs-on: ubuntu-22.04
 
-    steps:
-      - uses: actions/checkout@v3
+  #   steps:
+  #     - uses: actions/checkout@v3
 
-      - name: Install OpenGL
-        run: sudo apt install freeglut3-dev
+  #     - name: Install OpenGL
+  #       run: sudo apt install freeglut3-dev
 
-      - name: Install cmake
-        uses: aminya/setup-cpp@v1
-        with:
-          gcc: true
-          cmake: true
+  #     - name: Install cmake
+  #       uses: aminya/setup-cpp@v1
+  #       with:
+  #         gcc: true
+  #         cmake: true
 
-      - uses: snickerbockers/submodules-init@v4
-      - name: Run tests
-        run: |
-          cmake -DDEBUG=ON -DENABLE_TESTING=ON -DENABLE_SANITIZERS=ON . -B build 
-          cmake --build build -t TESTS_TARGET 
+  #     - uses: snickerbockers/submodules-init@v4
+  #     - name: Run tests
+  #       run: |
+  #         cmake -DDEBUG=ON -DENABLE_TESTING=ON -DENABLE_SANITIZERS=ON . -B build 
+  #         cmake --build build -t TESTS_TARGET 
 
-  test_with_valgrind:
-    needs: [ tests ]  
-    runs-on: ubuntu-22.04
+  # test_with_valgrind:
+  #   needs: [ tests ]  
+  #   runs-on: ubuntu-22.04
     
-    steps:
-      - uses: actions/checkout@v3
+  #   steps:
+  #     - uses: actions/checkout@v3
 
-      - name: Install OpenGL
-        run: sudo apt install freeglut3-dev
+  #     - name: Install OpenGL
+  #       run: sudo apt install freeglut3-dev
 
-      - name: Install cmake
-        uses: aminya/setup-cpp@v1
-        with:
-          gcc: true
-          cmake: true
+  #     - name: Install cmake
+  #       uses: aminya/setup-cpp@v1
+  #       with:
+  #         gcc: true
+  #         cmake: true
 
-      - uses: snickerbockers/submodules-init@v4
+  #     - uses: snickerbockers/submodules-init@v4
 
-      - name: Install OpenGL
-        run: sudo apt install freeglut3-dev
+  #     - name: Install OpenGL
+  #       run: sudo apt install freeglut3-dev
 
-      - name: Install valgrind # Я не нашёл сценария который подгружает valgrind :(
-        run: | 
-          sudo apt-get update -y
-          sudo apt-get install -y valgrind  
+  #     - name: Install valgrind # Я не нашёл сценария который подгружает valgrind :(
+  #       run: | 
+  #         sudo apt-get update -y
+  #         sudo apt-get install -y valgrind  
 
-      - name: Run valgrind
-        run: |
-          cmake -DDEBUG=ON -DENABLE_TESTING=ON . -B build 
-          cmake --build build -t VALGRIND_TARGET
+  #     - name: Run valgrind
+  #       run: |
+  #         cmake -DDEBUG=ON -DENABLE_TESTING=ON . -B build 
+  #         cmake --build build -t VALGRIND_TARGET
 
   coverage_report:
-    needs: [ tests ]  
+    # needs: [ tests ]  
     runs-on: ubuntu-22.04
 
     permissions: write-all

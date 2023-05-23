@@ -120,7 +120,9 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/UiTextureElementComponent/UiTextureElementSystem.cpp
 )
 
-set(tests_folder tests)
+if(ENABLE_COVERAGE)
+    add_compile_options(-fprofile-arcs -ftest-coverage)
+endif()
 
 if(ENABLE_CLANG_TIDY AND NOT ENABLE_TESTING AND NOT ENABLE_COVERAGE)
     string(REPLACE "${PROJECT_SOURCE_DIR}" "-I${PROJECT_SOURCE_DIR}" clang_tidy_includes "${include_locations}")
@@ -192,4 +194,8 @@ endif()
 
 if(ENABLE_CPPCHECK)
     add_dependencies(${project_name} AnimeDefendersEngine_CPPCHECK_TARGET)
+endif()
+
+if(ENABLE_COVERAGE)
+    target_link_libraries(${project_name} gcov)
 endif()
