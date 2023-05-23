@@ -5,8 +5,8 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    Window::Window(int windowWidth, int windowHeidth, const std::string& windowTitle)
-        : m_windowWidth(windowWidth), m_windowHeidth(windowHeidth) noexcept {
+    Window::Window(int windowWidth, int windowHeidth, const std::string& windowTitle) noexcept
+        : m_windowWidth(windowWidth), m_windowHeidth(windowHeidth) {
         int argc{};
         glutInit(&argc, nullptr);
         glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
