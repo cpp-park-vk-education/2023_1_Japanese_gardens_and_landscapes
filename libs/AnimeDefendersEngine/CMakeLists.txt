@@ -79,6 +79,8 @@ set(include_locations
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiElementComponent
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiLabelComponent
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiTextureElementComponent
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/libs/AnimeDefendersEngine/libs/stb
 )
 
 set(source

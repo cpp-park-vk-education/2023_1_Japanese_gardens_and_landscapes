@@ -14,7 +14,7 @@
 #define SOURCE_DIR_PATH ""
 #endif
 
-inline constexpr auto absolutePath(const std::convertible_to<std::string> auto& x) -> std::string {
+inline auto absolutePath(const std::convertible_to<std::string> auto& x) -> std::string {
     return std::string{SOURCE_DIR_PATH} + x;
 }
 
