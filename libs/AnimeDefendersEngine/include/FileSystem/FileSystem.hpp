@@ -39,7 +39,7 @@ namespace AnimeDefendersEngine {
             explicit FileSystem(const std::filesystem::path& pathToRoot);
 
             auto loadItem(const std::string& name) -> void;
-            auto getImage(const std::string& name) -> const Image&;
+            [[nodiscard]] auto getImage(const std::string& name) -> const Image&;
 
             auto deleteItem(FileType type, const std::string& name) -> void;
 
