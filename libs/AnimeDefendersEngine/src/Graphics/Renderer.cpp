@@ -6,7 +6,7 @@
 namespace AnimeDefendersEngine::Graphics {
 
     Renderer::Renderer(std::shared_ptr<IWindow> window) : m_window(window) {
-        m_window->createWindow();
+        m_window->createWindow(500, 500, "Anime Defenders: Battle Behind the Screen");
     }
 
     auto Renderer::renderObjects(const Scene& scene) -> void {
