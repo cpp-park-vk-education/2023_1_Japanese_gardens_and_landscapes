@@ -8,7 +8,7 @@ namespace AnimeDefendersEngine::Graphics {
 
     class Window final : public IWindow {
      public:
-        Window(int, int, const std::string&) noexcept;
+        Window(int windowWidth, int windowHeight, const std::string& windowTitle) noexcept;
 
         ~Window() noexcept override;
         Window(const Window&) = delete;
@@ -30,7 +30,7 @@ namespace AnimeDefendersEngine::Graphics {
      private:
         int m_windowId{};
         int m_windowWidth{};
-        int m_windowHeidth{};
+        int m_windowHeight{};
     };
 
 }  // namespace AnimeDefendersEngine::Graphics

@@ -4,12 +4,12 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    Window::Window(int windowWidth, int windowHeidth, const std::string& windowTitle) noexcept
-        : m_windowWidth(windowWidth), m_windowHeidth(windowHeidth) {
+    Window::Window(int windowWidth, int windowHeight, const std::string& windowTitle) noexcept
+        : m_windowWidth(windowWidth), m_windowHeight(windowHeight) {
         int argc{};
         glutInit(&argc, nullptr);
         glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-        glutInitWindowSize(m_windowWidth, m_windowHeidth);
+        glutInitWindowSize(m_windowWidth, m_windowHeight);
 
         m_windowId = glutCreateWindow(windowTitle.c_str());
 
@@ -23,7 +23,7 @@ namespace AnimeDefendersEngine::Graphics {
     }
 
     auto Window::updateFrame() const noexcept -> void {
-        glutReshapeWindow(m_windowWidth, m_windowHeidth);
+        glutReshapeWindow(m_windowWidth, m_windowHeight);
         glutSwapBuffers();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
