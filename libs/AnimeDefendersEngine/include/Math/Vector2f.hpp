@@ -25,6 +25,6 @@ namespace AnimeDefendersEngine::Math {
 
     std::ostream& operator<<(std::ostream& os, Vector2f vec);
 
-    auto operator*(float c1, Vector2f vec1) const -> Vector2f;
+    auto operator*(float c1, Vector2f vec1) -> Vector2f;
 
 }  // namespace AnimeDefendersEngine::Math

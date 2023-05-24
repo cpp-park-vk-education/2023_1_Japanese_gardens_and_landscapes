@@ -40,7 +40,7 @@ namespace AnimeDefendersEngine {
         return Vector2f{this->x - vec.x, this->y - vec.y};
     }
 
-    auto Math::operator*(float c1, Vector2f vec1) const -> Vector2f {
+    auto Math::operator*(float c1, Vector2f vec1) -> Vector2f {
         return Vector2f{c1 * vec1.x, c1 * vec1.y};
     }
 
