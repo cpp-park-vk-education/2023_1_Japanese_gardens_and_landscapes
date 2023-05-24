@@ -3,9 +3,8 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    Sprite::Sprite(const std::string& entityId, Math::Transpose* transpose, Texture* texture = nullptr,
-                   Animation* animation = nullptr) noexcept
-        : Component(entityId), m_transpose(transpose), m_texture(texture), m_animation(animation) {}
+    Sprite::Sprite(const std::string& entityId, const Math::Transpose& transpose, const Texture& texture) noexcept
+        : Component(entityId), m_transpose(transpose), m_texture(texture) {}
 
     auto Sprite::isSpriteVisibleToCamera(const Camera* camera) const noexcept -> bool {
         return SpriteSystem::isSpriteVisibleToCamera(this, camera);
@@ -15,28 +14,20 @@ namespace AnimeDefendersEngine::Graphics {
         return SpriteSystem::drawSprite(this);
     }
 
-    auto Sprite::setTranspose(Math::Transpose* transpose) noexcept -> void {
+    auto Sprite::setTranspose(const Math::Transpose& transpose) noexcept -> void {
         m_transpose = transpose;
     }
 
-    auto Sprite::setTexture(Texture* texture) noexcept -> void {
+    auto Sprite::setTexture(const Texture& texture) noexcept -> void {
         m_texture = texture;
     }
 
-    auto Sprite::setAnimation(Animation* animation) noexcept -> void {
-        m_animation = animation;
-    }
-
-    auto Sprite::getTranspose() const noexcept -> Math::Transpose* {
+    auto Sprite::getTranspose() const noexcept -> const Math::Transpose& {
         return m_transpose;
     }
 
-    auto Sprite::getTexture() const noexcept -> Texture* {
+    auto Sprite::getTexture() const noexcept -> const Texture& {
         return m_texture;
-    }
-
-    auto Sprite::getAnimation() const noexcept -> Animation* {
-        return m_animation;
     }
 
 }  // namespace AnimeDefendersEngine::Graphics

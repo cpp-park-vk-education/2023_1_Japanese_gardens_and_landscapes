@@ -7,15 +7,10 @@ namespace AnimeDefendersEngine::Graphics::SpriteSystem {
     }
 
     auto drawSprite(const Sprite* sprite) noexcept -> void {
-        Math::Transpose* transpose = sprite->getTranspose();
-        Animation* animation = sprite->getAnimation();
-        Texture* texture = sprite->getTexture();
+        auto transpose = sprite->getTranspose();
+        auto texture = sprite->getTexture();
 
         SpriteSystem::transposeMathWrapper.applyTransposeMatrix(transpose);
-
-        if (animation) {
-            return;
-        }
 
         if (texture) {
             SpriteSystem::drawTextureWrapper.drawTexture(texture);
