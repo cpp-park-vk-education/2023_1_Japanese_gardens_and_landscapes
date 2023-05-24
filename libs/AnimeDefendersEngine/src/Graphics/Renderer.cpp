@@ -17,15 +17,14 @@ namespace AnimeDefendersEngine::Graphics {
         auto uiElements = componentManager.getComponents<UiElement>();
 
         Camera* activeCamera{};
-        Camera* nextCamera{};
         for (const auto& nextCompenent : cameras) {
-            nextCamera = static_cast<Camera*>(nextCompenent.second);
+            auto* camera = static_cast<Camera*>(nextCompenent.second);
 
-            if (nextCamera->isCameraActive()) {
+            if (camera->isCameraActive()) {
                 if (activeCamera) {
                     throw std::runtime_error("Active camera must be the only one!");
                 }
-                activeCamera = nextCamera;
+                activeCamera = camera;
             }
         }
 
@@ -36,20 +35,18 @@ namespace AnimeDefendersEngine::Graphics {
         activeCamera->determineNewCameraTranspose();
         activeCamera->applyCameraView();
 
-        Sprite* nextSprite{};
         for (const auto& nextComponent : sprites) {
-            nextSprite = static_cast<Sprite*>(nextComponent.second);
+            auto* sprite = static_cast<Sprite*>(nextComponent.second);
 
-            if (nextSprite->isSpriteVisibleToCamera(activeCamera)) {
-                nextSprite->drawSprite();
+            if (sprite->isSpriteVisibleToCamera(activeCamera)) {
+                sprite->drawSprite();
             }
         }
 
-        UiElement* nextUiElement{};
         for (const auto& nextComponent : uiElements) {
-            nextUiElement = static_cast<UiElement*>(nextComponent.second);
+            auto* uiElement = static_cast<UiElement*>(nextComponent.second);
 
-            nextUiElement->drawUiElement();
+            uiElement->drawUiElement();
         }
 
         m_window->updateFrame();
