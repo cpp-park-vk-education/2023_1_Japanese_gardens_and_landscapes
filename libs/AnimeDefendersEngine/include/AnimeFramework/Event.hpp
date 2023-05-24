@@ -4,7 +4,7 @@
 
 namespace AnimeDefendersEngine {
 
-    enum class EventType {
+    enum class EventType : unsigned char {
         None = 0,
         KeyPressed,
         KeyReleased,
@@ -23,8 +23,8 @@ namespace AnimeDefendersEngine {
         auto getName() const -> const std::string& { return m_name; }
 
      private:
-        std::string m_name{};
-        std::string m_additional{};
+        std::string m_name;
+        std::string m_additional;
         EventType m_eventType{};
     };
 

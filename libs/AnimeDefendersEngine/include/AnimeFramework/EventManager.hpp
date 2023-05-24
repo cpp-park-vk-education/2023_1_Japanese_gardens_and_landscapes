@@ -6,6 +6,7 @@
 #include <vector>
 #include "Entity.hpp"
 #include "Event.hpp"
+#include "EventListener.hpp"
 
 namespace AnimeDefendersEngine {
     namespace EventManager {
