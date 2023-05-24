@@ -47,8 +47,8 @@ namespace AnimeDefendersEngine::Physics {
 
     auto PhysicsSystem::processContactEvents(ComponentManager::ComponentsContainer& colliders) -> void {
         for (auto event : m_contactEvents) {
-            auto bodyA = static_cast<CircleColliderComponent*>(colliders.at(event.bodyAID));
-            auto bodyB = static_cast<CircleColliderComponent*>(colliders.at(event.bodyBID));
+            auto bodyA = static_cast<ColliderComponent*>(colliders.at(event.bodyAID));
+            auto bodyB = static_cast<ColliderComponent*>(colliders.at(event.bodyBID));
 
             switch (event.type) {
                 case ContactEventType::ContactEnter:

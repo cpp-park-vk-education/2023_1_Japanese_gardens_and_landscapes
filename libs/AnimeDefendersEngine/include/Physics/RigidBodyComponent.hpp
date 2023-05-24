@@ -12,7 +12,7 @@ namespace AnimeDefendersEngine {
     class RigidBodyComponent : public BaseComponent<RigidBodyComponent> {
      public:
         RigidBodyComponent(const std::string& entityId, ComponentManager& compManager, float mass = defaultMass,
-                           Math::Vector2f velocity = Math::Vector2f())
+                           Math::Vector2f velocity = Math::Vector2f{})
             : BaseComponent<RigidBodyComponent>(entityId, compManager), mass(mass), velocity(velocity) {}
 
         Math::Vector2f velocity;
