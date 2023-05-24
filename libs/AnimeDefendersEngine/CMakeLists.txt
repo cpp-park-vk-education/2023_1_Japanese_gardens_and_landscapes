@@ -52,7 +52,7 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/PhysicsWorld.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/RigidBodyComponent.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/Shape.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/Transform.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/TransformComponent.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/SpriteComponent/Sprite.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/SpriteComponent/SpriteSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Systems/ISystem.hpp
