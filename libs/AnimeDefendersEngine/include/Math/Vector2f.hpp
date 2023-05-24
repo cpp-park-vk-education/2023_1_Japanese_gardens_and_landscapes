@@ -25,9 +25,9 @@ namespace AnimeDefendersEngine {
 
         auto operator*(Vector2f vec1, Vector2f vec2) -> float;
 
-        auto operator*(const float& c1, Vector2f vec1) -> Vector2f;
+        auto operator*(float c1, Vector2f vec1) -> Vector2f;
 
-        auto operator*(Vector2f vec1, const float& c1) -> Vector2f;
+        auto operator*(Vector2f vec1,float c1) -> Vector2f;
 
     }  // namespace Math
 }  // namespace AnimeDefendersEngine

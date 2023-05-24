@@ -40,11 +40,11 @@ namespace AnimeDefendersEngine {
         return vec1.x * vec2.x + vec1.y * vec2.y;
     }
 
-    auto Math::operator*(const float& c1, Vector2f vec1) -> Vector2f {
+    auto Math::operator*(float c1, Vector2f vec1) -> Vector2f {
         return Vector2f{c1 * vec1.x, c1 * vec1.y};
     }
 
-    auto Math::operator*(Vector2f vec1, const float& c1) -> Vector2f {
+    auto Math::operator*(Vector2f vec1, float c1) -> Vector2f {
         return Vector2f{c1 * vec1.x, c1 * vec1.y};
     }
 
