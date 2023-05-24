@@ -11,17 +11,17 @@
 
 namespace AnimeDefendersEngine {
 
-    // ColliderComponent::ColliderComponent(const std::string& entityId, ComponentManager& compManager, Math::Vector2f size,
-    //                                      TransformComponent& transfromComponent, RigidBodyComponent* rigidBodyComponent = nullptr)
-    //     : BaseComponent<ColliderComponent>(entityId, compManager),
-    //       size(size),
-    //       rigidBodyComponent(rigidBodyComponent),
-    //       transformComponent(transformComponent) {
-    //     shapeType = Physics::ShapeType::rectangle;
-    // }
+    ColliderComponent::ColliderComponent(const std::string& entityId, ComponentManager& compManager, Math::Vector2f size,
+                                         TransformComponent& transfromComponent, RigidBodyComponent* rigidBodyComponent)
+        : BaseComponent<ColliderComponent>(entityId, compManager),
+          size(size),
+          rigidBodyComponent(rigidBodyComponent),
+          transformComponent(transformComponent) {
+        shapeType = Physics::ShapeType::rectangle;
+    }
 
     ColliderComponent::ColliderComponent(const std::string& entityId, ComponentManager& compManager, float radius,
-                                         TransformComponent& transfromComponent, RigidBodyComponent* rigidBodyComponent = nullptr)
+                                         TransformComponent& transfromComponent, RigidBodyComponent* rigidBodyComponent)
         : BaseComponent<ColliderComponent>(entityId, compManager),
           radius(radius),
           rigidBodyComponent(rigidBodyComponent),
