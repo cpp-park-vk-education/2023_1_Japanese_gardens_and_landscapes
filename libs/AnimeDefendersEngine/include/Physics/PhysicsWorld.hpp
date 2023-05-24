@@ -37,7 +37,7 @@ namespace AnimeDefendersEngine::Physics {
 
         float m_fixedDeltaTime{};
         float m_maxDeltaTime{};
-        float m_accumulator{0};
+        float m_accumulator{};
     };
 
 }  // namespace AnimeDefendersEngine::Physics

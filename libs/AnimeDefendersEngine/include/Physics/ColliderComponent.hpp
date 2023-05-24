@@ -1,7 +1,6 @@
 #pragma once
 
 #include "BaseComponent.hpp"
-#include "Component.hpp"
 #include "ComponentManager.hpp"
 #include "RigidBodyComponent.hpp"
 #include "Shape.hpp"
