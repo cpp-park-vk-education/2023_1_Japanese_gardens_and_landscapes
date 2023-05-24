@@ -18,9 +18,9 @@ namespace AnimeDefendersEngine::Graphics {
         virtual auto setMouseMotionhandler(mouseMotionHandler) const noexcept -> void = 0;
         virtual auto setKeyPressHandler(keyPressHandler) const noexcept -> void = 0;
 
-        virtual auto isShiftPressd() const noexcept -> bool = 0;
-        virtual auto isCtrlPressd() const noexcept -> bool = 0;
-        virtual auto isAltPressd() const noexcept -> bool = 0;
+        virtual auto isShiftPressed() const noexcept -> bool = 0;
+        virtual auto isCtrlPressed() const noexcept -> bool = 0;
+        virtual auto isAltPressed() const noexcept -> bool = 0;
     };
 
 }  // namespace AnimeDefendersEngine::Graphics
