@@ -7,6 +7,6 @@ namespace AnimeDefendersEngine::Graphics::CameraSystem {
 
     auto applyCameraView(const Camera*) -> void;
 
-    constexpr TransposeMathWrapper transposeMathWrapper{};
+    constexpr TransposeMathWrapper transposeMathWrapper;
 
 }  // namespace AnimeDefendersEngine::Graphics::CameraSystem
