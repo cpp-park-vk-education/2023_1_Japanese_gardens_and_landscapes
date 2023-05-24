@@ -24,12 +24,8 @@ namespace AnimeDefendersEngine::FileSystem {
         TableReader reader{std::make_unique<std::ifstream>(pathToRoot), '|'};
         while (!reader.endOfTable()) {
             m_paths[reader["Name"]] = absolutePath(reader["FilePath"]);
-            
-            reader.readNewRow();
-        }
 
-        for (const auto& [name, path] : m_paths) {
-            std::cout << "name = '" << name << "' path = '" << path.c_str() << "'\n";
+            reader.readNewRow();
         }
     }
 
