@@ -44,7 +44,7 @@ namespace AnimeDefendersEngine::Physics {
     }
 
     auto PhysicsWorld::getEvents(std::unordered_set<Manifold> currentContacts) -> std::vector<ContactEvent> {
-        std::vector<ContactEvent> events;
+        std::vector<ContactEvent> events{};
         events.reserve(currentContacts.size());
         for (auto currentContact : currentContacts) {
             if (m_contacts.contains(currentContact)) {
@@ -62,7 +62,7 @@ namespace AnimeDefendersEngine::Physics {
     }
 
     auto PhysicsWorld::fixedUpdate() -> std::vector<ContactEvent> {
-        std::vector<Body*> bodies;
+        std::vector<Body*> bodies{};
         bodies.reserve((m_bodies.size()));
         for (const auto& body : m_bodies) {
             if (body->getType() == BodyType::dynamicBody) {
