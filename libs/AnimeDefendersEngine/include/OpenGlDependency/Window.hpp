@@ -19,7 +19,8 @@ namespace AnimeDefendersEngine::Graphics {
         auto updateFrame() const noexcept -> void override;
 
         auto setMouseClickHandler(mouseClickHandler) const noexcept -> void override;
-        auto setMouseMotionhandler(mouseMotionHandler) const noexcept -> void override;
+        auto setActiveMouseMotionHandler(mouseMotionHandler) const noexcept -> void override;
+        auto setPassiveMouseMotionHandler(mouseMotionHandler) const noexcept -> void override;
         auto setKeyPressHandler(keyPressHandler) const noexcept -> void override;
 
         auto isShiftPressed() const noexcept -> bool override;

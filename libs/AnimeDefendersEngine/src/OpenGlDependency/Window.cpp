@@ -32,7 +32,11 @@ namespace AnimeDefendersEngine::Graphics {
         glutMouseFunc(handler.target<void(int, int, int, int)>());
     }
 
-    auto Window::setMouseMotionhandler(mouseMotionHandler handler) const noexcept -> void {
+    auto Window::setActiveMouseMotionHandler(mouseMotionHandler handler) const noexcept -> void {
+        glutMotionFunc(handler.target<void(int, int)>());
+    }
+
+    auto Window::setPassiveMouseMotionHandler(mouseMotionHandler handler) const noexcept -> void {
         glutMotionFunc(handler.target<void(int, int)>());
     }
 
