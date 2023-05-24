@@ -2,12 +2,17 @@
 
 #include "BaseComponent.hpp"
 #include "ComponentManager.hpp"
-#include "RigidBodyComponent.hpp"
 #include "Shape.hpp"
-#include "TransformComponent.hpp"
 #include "Vector2.hpp"
 
 #include <memory>
+
+namespace AnimeDefendersEngine {
+
+    class TransformComponent;
+    class RigidBodyComponent;
+
+}  // namespace AnimeDefendersEngine
 
 namespace AnimeDefendersEngine {
 
@@ -18,11 +23,18 @@ namespace AnimeDefendersEngine {
         ColliderComponent(const std::string& entityId, ComponentManager& compManager, float radius, TransformComponent& transfromComponent,
                           RigidBodyComponent* rigidBodyComponent = nullptr);
 
-        RigidBodyComponent* rigidBodyComponent{nullptr};
-        TransformComponent& transformComponent;
-        Physics::ShapeType shapeType;
-        Math::Vector2f size;
-        float radius{};
+        [[nodiscard]] auto getTransform() const noexcept -> TransformComponent&;
+        [[nodiscard]] auto getRigidBody() const noexcept -> RigidBodyComponent*;
+        [[nodiscard]] auto getShapeType() const noexcept -> Physics::ShapeType;
+        [[nodiscard]] auto getSize() const noexcept -> Math::Vector2f;
+        [[nodiscard]] auto getRadius() const noexcept -> float;
+
+     private:
+        RigidBodyComponent* m_rigidBodyComponent{nullptr};
+        TransformComponent& m_transformComponent;
+        Physics::ShapeType m_shapeType;
+        Math::Vector2f m_size;
+        float m_radius{};
     };
 
 }  // namespace AnimeDefendersEngine
