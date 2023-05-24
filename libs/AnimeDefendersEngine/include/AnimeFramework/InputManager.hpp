@@ -11,11 +11,13 @@ namespace AnimeDefendersEngine {
         auto motionHandler(int x, int y) -> void;
         auto mouseHandler(int, int, int, int) -> void;
         auto initInputManager(Graphics::Window& window) -> void;
-        auto getButtonDown(const unsigned char button) -> bool;
+        auto getButtonDown(unsigned char button) -> bool;
 
         struct MousePosition {
-            int x;
-            int y;
+            MousePosition() = default;
+            MousePosition(int x, int y) : x(x), y(y) {}
+            int x{0};
+            int y{0};
         };
     }  // namespace InputManager
 }  // namespace AnimeDefendersEngine
