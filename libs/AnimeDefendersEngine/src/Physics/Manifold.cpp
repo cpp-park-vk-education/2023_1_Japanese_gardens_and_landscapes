@@ -1,5 +1,7 @@
 #include "Manifold.hpp"
 
+#include <tuple>
+
 namespace AnimeDefendersEngine::Physics {
 
     Manifold::Manifold(Body* bodyA, Body* bodyB) : bodyA(bodyA), bodyB(bodyB) {}
@@ -18,9 +20,16 @@ namespace AnimeDefendersEngine::Physics {
         bodyB->setPosition(bodyB->getPosition() + correctionPercent * bodyB->getInverseMass() * correction);
     }
 
-    auto operator==(const Manifold& left, const Manifold& right) -> bool {
-        return left.bodyA->getID() == right.bodyA->getID() && left.bodyB->getID() == right.bodyB->getID() ||
-               left.bodyA->getID() == right.bodyB->getID() && left.bodyB->getID() == right.bodyA->getID();
-    }
+    namespace {
+
+        inline auto getIDs(const Manifold& manifold) {
+            return std::tie(manifold.bodyA->getID(), manifold.bodyB->getID());
+        }
+
+        auto operator==(const Manifold& left, const Manifold& right) -> bool {
+            return getIDs(left) == getIDs(right);
+        }
+
+    }  // namespace
 
 }  // namespace AnimeDefendersEngine::Physics

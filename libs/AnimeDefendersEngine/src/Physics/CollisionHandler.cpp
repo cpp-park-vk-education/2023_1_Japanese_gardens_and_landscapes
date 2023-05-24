@@ -13,7 +13,11 @@ namespace AnimeDefendersEngine::Physics {
         contacts.reserve(bodies.size());
         for (auto bodyAIter = bodies.begin(); bodyAIter != bodies.end(); ++bodyAIter) {
             for (auto bodyBIter = bodyAIter + 1; bodyBIter != bodies.end(); ++bodyBIter) {
-                contacts.emplace(*bodyAIter, *bodyBIter);
+                if ((*bodyAIter)->getID() < (*bodyBIter)->getID()) {
+                    contacts.emplace(*bodyAIter, *bodyBIter);
+                } else {
+                    contacts.emplace(*bodyBIter, *bodyAIter);
+                }
             }
         }
         return contacts;
