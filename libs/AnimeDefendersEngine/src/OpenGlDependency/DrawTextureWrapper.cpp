@@ -4,7 +4,7 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    auto DrawTextureWrapper::loadTexture(const FileSystem::Image& pixelMatrix) const noexcept -> Texture {
+    auto DrawTextureWrapper::loadTexture(const Math::Matrix2d<Color>& pixelMatrix) const noexcept -> Texture {
         Texture newTexture;
         glGenTextures(1, &newTexture.textureId);
         glBindTexture(GL_TEXTURE_2D, newTexture.textureId);
