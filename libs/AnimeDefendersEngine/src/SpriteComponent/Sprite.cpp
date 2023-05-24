@@ -3,8 +3,9 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    Sprite::Sprite(const std::string& entityId, const Math::Transpose& transpose, const Texture& texture) noexcept
-        : Component(entityId), m_transpose(transpose), m_texture(texture) {}
+    Sprite::Sprite(const std::string& entityId, ComponentManager& componentManager, const Math::Transpose& transpose,
+                   const Texture& texture) noexcept
+        : BaseComponent(entityId, componentManager), m_transpose(transpose), m_texture(texture) {}
 
     auto Sprite::isSpriteVisibleToCamera(const Camera* camera) const noexcept -> bool {
         return SpriteSystem::isSpriteVisibleToCamera(this, camera);

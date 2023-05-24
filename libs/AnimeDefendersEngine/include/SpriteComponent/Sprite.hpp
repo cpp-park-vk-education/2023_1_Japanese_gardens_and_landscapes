@@ -1,15 +1,15 @@
 #pragma once
 
+#include "BaseComponent.hpp"
 #include "Camera.hpp"
-#include "Component.hpp"
 #include "Texture.hpp"
 #include "Transpose.hpp"
 
 namespace AnimeDefendersEngine::Graphics {
 
-    class Sprite final : public Component {
+    class Sprite final : public BaseComponent<Sprite> {
      public:
-        explicit Sprite(const std::string&, const Math::Transpose&, const Texture&) noexcept;
+        explicit Sprite(const std::string& entityId, ComponentManager&, const Math::Transpose&, const Texture&) noexcept;
 
         [[nodiscard]] auto isSpriteVisibleToCamera(const Camera*) const noexcept -> bool;
         auto drawSprite() const noexcept -> void;
