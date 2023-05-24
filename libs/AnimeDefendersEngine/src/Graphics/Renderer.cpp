@@ -3,8 +3,6 @@
 #include "Sprite.hpp"
 #include "UiElement.hpp"
 
-#include <cassert>
-
 namespace AnimeDefendersEngine::Graphics {
 
     Renderer::Renderer(std::shared_ptr<IWindow> window) : m_window(window) {
@@ -14,9 +12,9 @@ namespace AnimeDefendersEngine::Graphics {
     auto Renderer::renderObjects(const Scene& scene) -> void {
         auto componentManager = scene.getComponentManager();
 
-        auto cameras = componentManager->getComponents(typeid(Camera));
-        auto sprites = componentManager->getComponents(typeid(Sprite));
-        auto uiElements = componentManager->getComponents(typeid(UiElement));
+        auto cameras = componentManager->getComponents<Camera>();
+        auto sprites = componentManager->getComponents<Sprite>();
+        auto uiElements = componentManager->getComponents<UiElement>();
 
         Camera* activeCamera{};
         Camera* nextCamera{};

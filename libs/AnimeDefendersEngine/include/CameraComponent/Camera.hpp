@@ -4,6 +4,7 @@
 #include "Transform.hpp"
 
 #include <functional>
+#include <typeinfo>
 
 namespace AnimeDefendersEngine {
     namespace Graphics {
