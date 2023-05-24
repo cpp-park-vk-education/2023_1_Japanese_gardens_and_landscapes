@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Component.hpp"
+#include "BaseComponent.hpp"
 #include "Transpose.hpp"
 
 #include <functional>
 
 namespace AnimeDefendersEngine::Graphics {
 
-    class Camera final : public Component {
+    class Camera final : public BaseComponent<Camera> {
      public:
         /**
          * Default constructor of camera
