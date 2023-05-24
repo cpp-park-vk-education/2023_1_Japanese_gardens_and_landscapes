@@ -1,6 +1,13 @@
+#include "DrawTextureWrapper.hpp"
 #include "SpriteSystem.hpp"
+#include "TransposeMathWrapper.hpp"
 
 namespace AnimeDefendersEngine::Graphics::SpriteSystem {
+
+    namespace {
+        const TransposeMathWrapper transposeMathWrapper{};
+        const DrawTextureWrapper drawTextureWrapper{};
+    }  // namespace
 
     auto isSpriteVisibleToCamera(const Sprite*, const Camera*) noexcept -> bool {
         return true;
@@ -11,10 +18,7 @@ namespace AnimeDefendersEngine::Graphics::SpriteSystem {
         auto texture = sprite->getTexture();
 
         SpriteSystem::transposeMathWrapper.applyTransposeMatrix(transpose);
-
-        if (texture) {
-            SpriteSystem::drawTextureWrapper.drawTexture(texture);
-        }
+        SpriteSystem::drawTextureWrapper.drawTexture(texture);
     }
 
 }  // namespace AnimeDefendersEngine::Graphics::SpriteSystem
