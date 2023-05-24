@@ -48,15 +48,15 @@ namespace AnimeDefendersEngine::Physics {
         events.reserve(currentContacts.size());
         for (auto currentContact : currentContacts) {
             if (m_contacts.contains(currentContact)) {
-                events.emplace_back(currentContact.bodyA, currentContact.bodyB, ContactEventType::ContactStay);
+                events.emplace_back(currentContact.bodyA->getID(), currentContact.bodyB->getID(), ContactEventType::ContactStay);
                 m_contacts.erase(currentContact);
             } else {
-                events.emplace_back(currentContact.bodyA, currentContact.bodyB, ContactEventType::ContactEnter);
+                events.emplace_back(currentContact.bodyA->getID(), currentContact.bodyB->getID(), ContactEventType::ContactEnter);
             }
         }
 
         for (auto leftContact : m_contacts) {
-            events.emplace_back(leftContact.bodyA, leftContact.bodyB, ContactEventType::ContactExit);
+            events.emplace_back(leftContact.bodyA->getID(), leftContact.bodyB->getID(), ContactEventType::ContactExit);
         }
         return events;
     }

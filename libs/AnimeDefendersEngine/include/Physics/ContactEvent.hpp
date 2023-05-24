@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <utility>
 
 namespace AnimeDefendersEngine::Physics {
 
@@ -11,10 +12,11 @@ namespace AnimeDefendersEngine::Physics {
     };
 
     struct ContactEvent {
-        ContactEvent(Body* bodyA, Body* bodyB, ContactEventType type) : bodyA(bodyA), bodyB(bodyB), type(type){};
+        ContactEvent(std::string bodyAID, std::string bodyBID, ContactEventType type)
+            : bodyAID(std::move(bodyAID)), bodyBID(std::move(bodyBID)), type(type){};
         ContactEvent() = default;
-        Body* bodyA{nullptr};
-        Body* bodyB{nullptr};
+        std::string bodyAID;
+        std::string bodyBID;
         ContactEventType type;
     };
 

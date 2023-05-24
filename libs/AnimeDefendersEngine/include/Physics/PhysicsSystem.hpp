@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ComponentManager.hpp"
 #include "ContactEvent.hpp"
 #include "ISystem.hpp"
 #include "PhysicsWorld.hpp"
@@ -14,10 +15,10 @@ namespace AnimeDefendersEngine::Physics {
         auto setFixedDeltaTime(float fixedDeltaTime) noexcept -> void;
 
      private:
-        auto addRectangles(AnimeDefendersEngine::ComponentManager::ComponentsContainer& rectangles, std::vector<Body*>& bodies) -> void;
-        auto addCircles(AnimeDefendersEngine::ComponentManager::ComponentsContainer& circles, std::vector<Body*>& bodies) -> void;
-        auto processContactEvents(ComponentManager::ComponentsContainer& colliders) -> void;
+        auto addBodies(ComponentManager::ComponentsContainer& components) -> std::vector<Body*>;
+        auto processContactEvents(ComponentManager::ComponentsContainer& components) -> void;
 
+     private:
         PhysicsWorld m_physicsWorld;
         std::vector<ContactEvent> m_contactEvents;
     };

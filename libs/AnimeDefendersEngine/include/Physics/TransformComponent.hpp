@@ -3,7 +3,7 @@
 #include "BaseComponent.hpp"
 #include "Component.hpp"
 #include "ComponentManager.hpp"
-#include "RigidBody2DComponent.hpp"
+#include "RigidBodyComponent.hpp"
 #include "Vector2.hpp"
 
 namespace AnimeDefendersEngine {

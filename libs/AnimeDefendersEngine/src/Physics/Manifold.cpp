@@ -26,7 +26,7 @@ namespace AnimeDefendersEngine::Physics {
             return std::tie(manifold.bodyA->getID(), manifold.bodyB->getID());
         }
 
-        auto operator==(const Manifold& left, const Manifold& right) -> bool {
+        inline auto operator==(const Manifold& left, const Manifold& right) {
             return getIDs(left) == getIDs(right);
         }
 

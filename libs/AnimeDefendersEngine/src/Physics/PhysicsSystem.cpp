@@ -2,6 +2,7 @@
 #include "Body.hpp"
 #include "BodyDefinition.hpp"
 #include "ColliderComponent.hpp"
+#include "CollisionHandler.hpp"
 #include "Component.hpp"
 #include "ComponentManager.hpp"
 #include "ContactEvent.hpp"
@@ -10,120 +11,79 @@
 
 #include <memory>
 
-namespace AnimeDefendersEngine {
+namespace AnimeDefendersEngine::Physics {
 
-    Physics::PhysicsSystem::PhysicsSystem(float fixedDeltaTime) : m_physicsWorld(std::make_unique<Physics::CollisionHandler>()) {
+    PhysicsSystem::PhysicsSystem(float fixedDeltaTime) : m_physicsWorld(std::make_unique<CollisionHandler>()) {
         m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
     }
 
-    namespace Physics {
-
-        auto PhysicsSystem::addRectangles(ComponentManager::ComponentsContainer& rectangles, std::vector<Body*>& bodies) -> void {
-            for (auto component : rectangles) {
-                auto collider = static_cast<BoxColliderComponent*>(component.second);
-                BodyDefinition bodyDef;
-                bodyDef.id = collider->getEntityId();
+    auto PhysicsSystem::addBodies(ComponentManager::ComponentsContainer& components) -> std::vector<Body*> {
+        std::vector<Body*> bodies;
+        bodies.reserve(components.size());
+        for (auto component : components) {
+            auto collider = static_cast<ColliderComponent*>(component.second);
+            BodyDefinition bodyDef;
+            bodyDef.id = collider->getEntityId();
+            if (collider->shapeType == ShapeType::rectangle) {
                 bodyDef.shape = std::make_unique<Rectangle>(collider->size);
-                bodyDef.transform.position = collider->transformComponent.position;
-
-                Body* body = m_physicsWorld.addBody(std::move(bodyDef));
-
-                if (collider->rigidBodyComponent == nullptr) {
-                    body->setType(BodyType::staticBody);
-                } else {
-                    body->setType(BodyType::dynamicBody);
-                    body->applyImpulse(collider->rigidBodyComponent->velocity);
-                }
-
-                bodies.push_back(body);
-            }
-        }
-
-        auto PhysicsSystem::addCircles(ComponentManager::ComponentsContainer& circles, std::vector<Body*>& bodies) -> void {
-            for (auto component : circles) {
-                auto collider = static_cast<CircleColliderComponent*>(component.second);
-                BodyDefinition bodyDef;
-                bodyDef.id = collider->getEntityId();
+            } else {
                 bodyDef.shape = std::make_unique<Circle>(collider->radius);
-                bodyDef.transform.position = collider->transformComponent.position;
-
-                Body* body = m_physicsWorld.addBody(std::move(bodyDef));
-
-                if (collider->rigidBodyComponent == nullptr) {
-                    body->setType(BodyType::staticBody);
-                } else {
-                    body->setType(BodyType::dynamicBody);
-                    body->applyImpulse(collider->rigidBodyComponent->velocity);
-                }
-
-                bodies.push_back(body);
             }
-        }
+            bodyDef.transform.position = collider->transformComponent.position;
 
-        auto PhysicsSystem::processContactEvents(ComponentManager::ComponentsContainer& colliders) -> void {
-            for (auto event : m_contactEvents) {
-                switch (event.bodyA->getShapeType()) {
-                    case ShapeType::circle:
-                        static_cast<CircleColliderComponent*>(colliders.at(event.bodyA->getID()));
-                        break;
-                    case ShapeType::rectangle:
-                        static_cast<BoxColliderComponent*>(colliders.at(event.bodyA->getID()));
-                        break;
-                }
-                switch (event.type) {
-                    case ContactEventType::ContactEnter:
+            Body* body = m_physicsWorld.addBody(std::move(bodyDef));
 
-                        break;
-
-                    case ContactEventType::ContactStay:
-
-                        break;
-
-                    case ContactEventType::ContactExit:
-
-                        break;
-                }
-            }
-        }
-
-        auto PhysicsSystem::updateSystem(SceneManager& sceneManager, float fixedDeltaTime) -> void {
-            using AnimeDefendersEngine::Math::Vector2f;
-
-            ComponentManager& componentManager = sceneManager.getActiveScene().getComponentManager();
-            auto boxes = componentManager.getComponents<BoxColliderComponent>();
-            auto circles = componentManager.getComponents<CircleColliderComponent>();
-
-            std::vector<Body*> bodies;
-            bodies.reserve(boxes.size() + circles.size());
-
-            ComponentManager::ComponentsContainer colliders;
-            colliders.merge(boxes);
-            colliders.merge(circles);
-
-            addRectangles(boxes, bodies);
-            addCircles(circles, bodies);
-
-            m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
-            m_contactEvents = m_physicsWorld.fixedUpdate();
-
-            for (const auto& body : bodies) {
-                switch (body->getShapeType()) {
-                    case ShapeType::circle:
-                        static_cast<CircleColliderComponent*>(circles.at(body->getID()))->transformComponent.position = body->getPosition();
-                        break;
-                    case ShapeType::rectangle:
-                        static_cast<BoxColliderComponent*>(boxes.at(body->getID()))->transformComponent.position = body->getPosition();
-                        break;
-                }
+            if (collider->rigidBodyComponent == nullptr) {
+                body->setType(BodyType::staticBody);
+            } else {
+                body->setType(BodyType::dynamicBody);
+                body->applyImpulse(collider->rigidBodyComponent->velocity);
             }
 
-            processContactEvents(colliders);
+            bodies.push_back(body);
+        }
+        return bodies;
+    }
+
+    auto PhysicsSystem::processContactEvents(ComponentManager::ComponentsContainer& colliders) -> void {
+        for (auto event : m_contactEvents) {
+            auto bodyA = static_cast<CircleColliderComponent*>(colliders.at(event.bodyAID));
+            auto bodyB = static_cast<CircleColliderComponent*>(colliders.at(event.bodyBID));
+
+            switch (event.type) {
+                case ContactEventType::ContactEnter:
+
+                    break;
+
+                case ContactEventType::ContactStay:
+
+                    break;
+
+                case ContactEventType::ContactExit:
+
+                    break;
+            }
+        }
+    }
+
+    auto PhysicsSystem::updateSystem(SceneManager& sceneManager, float fixedDeltaTime) -> void {
+        ComponentManager& componentManager = sceneManager.getActiveScene().getComponentManager();
+        auto components = componentManager.getComponents<ColliderComponent>();
+
+        std::vector<Body*> bodies = addBodies(components);
+
+        m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
+        m_contactEvents = m_physicsWorld.fixedUpdate();
+
+        for (const auto& body : bodies) {
+            static_cast<ColliderComponent*>(components.at(body->getID()))->transformComponent.position = body->getPosition();
         }
 
-        auto PhysicsSystem::setFixedDeltaTime(float fixedDeltaTime) noexcept -> void {
-            m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
-        }
+        processContactEvents(components);
+    }
 
-    }  // namespace Physics
+    auto PhysicsSystem::setFixedDeltaTime(float fixedDeltaTime) noexcept -> void {
+        m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
+    }
 
-}  // namespace AnimeDefendersEngine
+}  // namespace AnimeDefendersEngine::Physics
