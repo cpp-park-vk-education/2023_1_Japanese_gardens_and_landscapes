@@ -8,6 +8,8 @@ namespace AnimeDefendersEngine::Graphics {
 
     class IDrawTextureWrapper {
      public:
+        virtual ~IDrawTextureWrapper() = default;
+
         [[nodiscard]] virtual auto loadTexture(const Math::Matrix2d<Color>& pixelMatrix) const noexcept -> Texture = 0;
         virtual auto drawTexture(const Texture&) const noexcept -> void = 0;
     };
