@@ -22,9 +22,9 @@ namespace AnimeDefendersEngine::Graphics {
         auto setMouseMotionhandler(mouseMotionHandler) const noexcept -> void override;
         auto setKeyPressHandler(keyPressHandler) const noexcept -> void override;
 
-        auto isShiftPressd() const noexcept -> bool;
-        auto isCtrlPressd() const noexcept -> bool;
-        auto isAltPressd() const noexcept -> bool;
+        auto isShiftPressd() const noexcept -> bool override;
+        auto isCtrlPressd() const noexcept -> bool override;
+        auto isAltPressd() const noexcept -> bool override;
 
      private:
         int m_windowId{};
