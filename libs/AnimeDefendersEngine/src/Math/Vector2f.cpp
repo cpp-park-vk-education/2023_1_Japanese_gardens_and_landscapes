@@ -19,6 +19,10 @@ namespace {
 
 namespace AnimeDefendersEngine {
 
+    auto Math::Vector2f::operator*(Vector2f vec) const -> float {
+        return this->x * vec.x + this->y * vec.y;
+    }
+
     auto Math::Vector2f::norm() const -> float {
         return 1 / inverseSquareRoot((*this) * (*this));
     }
@@ -28,24 +32,20 @@ namespace AnimeDefendersEngine {
         return os;
     }
 
-    auto Math::operator+(Vector2f vec1, Vector2f vec2) -> Vector2f {
-        return Vector2f{vec1.x + vec2.x, vec1.y + vec2.y};
+    auto Math::Vector2f::operator+(Vector2f vec) const -> Vector2f {
+        return Vector2f{this->x + vec.x, this->y + vec.y};
     }
 
-    auto Math::operator-(Vector2f vec1, Vector2f vec2) -> Vector2f {
-        return Vector2f{vec1.x - vec2.x, vec1.y - vec2.y};
+    auto Math::Vector2f::operator-(Vector2f vec) const -> Vector2f {
+        return Vector2f{this->x - vec.x, this->y - vec.y};
     }
 
-    auto Math::operator*(Vector2f vec1, Vector2f vec2) -> float {
-        return vec1.x * vec2.x + vec1.y * vec2.y;
-    }
-
-    auto Math::operator*(float c1, Vector2f vec1) -> Vector2f {
+    auto Math::operator*(float c1, Vector2f vec1) const -> Vector2f {
         return Vector2f{c1 * vec1.x, c1 * vec1.y};
     }
 
-    auto Math::operator*(Vector2f vec1, float c1) -> Vector2f {
-        return Vector2f{c1 * vec1.x, c1 * vec1.y};
+    auto Math::Vector2f::operator*(float c1) const -> Vector2f {
+        return Vector2f{c1 * this->x, c1 * this->y};
     }
 
 }  // namespace AnimeDefendersEngine

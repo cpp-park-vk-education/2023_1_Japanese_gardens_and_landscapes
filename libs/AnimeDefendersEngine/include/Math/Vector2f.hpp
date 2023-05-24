@@ -3,31 +3,28 @@
 #include <cmath>
 #include <iostream>
 
-namespace AnimeDefendersEngine {
-    namespace Math {
-        /*!
-            \brief Структура, реализующая двумерный вектор.
+namespace AnimeDefendersEngine::Math {
+    /*!
+        \brief Структура, реализующая двумерный вектор.
 
-            Реализованы стандартные операции над векторами, т.к. скалярное умножение, норма, сложение и вычитание.
-        */
-        struct Vector2f {
-            explicit Vector2f(float val1 = 0.f, float val2 = 0.f) : x(val1), y(val2) {}
-            auto norm() const -> float;
-            float x;
-            float y;
-        };
+        Реализованы стандартные операции над векторами, т.к. скалярное умножение, норма, сложение и вычитание.
+    */
+    struct Vector2f {
+        explicit Vector2f(float val1 = 0.f, float val2 = 0.f) : x(val1), y(val2) {}
+        auto norm() const -> float;
+        float x;
+        float y;
+        auto operator+(Vector2f vec) const -> Vector2f;
 
-        std::ostream& operator<<(std::ostream& os, Vector2f vec);
+        auto operator-(Vector2f vec) const -> Vector2f;
 
-        auto operator+(Vector2f vec1, Vector2f vec2) -> Vector2f;
+        auto operator*(Vector2f vec) const -> float;
 
-        auto operator-(Vector2f vec1, Vector2f vec2) -> Vector2f;
+        auto operator*(float c1) const -> Vector2f;
+    };
 
-        auto operator*(Vector2f vec1, Vector2f vec2) -> float;
+    std::ostream& operator<<(std::ostream& os, Vector2f vec);
 
-        auto operator*(float c1, Vector2f vec1) -> Vector2f;
+    auto operator*(float c1, Vector2f vec1) const -> Vector2f;
 
-        auto operator*(Vector2f vec1,float c1) -> Vector2f;
-
-    }  // namespace Math
-}  // namespace AnimeDefendersEngine
+}  // namespace AnimeDefendersEngine::Math
