@@ -12,7 +12,7 @@ namespace AnimeDefendersEngine::Physics {
         std::unordered_set<Manifold> contacts;
         contacts.reserve(bodies.size());
         for (auto bodyAIter = bodies.begin(); bodyAIter != bodies.end(); ++bodyAIter) {
-            for (auto bodyBIter = bodyAIter + 1; bodyBIter != bodies.end(); ++bodyBIter) {
+            for (auto bodyBIter = std::next(bodyAIter); bodyBIter != bodies.end(); ++bodyBIter) {
                 if ((*bodyAIter)->getID() < (*bodyBIter)->getID()) {
                     contacts.emplace(*bodyAIter, *bodyBIter);
                 } else {
