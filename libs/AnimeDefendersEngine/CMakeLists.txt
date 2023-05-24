@@ -179,6 +179,8 @@ if(ENABLE_CPPCHECK)
     )
 endif()
 
+add_subdirectory(libs/stb)
+
 add_library(${project_name} STATIC ${source})
 target_include_directories(${project_name} PUBLIC ${include_locations})
 
@@ -186,7 +188,7 @@ find_package(OpenGL COMPONENTS OpenGL REQUIRED)
 find_package(GLUT COMPONENTS GLUT REQUIRED)
 include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
 
-target_link_libraries(${project_name} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+target_link_libraries(${project_name} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} STB_Image_lib)
 
 if(ENABLE_CLANG_FORMAT)
     add_dependencies(${project_name} AnimeDefendersEngine_FORMAT_TARGET)
