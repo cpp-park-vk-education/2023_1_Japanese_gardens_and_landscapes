@@ -5,8 +5,10 @@
 namespace AnimeDefendersEngine::Graphics::SpriteSystem {
 
     namespace {
+
         const TransposeMathWrapper transposeMathWrapper{};
         const DrawTextureWrapper drawTextureWrapper{};
+
     }  // namespace
 
     auto isSpriteVisibleToCamera(const Sprite*, const Camera*) noexcept -> bool {
