@@ -36,16 +36,20 @@ namespace AnimeDefendersEngine::Physics {
     }
 
     auto PhysicsSystem::addBodies(ComponentManager::ComponentsContainer& components) -> std::vector<Body*> {
-        std::vector<Body*> bodies;
+        std::vector<Body*> bodies{};
         bodies.reserve(components.size());
         for (const auto& component : components) {
             auto* collider = static_cast<ColliderComponent*>(component.second);
-            BodyDefinition bodyDef;
+            BodyDefinition bodyDef{};
             bodyDef.id = collider->getEntityId();
-            if (collider->getShapeType() == ShapeType::rectangle) {
-                bodyDef.shape = std::make_unique<Rectangle>(collider->getSize());
-            } else {
-                bodyDef.shape = std::make_unique<Circle>(collider->getRadius());
+            switch (collider->getShapeType()) {
+                case ShapeType::rectangle:
+                    bodyDef.shape = std::make_unique<Rectangle>(collider->getSize());
+                    break;
+
+                case ShapeType::circle:
+                    bodyDef.shape = std::make_unique<Circle>(collider->getRadius());
+                    break;
             }
             bodyDef.transform.position = collider->getTransform().position;
 

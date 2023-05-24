@@ -19,7 +19,7 @@ namespace AnimeDefendersEngine {
             : BaseComponent<RigidBodyComponent>(entityId, compManager), mass(mass), velocity(velocity) {}
 
         Math::Vector2f velocity;
-        float mass;
+        float mass{};
     };
 
 }  // namespace AnimeDefendersEngine
