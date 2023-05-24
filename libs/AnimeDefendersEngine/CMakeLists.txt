@@ -12,7 +12,6 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/ComponentManager.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Entity.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Event.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/EventListener.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/EventManager.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/GameLoop.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/InputManager.hpp
@@ -99,6 +98,7 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Graphics/Renderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger/Logger.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Graph.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Vector2.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenAlDependency/AudioPlayWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
@@ -107,6 +107,7 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Body.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/BodyDefinition.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/CollisionHandler.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Manifold.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/PhysicsSystem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/PhysicsWorld.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Shape.cpp
