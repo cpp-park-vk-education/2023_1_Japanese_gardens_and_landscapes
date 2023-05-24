@@ -4,7 +4,7 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    auto DrawTextureWrapper::loadTexture(const Math::Matrix2d<Color>& pixelMatrix) const noexcept -> Texture {
+    auto DrawTextureWrapper::loadTexture(const FileSystem::Image& pixelMatrix) const noexcept -> Texture {
         Texture newTexture;
         glGenTextures(1, &newTexture.textureId);
         glBindTexture(GL_TEXTURE_2D, newTexture.textureId);
@@ -32,8 +32,8 @@ namespace AnimeDefendersEngine::Graphics {
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-        glVertexPointer(2, GL_FLOAT, 0, &*Texture::vertexCoords.begin());
-        glTexCoordPointer(2, GL_FLOAT, 0, &*Texture::textureCoords.begin());
+        glVertexPointer(2, GL_FLOAT, 0, Texture::vertexCoords.data());
+        glTexCoordPointer(2, GL_FLOAT, 0, Texture::textureCoords.data());
         glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
         glDisableClientState(GL_VERTEX_ARRAY);
