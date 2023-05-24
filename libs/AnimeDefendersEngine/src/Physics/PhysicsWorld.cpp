@@ -29,10 +29,16 @@ namespace AnimeDefendersEngine::Physics {
 
     auto PhysicsWorld::update(float deltaTime) -> void {}
 
-    auto PhysicsWorld::addBody(BodyDefinition&& bodyDefinition) -> Body* {}
+    auto PhysicsWorld::addBody(BodyDefinition&& bodyDefinition) -> Body* {
+        return nullptr;
+    }
 
-    auto PhysicsWorld::getEvents(std::unordered_set<Manifold> currentContacts) -> std::vector<ContactEvent> {}
+    auto PhysicsWorld::getEvents(std::unordered_set<Manifold> currentContacts) -> std::vector<ContactEvent> {
+        return {};
+    }
 
-    auto PhysicsWorld::fixedUpdate() -> std::vector<ContactEvent> {}
+    auto PhysicsWorld::fixedUpdate() -> std::vector<ContactEvent> {
+        return {};
+    }
 
 }  // namespace AnimeDefendersEngine::Physics

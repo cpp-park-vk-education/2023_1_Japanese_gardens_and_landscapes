@@ -1,13 +1,9 @@
 #include "PhysicsSystem.hpp"
 #include "Body.hpp"
-#include "BodyDefinition.hpp"
 #include "ColliderComponent.hpp"
 #include "CollisionHandler.hpp"
 #include "Component.hpp"
-#include "ComponentManager.hpp"
-#include "ContactEvent.hpp"
 #include "Scene.hpp"
-#include "SceneManager.hpp"
 #include "TransformComponent.hpp"
 
 #include <memory>
@@ -32,7 +28,8 @@ namespace AnimeDefendersEngine::Physics {
         m_contactEvents = m_physicsWorld.fixedUpdate();
 
         for (const auto& body : bodies) {
-            static_cast<ColliderComponent*>(components.at(body->getID()))->getTransform().position = body->getPosition();
+            auto* collider = static_cast<ColliderComponent*>(components.at(body->getID()));
+            collider->getTransform().position = body->getPosition();
         }
 
         processContactEvents(components);
@@ -41,8 +38,8 @@ namespace AnimeDefendersEngine::Physics {
     auto PhysicsSystem::addBodies(ComponentManager::ComponentsContainer& components) -> std::vector<Body*> {
         std::vector<Body*> bodies;
         bodies.reserve(components.size());
-        for (auto component : components) {
-            auto collider = static_cast<ColliderComponent*>(component.second);
+        for (const auto& component : components) {
+            auto* collider = static_cast<ColliderComponent*>(component.second);
             BodyDefinition bodyDef;
             bodyDef.id = collider->getEntityId();
             if (collider->getShapeType() == ShapeType::rectangle) {
@@ -68,8 +65,8 @@ namespace AnimeDefendersEngine::Physics {
 
     auto PhysicsSystem::processContactEvents(ComponentManager::ComponentsContainer& colliders) -> void {
         for (auto event : m_contactEvents) {
-            auto bodyA = static_cast<ColliderComponent*>(colliders.at(event.bodyAID));
-            auto bodyB = static_cast<ColliderComponent*>(colliders.at(event.bodyBID));
+            auto* bodyA = static_cast<ColliderComponent*>(colliders.at(event.bodyAID));
+            auto* bodyB = static_cast<ColliderComponent*>(colliders.at(event.bodyBID));
 
             switch (event.type) {
                 case ContactEventType::ContactEnter:

@@ -6,7 +6,11 @@
 
 namespace AnimeDefendersEngine {
 
-    constexpr float defaultMass = 1.f;
+    namespace {
+
+        constexpr float defaultMass = 1.f;
+
+    }
 
     class RigidBodyComponent : public BaseComponent<RigidBodyComponent> {
      public:
