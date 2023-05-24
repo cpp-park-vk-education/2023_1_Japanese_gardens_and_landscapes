@@ -28,11 +28,11 @@ namespace AnimeDefendersEngine {
         : GameLoop(std::move(systemManager), std::move(renderer), sceneManager, 1.f / defaultFixedUpdateFrequency,
                    1.f / defaultMinUpdateFrequency) {}
 
-    auto GameLoop::setSystemManager(std::unique_ptr<ISystemManager> systemManager) -> void {
+    auto GameLoop::setSystemManager(std::unique_ptr<ISystemManager> systemManager) noexcept -> void {
         m_systemManager = std::move(systemManager);
     }
 
-    auto GameLoop::setRenderer(std::unique_ptr<Graphics::Renderer> renderer) -> void {
+    auto GameLoop::setRenderer(std::unique_ptr<Graphics::Renderer> renderer) noexcept -> void {
         m_renderer = std::move(renderer);
     }
 
@@ -42,7 +42,7 @@ namespace AnimeDefendersEngine {
          public:
             Timer() { reset(); }
             auto reset() -> void { m_startTime = std::chrono::high_resolution_clock::now(); }
-            auto getCurrentTimeInMilliseconds() -> float {
+            auto getCurrentTimeInMilliseconds() const -> float {
                 return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - m_startTime)
                     .count();
             };

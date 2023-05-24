@@ -28,8 +28,8 @@ namespace AnimeDefendersEngine {
 
         auto run() -> void;
 
-        auto setSystemManager(std::unique_ptr<ISystemManager> systemManager) -> void;
-        auto setRenderer(std::unique_ptr<Graphics::Renderer> renderer) -> void;
+        auto setSystemManager(std::unique_ptr<ISystemManager> systemManager) noexcept -> void;
+        auto setRenderer(std::unique_ptr<Graphics::Renderer> renderer) noexcept -> void;
 
      private:
         bool m_isRunning{true};
