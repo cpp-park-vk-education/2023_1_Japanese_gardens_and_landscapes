@@ -18,20 +18,18 @@ namespace AnimeDefendersEngine {
 
 }  // namespace AnimeDefendersEngine
 
-constexpr float defaultFixedUpdateFrequency = 60.f;
-constexpr float defaultMinUpdateFrequency = 25.f;
-
 namespace AnimeDefendersEngine {
 
     class GameLoop {
      public:
-        GameLoop(std::unique_ptr<ISystemManager>&& systemManager, std::unique_ptr<Graphics::Renderer>&& renderer,
-                 SceneManager& sceneManager, float fixedDeltaTime = 1.f / defaultMinUpdateFrequency,
-                 float maxDeltaTime = 1.f / defaultFixedUpdateFrequency);
+        GameLoop(std::unique_ptr<ISystemManager> systemManager, std::unique_ptr<Graphics::Renderer> renderer, SceneManager& sceneManager);
+        GameLoop(std::unique_ptr<ISystemManager> systemManager, std::unique_ptr<Graphics::Renderer> renderer, SceneManager& sceneManager,
+                 float fixedDeltaTime, float maxDeltaTime);
+
         auto run() -> void;
 
-        auto setSystemManager(std::unique_ptr<ISystemManager>&& systemManager) -> void;
-        auto setRenderer(std::unique_ptr<Graphics::Renderer>&& renderer) -> void;
+        auto setSystemManager(std::unique_ptr<ISystemManager> systemManager) -> void;
+        auto setRenderer(std::unique_ptr<Graphics::Renderer> renderer) -> void;
 
      private:
         bool m_isRunning{true};
