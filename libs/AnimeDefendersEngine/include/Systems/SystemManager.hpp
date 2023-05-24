@@ -15,7 +15,8 @@ namespace AnimeDefendersEngine {
 
     class ISystemManager {
      public:
-        virtual void updateSystems(SceneManager&, float) = 0;
+        virtual void updateSystems(SceneManager& sceneManager, float fixedDeltaTime) = 0;
+        ~ISystemManager(){};
     };
 
     class SystemManager : public ISystemManager {

@@ -9,12 +9,13 @@ namespace AnimeDefendersEngine {
 
     class IEventManager {
      public:
-        auto hasEvent(std::string eventName) -> bool;
+        auto hasEvent(const std::string& eventName) -> bool;
+        ~IEventManager(){};
     };
 
     class EventManager : public IEventManager {
      public:
-        static auto hasEvent(std::string eventName) -> bool;
+        static auto hasEvent(const std::string& eventName) -> bool;
         static auto update() -> void;
 
      private:
