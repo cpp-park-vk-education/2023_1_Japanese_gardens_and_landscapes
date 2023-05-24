@@ -6,15 +6,26 @@
 #include <vector>
 
 namespace AnimeDefendersEngine {
+    class Scene;
+}
+
+namespace AnimeDefendersEngine {
 
     class Entity {
      public:
-        auto addComponent(Component* component) -> void;
-        auto getComponent(ComponentType componentType) -> Component*;
+        explicit Entity(std::string entityId, Scene& scene);
+        virtual ~Entity() = default;
+
+        [[nodiscard]] auto getId() const noexcept -> const std::string&;
+        virtual auto update() -> void{};
+
+        auto destroy() -> void;
+
+     protected:
+        Scene& m_scene;
 
      private:
         std::string m_entityId;
-        std::vector<Component*> m_entityComponents;
     };
 
 }  // namespace AnimeDefendersEngine

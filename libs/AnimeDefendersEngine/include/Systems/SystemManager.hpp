@@ -9,6 +9,8 @@ namespace AnimeDefendersEngine {
 
 }  // namespace AnimeDefendersEngine
 
+#include <vector>
+
 namespace AnimeDefendersEngine {
 
     class ISystemManager {
