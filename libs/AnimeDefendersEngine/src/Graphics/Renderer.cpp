@@ -9,17 +9,17 @@ namespace AnimeDefendersEngine::Graphics {
         m_window->createWindow(500, 500, "Anime Defenders: Battle Behind the Screen");
     }
 
-    auto Renderer::renderObjects(const Scene& scene) -> void {
+    auto Renderer::renderObjects(Scene& scene) -> void {
         auto componentManager = scene.getComponentManager();
 
-        auto cameras = componentManager->getComponents<Camera>();
-        auto sprites = componentManager->getComponents<Sprite>();
-        auto uiElements = componentManager->getComponents<UiElement>();
+        auto cameras = componentManager.getComponents<Camera>();
+        auto sprites = componentManager.getComponents<Sprite>();
+        auto uiElements = componentManager.getComponents<UiElement>();
 
         Camera* activeCamera{};
         Camera* nextCamera{};
-        for (auto* nextCompenent : cameras) {
-            nextCamera = static_cast<Camera*>(nextCompenent);
+        for (const auto& nextCompenent : cameras) {
+            nextCamera = static_cast<Camera*>(nextCompenent.second);
 
             if (nextCamera->isCameraActive()) {
                 if (activeCamera) {
@@ -33,12 +33,12 @@ namespace AnimeDefendersEngine::Graphics {
             throw std::runtime_error("One of all cameras must be active!");
         }
 
-        activeCamera->determineNewCameraTransform();
+        activeCamera->determineNewCameraTranspose();
         activeCamera->applyCameraView();
 
         Sprite* nextSprite{};
-        for (auto* nextComponent : sprites) {
-            nextSprite = static_cast<Sprite*>(nextComponent);
+        for (const auto& nextComponent : sprites) {
+            nextSprite = static_cast<Sprite*>(nextComponent.second);
 
             if (nextSprite->isSpriteVisibleToCamera(activeCamera)) {
                 nextSprite->drawSprite();
@@ -46,8 +46,8 @@ namespace AnimeDefendersEngine::Graphics {
         }
 
         UiElement* nextUiElement{};
-        for (auto* nextComponent : uiElements) {
-            nextUiElement = static_cast<UiElement*>(nextComponent);
+        for (const auto& nextComponent : uiElements) {
+            nextUiElement = static_cast<UiElement*>(nextComponent.second);
 
             nextUiElement->drawUiElement();
         }

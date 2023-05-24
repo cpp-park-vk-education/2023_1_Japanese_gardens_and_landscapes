@@ -5,17 +5,16 @@
 
 #include <memory>
 
-namespace AnimeDefendersEngine {
-    namespace Graphics {
+namespace AnimeDefendersEngine::Graphics {
 
-        class Renderer {
-         public:
-            Renderer(std::shared_ptr<IWindow>);
-            auto renderObjects(const Scene&) -> void;
+    class Renderer {
+     public:
+        explicit Renderer(std::shared_ptr<IWindow>) noexcept;
 
-         private:
-            std::shared_ptr<IWindow> m_window;
-        };
+        auto renderObjects(Scene&) -> void;
 
-    }  // namespace Graphics
-}  // namespace AnimeDefendersEngine
+     private:
+        std::shared_ptr<IWindow> m_window;
+    };
+
+}  // namespace AnimeDefendersEngine::Graphics
