@@ -37,7 +37,7 @@ namespace AnimeDefendersEngine::Graphics {
     }
 
     auto Window::setPassiveMouseMotionHandler(mouseMotionHandler handler) const noexcept -> void {
-        glutMotionFunc(handler.target<void(int, int)>());
+        glutPassiveMotionFunc(handler.target<void(int, int)>());
     }
 
     auto Window::setKeyPressHandler(keyPressHandler handler) const noexcept -> void {
