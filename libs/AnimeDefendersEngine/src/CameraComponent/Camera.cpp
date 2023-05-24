@@ -4,10 +4,14 @@
 namespace AnimeDefendersEngine::Graphics {
 
     Camera::Camera(
-        const std::string& entityId, const Math::Transpose& transpose,
+        const std::string& entityId, ComponentManager& componentManager, const Math::Transpose& transpose,
         std::function<void(Math::Transpose&)> motionRule = [](Math::Transpose&) {},
         std::function<void(Math::Transpose&)> extraMotion = [](Math::Transpose&) {}, bool isActive = true) noexcept
-        : Component(entityId), m_transpose(transpose), m_motionRule(motionRule), m_extraMotion(extraMotion), m_isActive(isActive) {}
+        : BaseComponent<Camera>(entityId, componentManager),
+          m_transpose(transpose),
+          m_motionRule(motionRule),
+          m_extraMotion(extraMotion),
+          m_isActive(isActive) {}
 
     auto Camera::determineNewCameraTranspose() -> void {
         m_motionRule(m_transpose);
@@ -34,7 +38,7 @@ namespace AnimeDefendersEngine::Graphics {
         m_isActive = isActive;
     }
 
-    auto Camera::getCameraTranspose() const noexcept -> Math::Transpose* {
+    auto Camera::getCameraTranspose() const noexcept -> const Math::Transpose& {
         return m_transpose;
     }
 
