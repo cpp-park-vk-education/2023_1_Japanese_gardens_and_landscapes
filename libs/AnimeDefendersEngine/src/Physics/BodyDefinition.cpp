@@ -2,7 +2,7 @@
 
 namespace AnimeDefendersEngine::Physics {
 
-    BodyDefinition::BodyDefinition(std::string id, std::unique_ptr<Shape> shape, BodyType bodyType, Transform transform,
+    BodyDefinition::BodyDefinition(const std::string& id, std::unique_ptr<Shape> shape, BodyType bodyType, Transform transform,
                                    const Math::Vector2f& velocity, float mass, std::size_t layers, const Math::Vector2f& force,
                                    bool isTrigger)
         : id(id),
