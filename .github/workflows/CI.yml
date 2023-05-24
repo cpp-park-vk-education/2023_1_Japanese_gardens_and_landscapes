@@ -17,7 +17,12 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+
+      - name: Install OpenGL
+        run: |
+          sudo apt-get -y update
+          sudo apt install freeglut3-dev
 
       - name: Install cppcheck
         uses: aminya/setup-cpp@v1
@@ -35,6 +40,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install OpenGL
+        run: |
+          sudo apt-get -y update
+          sudo apt install freeglut3-dev
 
       - name: Install clang-tidy
         uses: aminya/setup-cpp@v1
@@ -54,7 +64,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install clang-tidy
+      - name: Install OpenGL
+        run: |
+          sudo apt-get -y update
+          sudo apt install freeglut3-dev
+
+      - name: Install clang-format
         uses: aminya/setup-cpp@v1
         with:
           gcc: true
@@ -73,6 +88,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install OpenGL
+        run: |
+          sudo apt-get -y update
+          sudo apt install freeglut3-dev
+
       - name: Install cmake
         uses: aminya/setup-cpp@v1
         with:
@@ -90,6 +110,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install OpenGL
+        run: |
+          sudo apt-get -y update
+          sudo apt install freeglut3-dev
 
       - name: Install cmake
         uses: aminya/setup-cpp@v1
@@ -111,6 +136,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install OpenGL
+        run: |
+          sudo apt-get -y update
+          sudo apt install freeglut3-dev
+
       - name: Install cmake
         uses: aminya/setup-cpp@v1
         with:
@@ -130,6 +161,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install OpenGL
+        run: |
+          sudo apt-get -y update
+          sudo apt install freeglut3-dev
+
       - name: Install cmake
         uses: aminya/setup-cpp@v1
         with:
@@ -137,6 +173,11 @@ jobs:
           cmake: true
 
       - uses: snickerbockers/submodules-init@v4
+
+      - name: Install OpenGL
+        run: |
+          sudo apt-get -y update
+          sudo apt install freeglut3-dev
 
       - name: Install valgrind # Я не нашёл сценария который подгружает valgrind :(
         run: | 
@@ -149,7 +190,7 @@ jobs:
           cmake --build build -t VALGRIND_TARGET
 
   coverage_report:
-    needs: [ tests ]  
+    needs: [ tests ]
     runs-on: ubuntu-22.04
 
     permissions: write-all
@@ -157,6 +198,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: snickerbockers/submodules-init@v4
+
+      - name: Install OpenGL
+        run: |
+          sudo apt-get -y update
+          sudo apt install freeglut3-dev
 
       - name: Install cmake
         uses: aminya/setup-cpp@v1

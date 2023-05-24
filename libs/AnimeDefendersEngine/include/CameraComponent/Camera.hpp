@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Component.hpp"
-#include "Transform.hpp"
+#include "Transpose.hpp"
 
 #include <functional>
 #include <typeinfo>
@@ -11,18 +11,18 @@ namespace AnimeDefendersEngine {
 
         class Camera : public Component {
          public:
-            auto determineNewCameraTransform() -> void;
+            auto determineNewCameraTranspose() -> void;
             auto applyCameraView() -> void;
 
-            auto setMotionRule(std::function<Transform()>) -> void;
-            auto setExtraTransform(Transform) -> void;
-            auto setExtraMotion(std::function<Transform(Transform)>) -> void;
+            auto setMotionRule(std::function<Math::Transpose()>) -> void;
+            auto setExtraTranspose(Math::Transpose) -> void;
+            auto setExtraMotion(std::function<Math::Transpose(Math::Transpose)>) -> void;
             auto setIsActive(bool) -> void;
 
          private:
-            std::function<Transform()> m_motionRule;
-            Transform m_cameraTransform;
-            std::function<Transform(Transform)> m_extraMotion;
+            std::function<Math::Transpose()> m_motionRule;
+            Math::Transpose m_cameraTranspose;
+            std::function<Math::Transpose(Math::Transpose)> m_extraMotion;
             bool m_isActive;
         };
 
