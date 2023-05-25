@@ -7,12 +7,7 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    namespace {
-
-        /// @brief function which changing Transpose data with some rules
-        using transposeChangingFunc = std::function<void(Math::Transpose&)>;
-
-    }  // namespace
+    using transposeChangingFunc = std::function<void(Math::Transpose&)>;
 
     class Camera final : public BaseComponent<Camera> {
      public:
@@ -44,9 +39,9 @@ namespace AnimeDefendersEngine::Graphics {
      private:
         Math::Transpose m_transpose;
         /// @brief Function which sets new value to Transpose based on outer factors
-        transposeChangingFunc m_motionRule;
+        transposeChangingFunc m_motionRuleFunc;
         /// @brief Function which sets new value to Transpose based on inner state
-        transposeChangingFunc m_extraMotion;
+        transposeChangingFunc m_extraMotionFunc;
         bool m_isActive{false};
     };
 
