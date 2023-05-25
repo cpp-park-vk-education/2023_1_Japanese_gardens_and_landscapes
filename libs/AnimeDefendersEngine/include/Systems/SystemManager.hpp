@@ -1,17 +1,21 @@
 #pragma once
 
-#include "ISystem.hpp"
+#include "ISystemManager.hpp"
+
+#include <vector>
 
 namespace AnimeDefendersEngine {
 
-    class ISystemManager {
-     public:
-        virtual void updateSystems(ComponentManager&) = 0;
-    };
+    class SceneManager;
+    class ISystem;
+
+}  // namespace AnimeDefendersEngine
+
+namespace AnimeDefendersEngine {
 
     class SystemManager : public ISystemManager {
      public:
-        void updateSystems(ComponentManager&) override;
+        void updateSystems(SceneManager& sceneManager, float fixedDeltaTime) override;
 
      private:
         std::vector<ISystem*> m_systems;

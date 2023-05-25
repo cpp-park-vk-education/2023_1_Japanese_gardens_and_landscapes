@@ -8,7 +8,7 @@ auto Sprite::isSpriteVisibleToCamera(const Camera&) -> bool {
 
 auto Sprite::drawSprite() -> void {}
 
-auto Sprite::setTransform(const Transform*) -> void {}
+auto Sprite::setTranspose(const Math::Transpose*) -> void {}
 
 auto Sprite::setTexture(Texture) -> void {}
 

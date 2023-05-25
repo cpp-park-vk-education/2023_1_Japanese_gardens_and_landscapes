@@ -9,6 +9,7 @@ namespace AnimeDefendersEngine::Physics {
         Manifold(Body* bodyA, Body* bodyB);
         Manifold() = default;
 
+        friend auto operator==(const Manifold& left, const Manifold& right) -> bool;
         auto correctPositions() -> void;
 
         Body* bodyA{nullptr};
@@ -18,3 +19,14 @@ namespace AnimeDefendersEngine::Physics {
     };
 
 }  // namespace AnimeDefendersEngine::Physics
+
+namespace std {
+
+    template <>
+    struct hash<AnimeDefendersEngine::Physics::Manifold> {
+        size_t operator()(const AnimeDefendersEngine::Physics::Manifold& manifold) const {
+            return hash<string>()(manifold.bodyA->getID()) ^ hash<string>()(manifold.bodyB->getID());
+        }
+    };
+
+}  // namespace std
