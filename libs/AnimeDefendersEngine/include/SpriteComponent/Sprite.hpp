@@ -28,8 +28,8 @@ namespace AnimeDefendersEngine::Graphics {
         Math::Transpose m_transpose;
         Texture m_texture;
 
-        const TransposeMathWrapper& m_transposeMathWrapper{};
-        const DrawTextureWrapper& m_drawTextureWrapper{};
+        const TransposeMathWrapper m_transposeMathWrapper;
+        const DrawTextureWrapper m_drawTextureWrapper;
     };
 
 }  // namespace AnimeDefendersEngine::Graphics
