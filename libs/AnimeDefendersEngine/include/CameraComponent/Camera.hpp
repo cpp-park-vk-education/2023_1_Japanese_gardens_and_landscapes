@@ -46,7 +46,7 @@ namespace AnimeDefendersEngine::Graphics {
         transposeChangingFunctor m_extraMotionFunctor;
         bool m_isActive{false};
 
-        static constexpr ITransposeMathWrapper& m_transposeMathWrapper{};
+        static constexpr TransposeMathWrapper& m_transposeMathWrapper{};
     };
 
 }  // namespace AnimeDefendersEngine::Graphics
