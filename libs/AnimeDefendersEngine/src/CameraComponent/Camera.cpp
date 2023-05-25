@@ -5,17 +5,17 @@ namespace AnimeDefendersEngine::Graphics {
 
     Camera::Camera(
         const std::string& entityId, ComponentManager& componentManager, const Math::Transpose& transpose,
-        std::function<void(Math::Transpose&)> motionRuleFunc = [](Math::Transpose&) {},
-        std::function<void(Math::Transpose&)> extraMotionFunc = [](Math::Transpose&) {}, bool isActive = true) noexcept
+        transposeChangingFunctor motionRuleFunctor = [](Math::Transpose&) {},
+        transposeChangingFunctor extraMotionFunctor = [](Math::Transpose&) {}, bool isActive = true) noexcept
         : BaseComponent<Camera>(entityId, componentManager),
           m_transpose(transpose),
-          m_motionRuleFunc(motionRuleFunc),
-          m_extraMotionFunc(extraMotionFunc),
+          m_motionRuleFunctor(motionRuleFunctor),
+          m_extraMotionFunctor(extraMotionFunctor),
           m_isActive(isActive) {}
 
     auto Camera::determineNewCameraTranspose() -> void {
-        m_motionRuleFunc(m_transpose);
-        m_extraMotionFunc(m_transpose);
+        m_motionRuleFunctor(m_transpose);
+        m_extraMotionFunctor(m_transpose);
     }
 
     auto Camera::applyCameraView() const noexcept -> void {
@@ -26,12 +26,12 @@ namespace AnimeDefendersEngine::Graphics {
         m_transpose = transpose;
     }
 
-    auto Camera::setMotionRuleFunc(transposeChangingFunc motionRuleFunc) noexcept -> void {
-        m_motionRuleFunc = motionRuleFunc;
+    auto Camera::setMotionRuleFunctor(transposeChangingFunctor motionRuleFunctor) noexcept -> void {
+        m_motionRuleFunctor = motionRuleFunctor;
     }
 
-    auto Camera::setExtraMotionFunc(transposeChangingFunc extraMotionFunc) noexcept -> void {
-        m_extraMotionFunc = extraMotionFunc;
+    auto Camera::setExtraMotionFunctor(transposeChangingFunctor extraMotionFunctor) noexcept -> void {
+        m_extraMotionFunctor = extraMotionFunctor;
     }
 
     auto Camera::setIsActive(bool isActive) noexcept -> void {
