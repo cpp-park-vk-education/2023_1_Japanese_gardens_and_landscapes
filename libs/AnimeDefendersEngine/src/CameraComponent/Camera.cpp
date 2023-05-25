@@ -46,7 +46,7 @@ namespace AnimeDefendersEngine::Graphics {
         return m_isActive;
     }
 
-    auto Camera::getTransposeMathWrapper() noexcept -> ITransposeMathWrapper& {
+    auto Camera::getTransposeMathWrapper() const noexcept -> const ITransposeMathWrapper& {
         return m_transposeMathWrapper;
     }
 

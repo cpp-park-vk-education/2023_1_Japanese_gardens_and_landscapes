@@ -36,7 +36,7 @@ namespace AnimeDefendersEngine::Graphics {
 
         [[nodiscard]] auto getCameraTranspose() const noexcept -> const Math::Transpose&;
         [[nodiscard]] auto isActive() const noexcept -> bool;
-        [[nodiscard]] static auto getTransposeMathWrapper() noexcept -> ITransposeMathWrapper&;
+        [[nodiscard]] auto getTransposeMathWrapper() const noexcept -> const ITransposeMathWrapper&;
 
      private:
         Math::Transpose m_transpose;
@@ -46,7 +46,7 @@ namespace AnimeDefendersEngine::Graphics {
         transposeChangingFunctor m_extraMotionFunctor;
         bool m_isActive{false};
 
-        static constexpr TransposeMathWrapper& m_transposeMathWrapper{};
+        const TransposeMathWrapper m_transposeMathWrapper{};
     };
 
 }  // namespace AnimeDefendersEngine::Graphics
