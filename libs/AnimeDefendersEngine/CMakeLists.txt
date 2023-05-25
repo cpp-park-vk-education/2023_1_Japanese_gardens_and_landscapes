@@ -45,6 +45,8 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/Body.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/BodyDefinition.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/CollisionHandler.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/ContactEvent.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/ICollisionHandler.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/Manifold.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/PhysicsSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/PhysicsWorld.hpp
@@ -98,7 +100,6 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Graphics/Renderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger/Logger.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Graph.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Vector2.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenAlDependency/AudioPlayWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
@@ -184,9 +185,9 @@ target_include_directories(${project_name} PUBLIC ${include_locations})
 
 find_package(OpenGL COMPONENTS OpenGL REQUIRED)
 find_package(GLUT COMPONENTS GLUT REQUIRED)
-include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
+include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
 
-target_link_libraries(${project_name} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+target_link_libraries(${project_name} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
 
 if(ENABLE_CLANG_FORMAT)
     add_dependencies(${project_name} AnimeDefendersEngine_FORMAT_TARGET)
