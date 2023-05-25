@@ -7,8 +7,8 @@ namespace AnimeDefendersEngine::Graphics::SpriteSystem {
     }
 
     auto drawSprite(const Sprite* sprite) noexcept -> void {
-        auto transposeMathWrapper = sprite->getTransposeMathWrapper();
-        auto drawTextureWrapper = sprite->getDrawTextureWrapper();
+        const auto& transposeMathWrapper = sprite->getTransposeMathWrapper();
+        const auto& drawTextureWrapper = sprite->getDrawTextureWrapper();
 
         auto transpose = sprite->getTranspose();
         auto texture = sprite->getTexture();

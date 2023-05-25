@@ -21,15 +21,15 @@ namespace AnimeDefendersEngine::Graphics {
 
         [[nodiscard]] auto getTranspose() const noexcept -> const Math::Transpose&;
         [[nodiscard]] auto getTexture() const noexcept -> const Texture&;
-        [[nodiscard]] static auto getTransposeMathWrapper() noexcept -> ITransposeMathWrapper&;
-        [[nodiscard]] static auto getDrawTextureWrapper() noexcept -> IDrawTextureWrapper&;
+        [[nodiscard]] auto getTransposeMathWrapper() const noexcept -> const ITransposeMathWrapper&;
+        [[nodiscard]] auto getDrawTextureWrapper() const noexcept -> const IDrawTextureWrapper&;
 
      private:
         Math::Transpose m_transpose;
         Texture m_texture;
 
-        static constexpr TransposeMathWrapper& m_transposeMathWrapper{};
-        static constexpr DrawTextureWrapper& m_drawTextureWrapper{};
+        const TransposeMathWrapper& m_transposeMathWrapper{};
+        const DrawTextureWrapper& m_drawTextureWrapper{};
     };
 
 }  // namespace AnimeDefendersEngine::Graphics

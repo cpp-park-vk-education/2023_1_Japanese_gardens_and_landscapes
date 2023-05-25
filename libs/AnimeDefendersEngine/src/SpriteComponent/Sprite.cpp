@@ -31,11 +31,11 @@ namespace AnimeDefendersEngine::Graphics {
         return m_texture;
     }
 
-    auto Sprite::getTransposeMathWrapper() noexcept -> ITransposeMathWrapper& {
+    auto Sprite::getTransposeMathWrapper() const noexcept -> const ITransposeMathWrapper& {
         return m_transposeMathWrapper;
     }
 
-    auto Sprite::getDrawTextureWrapper() noexcept -> IDrawTextureWrapper& {
+    auto Sprite::getDrawTextureWrapper() const noexcept -> const IDrawTextureWrapper& {
         return m_drawTextureWrapper;
     }
 
