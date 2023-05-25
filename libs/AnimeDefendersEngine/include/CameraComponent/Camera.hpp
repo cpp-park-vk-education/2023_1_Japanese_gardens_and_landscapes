@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BaseComponent.hpp"
+#include "ITransposeMathWrapper.hpp"
 #include "Transpose.hpp"
 
 #include <functional>
@@ -35,6 +36,7 @@ namespace AnimeDefendersEngine::Graphics {
 
         [[nodiscard]] auto getCameraTranspose() const noexcept -> const Math::Transpose&;
         [[nodiscard]] auto isActive() const noexcept -> bool;
+        [[nodiscard]] static auto getTransposeMathWrapper() noexcept -> ITransposeMathWrapper&;
 
      private:
         Math::Transpose m_transpose;
@@ -43,6 +45,8 @@ namespace AnimeDefendersEngine::Graphics {
         /// @brief Functor which sets new value to Transpose based on inner state
         transposeChangingFunctor m_extraMotionFunctor;
         bool m_isActive{false};
+
+        static constexpr ITransposeMathWrapper& m_transposeMathWrapper{};
     };
 
 }  // namespace AnimeDefendersEngine::Graphics

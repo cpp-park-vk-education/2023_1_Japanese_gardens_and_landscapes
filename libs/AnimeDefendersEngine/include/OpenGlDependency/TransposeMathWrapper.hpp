@@ -1,7 +1,5 @@
 #pragma once
 
-#include "ITransposeMathWrapper.hpp"
-
 namespace AnimeDefendersEngine::Graphics {
 
     class TransposeMathWrapper final : public ITransposeMathWrapper {
