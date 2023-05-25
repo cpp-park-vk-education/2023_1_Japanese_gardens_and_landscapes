@@ -18,9 +18,8 @@ namespace AnimeDefendersEngine::Graphics {
          * @param extraMotion Function which sets new value to Transpose
          *                    based on inner state
          */
-        explicit Camera(const std::string& entityId, ComponentManager&, const Math::Transpose&,
-                        std::function<void(Math::Transpose&)> motionRule, std::function<void(Math::Transpose&)> extraMotion,
-                        bool isActive) noexcept;
+        Camera(const std::string& entityId, ComponentManager&, const Math::Transpose&, std::function<void(Math::Transpose&)> motionRule,
+               std::function<void(Math::Transpose&)> extraMotion, bool isActive) noexcept;
 
         auto determineNewCameraTranspose() -> void;
         auto applyCameraView() const noexcept -> void;
