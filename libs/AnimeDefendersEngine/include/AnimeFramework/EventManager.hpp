@@ -9,12 +9,14 @@ namespace AnimeDefendersEngine {
 
     class IEventManager {
      public:
-        virtual auto hasEvent(std::string eventName) -> bool = 0;
+        auto hasEvent(const std::string& eventName) -> bool;
+        ~IEventManager(){};
     };
 
     class EventManager : public IEventManager {
      public:
-        auto hasEvent(std::string eventName) -> bool override;
+        static auto hasEvent(const std::string& eventName) -> bool;
+        static auto update() -> void;
 
      private:
         std::priority_queue<Event> m_events;

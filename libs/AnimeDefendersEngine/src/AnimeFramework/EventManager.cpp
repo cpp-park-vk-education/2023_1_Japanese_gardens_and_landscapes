@@ -2,6 +2,6 @@
 
 using namespace AnimeDefendersEngine;
 
-auto EventManager::hasEvent(std::string) -> bool {
+auto EventManager::hasEvent(const std::string&) -> bool {
     return false;
 }

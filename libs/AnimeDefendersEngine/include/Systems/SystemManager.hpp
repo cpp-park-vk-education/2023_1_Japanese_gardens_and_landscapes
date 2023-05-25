@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ISystemManager.hpp"
+
 #include <vector>
 
 namespace AnimeDefendersEngine {
@@ -9,14 +11,7 @@ namespace AnimeDefendersEngine {
 
 }  // namespace AnimeDefendersEngine
 
-#include <vector>
-
 namespace AnimeDefendersEngine {
-
-    class ISystemManager {
-     public:
-        virtual void updateSystems(SceneManager& sceneManager, float fixedDeltaTime) = 0;
-    };
 
     class SystemManager : public ISystemManager {
      public:
