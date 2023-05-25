@@ -9,13 +9,9 @@
 #include "EventListener.hpp"
 
 namespace AnimeDefendersEngine {
-    // Singleton class
+
     class EventManager {
      public:
-        [[nodiscard]] static EventManager& getInstance() {
-            static EventManager instance;
-            return instance;
-        }
         auto update() -> void;
         auto addListener(const EventListener& listener) -> void;
         auto removeListener(const EventListener& listener) -> void;

@@ -17,22 +17,18 @@ namespace AnimeDefendersEngine {
 
     class InputManager {
      public:
-        static InputManager& getInstance() {
-            static InputManager instance;
-            return instance;
+        InputManager(EventManager& eventManager, Graphics::Window& window) : m_eventManager(eventManager) {
+            window.setWindowKeyboardListener(keyboardHandler);
+            window.setWindowMouseListener(mouseHandler);
+            window.setWindowMotionListener(motionHandler);
         }
-        InputManager(InputManager const&) = delete;
-        void operator=(InputManager const&) = delete;
         auto keyboardHandler(unsigned char pressedKey, int xMousePosition, int yMousePosition) -> void;
         auto passiveMotionHandler(int xMousePosition, int yMousePosition) -> void;
         auto motionHandler(int xMousePosition, int yMousePosition) -> void;
         auto mouseHandler(int button, int buttonState, int xMousePosition, int yMousePosition) -> void;
-        auto initInputManager(Graphics::Window& window) -> void;
         auto getButtonDown(unsigned char button) -> bool;
 
      private:
-        InputManager() {}
-        InputManager(InputManager const&);
-        void operator=(InputManager const&);
+        EventManager m_eventManager;
     };
 }  // namespace AnimeDefendersEngine
