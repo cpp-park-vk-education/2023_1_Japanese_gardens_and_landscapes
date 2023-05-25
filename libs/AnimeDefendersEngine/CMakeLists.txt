@@ -45,6 +45,8 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/Body.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/BodyDefinition.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/CollisionHandler.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/ContactEvent.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/ICollisionHandler.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/Manifold.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/PhysicsSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/PhysicsWorld.hpp
@@ -98,7 +100,6 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Graphics/Renderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger/Logger.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Graph.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Vector2.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenAlDependency/AudioPlayWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
