@@ -4,7 +4,6 @@
 #include "Manifold.hpp"
 
 #include <memory>
-#include <string>
 #include <unordered_set>
 #include <vector>
 
@@ -24,7 +23,7 @@ namespace AnimeDefendersEngine::Physics {
         PhysicsWorld(std::unique_ptr<CollisionHandler> collisionHandler, float fixedDeltaTime, float maxDeltaTime);
         auto setFixedDeltaTime(float fixedDeltaTime) -> void;
         auto update(float deltaTime) -> void;
-        auto fixedUpdate() -> std::vector<ContactEvent>;
+        [[maybe_unused]] auto fixedUpdate() -> std::vector<ContactEvent>;
         [[nodiscard]] auto addBody(BodyDefinition&& bodyDefinition) -> Body*;
 
      private:

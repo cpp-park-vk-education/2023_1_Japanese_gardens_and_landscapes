@@ -34,11 +34,47 @@ namespace AnimeDefendersEngine::Physics {
     }
 
     auto PhysicsWorld::getEvents(std::unordered_set<Manifold> currentContacts) -> std::vector<ContactEvent> {
-        return {};
+        std::vector<ContactEvent> events{};
+        events.reserve(currentContacts.size());
+        for (auto currentContact : currentContacts) {
+            if (m_contacts.contains(currentContact)) {
+                events.emplace_back(currentContact.bodyA->getID(), currentContact.bodyB->getID(), ContactEventType::ContactStay);
+                m_contacts.erase(currentContact);
+            } else {
+                events.emplace_back(currentContact.bodyA->getID(), currentContact.bodyB->getID(), ContactEventType::ContactEnter);
+            }
+        }
+
+        for (auto leftContact : m_contacts) {
+            events.emplace_back(leftContact.bodyA->getID(), leftContact.bodyB->getID(), ContactEventType::ContactExit);
+        }
+        return events;
     }
 
     auto PhysicsWorld::fixedUpdate() -> std::vector<ContactEvent> {
-        return {};
+        std::vector<Body*> bodies{};
+        bodies.reserve((m_bodies.size()));
+        for (const auto& body : m_bodies) {
+            if (body->getType() == BodyType::dynamicBody) {
+                body->integrateForce(m_fixedDeltaTime);
+                body->integrateVelocity(m_fixedDeltaTime);
+            }
+            bodies.push_back(body.get());
+        }
+
+        std::unordered_set<Manifold> currentContacts = m_collisionHandler->broadPhase(bodies);
+        m_collisionHandler->narrowPhase(currentContacts);
+
+        for (const auto& body : m_bodies) {
+            body->clearForce();
+            body->clearVelocity();
+        }
+
+        std::vector<ContactEvent> events = getEvents(currentContacts);
+
+        std::swap(m_contacts, currentContacts);
+
+        return events;
     }
 
 }  // namespace AnimeDefendersEngine::Physics
