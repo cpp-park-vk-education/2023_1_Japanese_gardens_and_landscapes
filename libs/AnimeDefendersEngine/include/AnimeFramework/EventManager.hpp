@@ -9,9 +9,13 @@
 #include "EventListener.hpp"
 
 namespace AnimeDefendersEngine {
-    namespace EventManager {
-
-        auto operator==(const EventListener& lhs, const EventListener& rhs) -> bool;
+    // Singleton class
+    class EventManager {
+     public:
+        static EventManager& getInstance() {
+            static EventManager instance;
+            return instance;
+        }
         auto update() -> void;
         auto addListener(const EventListener& listener) -> void;
         auto removeListener(const EventListener& listener) -> void;
@@ -19,7 +23,8 @@ namespace AnimeDefendersEngine {
         auto addEvent(std::unique_ptr<Event> event) -> void;
         auto hasEvent(const std::string& eventName) -> bool;
 
+     private:
         std::vector<EventListener> eventListeners{};
         std::vector<std::unique_ptr<Event>> eventQueue{};
-    }  // namespace EventManager
+    };
 }  // namespace AnimeDefendersEngine

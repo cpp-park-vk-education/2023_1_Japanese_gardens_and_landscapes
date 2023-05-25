@@ -3,18 +3,6 @@
 
 namespace AnimeDefendersEngine {
 
-    auto EventManager::operator==(const EventListener& lhs, const EventListener& rhs) -> bool {
-        return lhs.getName() == rhs.getName();
-    }
-
-    auto EventManager::EventListener::getName() const -> const std::string& {
-        return eventListenerName;
-    }
-
-    auto EventManager::EventListener::getFunction() -> std::function<void()> {
-        return listenerFunction;
-    }
-
     auto EventManager::hasEvent(const std::string& eventName) -> bool {
         for (const auto& event : eventQueue) {
             if (event->getName() == eventName) {
@@ -26,7 +14,7 @@ namespace AnimeDefendersEngine {
 
     auto EventManager::update() -> void {
         for (auto& event : eventQueue) {
-            EventManager::dispatch(std::move(event));
+            dispatch(std::move(event));
         }
         eventQueue.clear();
     }

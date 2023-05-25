@@ -1,19 +1,20 @@
 #pragma once
 
-#include <functional>
 #include "Event.hpp"
 
-namespace AnimeDefendersEngine::EventManager {
+#include <functional>
+
+namespace AnimeDefendersEngine {
     class EventListener {
      public:
-        explicit EventListener(const std::function<void()>& function, const std::string& name)
-            : listenerFunction(function), eventListenerName(name) {}
-        auto getName() const -> const std::string&;
-        auto getFunction() -> std::function<void()>;
+        EventListener(const std::function<void()>& function, const std::string& name)
+            : m_listenerFunction(function), m_eventListenerName(name) {}
+        [[nodiscard]] auto getName() const -> const std::string&;
+        [[nodiscard]] auto getFunction() -> std::function<void()>;
 
      private:
-        std::string eventListenerName;
-        std::function<void()> listenerFunction;
+        std::string m_eventListenerName;
+        std::function<void()> m_listenerFunction;
     };
 
 }  // namespace AnimeDefendersEngine::EventManager
