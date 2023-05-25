@@ -7,23 +7,24 @@ namespace AnimeDefendersEngine {
         m_eventManager.addEvent(std::move(event));
     }
 
-    auto InputManager::passiveMotionHandler(int xMousePosition, int yMousePosition) -> void {}
+    auto InputManager::passiveMotionHandler(int xMousePosition, int yMousePosition) -> void {
+        auto event = std::make_unique<Event>("Key" + pressedKey, EventType::MouseMoved);
+    }
 
     auto InputManager::motionHandler(int xMousePosition, int yMousePosition) -> void {}
 
     auto InputManager::mouseHandler(int button, int buttonState, int xMousePosition, int yMousePosition) -> void {
         switch (button) {
             case GLUT_LEFT_BUTTON:
-                if (state == GLUT_DOWN) {
+                if (buttonState == GLUT_DOWN) {
                 };
                 break;
             case GLUT_MIDDLE_BUTTON:
-                if (state == GLUT_DOWN) {
-                    ;
-                }
+                if (buttonState == GLUT_DOWN) {
+                };
                 break;
             case GLUT_RIGHT_BUTTON:
-                if (state == GLUT_DOWN) {
+                if (buttonState == GLUT_DOWN) {
                 };
                 break;
             default:

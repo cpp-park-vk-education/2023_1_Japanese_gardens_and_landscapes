@@ -1,12 +1,13 @@
 #pragma once
 
+#include "Entity.hpp"
+#include "Event.hpp"
+#include "EventListener.hpp"
+
 #include <functional>
 #include <memory>
 #include <string>
 #include <vector>
-#include "Entity.hpp"
-#include "Event.hpp"
-#include "EventListener.hpp"
 
 namespace AnimeDefendersEngine {
 

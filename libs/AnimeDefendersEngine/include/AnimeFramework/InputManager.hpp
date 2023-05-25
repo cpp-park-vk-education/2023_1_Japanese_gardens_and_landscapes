@@ -1,10 +1,10 @@
 #pragma once
 
-#include <GL/glut.h>
-
 #include "Event.hpp"
 #include "EventManager.hpp"
 #include "Window.hpp"
+
+#include <GL/glut.h>
 
 namespace AnimeDefendersEngine {
 

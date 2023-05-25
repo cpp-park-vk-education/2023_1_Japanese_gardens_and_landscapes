@@ -1,7 +1,8 @@
-#include <memory>
-
 #include "EventManager.hpp"
 #include "EventListener.hpp"
+
+#include <memory>
+
 namespace AnimeDefendersEngine {
 
     auto EventManager::hasEvent(const std::string& eventName) -> bool {
