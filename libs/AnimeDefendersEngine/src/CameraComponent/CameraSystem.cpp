@@ -4,7 +4,8 @@
 namespace AnimeDefendersEngine::Graphics::CameraSystem {
 
     auto applyCameraView(const Camera* camera) -> void {
-        auto transposeMathWrapper = camera->getTransposeMathWrapper();
+        const auto& transposeMathWrapper = camera->getTransposeMathWrapper();
+
         transposeMathWrapper.applyTransposeMatrix(camera->getCameraTranspose());
     }
 

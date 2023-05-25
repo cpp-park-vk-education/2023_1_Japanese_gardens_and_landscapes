@@ -1,8 +1,8 @@
 #pragma once
 
 #include "BaseComponent.hpp"
-#include "ITransposeMathWrapper.hpp"
 #include "Transpose.hpp"
+#include "TransposeMathWrapper.hpp"
 
 #include <functional>
 
