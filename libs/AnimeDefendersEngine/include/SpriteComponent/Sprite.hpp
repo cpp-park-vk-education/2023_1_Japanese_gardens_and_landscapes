@@ -2,8 +2,10 @@
 
 #include "BaseComponent.hpp"
 #include "Camera.hpp"
+#include "DrawTextureWrapper.hpp"
 #include "Texture.hpp"
 #include "Transpose.hpp"
+#include "TransposeMathWrapper.hpp"
 
 namespace AnimeDefendersEngine::Graphics {
 
@@ -19,10 +21,15 @@ namespace AnimeDefendersEngine::Graphics {
 
         [[nodiscard]] auto getTranspose() const noexcept -> const Math::Transpose&;
         [[nodiscard]] auto getTexture() const noexcept -> const Texture&;
+        [[nodiscard]] static auto getTransposeMathWrapper() noexcept -> ITransposeMathWrapper&;
+        [[nodiscard]] static auto getDrawTextureWrapper() noexcept -> IDrawTextureWrapper&;
 
      private:
         Math::Transpose m_transpose;
         Texture m_texture;
+
+        static constexpr TransposeMathWrapper& m_transposeMathWrapper{};
+        static constexpr DrawTextureWrapper& m_drawTextureWrapper{};
     };
 
 }  // namespace AnimeDefendersEngine::Graphics
