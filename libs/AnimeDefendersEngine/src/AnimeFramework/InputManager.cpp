@@ -8,7 +8,7 @@ namespace AnimeDefendersEngine {
     }
 
     auto InputManager::passiveMotionHandler(int xMousePosition, int yMousePosition) -> void {
-        auto event = std::make_unique<Event>("Key" + pressedKey, EventType::MouseMoved);
+        auto event = std::make_unique<Event>("Mouse " + xMousePosition + " " + yMousePosition, EventType::MouseMoved);
     }
 
     auto InputManager::motionHandler(int xMousePosition, int yMousePosition) -> void {}
