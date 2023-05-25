@@ -2,8 +2,8 @@
 
 namespace AnimeDefendersEngine {
 
-    auto operator==(const EventListener& lhs, const EventListener& rhs) -> bool {
-        return lhs.getName() == rhs.getName();
+    auto EventListener::operator==(const EventListener& rhs) const-> bool {
+        return (*this).getName() == rhs.getName();
     }
 
     auto EventListener::getName() const -> const std::string& {

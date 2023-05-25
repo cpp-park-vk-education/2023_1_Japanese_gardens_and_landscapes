@@ -12,7 +12,7 @@ namespace AnimeDefendersEngine {
     // Singleton class
     class EventManager {
      public:
-        static EventManager& getInstance() {
+        [[nodiscard]] static EventManager& getInstance() {
             static EventManager instance;
             return instance;
         }
@@ -21,10 +21,10 @@ namespace AnimeDefendersEngine {
         auto removeListener(const EventListener& listener) -> void;
         auto dispatch(std::unique_ptr<Event> event) -> void;
         auto addEvent(std::unique_ptr<Event> event) -> void;
-        auto hasEvent(const std::string& eventName) -> bool;
+        [[nodiscard]] auto hasEvent(const std::string& eventName) -> bool;
 
      private:
-        std::vector<EventListener> eventListeners{};
-        std::vector<std::unique_ptr<Event>> eventQueue{};
+        std::vector<EventListener> m_eventListeners{};
+        std::vector<std::unique_ptr<Event>> m_eventQueue{};
     };
 }  // namespace AnimeDefendersEngine
