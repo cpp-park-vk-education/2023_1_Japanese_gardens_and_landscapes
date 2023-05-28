@@ -25,8 +25,8 @@ namespace AnimeDefendersEngine::Math {
 
         auto operator*(double c1) const -> Vector2;
 
-        T x{0.f};
-        T y{0.f};
+        T x{};
+        T y{};
     };
 
     template <typename T>
