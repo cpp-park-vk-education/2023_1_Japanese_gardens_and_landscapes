@@ -14,8 +14,8 @@ namespace AnimeDefendersEngine::Graphics {
         auto uiElements = componentManager.getComponents<UiElement>();
 
         Camera* activeCamera{};
-        for (const auto& nextCompenent : cameras) {
-            auto* camera = static_cast<Camera*>(nextCompenent.second);
+        for (const auto& compenent : cameras) {
+            auto* camera = static_cast<Camera*>(compenent.second);
 
             if (camera->isActive()) {
                 if (activeCamera) {
@@ -32,16 +32,16 @@ namespace AnimeDefendersEngine::Graphics {
         activeCamera->determineNewCameraTranspose();
         activeCamera->applyCameraView();
 
-        for (const auto& nextComponent : sprites) {
-            const auto* sprite = static_cast<Sprite*>(nextComponent.second);
+        for (const auto& component : sprites) {
+            const auto* sprite = static_cast<Sprite*>(component.second);
 
             if (sprite->isSpriteVisibleToCamera(activeCamera)) {
                 sprite->drawSprite();
             }
         }
 
-        for (const auto& nextComponent : uiElements) {
-            auto* uiElement = static_cast<UiElement*>(nextComponent.second);
+        for (const auto& component : uiElements) {
+            auto* uiElement = static_cast<UiElement*>(component.second);
 
             uiElement->drawUiElement();
         }
