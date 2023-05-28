@@ -5,6 +5,7 @@
 #include "TableReader.hpp"
 
 namespace {
+
     constexpr char entityParameterSeparator = '|';
     constexpr std::size_t idIndex = 0;
 
@@ -18,17 +19,17 @@ namespace AnimeDefendersEngine {
             std::getline(*m_dataStream, line);
             auto entityParameters = FileSystem::splitString(line, entityParameterSeparator);
 
-            if (!entityParameters.empty()) {
-                std::size_t id = std::stoul(entityParameters[idIndex]);
-
-                if (!m_sceneManager.m_scenes.contains(id)) {
-                    m_sceneManager.m_scenes[id] = std::make_unique<Scene>(id);
-                }
-
-                auto& scene = *m_sceneManager.m_scenes[id];
-
-                scene.addEntity(m_creator->create(entityParameters, scene));
+            if (entityParameters.empty()) {
+                continue;
             }
+        
+            std::size_t id = std::stoul(entityParameters[idIndex]);
+            if (!m_sceneManager.m_scenes.contains(id)) {
+                m_sceneManager.m_scenes[id] = std::make_unique<Scene>(id);
+            }
+
+            auto& scene = *m_sceneManager.m_scenes[id];
+            scene.addEntity(m_creator->create(entityParameters, scene));
         }
     }
 
