@@ -13,6 +13,8 @@ namespace AnimeDefendersEngine::Graphics {
 
         auto renderObjects(Scene&) -> void;
 
+        auto getActiveWindowPtr() const noexcept -> std::shared_ptr<IWindow>;
+
      private:
         std::shared_ptr<IWindow> m_window;
     };

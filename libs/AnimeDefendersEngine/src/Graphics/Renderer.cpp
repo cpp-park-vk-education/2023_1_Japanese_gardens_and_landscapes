@@ -4,9 +4,7 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    Renderer::Renderer(std::shared_ptr<IWindow> window) : m_window(window) {
-        m_window->createWindow(500, 500, "Anime Defenders: Battle Behind the Screen");
-    }
+    Renderer::Renderer(std::shared_ptr<IWindow> window) : m_window(window) {}
 
     auto Renderer::renderObjects(Scene& scene) -> void {
         auto componentManager = scene.getComponentManager();
@@ -19,7 +17,7 @@ namespace AnimeDefendersEngine::Graphics {
         for (const auto& nextCompenent : cameras) {
             auto* camera = static_cast<Camera*>(nextCompenent.second);
 
-            if (camera->isCameraActive()) {
+            if (camera->isActive()) {
                 if (activeCamera) {
                     throw std::runtime_error("Active camera must be the only one!");
                 }
@@ -49,6 +47,10 @@ namespace AnimeDefendersEngine::Graphics {
         }
 
         m_window->updateFrame();
+    }
+
+    auto Renderer::getActiveWindowPtr() const noexcept -> std::shared_ptr<IWindow> {
+        return m_window;
     }
 
 }  // namespace AnimeDefendersEngine::Graphics
