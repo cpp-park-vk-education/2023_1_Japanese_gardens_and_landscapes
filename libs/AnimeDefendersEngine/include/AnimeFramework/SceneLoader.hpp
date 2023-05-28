@@ -23,24 +23,6 @@ namespace AnimeDefendersEngine {
     class SceneLoader {
      public:
         explicit SceneLoader(std::unique_ptr<std::istream> dataStream, std::unique_ptr<IEntityCreator> creator, SceneManager& sceneManager);
-        /*
-            while(!dataStream->eof()){
-                std::string line;
-                std::getline(*dataStream, line);
-                std::stringstream properties {line};
-
-                std::vector<std::string> arguments;
-
-                while(!properties.eof()) {
-                    std::getline(properties, line);
-                    arguments.push_back(line);
-                }
-
-                std::size_t id = std::stoull(arguments[0]);
-
-            }
-
-        */
 
      private:
         auto m_loadScenes() -> void;
