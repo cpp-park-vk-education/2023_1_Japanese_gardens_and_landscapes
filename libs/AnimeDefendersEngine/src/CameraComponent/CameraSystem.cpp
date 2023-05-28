@@ -1,7 +1,12 @@
 #include "CameraSystem.hpp"
+#include "TransposeMathWrapper.hpp"
 
-using namespace AnimeDefendersEngine::Graphics;
+namespace AnimeDefendersEngine::Graphics::CameraSystem {
 
-auto CameraSystem::determineNewCameraTranspose(const Camera&) -> void {}
+    auto applyCameraView(const Camera* camera) -> void {
+        const auto& transposeMathWrapper = camera->getTransposeMathWrapper();
 
-auto CameraSystem::applyCameraView(const Camera&) -> void {}
+        transposeMathWrapper.applyTransposeMatrix(camera->getCameraTranspose());
+    }
+
+}  // namespace AnimeDefendersEngine::Graphics::CameraSystem

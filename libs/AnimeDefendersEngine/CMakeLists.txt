@@ -35,8 +35,8 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Coords3d.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Graph.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Matrix2d.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Transpose.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Vector2.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Transpose.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenAlDependency/AudioPlayWrapper.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenGlDependency/DrawTextureWrapper.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenGlDependency/TransposeMathWrapper.hpp
@@ -44,11 +44,16 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenGlDependency/Window.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/Body.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/BodyDefinition.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/ColliderComponent.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/CollisionHandler.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/ContactEvent.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/ICollisionHandler.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/Manifold.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/PhysicsSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/PhysicsWorld.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/RigidBodyComponent.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/Shape.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/TransformComponent.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/SpriteComponent/Sprite.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/SpriteComponent/SpriteSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Systems/ISystem.hpp
@@ -106,6 +111,7 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/Window.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Body.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/BodyDefinition.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/ColliderComponent.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/CollisionHandler.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Manifold.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/PhysicsSystem.cpp
@@ -184,9 +190,9 @@ target_include_directories(${project_name} PUBLIC ${include_locations})
 
 find_package(OpenGL COMPONENTS OpenGL REQUIRED)
 find_package(GLUT COMPONENTS GLUT REQUIRED)
-include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
+include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
 
-target_link_libraries(${project_name} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+target_link_libraries(${project_name} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
 
 if(ENABLE_CLANG_FORMAT)
     add_dependencies(${project_name} AnimeDefendersEngine_FORMAT_TARGET)

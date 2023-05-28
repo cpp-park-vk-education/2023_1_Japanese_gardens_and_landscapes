@@ -1,4 +1,3 @@
-#include "Camera.hpp"
 #include "Renderer.hpp"
 #include "Sprite.hpp"
 #include "UiElement.hpp"

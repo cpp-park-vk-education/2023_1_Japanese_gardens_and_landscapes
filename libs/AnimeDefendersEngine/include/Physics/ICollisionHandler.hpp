@@ -1,5 +1,6 @@
 #pragma once
 
+#include <unordered_set>
 #include <vector>
 
 namespace AnimeDefendersEngine::Physics {
@@ -22,8 +23,8 @@ namespace AnimeDefendersEngine::Physics {
      */
     class ICollisionHandler {
      public:
-        virtual auto broadPhase(const std::vector<Body*>& bodies) const -> std::vector<Manifold> = 0;
-        virtual auto narrowPhase(std::vector<Manifold>& contacts) const -> void = 0;
+        virtual auto broadPhase(const std::vector<Body*>& bodies) const -> std::unordered_set<Manifold> = 0;
+        virtual auto narrowPhase(std::unordered_set<Manifold>& contacts) const -> void = 0;
         virtual auto hasCollision(Body* bodyA, Body* bodyB) const -> bool = 0;
         virtual auto specifyCollision(Manifold& contact) const -> void = 0;
         virtual auto resolveCollision(Manifold& contact) const -> void = 0;
