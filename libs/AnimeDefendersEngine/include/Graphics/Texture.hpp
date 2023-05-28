@@ -1,15 +1,15 @@
 #pragma once
 
-#include "FileSystem.hpp"
+#include <array>
 
-namespace AnimeDefendersEngine {
-    namespace Graphics {
+namespace AnimeDefendersEngine::Graphics {
 
-        struct Texture {
-            const FileSystem::Image& image;
-            int width;
-            int heidth;
-        };
+    struct Texture {
+        unsigned int textureId{};
+        /// @brief Container of x/y coords for set fullscreen draw option
+        static constexpr std::array<float, 8> vertexCoords{-1, -1, 1, -1, 1, 1, -1, 1};
+        /// @brief Container of x/y coords for setting part of texture to draw
+        static constexpr std::array<float, 8> textureCoords{0, 0, 1, 0, 1, 1, 0, 1};
+    };
 
-    }  // namespace Graphics
-}  // namespace AnimeDefendersEngine
+}  // namespace AnimeDefendersEngine::Graphics
