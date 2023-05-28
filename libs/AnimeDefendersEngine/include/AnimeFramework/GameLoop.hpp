@@ -1,24 +1,42 @@
 #pragma once
 
-// static_assert(false, "Need to add propper headers for IEventManager and InputManager");
-#include "InputManager.hpp"
-#include "SystemManager.hpp"
-
 #include <memory>
+
+namespace AnimeDefendersEngine {
+
+    class ISystemManager;
+    class IEventManager;
+    class InputManager;
+    class SceneManager;
+    class ComponentManager;
+
+    namespace Graphics {
+
+        class Renderer;
+
+    }  // namespace Graphics
+
+}  // namespace AnimeDefendersEngine
 
 namespace AnimeDefendersEngine {
 
     class GameLoop {
      public:
-        void run();
-        void setSystemManager(std::unique_ptr<ISystemManager>);
-        void setEventManager(std::unique_ptr<IEventManager>);
+        GameLoop(std::unique_ptr<ISystemManager> systemManager, std::unique_ptr<Graphics::Renderer> renderer, SceneManager& sceneManager);
+        GameLoop(std::unique_ptr<ISystemManager> systemManager, std::unique_ptr<Graphics::Renderer> renderer, SceneManager& sceneManager,
+                 float fixedDeltaTime, float maxDeltaTime);
+
+        auto run() -> void;
 
      private:
-        bool is_running{true};
+        bool m_isRunning{true};
+        float m_maxDeltaTime{};
+        float m_fixedDeltaTime{};
+
         std::unique_ptr<ISystemManager> m_systemManager;
-        std::unique_ptr<IEventManager> m_eventManager;
-        std::unique_ptr<InputManager> m_input;
+        std::unique_ptr<Graphics::Renderer> m_renderer;
+
+        SceneManager& m_sceneManager;
     };
 
 }  // namespace AnimeDefendersEngine

@@ -1,7 +1,6 @@
 #pragma once
 
-namespace AnimeDefendersEngine {
-    namespace Graphics {
+namespace AnimeDefendersEngine::Graphics {
 
         struct Color {
             unsigned char red{};
@@ -10,5 +9,4 @@ namespace AnimeDefendersEngine {
             unsigned char alpha{};
         };
 
-    }  // namespace Graphics
-}  // namespace AnimeDefendersEngine
+}  // namespace AnimeDefendersEngine::Graphics
