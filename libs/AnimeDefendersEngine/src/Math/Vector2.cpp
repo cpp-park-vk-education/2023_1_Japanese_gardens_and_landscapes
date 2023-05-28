@@ -58,12 +58,12 @@ namespace AnimeDefendersEngine {
     }
 
     template <typename T>
-    auto Math::operator*(double c1, Vector2<T> vec1) -> Vector2<T> {
+    auto Math::operator*(T c1, Vector2<T> vec1) -> Vector2<T> {
         return Vector2{c1 * vec1.x, c1 * vec1.y};
     }
 
     template <typename T>
-    auto Math::Vector2<T>::operator*(double c1) const -> Vector2<T> {
+    auto Math::Vector2<T>::operator*(T c1) const -> Vector2<T> {
         return Vector2{c1 * this->x, c1 * this->y};
     }
 
