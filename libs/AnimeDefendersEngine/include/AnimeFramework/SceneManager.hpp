@@ -17,8 +17,7 @@ namespace AnimeDefendersEngine {
 
         auto addScene(std::unique_ptr<Scene> scene) -> void;
 
-     public:
-        friend class SceneLoader;
+        [[nodiscard]] auto getScenes() -> std::unordered_map<int, std::unique_ptr<Scene>>&;
 
      private:
         std::size_t m_activeSceneId{};

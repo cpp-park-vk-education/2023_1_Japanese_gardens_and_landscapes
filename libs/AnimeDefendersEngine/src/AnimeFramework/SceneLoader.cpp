@@ -1,5 +1,6 @@
 #include "SceneLoader.hpp"
 #include "Entity.hpp"
+#include "IEntityCreator.hpp"
 #include "Scene.hpp"
 #include "SceneManager.hpp"
 #include "TableReader.hpp"
@@ -15,20 +16,20 @@ namespace AnimeDefendersEngine {
 
     auto SceneLoader::m_loadScenes() -> void {
         while (!m_dataStream->eof()) {
-            std::string line;
+            std::string line{};
             std::getline(*m_dataStream, line);
             auto entityParameters = FileSystem::splitString(line, entityParameterSeparator);
 
             if (entityParameters.empty()) {
                 continue;
             }
-        
+
             std::size_t id = std::stoul(entityParameters[idIndex]);
-            if (!m_sceneManager.m_scenes.contains(id)) {
-                m_sceneManager.m_scenes[id] = std::make_unique<Scene>(id);
+            if (!m_sceneManager.getScenes().contains(id)) {
+                m_sceneManager.getScenes()[id] = std::make_unique<Scene>(id);
             }
 
-            auto& scene = *m_sceneManager.m_scenes[id];
+            auto& scene = *m_sceneManager.getScenes()[id];
             scene.addEntity(m_creator->create(entityParameters, scene));
         }
     }

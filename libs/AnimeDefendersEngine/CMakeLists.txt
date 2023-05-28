@@ -11,6 +11,7 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/BaseComponent.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/ComponentManager.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Entity.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/IEntityCreator.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Event.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/EventManager.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/GameLoop.hpp

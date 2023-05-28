@@ -15,4 +15,8 @@ namespace AnimeDefendersEngine {
         m_scenes[scene->getSceneId()] = std::move(scene);
     }
 
+    auto SceneManager::getScenes() -> std::unordered_map<int, std::unique_ptr<Scene>>& {
+        return m_scenes;
+    }
+
 }  // namespace AnimeDefendersEngine
