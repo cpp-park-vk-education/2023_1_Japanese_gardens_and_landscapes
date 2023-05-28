@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Body.hpp"
-#include "Vector2f.hpp"
+#include "Vector2.hpp"
 
 namespace AnimeDefendersEngine::Physics {
 

@@ -32,7 +32,7 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Coords2d.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Graph.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Matrix2d.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Vector2f.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Vector2.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenAlDependency/AudioPlayWrapper.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenGlDependency/DrawTextureWrapper.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenGlDependency/TransposeMathWrapper.hpp
@@ -94,7 +94,7 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Graphics/Renderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger/Logger.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Graph.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Vector2f.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Vector2.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenAlDependency/AudioPlayWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp

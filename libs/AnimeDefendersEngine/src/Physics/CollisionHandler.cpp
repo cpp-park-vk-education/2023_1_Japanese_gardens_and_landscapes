@@ -1,7 +1,7 @@
 #include "CollisionHandler.hpp"
 #include "Body.hpp"
 #include "Manifold.hpp"
-#include "Vector2f.hpp"
+#include "Vector2.hpp"
 
 #include <cmath>
 #include <functional>

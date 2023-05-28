@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Vector2f.hpp"
+#include "Vector2.hpp"
 
 namespace AnimeDefendersEngine::Physics {
 
