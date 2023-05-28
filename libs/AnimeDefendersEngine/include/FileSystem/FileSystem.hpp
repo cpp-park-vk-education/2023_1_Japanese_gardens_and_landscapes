@@ -14,12 +14,11 @@
 #define SOURCE_DIR_PATH ""
 #endif
 
-inline auto absolutePath(const std::convertible_to<std::string> auto& x) -> std::string {
-    return std::string{SOURCE_DIR_PATH} + x;
+inline auto absolutePath(const std::filesystem::path& relativePath) -> std::filesystem::path {
+    return std::string{SOURCE_DIR_PATH} + relativePath.string();
 }
 
 namespace AnimeDefendersEngine {
-    using Graphics::Color;
 
     namespace FileSystem {
 
@@ -27,7 +26,7 @@ namespace AnimeDefendersEngine {
 
         struct AudioTrack {};
 
-        using Image = Math::Matrix2d<Color>;
+        using Image = Math::Matrix2d<Graphics::Color>;
 
         enum class FileType {
             imagePNG,

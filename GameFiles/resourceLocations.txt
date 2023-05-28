@@ -1,3 +1,2 @@
 Name|FilePath
-First name|dev/x.png
-Second target_include_directories|some/Location.txt
+Sample|GameFiles/3.png
