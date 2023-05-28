@@ -19,14 +19,14 @@ namespace AnimeDefendersEngine::Graphics {
 
             if (camera->isActive()) {
                 if (activeCamera) {
-                    throw std::runtime_error("Active camera must be the only one!");
+                    throw std::runtime_error("The active camera should be the only one! At the moment there are more.");
                 }
                 activeCamera = camera;
             }
         }
 
         if (!activeCamera) {
-            throw std::runtime_error("One of all cameras must be active!");
+            throw std::runtime_error("The active camera should be the only one! At the moment they are not.");
         }
 
         activeCamera->determineNewCameraTranspose();
