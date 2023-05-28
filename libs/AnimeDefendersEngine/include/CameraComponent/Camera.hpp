@@ -5,7 +5,6 @@
 #include "TransposeMathWrapper.hpp"
 
 #include <functional>
-#include <typeinfo>
 
 namespace AnimeDefendersEngine::Graphics {
 
