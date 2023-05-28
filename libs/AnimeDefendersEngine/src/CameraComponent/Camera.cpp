@@ -34,7 +34,7 @@ namespace AnimeDefendersEngine::Graphics {
         m_extraMotionFunctor = extraMotionFunctor;
     }
 
-    auto Camera::setIsActive(bool isActive) noexcept -> void {
+    auto Camera::setActive(bool isActive) noexcept -> void {
         m_isActive = isActive;
     }
 

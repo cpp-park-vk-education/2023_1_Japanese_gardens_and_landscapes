@@ -32,7 +32,7 @@ namespace AnimeDefendersEngine::Graphics {
         auto setMotionRuleFunctor(transposeChangingFunctor) noexcept -> void;
         /// @brief Set functor which sets new value to Transpose based on inner state
         auto setExtraMotionFunctor(transposeChangingFunctor) noexcept -> void;
-        auto setIsActive(bool) noexcept -> void;
+        auto setActive(bool) noexcept -> void;
 
         [[nodiscard]] auto getCameraTranspose() const noexcept -> const Math::Transpose&;
         [[nodiscard]] auto isActive() const noexcept -> bool;
