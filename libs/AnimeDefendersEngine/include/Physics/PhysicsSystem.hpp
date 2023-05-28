@@ -11,11 +11,11 @@ namespace AnimeDefendersEngine::Physics {
     class PhysicsSystem : public ISystem {
      public:
         explicit PhysicsSystem(float fixedDeltaTime);
-        auto updateSystem(SceneManager& sceneManager, float timeStep) -> void;
         auto setFixedDeltaTime(float fixedDeltaTime) noexcept -> void;
+        auto updateSystem(SceneManager& sceneManager, float timeStep) -> void;
 
      private:
-        auto addBodies(ComponentManager::ComponentsContainer& components) -> std::vector<Body*>;
+        [[nodiscard]] auto addBodies(ComponentManager::ComponentsContainer& components) -> std::vector<Body*>;
         auto processContactEvents(ComponentManager::ComponentsContainer& components) -> void;
 
      private:

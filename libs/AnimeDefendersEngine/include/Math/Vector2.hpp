@@ -1,35 +1,43 @@
 #pragma once
 
-namespace AnimeDefendersEngine {
-    namespace Math {
-        template <typename T>
-        struct Vector2;
-        template <typename T>
-        auto operator+(const Vector2<T>& vec1, const Vector2<T>& vec2) -> Vector2<T>{};
-        template <typename T>
-        auto operator-(const Vector2<T>& vec1, const Vector2<T>& vec2) -> Vector2<T>{};
-        template <typename T>
-        auto operator*(const Vector2<T>& vec1, const Vector2<T>& vec2) -> T{};
-        template <typename T>
-        auto operator*(const T& const1, const Vector2<T>& vec1) -> Vector2<T>{};
+#include <cmath>
+#include <iostream>
 
-        template <typename T>
-        struct Vector2 {
-            explicit Vector2(T val1 = T{}, T val2 = T{});
-            auto norm() const -> T&;
-            T x;
-            T y;
+namespace AnimeDefendersEngine::Math
+{
+    /*!
+        \brief Структура, реализующая двумерный вектор.
 
-            friend auto operator+<T>(const Vector2<T>& vec1, const Vector2<T>& vec2) -> Vector2<T>;
+        Реализованы стандартные операции над векторами, т.к. скалярное умножение, норма, сложение и вычитание.
+    */
+    template <typename T>
+    struct Vector2
+    {
+        Vector2() = default;
 
-            friend auto operator-<T>(const Vector2<T>& vec1, const Vector2<T>& vec2) -> Vector2<T>;
+        explicit Vector2(T val1, T val2) : x(val1), y(val2) {}
 
-            friend auto operator*<T>(const Vector2<T>& vec1, const Vector2<T>& vec2) -> T;
+        auto norm() const -> T;
 
-            friend auto operator*<T>(const T& const1, const Vector2<T>& vec1) -> Vector2<T>;
-        };
+        auto operator+(Vector2 vec) const -> Vector2;
 
-        using Vector2f = Vector2<float>;
+        auto operator-(Vector2 vec) const -> Vector2;
 
-    }  // namespace Math
-}  // namespace AnimeDefendersEngine
+        auto operator*(Vector2 vec) const -> T;
+
+        auto operator*(T c1) const -> Vector2;
+
+        T x{};
+        T y{};
+    };
+
+    template <typename T>
+    std::ostream &operator<<(std::ostream &os, Vector2<T> vec);
+
+    template <typename T>
+    auto operator*(T c1, Vector2<T> vec1) -> Vector2<T>;
+
+    using Vector2f = Vector2<float>;
+    using Vector2d = Vector2<double>;
+
+} // namespace AnimeDefendersEngine::Math
