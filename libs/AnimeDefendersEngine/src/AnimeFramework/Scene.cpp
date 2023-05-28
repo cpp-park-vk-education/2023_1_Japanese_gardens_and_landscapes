@@ -1,5 +1,6 @@
 #include "Scene.hpp"
 #include "ComponentManager.hpp"
+#include "Entity.hpp"
 
 namespace AnimeDefendersEngine {
 
@@ -22,6 +23,10 @@ namespace AnimeDefendersEngine {
 
     [[nodiscard]] auto Scene::getSceneId() const noexcept -> int {
         return m_sceneId;
+    }
+
+    auto Scene::addEntity(std::shared_ptr<Entity> entity) -> void {
+        m_entities[entity->getId()] = entity;
     }
 
 }  // namespace AnimeDefendersEngine

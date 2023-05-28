@@ -33,6 +33,8 @@ namespace AnimeDefendersEngine {
 
             m_entities[entity->getId()] = entity;
         }
+        auto addEntity(std::shared_ptr<Entity> entity) -> void;
+
         auto destroyEntity(const std::string& entityId) -> void;
 
         [[nodiscard]] auto getComponentManager() -> ComponentManager&;

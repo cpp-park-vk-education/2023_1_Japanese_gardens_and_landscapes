@@ -17,6 +17,7 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/InputManager.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/MemoryMaster.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/Scene.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/SceneLoader.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimeFramework/SceneManager.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AudioSystem/AudioSource.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/AudioSystem/AudioSystem.hpp
@@ -90,6 +91,7 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/GameLoop.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/InputManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/Scene.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/SceneLoader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/SceneManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AudioSystem/AudioSource.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AudioSystem/AudioSystem.cpp
