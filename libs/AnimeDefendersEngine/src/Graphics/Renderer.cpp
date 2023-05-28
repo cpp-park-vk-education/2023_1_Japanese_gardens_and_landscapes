@@ -9,9 +9,9 @@ namespace AnimeDefendersEngine::Graphics {
     auto Renderer::renderObjects(Scene& scene) -> void {
         auto componentManager = scene.getComponentManager();
 
-        auto cameras = componentManager.getComponents<Camera>();
-        auto sprites = componentManager.getComponents<Sprite>();
-        auto uiElements = componentManager.getComponents<UiElement>();
+        const auto& cameras = componentManager.getComponents<Camera>();
+        const auto& sprites = componentManager.getComponents<Sprite>();
+        const auto& uiElements = componentManager.getComponents<UiElement>();
 
         Camera* activeCamera{};
         for (const auto& compenent : cameras) {
