@@ -4,7 +4,7 @@
 
 namespace AnimeDefendersEngine::Graphics {
 
-    Renderer::Renderer(std::shared_ptr<IWindow> window) : m_window(window) {}
+    Renderer::Renderer(std::shared_ptr<IWindow> window) noexcept : m_window(window) {}
 
     auto Renderer::renderObjects(Scene& scene) -> void {
         auto componentManager = scene.getComponentManager();
@@ -33,7 +33,7 @@ namespace AnimeDefendersEngine::Graphics {
         activeCamera->applyCameraView();
 
         for (const auto& nextComponent : sprites) {
-            auto* sprite = static_cast<Sprite*>(nextComponent.second);
+            const auto* sprite = static_cast<Sprite*>(nextComponent.second);
 
             if (sprite->isSpriteVisibleToCamera(activeCamera)) {
                 sprite->drawSprite();
