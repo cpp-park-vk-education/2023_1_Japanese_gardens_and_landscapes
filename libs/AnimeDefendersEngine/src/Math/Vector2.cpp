@@ -4,16 +4,27 @@
 #include <cstring>
 
 namespace {
-    constexpr int invSquareRootConstant = 0x5f3759df;
+    constexpr auto invSquareRootConstantFloat = 0x5F375A86;
+    constexpr auto invSquareRootConstantDouble = 0x5fe6eb50c7b537a9;
 
-    template <typename T>
-    auto inverseSquareRoot(T number) -> T {
-        auto xhalf = 0.5 * number;
-        std::uint32_t i;
-        std::memcpy(&i, &number, sizeof(i));
-        i = invSquareRootConstant - (i >> 1);
-        std::memcpy(&number, &i, sizeof(number));
-        number *= (1.5f - xhalf * number * number);
+    auto inverseSquareRoot(float number) -> float
+    {
+        float xhalf = 0.5f * number;
+        std::uint32_t i = *reinterpret_cast<std::uint32_t *>(&number);
+        i = invSquareRootConstantFloat - (i >> 1);
+        number = *reinterpret_cast<float *>(&i);
+        number *= 1.5f - xhalf * number * number;
+
+        return number;
+    }
+
+    auto inverseSquareRoot(double number) -> double
+    {
+        double xhalf = number * 0.5;
+        std::int64_t i = *reinterpret_cast<std::int64_t *>(&number);
+        i = invSquareRootConstantDouble - (i >> 1);
+        number = *reinterpret_cast<double *>(&i);
+        number *= 1.5 - xhalf * number * number;
         return number;
     }
 }  // namespace
@@ -27,7 +38,7 @@ namespace AnimeDefendersEngine {
 
     template <typename T>
     auto Math::Vector2<T>::norm() const -> T {
-        return 1 / inverseSquareRoot<T>((*this) * (*this));
+        return 1 / inverseSquareRoot((*this) * (*this));
     }
     
     template <typename T>
