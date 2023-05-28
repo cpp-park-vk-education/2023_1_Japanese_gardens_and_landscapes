@@ -36,7 +36,7 @@ namespace AnimeDefendersEngine {
             const char m_wordsInRowSeparator = ' ';
         };
 
-        [[nodiscard]] auto splitString(const std::string& str, const char separator) -> std::vector<std::string>;
+        [[nodiscard]] auto splitString(const std::string& str, char separator) -> std::vector<std::string>;
 
     }  // namespace FileSystem
 

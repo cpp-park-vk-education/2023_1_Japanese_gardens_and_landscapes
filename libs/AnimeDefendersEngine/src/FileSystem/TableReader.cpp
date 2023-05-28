@@ -5,7 +5,7 @@
 
 namespace AnimeDefendersEngine::FileSystem {
 
-    auto splitString(const std::string& str, const char separator) -> std::vector<std::string> {
+    auto splitString(const std::string& str, char separator) -> std::vector<std::string> {
         std::vector<std::string> splittedString{};
         std::stringstream stream{str};
         while (!stream.eof()) {
