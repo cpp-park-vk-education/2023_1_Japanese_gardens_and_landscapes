@@ -1,22 +1,10 @@
 #pragma once
 
-#include "Camera.hpp"
-#include "ISystem.hpp"
 #include "Sprite.hpp"
 
-#include <vector>
+namespace AnimeDefendersEngine::Graphics::SpriteSystem {
 
-namespace AnimeDefendersEngine {
-    namespace Graphics {
+    auto isSpriteVisibleToCamera(const Sprite*, const Camera*) noexcept -> bool;
+    auto drawSprite(const Sprite*) noexcept -> void;
 
-        class SpriteSystem : public ISystem {
-         public:
-            static auto isSpriteVisibleToCamera(const Sprite&, const Camera&) -> bool;
-            static auto drawSprite(const Sprite&) -> void;
-
-         private:
-            SpriteSystem();
-        };
-
-    }  // namespace Graphics
-}  // namespace AnimeDefendersEngine
+}  // namespace AnimeDefendersEngine::Graphics::SpriteSystem

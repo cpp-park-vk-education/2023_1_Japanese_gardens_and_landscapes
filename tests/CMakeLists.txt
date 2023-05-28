@@ -5,7 +5,7 @@ add_compile_options(-fprofile-arcs -ftest-coverage)
 set(A_test_name A_TESTS)
 set(AnimeFramework_test_name ANIME_FRAMEWORK_TESTS)
 
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 20)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 

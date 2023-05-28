@@ -1,12 +1,12 @@
 #pragma once
 
-#include "ComponentManager.hpp"
+#include "SceneManager.hpp"
 
 namespace AnimeDefendersEngine {
 
     class ISystem {
      public:
-        virtual void updateSystem(ComponentManager&) = 0;
+        virtual void updateSystem(SceneManager&) = 0;
     };
 
 }  // namespace AnimeDefendersEngine

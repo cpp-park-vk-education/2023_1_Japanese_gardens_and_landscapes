@@ -1,35 +1,73 @@
 #pragma once
 
-namespace AnimeDefendersEngine {
-    namespace Math {
-        template <typename T>
-        struct Vector2;
-        template <typename T>
-        auto operator+(const Vector2<T>& vec1, const Vector2<T>& vec2) -> Vector2<T>{};
-        template <typename T>
-        auto operator-(const Vector2<T>& vec1, const Vector2<T>& vec2) -> Vector2<T>{};
-        template <typename T>
-        auto operator*(const Vector2<T>& vec1, const Vector2<T>& vec2) -> T{};
-        template <typename T>
-        auto operator*(const T& const1, const Vector2<T>& vec1) -> Vector2<T>{};
+#include <cmath>
+#include <cstdint>
+#include <cstring>
+#include <iostream>
 
-        template <typename T>
-        struct Vector2 {
-            explicit Vector2(T val1 = T{}, T val2 = T{});
-            auto norm() const -> T&;
-            T x;
-            T y;
+namespace {
 
-            friend auto operator+<T>(const Vector2<T>& vec1, const Vector2<T>& vec2) -> Vector2<T>;
+    constexpr auto invSquareRootConstantFloat = 0x5F375A86;
+    constexpr auto invSquareRootConstantDouble = 0x5fe6eb50c7b537a9;
 
-            friend auto operator-<T>(const Vector2<T>& vec1, const Vector2<T>& vec2) -> Vector2<T>;
+    auto inverseSquareRoot(float number) -> float {
+        float xhalf = 0.5f * number;
+        std::uint32_t i = *reinterpret_cast<std::uint32_t*>(&number);
+        i = invSquareRootConstantFloat - (i >> 1);
+        number = *reinterpret_cast<float*>(&i);
+        number *= 1.5f - xhalf * number * number;
 
-            friend auto operator*<T>(const Vector2<T>& vec1, const Vector2<T>& vec2) -> T;
+        return number;
+    }
 
-            friend auto operator*<T>(const T& const1, const Vector2<T>& vec1) -> Vector2<T>;
-        };
+    auto inverseSquareRoot(double number) -> double {
+        double xhalf = number * 0.5;
+        std::int64_t i = *reinterpret_cast<std::int64_t*>(&number);
+        i = invSquareRootConstantDouble - (i >> 1);
+        number = *reinterpret_cast<double*>(&i);
+        number *= 1.5 - xhalf * number * number;
+        return number;
+    }
+}  // namespace
 
-        using Vector2f = Vector2<float>;
+namespace AnimeDefendersEngine::Math {
+    /*!
+        \brief Структура, реализующая двумерный вектор.
 
-    }  // namespace Math
-}  // namespace AnimeDefendersEngine
+        Реализованы стандартные операции над векторами, т.к. скалярное умножение, норма, сложение и вычитание.
+    */
+    template <typename T>
+    struct Vector2 {
+        Vector2() = default;
+
+        explicit Vector2(T val1, T val2) : x(val1), y(val2) {}
+
+        auto operator*(Vector2<T> vec) const -> T { return this->x * vec.x + this->y * vec.y; }
+
+        auto norm() const -> T { return 1 / inverseSquareRoot((*this) * (*this)); }
+
+        auto operator+(Vector2<T> vec) const -> Vector2<T> { return Vector2{this->x + vec.x, this->y + vec.y}; }
+
+        auto operator-(Vector2<T> vec) const -> Vector2<T> { return Vector2{this->x - vec.x, this->y - vec.y}; }
+
+        auto operator*(T c1) const -> Vector2<T> { return Vector2{c1 * this->x, c1 * this->y}; }
+
+        T x{};
+        T y{};
+    };
+
+    template <typename T>
+    std::ostream& operator<<(std::ostream& os, Vector2<T> vec) {
+        os << "(" << vec.x << ", " << vec.y << ")";
+        return os;
+    }
+
+    template <typename T>
+    auto operator*(T c1, Vector2<T> vec1) -> Vector2<T> {
+        return Vector2{c1 * vec1.x, c1 * vec1.y};
+    }
+
+    using Vector2f = Vector2<float>;
+    using Vector2d = Vector2<double>;
+
+}  // namespace AnimeDefendersEngine::Math

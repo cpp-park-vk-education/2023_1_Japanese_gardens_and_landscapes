@@ -2,26 +2,39 @@
 
 #include "IWindow.hpp"
 
-#include <iostream>
+#include <string>
 
-namespace AnimeDefendersEngine {
-    namespace Graphics {
+namespace AnimeDefendersEngine::Graphics {
 
-        class Window : public IWindow {
-         public:
-            Window(int, int, const std::string&);
-            ~Window();
-            auto updateFrame() const -> void override;
+    class Window final : public IWindow {
+     public:
+        Window(int windowWidth, int windowHeight, const std::string& windowTitle) noexcept;
 
-            auto setWindowMouseListener(void (*)(int, int, int, int)) const -> void;
-            auto setWindowMotionListener(void (*)(int, int)) const -> void;
-            auto setWindowKeyboardListener(void (*)(unsigned char, int, int)) const -> void;
+        ~Window() noexcept override;
+        Window(const Window&) = delete;
+        Window(Window&&) = delete;
+        auto operator=(const Window&) -> Window& = delete;
+        auto operator=(Window&&) -> Window& = delete;
 
-         private:
-            int m_windowId{};
-            int m_windowWidth{};
-            int m_windowHeidth{};
-        };
+        auto updateFrame() const noexcept -> void override;
 
-    }  // namespace Graphics
-}  // namespace AnimeDefendersEngine
+        /// @brief Setter of callback function for window at mouse click
+        auto setMouseClickHandler(mouseClickHandler) const noexcept -> void override;
+        /// @brief Setter of callback function for window at mouse motion with pressed any button on it
+        auto setActiveMouseMotionHandler(mouseMotionHandler) const noexcept -> void override;
+        /// @brief Setter of callback function for window at mouse motion without pressed any button on it
+        auto setPassiveMouseMotionHandler(mouseMotionHandler) const noexcept -> void override;
+        /// @brief Setter of callback function for window at pressed any keyboard button with char
+        auto setKeyPressHandler(keyPressHandler) const noexcept -> void override;
+
+        auto isShiftPressed() const noexcept -> bool override;
+        auto isCtrlPressed() const noexcept -> bool override;
+        auto isAltPressed() const noexcept -> bool override;
+
+     private:
+        int m_windowId{};
+        int m_windowWidth{};
+        int m_windowHeight{};
+    };
+
+}  // namespace AnimeDefendersEngine::Graphics

@@ -1,15 +1,13 @@
 #pragma once
 
-#include "FileSystem.hpp"
 #include "IDrawTextureWrapper.hpp"
 
-namespace AnimeDefendersEngine {
-    namespace Graphics {
+namespace AnimeDefendersEngine::Graphics {
 
-        class DrawTextureWrapper : public IDrawTextureWrapper {
-         public:
-            auto drawTexture(const FileSystem::Image&) -> void override;
-        };
+    class DrawTextureWrapper final : public IDrawTextureWrapper {
+     public:
+        [[nodiscard]] auto loadTexture(const Math::Matrix2d<Color>& pixelMatrix) const noexcept -> Texture override;
+        auto drawTexture(const Texture&) const noexcept -> void override;
+    };
 
-    }  // namespace Graphics
-}  // namespace AnimeDefendersEngine
+}  // namespace AnimeDefendersEngine::Graphics

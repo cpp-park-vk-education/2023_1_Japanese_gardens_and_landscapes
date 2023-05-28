@@ -1,25 +1,27 @@
 #include "Scene.hpp"
 #include "ComponentManager.hpp"
 
-using namespace AnimeDefendersEngine;
+namespace AnimeDefendersEngine {
 
-Scene::Scene(int id) : m_sceneId{id} {}
+    Scene::Scene(std::size_t sceneId) : m_sceneId{sceneId}, m_componentManager{sceneId} {}
 
-auto Scene::destroyEntity(const std::string& entityId) -> void {
-    m_entityIdsToDestroy.push_back(entityId);
-}
-
-[[nodiscard]] auto Scene::getComponentManager() -> ComponentManager& {
-    return m_componentManager;
-}
-
-auto Scene::updateScene() -> void {
-    for (const auto& id : m_entityIdsToDestroy) {
-        m_entities.erase(id);
+    auto Scene::destroyEntity(const std::string& entityId) -> void {
+        m_entityIdsToDestroy.push_back(entityId);
     }
-    m_entities.clear();
-}
 
-[[nodiscard]] auto Scene::getSceneId() const noexcept -> int {
-    return m_sceneId;
-}
+    [[nodiscard]] auto Scene::getComponentManager() -> ComponentManager& {
+        return m_componentManager;
+    }
+
+    auto Scene::updateScene() -> void {
+        for (const auto& entityId : m_entityIdsToDestroy) {
+            m_entities.erase(entityId);
+        }
+        m_entities.clear();
+    }
+
+    [[nodiscard]] auto Scene::getSceneId() const noexcept -> int {
+        return m_sceneId;
+    }
+
+}  // namespace AnimeDefendersEngine
