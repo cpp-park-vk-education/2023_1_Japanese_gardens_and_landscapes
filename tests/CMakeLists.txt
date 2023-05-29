@@ -30,6 +30,7 @@ add_custom_target(
     DEPENDS
     ${AnimeFramework_test_name}_tests_run
     ${CollisionHandler_test_name}_tests_run
+    ${PhysicsWorld_test_name}_tests_run
 )
 
 add_test(NAME ${AnimeFramework_test_name} COMMAND ${AnimeFramework_test_name}_tests_run)
