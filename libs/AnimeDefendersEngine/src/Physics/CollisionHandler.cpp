@@ -24,19 +24,17 @@ namespace AnimeDefendersEngine::Physics {
     }
 
     auto CollisionHandler::narrowPhase(std::unordered_set<Manifold>& contacts) const -> void {
-        for (auto contactIterator = contacts.begin(); contactIterator != contacts.end();) {
-            auto contact = *contactIterator;
-            contacts.erase(contactIterator);
+        std::unordered_set<Manifold> actualContacts;
+        for (auto contact : contacts) {
             if (hasCollision(contact.bodyA, contact.bodyB)) {
-                if (contact.bodyA->isTrigger() || contact.bodyB->isTrigger()) {
-                    continue;
+                if (!contact.bodyA->isTrigger() && !contact.bodyB->isTrigger()) {
+                    specifyCollision(contact);
+                    resolveCollision(contact);
                 }
-                specifyCollision(contact);
-                resolveCollision(contact);
-                contacts.insert(contact);
-                ++contactIterator;
+                actualContacts.insert(contact);
             }
         }
+        contacts = std::move(actualContacts);
     }
 
     namespace {
@@ -103,8 +101,9 @@ namespace AnimeDefendersEngine::Physics {
     namespace {
 
         auto specifyCollisionCircleCircle(Manifold& contact) -> void {
-            const auto circleA = dynamic_cast<Circle*>(contact.bodyA);
-            const auto circleB = dynamic_cast<Circle*>(contact.bodyB);
+            const auto circleA = dynamic_cast<Circle*>(contact.bodyA->getShape());
+            const auto circleB = dynamic_cast<Circle*>(contact.bodyB->getShape());
+
             const auto direction = contact.bodyB->getPosition() - contact.bodyA->getPosition();
             const auto distance = direction.norm();
             const auto totalRadius = circleA->radius + circleB->radius;
@@ -131,7 +130,9 @@ namespace AnimeDefendersEngine::Physics {
         }
 
         auto specifyCollisionCircleRectangle(Manifold& contact) -> void {
+            std::swap(contact.bodyA, contact.bodyB);
             specifyCollisionRectangleCircle(contact);
+            std::swap(contact.bodyA, contact.bodyB);
         }
 
         auto specifyCollisionRectangleRectangle(Manifold& contact) -> void {
