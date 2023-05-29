@@ -26,10 +26,10 @@ namespace AnimeDefendersEngine::Physics {
             return std::tie(manifold.bodyA->getID(), manifold.bodyB->getID());
         }
 
-        inline auto operator==(const Manifold& left, const Manifold& right) {
-            return getIDs(left) == getIDs(right);
-        }
-
     }  // namespace
+
+    auto operator==(const Manifold& left, const Manifold& right) -> bool {
+        return getIDs(left) == getIDs(right);
+    }
 
 }  // namespace AnimeDefendersEngine::Physics
