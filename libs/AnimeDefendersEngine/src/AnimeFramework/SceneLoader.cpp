@@ -1,6 +1,7 @@
 #include "SceneLoader.hpp"
 #include "Entity.hpp"
 #include "IEntityCreator.hpp"
+#include "Logger.hpp"
 #include "Scene.hpp"
 #include "SceneManager.hpp"
 #include "TableReader.hpp"
@@ -24,7 +25,15 @@ namespace AnimeDefendersEngine {
                 continue;
             }
 
-            std::size_t id = std::stoul(entityParameters[idIndex]);
+            std::size_t id{};
+
+            try {
+                id = std::stoul(entityParameters[idIndex]);
+            } catch (std::exception& ex) {
+                Logger::defaultLog.printError(ex.what());
+                continue;
+            }
+
             if (!m_sceneManager.getScenes().contains(id)) {
                 m_sceneManager.getScenes()[id] = std::make_unique<Scene>(id);
             }

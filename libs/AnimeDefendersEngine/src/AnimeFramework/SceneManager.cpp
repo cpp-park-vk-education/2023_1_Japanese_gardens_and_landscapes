@@ -7,7 +7,7 @@ namespace AnimeDefendersEngine {
         return *m_scenes.at(m_activeSceneId).get();
     }
 
-    auto SceneManager::setActiveScene(std::size_t sceneId) noexcept -> void {
+    auto SceneManager::setActiveScene(Scene::IdType sceneId) noexcept -> void {
         m_activeSceneId = sceneId;
     }
 
@@ -15,7 +15,7 @@ namespace AnimeDefendersEngine {
         m_scenes[scene->getSceneId()] = std::move(scene);
     }
 
-    auto SceneManager::getScenes() -> std::unordered_map<int, std::unique_ptr<Scene>>& {
+    auto SceneManager::getScenes() -> std::unordered_map<Scene::IdType, std::unique_ptr<Scene>>& {
         return m_scenes;
     }
 

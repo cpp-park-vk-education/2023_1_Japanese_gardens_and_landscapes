@@ -21,7 +21,7 @@ namespace AnimeDefendersEngine {
         m_entities.clear();
     }
 
-    [[nodiscard]] auto Scene::getSceneId() const noexcept -> int {
+    [[nodiscard]] auto Scene::getSceneId() const noexcept -> Scene::IdType {
         return m_sceneId;
     }
 

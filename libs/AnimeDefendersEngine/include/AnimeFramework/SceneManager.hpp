@@ -4,8 +4,10 @@
 #include <unordered_map>
 
 namespace AnimeDefendersEngine {
+
     class Scene;
     class SceneLoader;
+    
 }  // namespace AnimeDefendersEngine
 
 namespace AnimeDefendersEngine {
@@ -17,11 +19,11 @@ namespace AnimeDefendersEngine {
 
         auto addScene(std::unique_ptr<Scene> scene) -> void;
 
-        [[nodiscard]] auto getScenes() -> std::unordered_map<int, std::unique_ptr<Scene>>&;
+        [[nodiscard]] auto getScenes() -> std::unordered_map<Scene::IdType, std::unique_ptr<Scene>>&;
 
      private:
-        std::size_t m_activeSceneId{};
-        std::unordered_map<int, std::unique_ptr<Scene>> m_scenes;
+        Scene::IdType m_activeSceneId{};
+        std::unordered_map<Scene::IdType, std::unique_ptr<Scene>> m_scenes;
     };
 
 }  // namespace AnimeDefendersEngine
