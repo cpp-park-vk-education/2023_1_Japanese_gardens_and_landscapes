@@ -27,10 +27,20 @@ namespace AnimeDefendersEngine::Physics {
         m_fixedDeltaTime = fixedDeltaTime;
     }
 
-    auto PhysicsWorld::update(float deltaTime) -> void {}
+    auto PhysicsWorld::update(float deltaTime) -> void {
+        m_accumulator += deltaTime;
+        if (m_accumulator > m_maxDeltaTime) {
+            m_accumulator = m_maxDeltaTime;
+        }
+        while (m_accumulator >= m_fixedDeltaTime) {
+            fixedUpdate();
+            m_accumulator -= m_fixedDeltaTime;
+        }
+    }
 
     auto PhysicsWorld::addBody(BodyDefinition&& bodyDefinition) -> Body* {
-        return nullptr;
+        m_bodies.push_back(std::make_unique<Body>(std::move(bodyDefinition)));
+        return m_bodies.back().get();
     }
 
     auto PhysicsWorld::getEvents(std::unordered_set<Manifold> currentContacts) -> std::vector<ContactEvent> {
