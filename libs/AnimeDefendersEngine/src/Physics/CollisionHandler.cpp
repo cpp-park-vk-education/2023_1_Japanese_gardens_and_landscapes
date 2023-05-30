@@ -129,6 +129,7 @@ namespace AnimeDefendersEngine::Physics {
             contact.penetration = circleB->radius - distance.norm();
         }
 
+        // TODO: Potentially unsafe if async is somehow involved later.
         auto specifyCollisionCircleRectangle(Manifold& contact) -> void {
             std::swap(contact.bodyA, contact.bodyB);
             specifyCollisionRectangleCircle(contact);
