@@ -61,6 +61,8 @@ namespace AnimeDefendersEngine::Physics {
             }
             bodyDef.transform.position = collider->getTransform().position;
 
+            bodyDef.isTrigger = collider->isTrigger();
+
             auto* body = m_physicsWorld.addBody(std::move(bodyDef));
 
             if (collider->getRigidBody() == nullptr) {
@@ -82,15 +84,18 @@ namespace AnimeDefendersEngine::Physics {
 
             switch (event.type) {
                 case ContactEventType::ContactEnter:
-
+                    bodyA->onCollisionEnter(*bodyB);
+                    bodyA->onCollisionEnter(*bodyA);
                     break;
 
                 case ContactEventType::ContactStay:
-
+                    bodyA->onCollisionStay(*bodyB);
+                    bodyB->onCollisionStay(*bodyA);
                     break;
 
                 case ContactEventType::ContactExit:
-
+                    bodyA->onCollisionExit(*bodyB);
+                    bodyB->onCollisionExit(*bodyA);
                     break;
             }
         }
