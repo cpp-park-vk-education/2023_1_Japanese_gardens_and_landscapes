@@ -46,7 +46,7 @@ namespace AnimeDefendersEngine {
 
     GameLoop::GameLoop(std::unique_ptr<ISystemManager> systemManager, std::unique_ptr<Graphics::Renderer> renderer,
                        std::unique_ptr<EventManager> eventManager, SceneManager& sceneManager)
-        : GameLoop(std::move(systemManager), std::move(renderer), , std::move(eventManager), sceneManager,
+        : GameLoop(std::move(systemManager), std::move(renderer), std::move(eventManager), sceneManager,
                    1.f / defaultFixedUpdateFrequency, 1.f / defaultMinUpdateFrequency) {}
 
     auto GameLoop::run() -> void {
@@ -66,12 +66,12 @@ namespace AnimeDefendersEngine {
                 m_systemManager->updateSystems(m_sceneManager, m_fixedDeltaTime);
                 accumulator -= m_fixedDeltaTime;
 
-                if (m_eventManager.hasEvent(getGameEndEventName())) {
+                if (m_eventManager->hasEvent(getGameEndEventName())) {
                     m_isRunning = false;
                     break;
                 }
 
-                m_eventManager.update();
+                m_eventManager->update();
             }
             m_renderer->renderObjects(m_sceneManager.getActiveScene());
         }

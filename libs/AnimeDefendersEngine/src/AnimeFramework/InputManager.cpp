@@ -3,10 +3,16 @@
 namespace AnimeDefendersEngine {
 
     InputManager::InputManager(EventManager& eventManager, Graphics::Window& window) : m_eventManager(eventManager) {
-        window.setMouseClickHandler(mouseHandler);
-        window.setActiveMouseMotionHandler(motionHandler);
-        window.setPassiveMouseMotionHandler(passiveMotionHandler);
-        window.setKeyPressHandler(keyboardHandler);
+        window.setMouseClickHandler([this](int button, int buttonState, int xMousePosition, int yMousePosition) {
+            this->mouseHandler(button, buttonState, xMousePosition, yMousePosition);
+        });
+        window.setActiveMouseMotionHandler(
+            [this](int xMousePosition, int yMousePosition) { this->motionHandler(xMousePosition, yMousePosition); });
+        window.setPassiveMouseMotionHandler(
+            [this](int xMousePosition, int yMousePosition) { this->passiveMotionHandler(xMousePosition, yMousePosition); });
+        window.setKeyPressHandler([this](unsigned char pressedKey, int xMousePosition, int yMousePosition) {
+            this->keyboardHandler(pressedKey, xMousePosition, yMousePosition);
+        });
     }
 
     auto InputManager::keyboardHandler(unsigned char pressedKey, int xMousePosition, int yMousePosition) -> void {
@@ -27,31 +33,32 @@ namespace AnimeDefendersEngine {
     }
 
     auto InputManager::mouseHandler(int button, int buttonState, int xMousePosition, int yMousePosition) -> void {
-        auto event{nullptr};
         switch (button) {
             case GLUT_LEFT_BUTTON:
                 if (buttonState == GLUT_DOWN) {
-                    event = std::make_unique<Event>(
+                    auto event = std::make_unique<Event>(
                         "MouseLeft" + std::to_string(button) + " " + std::to_string(xMousePosition) + " " + std::to_string(yMousePosition),
                         EventType::MouseButtonPressed);
+                    m_eventManager.addEvent(std::move(event));
                 };
                 break;
             case GLUT_MIDDLE_BUTTON:
                 if (buttonState == GLUT_DOWN) {
-                    event = std::make_unique<Event>("MouseMiddle" + std::to_string(button) + " " + std::to_string(xMousePosition) + " " +
-                                                        std::to_string(yMousePosition),
-                                                    EventType::MouseButtonPressed);
+                    auto event = std::make_unique<Event>("MouseMiddle" + std::to_string(button) + " " + std::to_string(xMousePosition) +
+                                                             " " + std::to_string(yMousePosition),
+                                                         EventType::MouseButtonPressed);
+                    m_eventManager.addEvent(std::move(event));
                 };
                 break;
             case GLUT_RIGHT_BUTTON:
                 if (buttonState == GLUT_DOWN) {
-                    event = std::make_unique<Event>(
+                    auto event = std::make_unique<Event>(
                         "MouseRight" + std::to_string(button) + " " + std::to_string(xMousePosition) + " " + std::to_string(yMousePosition),
                         EventType::MouseButtonPressed);
+                    m_eventManager.addEvent(std::move(event));
                 };
                 break;
         }
-        m_eventManager.addEvent(std::move(event));
     }
 
     auto InputManager::getButtonDown(unsigned char button) -> bool {
