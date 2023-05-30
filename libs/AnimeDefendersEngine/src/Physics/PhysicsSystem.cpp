@@ -10,9 +10,17 @@
 
 namespace AnimeDefendersEngine::Physics {
 
-    PhysicsSystem::PhysicsSystem(float fixedDeltaTime) : m_physicsWorld(std::make_unique<CollisionHandler>()) {
-        m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
-    }
+    namespace {
+
+        constexpr float defaultFixedUpdateFrequency = 60.f;
+        constexpr float defaultMinUpdateFrequency = 25.f;
+
+    }  // namespace
+
+    PhysicsSystem::PhysicsSystem(float fixedDeltaTime, float maxDeltaTime)
+        : m_physicsWorld(std::make_unique<CollisionHandler>(), fixedDeltaTime, maxDeltaTime) {}
+
+    PhysicsSystem::PhysicsSystem() : PhysicsSystem(1.f / defaultFixedUpdateFrequency, 1.f / defaultMinUpdateFrequency) {}
 
     auto PhysicsSystem::setFixedDeltaTime(float fixedDeltaTime) noexcept -> void {
         m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
@@ -53,6 +61,8 @@ namespace AnimeDefendersEngine::Physics {
             }
             bodyDef.transform.position = collider->getTransform().position;
 
+            bodyDef.isTrigger = collider->isTrigger();
+
             auto* body = m_physicsWorld.addBody(std::move(bodyDef));
 
             if (collider->getRigidBody() == nullptr) {
@@ -74,15 +84,18 @@ namespace AnimeDefendersEngine::Physics {
 
             switch (event.type) {
                 case ContactEventType::ContactEnter:
-
+                    bodyA->onCollisionEnter(*bodyB);
+                    bodyA->onCollisionEnter(*bodyA);
                     break;
 
                 case ContactEventType::ContactStay:
-
+                    bodyA->onCollisionStay(*bodyB);
+                    bodyB->onCollisionStay(*bodyA);
                     break;
 
                 case ContactEventType::ContactExit:
-
+                    bodyA->onCollisionExit(*bodyB);
+                    bodyB->onCollisionExit(*bodyA);
                     break;
             }
         }
