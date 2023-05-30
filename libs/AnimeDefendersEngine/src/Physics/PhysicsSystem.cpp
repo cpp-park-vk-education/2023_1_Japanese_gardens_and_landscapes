@@ -85,7 +85,7 @@ namespace AnimeDefendersEngine::Physics {
             switch (event.type) {
                 case ContactEventType::ContactEnter:
                     bodyA->onCollisionEnter(*bodyB);
-                    bodyA->onCollisionEnter(*bodyA);
+                    bodyB->onCollisionEnter(*bodyA);
                     break;
 
                 case ContactEventType::ContactStay:
