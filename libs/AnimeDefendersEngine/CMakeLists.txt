@@ -37,8 +37,8 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Matrix2d.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Vector2.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Transpose.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/OnFixedUpdateComponent.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/OnFixedUpdateSystem.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/OnFixedUpdateComponent/OnFixedUpdateComponent.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/OnFixedUpdateComponent/OnFixedUpdateSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenAlDependency/AudioPlayWrapper.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenGlDependency/DrawTextureWrapper.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenGlDependency/TransposeMathWrapper.hpp
