@@ -3,9 +3,10 @@
 namespace AnimeDefendersEngine {
 
     InputManager::InputManager(EventManager& eventManager, Graphics::Window& window) : m_eventManager(eventManager) {
-        window.setWindowKeyboardListener(keyboardHandler);
-        window.setWindowMouseListener(mouseHandler);
-        window.setWindowMotionListener(motionHandler);
+        window.setMouseClickHandler(mouseHandler);
+        window.setActiveMouseMotionHandler(motionHandler);
+        window.setPassiveMouseMotionHandler(passiveMotionHandler);
+        window.setKeyPressHandler(keyboardHandler);
     }
 
     auto InputManager::keyboardHandler(unsigned char pressedKey, int xMousePosition, int yMousePosition) -> void {

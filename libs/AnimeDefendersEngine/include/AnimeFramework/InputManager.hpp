@@ -22,6 +22,9 @@ namespace AnimeDefendersEngine {
         auto motionHandler(int xMousePosition, int yMousePosition) -> void;
         auto mouseHandler(int button, int buttonState, int xMousePosition, int yMousePosition) -> void;
         [[nodiscard]] auto getButtonDown(unsigned char button) -> bool;
+        [[nodiscard]] auto getMouseButtonDown(unsigned char button) -> bool;
+        [[nodiscard]] auto getPassiveMouseMove() -> bool;
+        [[nodiscard]] auto getActiveMouseMove() -> bool;
 
      private:
         EventManager m_eventManager;

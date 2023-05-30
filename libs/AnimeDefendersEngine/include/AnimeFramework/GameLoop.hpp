@@ -22,9 +22,10 @@ namespace AnimeDefendersEngine {
 
     class GameLoop {
      public:
-        GameLoop(std::unique_ptr<ISystemManager> systemManager, std::unique_ptr<Graphics::Renderer> renderer, SceneManager& sceneManager);
-        GameLoop(std::unique_ptr<ISystemManager> systemManager, std::unique_ptr<Graphics::Renderer> renderer, SceneManager& sceneManager,
-                 float fixedDeltaTime, float maxDeltaTime);
+        GameLoop(std::unique_ptr<ISystemManager> systemManager, std::unique_ptr<Graphics::Renderer> renderer,
+                 std::unique_ptr<EventManager> eventManager, SceneManager& sceneManager);
+        GameLoop(std::unique_ptr<ISystemManager> systemManager, std::unique_ptr<Graphics::Renderer> renderer,
+                 std::unique_ptr<EventManager> eventManager, SceneManager& sceneManager, float fixedDeltaTime, float maxDeltaTime);
 
         auto run() -> void;
 
@@ -35,6 +36,7 @@ namespace AnimeDefendersEngine {
 
         std::unique_ptr<ISystemManager> m_systemManager;
         std::unique_ptr<Graphics::Renderer> m_renderer;
+        std::unique_ptr<EventManager> m_eventManager;
 
         SceneManager& m_sceneManager;
     };
