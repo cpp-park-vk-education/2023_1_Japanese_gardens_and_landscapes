@@ -82,7 +82,7 @@ set(include_locations
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiLabelComponent
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiTextureElementComponent
 
-    ${CMAKE_CURRENT_SOURCE_DIR}/libs/stb
+    ${CMAKE_CURRENT_SOURCE_DIR}/libs/stb/stb
 )
 
 set(source

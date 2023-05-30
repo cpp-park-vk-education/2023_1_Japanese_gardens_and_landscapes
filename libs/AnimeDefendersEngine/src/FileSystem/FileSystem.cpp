@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <limits>
+#include <span>
 
 namespace AnimeDefendersEngine::FileSystem {
 
@@ -18,21 +19,32 @@ namespace AnimeDefendersEngine::FileSystem {
         constexpr auto minGreenColorValue = std::numeric_limits<decltype(Graphics::Color::green)>::min();
         constexpr auto minAlphaValue = std::numeric_limits<decltype(Graphics::Color::alpha)>::min();
 
-        constexpr Graphics::Color redPixel = {maxRedColorValue, minBlueColorValue, minGreenColorValue, minAlphaValue};
+        constexpr Graphics::Color red = {maxRedColorValue, minBlueColorValue, minGreenColorValue, minAlphaValue};
 
         struct StbiImageDeleter {
             auto operator()(stbi_uc* data) const -> void { stbi_image_free(data); }
         };
 
+        constexpr std::size_t numOfBytesPerPixel = 4;
+
     }  // namespace
 
     namespace {
 
-        [[nodiscard]] auto readPixel(const unsigned char* data, std::size_t rowIndex, std::size_t columnIndex, std::size_t numberOfRows,
+        /**
+         * @param data Matrix of pixels stored in array
+         *
+         */
+        auto getPixelByIndex(std::span<const stbi_uc> data, std::size_t rowIndex, std::size_t columnIndex, std::size_t numberOfRows,
+                             std::size_t channelCount) -> const std::span<const stbi_uc> {
+            return data.subspan((rowIndex + numberOfRows * columnIndex) * channelCount, numOfBytesPerPixel);
+        }
+
+        [[nodiscard]] auto readPixel(std::span<const stbi_uc> data, std::size_t rowIndex, std::size_t columnIndex, std::size_t numberOfRows,
                                      std::size_t channelCount) -> Graphics::Color {
             Graphics::Color pixel{};
 
-            const unsigned char* pixelOffset = data + (rowIndex + numberOfRows * columnIndex) * channelCount;
+            const auto pixelOffset = getPixelByIndex(data, rowIndex, numberOfRows, columnIndex, channelCount);
 
             pixel.red = pixelOffset[0];
             pixel.green = pixelOffset[1];
@@ -43,11 +55,7 @@ namespace AnimeDefendersEngine::FileSystem {
         }
 
         [[nodiscard]] auto createErrorImage(std::size_t width = 10, std::size_t height = 10) -> Image {
-            std::vector<Graphics::Color> pixels(width * height);
-
-            for (auto& pixel : pixels) {
-                pixel = redPixel;
-            }
+            std::vector<Graphics::Color> pixels(width * height, red);
 
             return Image{width, height, std::move(pixels)};
         }
@@ -68,11 +76,11 @@ namespace AnimeDefendersEngine::FileSystem {
             return;
         }
 
-        int x{};
-        int y{};
-        int comps{};
+        int numOfRows{};
+        int numOfColumns{};
+        int numOfChannels{};
 
-        std::unique_ptr<stbi_uc, StbiImageDeleter> data{stbi_load(m_paths.at(name).c_str(), &x, &y, &comps, 0)};
+        std::unique_ptr<stbi_uc, StbiImageDeleter> data{stbi_load(m_paths.at(name).c_str(), &numOfRows, &numOfColumns, &numOfChannels, 0)};
 
         if (!data) {
             Logger::defaultLog.printError("Failed to load image from " + m_paths.at(name).string() + " error while reading file");
@@ -80,16 +88,20 @@ namespace AnimeDefendersEngine::FileSystem {
             return;
         }
 
-        std::vector<Graphics::Color> pixels{};
-        pixels.reserve(x * y);
+        const auto numOfPixels = numOfRows * numOfColumns;
 
-        for (int i = 0; i < x; ++i) {
-            for (int j = 0; j < y; ++j) {
-                pixels.push_back(readPixel(data.get(), i, j, x, comps));
+        std::vector<Graphics::Color> pixels{};
+        pixels.reserve(numOfPixels);
+
+        for (int i = 0; i < numOfRows; ++i) {
+            for (int j = 0; j < numOfColumns; ++j) {
+                std::span<stbi_uc> dataWrapper{data.get(), numOfPixels * numOfChannels};
+                pixels.push_back(readPixel(dataWrapper, i, j, numOfRows, numOfChannels));
             }
         }
 
-        m_images[name] = Image{static_cast<std::size_t>(x), static_cast<std::size_t>(y), std::move(pixels)};
+        m_images[name] = Image{static_cast<std::size_t>(numOfRows), static_cast<std::size_t>(numOfColumns), std::move(pixels)};
+        Logger::defaultLog.printMessage("Image '" + name + "' loaded from " + m_paths.at(name).string() + " successfully");
     }
 
     auto FileSystem::getImage(const std::string& name) -> const Image& {
