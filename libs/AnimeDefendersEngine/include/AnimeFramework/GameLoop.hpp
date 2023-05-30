@@ -5,7 +5,7 @@
 namespace AnimeDefendersEngine {
 
     class ISystemManager;
-    class IEventManager;
+    class EventManager;
     class InputManager;
     class SceneManager;
     class ComponentManager;
