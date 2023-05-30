@@ -27,6 +27,6 @@ namespace AnimeDefendersEngine {
         [[nodiscard]] auto getActiveMouseMove() -> bool;
 
      private:
-        EventManager m_eventManager;
+        EventManager& m_eventManager;
     };
 }  // namespace AnimeDefendersEngine
