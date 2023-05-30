@@ -21,7 +21,7 @@ namespace AnimeDefendersEngine::FileSystem {
 
         constexpr Graphics::Color red = {maxRedColorValue, minBlueColorValue, minGreenColorValue, minAlphaValue};
 
-        struct StbiImageDeleter {
+        struct STBImageDeleter {
             auto operator()(stbi_uc* data) const -> void { stbi_image_free(data); }
         };
 
@@ -80,7 +80,7 @@ namespace AnimeDefendersEngine::FileSystem {
         int numOfColumns{};
         int numOfChannels{};
 
-        std::unique_ptr<stbi_uc, StbiImageDeleter> data{stbi_load(m_paths.at(name).c_str(), &numOfRows, &numOfColumns, &numOfChannels, 0)};
+        std::unique_ptr<stbi_uc, STBImageDeleter> data{stbi_load(m_paths.at(name).c_str(), &numOfRows, &numOfColumns, &numOfChannels, 0)};
 
         if (!data) {
             Logger::defaultLog.printError("Failed to load image from " + m_paths.at(name).string() + " error while reading file");
@@ -95,7 +95,9 @@ namespace AnimeDefendersEngine::FileSystem {
 
         for (int i = 0; i < numOfRows; ++i) {
             for (int j = 0; j < numOfColumns; ++j) {
-                std::span<stbi_uc> dataWrapper{data.get(), numOfPixels * numOfChannels};
+                const auto spanSize = static_cast<std::span<stbi_uc>::size_type>(numOfPixels * numOfChannels);
+                std::span<stbi_uc> dataWrapper{data.get(), spanSize};
+
                 pixels.push_back(readPixel(dataWrapper, i, j, numOfRows, numOfChannels));
             }
         }

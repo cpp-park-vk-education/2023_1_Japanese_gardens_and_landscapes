@@ -62,6 +62,7 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiLabelComponent/UiLabelSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiTextureElementComponent/UiTextureElement.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiTextureElementComponent/UiTextureElementSystem.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/libs/stb/stb/stb_image.h
 )
 
 set(include_locations
@@ -81,7 +82,6 @@ set(include_locations
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiElementComponent
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiLabelComponent
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiTextureElementComponent
-
     ${CMAKE_CURRENT_SOURCE_DIR}/libs/stb/stb
 )
 
