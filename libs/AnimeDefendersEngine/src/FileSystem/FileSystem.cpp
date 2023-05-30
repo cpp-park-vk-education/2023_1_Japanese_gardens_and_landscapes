@@ -33,7 +33,6 @@ namespace AnimeDefendersEngine::FileSystem {
 
         /**
          * @param data Matrix of pixels stored in array
-         *
          */
         auto getPixelByIndex(std::span<const stbi_uc> data, std::size_t rowIndex, std::size_t columnIndex, std::size_t numberOfRows,
                              std::size_t channelCount) -> const std::span<const stbi_uc> {
@@ -57,7 +56,37 @@ namespace AnimeDefendersEngine::FileSystem {
         [[nodiscard]] auto createErrorImage(std::size_t width = 10, std::size_t height = 10) -> Image {
             std::vector<Graphics::Color> pixels(width * height, red);
 
-            return Image{width, height, std::move(pixels)};
+            return {width, height, std::move(pixels)};
+        }
+
+        [[nodiscard]] auto readPNG(const std::filesystem::path& path, const std::string& name) -> Image {
+            int numOfRows{};
+            int numOfColumns{};
+            int numOfChannels{};
+
+            std::unique_ptr<stbi_uc, STBImageDeleter> data{stbi_load(path.c_str(), &numOfRows, &numOfColumns, &numOfChannels, 0)};
+
+            if (!data) {
+                Logger::defaultLog.printError("Failed to load image from " + path.string() + " error while reading file");
+                return createErrorImage();
+            }
+
+            const auto numOfPixels = numOfRows * numOfColumns;
+
+            std::vector<Graphics::Color> pixels{};
+            pixels.reserve(numOfPixels);
+
+            for (int i = 0; i < numOfRows; ++i) {
+                for (int j = 0; j < numOfColumns; ++j) {
+                    const auto spanSize = static_cast<std::span<stbi_uc>::size_type>(numOfPixels * numOfChannels);
+                    std::span<stbi_uc> dataWrapper{data.get(), spanSize};
+
+                    pixels.push_back(readPixel(dataWrapper, i, j, numOfRows, numOfChannels));
+                }
+            }
+
+            Logger::defaultLog.printMessage("Image '" + name + "' loaded from " + path.string() + " successfully");
+            return {static_cast<std::size_t>(numOfRows), static_cast<std::size_t>(numOfColumns), std::move(pixels)};
         }
 
     }  // namespace
@@ -72,44 +101,16 @@ namespace AnimeDefendersEngine::FileSystem {
     }
 
     auto FileSystem::loadItem(const std::string& name) -> void {
-        if (m_paths.at(name).extension().string() != ".png") {
-            return;
+        if (m_paths.at(name).extension().string() == ".png") {
+            m_images[name] = readPNG(m_paths[name], name);
         }
-
-        int numOfRows{};
-        int numOfColumns{};
-        int numOfChannels{};
-
-        std::unique_ptr<stbi_uc, STBImageDeleter> data{stbi_load(m_paths.at(name).c_str(), &numOfRows, &numOfColumns, &numOfChannels, 0)};
-
-        if (!data) {
-            Logger::defaultLog.printError("Failed to load image from " + m_paths.at(name).string() + " error while reading file");
-            m_images[name] = createErrorImage();
-            return;
-        }
-
-        const auto numOfPixels = numOfRows * numOfColumns;
-
-        std::vector<Graphics::Color> pixels{};
-        pixels.reserve(numOfPixels);
-
-        for (int i = 0; i < numOfRows; ++i) {
-            for (int j = 0; j < numOfColumns; ++j) {
-                const auto spanSize = static_cast<std::span<stbi_uc>::size_type>(numOfPixels * numOfChannels);
-                std::span<stbi_uc> dataWrapper{data.get(), spanSize};
-
-                pixels.push_back(readPixel(dataWrapper, i, j, numOfRows, numOfChannels));
-            }
-        }
-
-        m_images[name] = Image{static_cast<std::size_t>(numOfRows), static_cast<std::size_t>(numOfColumns), std::move(pixels)};
-        Logger::defaultLog.printMessage("Image '" + name + "' loaded from " + m_paths.at(name).string() + " successfully");
     }
 
     auto FileSystem::getImage(const std::string& name) -> const Image& {
         if (!m_paths.contains(name) || !std::filesystem::exists(m_paths[name])) {
             Logger::defaultLog.printError("Failed to load image '" + name + "' file not found");
             m_images[name] = createErrorImage();
+
         } else if (!m_images.contains(name)) {
             loadItem(name);
         }
