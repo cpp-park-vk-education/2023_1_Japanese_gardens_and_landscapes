@@ -37,6 +37,8 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Matrix2d.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Vector2.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Transpose.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/OnFixedUpdateComponent/OnFixedUpdateComponent.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/OnFixedUpdateComponent/OnFixedUpdateSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenAlDependency/AudioPlayWrapper.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenGlDependency/DrawTextureWrapper.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenGlDependency/TransposeMathWrapper.hpp
@@ -75,6 +77,7 @@ set(include_locations
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Logger
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/OnFixedUpdateComponent
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenAlDependency
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OpenGlDependency
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics
@@ -103,6 +106,8 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Graphics/Renderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger/Logger.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Math/Graph.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/OnFixedUpdateComponent/OnFixedUpdateComponent.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/OnFixedUpdateComponent/OnFixedUpdateSystem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenAlDependency/AudioPlayWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/DrawTextureWrapper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/OpenGlDependency/TransposeMathWrapper.cpp
