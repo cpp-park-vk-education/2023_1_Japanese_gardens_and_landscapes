@@ -169,12 +169,6 @@ namespace AnimeDefendersEngine::Physics {
         specifyCollisionTypes[typeA][typeB](contact);
     };
 
-    namespace {
-
-        constexpr float correctionPercent = 0.5f;
-
-    }
-
     auto CollisionHandler::resolveCollision(Manifold& contact) const -> void {
         const auto relativeVelocity = contact.bodyB->getVelocity() - contact.bodyA->getVelocity();
         const auto relativeVelocityProjection = relativeVelocity * contact.normal;
