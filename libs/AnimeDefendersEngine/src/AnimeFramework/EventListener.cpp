@@ -3,7 +3,7 @@
 namespace AnimeDefendersEngine {
 
     auto EventListener::operator==(const EventListener& rhs) const-> bool {
-        return (*this).getName() == rhs.getName();
+        return this->getName() == rhs.getName();
     }
 
     auto EventListener::getName() const -> const std::string& {

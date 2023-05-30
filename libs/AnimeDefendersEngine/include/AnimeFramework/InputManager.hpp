@@ -16,11 +16,7 @@ namespace AnimeDefendersEngine {
 
     class InputManager {
      public:
-        InputManager(EventManager& eventManager, Graphics::Window& window) : m_eventManager(eventManager) {
-            window.setWindowKeyboardListener(keyboardHandler);
-            window.setWindowMouseListener(mouseHandler);
-            window.setWindowMotionListener(motionHandler);
-        }
+        InputManager(EventManager& eventManager, Graphics::Window& window);
         auto keyboardHandler(unsigned char pressedKey, int xMousePosition, int yMousePosition) -> void;
         auto passiveMotionHandler(int xMousePosition, int yMousePosition) -> void;
         auto motionHandler(int xMousePosition, int yMousePosition) -> void;

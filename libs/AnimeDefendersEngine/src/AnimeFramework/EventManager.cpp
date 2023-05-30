@@ -7,7 +7,7 @@ namespace AnimeDefendersEngine {
 
     auto EventManager::hasEvent(const std::string& eventName) -> bool {
         for (const auto& event : m_eventQueue) {
-            if (event->getName() == eventName) {
+            if (eventName.rfind(event->getName(), 0) == 0) {
                 return true;
             }
         }

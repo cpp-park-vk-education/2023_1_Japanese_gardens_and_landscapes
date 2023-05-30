@@ -24,4 +24,5 @@ namespace AnimeDefendersEngine {
         std::vector<EventListener> m_eventListeners{};
         std::vector<std::unique_ptr<Event>> m_eventQueue{};
     };
+    
 }  // namespace AnimeDefendersEngine

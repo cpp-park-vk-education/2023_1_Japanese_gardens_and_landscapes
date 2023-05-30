@@ -5,6 +5,7 @@
 #include <functional>
 
 namespace AnimeDefendersEngine {
+    
     class EventListener {
      public:
         EventListener(const std::function<void()>& function, const std::string& name)
