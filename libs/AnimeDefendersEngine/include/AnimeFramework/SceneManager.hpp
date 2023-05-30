@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Scene.hpp"
+
 #include <memory>
 #include <unordered_map>
 
@@ -7,7 +9,7 @@ namespace AnimeDefendersEngine {
 
     class Scene;
     class SceneLoader;
-    
+
 }  // namespace AnimeDefendersEngine
 
 namespace AnimeDefendersEngine {
