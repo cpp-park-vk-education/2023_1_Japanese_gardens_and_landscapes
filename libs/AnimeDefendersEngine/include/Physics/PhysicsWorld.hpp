@@ -1,5 +1,6 @@
 #pragma once
 
+#include "CollisionHandler.hpp"
 #include "ContactEvent.hpp"
 #include "Manifold.hpp"
 
@@ -11,7 +12,6 @@ namespace AnimeDefendersEngine::Physics {
 
     struct BodyDefinition;
     class Body;
-    class CollisionHandler;
 
 }  // namespace AnimeDefendersEngine::Physics
 
