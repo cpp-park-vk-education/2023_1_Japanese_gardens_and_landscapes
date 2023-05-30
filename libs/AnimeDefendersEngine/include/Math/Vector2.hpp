@@ -44,7 +44,10 @@ namespace AnimeDefendersEngine::Math {
 
         auto operator*(Vector2<T> vec) const -> T { return this->x * vec.x + this->y * vec.y; }
 
-        auto norm() const -> T { return 1 / inverseSquareRoot((*this) * (*this)); }
+        auto norm() const -> T {
+            // return std::sqrt((*this) * (*this));
+            return 1 / inverseSquareRoot((*this) * (*this));
+        }
 
         auto operator+(Vector2<T> vec) const -> Vector2<T> { return Vector2{this->x + vec.x, this->y + vec.y}; }
 

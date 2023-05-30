@@ -8,8 +8,8 @@ namespace AnimeDefendersEngine::Physics {
 
     namespace {
 
-        constexpr float correctionPercent = 0.5f;
-        constexpr float tolerance = 0.05f;
+        constexpr float correctionPercent = 0.8f;
+        constexpr float tolerance = 0.02f;
 
     }  // namespace
 

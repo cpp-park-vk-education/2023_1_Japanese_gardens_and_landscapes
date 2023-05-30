@@ -169,7 +169,7 @@ namespace AnimeDefendersEngine::Physics {
         specifyCollisionTypes[typeA][typeB](contact);
     };
 
-    namespace {
+    namespace {  // unused
 
         constexpr float correctionPercent = 0.5f;
 

@@ -216,18 +216,18 @@ namespace AnimeDefendersEngine::Physics {
     class CollisionNarrowPhaseTest : public testing::Test {
      protected:
         void SetUp() override {
-            bodyDefinition.shape = std::make_unique<Circle>(1);
+            bodyDefinition.shape = std::make_unique<Circle>(smallRadius);
             bodyDefinition.id = "A";
             smallCircle = std::make_unique<Body>(std::move(bodyDefinition));
 
-            bodyDefinition.shape = std::make_unique<Circle>(5);
-            bodyDefinition.transform.position = Vector2f(5.5, 0);
+            bodyDefinition.shape = std::make_unique<Circle>(bigRadius);
+            bodyDefinition.transform.position = Vector2f(5, 0);
             bodyDefinition.id = "B";
             bigCircle = std::make_unique<Body>(std::move(bodyDefinition));
 
             Vector2f size(7, 4);
             bodyDefinition.shape = std::make_unique<Rectangle>(size);
-            bodyDefinition.transform.position = Vector2f(0, 4);
+            bodyDefinition.transform.position = Vector2f(0, 5);
             bodyDefinition.id = "C";
             rectangle = std::make_unique<Body>(std::move(bodyDefinition));
 
@@ -238,6 +238,8 @@ namespace AnimeDefendersEngine::Physics {
 
         void TearDown() override {}
 
+        const float smallRadius{2.f};
+        const float bigRadius{5.f};
         std::unique_ptr<Body> smallCircle;
         std::unique_ptr<Body> bigCircle;
         std::unique_ptr<Body> rectangle;
@@ -255,19 +257,24 @@ namespace AnimeDefendersEngine::Physics {
     TEST_F(CollisionNarrowPhaseTest, IdentifiedRightNumberOfContacts) {
         collisionHandler.narrowPhase(contacts);
         const auto actual_number = contacts.size();
-        // const auto expected_number = 2;
-        // EXPECT_EQ(expected_number, actual_number);
-        //    const auto contacts = collisionHandler.broadPhase(bodies);
-        //    const bool actual = contacts.contains(Manifold(bodies.at(0), bodies.at(0)));
-        //    const bool expected = false;
-        //    EXPECT_EQ(expected, actual);
+        const auto expected_number = 2;
+        EXPECT_EQ(expected_number, actual_number);
     }
 
-    // TEST_F(CollisionNarrowPhaseTest, IdentifiedRightNumberOfContacts) {
+    // TEST(normTest, test1) {
+    //     Vector2f vec(1, 0);
+    //     EXPECT_EQ(vec.norm(), 1);
+    // }
+
+    // TEST_F(CollisionNarrowPhaseTest, TwoCirclesCollisionResolvedSuccesfully) {
     //     collisionHandler.narrowPhase(contacts);
-    //     const auto actual_number = contacts.size();
-    //     const auto expected_number = 2;
-    //     EXPECT_EQ(expected_number, actual_number);
+
+    //     for (auto contact : contacts) {
+    //         if (contact.bodyA->getShapeType() == ShapeType::circle && contact.bodyB->getShapeType() == ShapeType::circle) {
+    //             const auto actual_distance = contact.bodyB->getPosition() - contact.bodyA->getPosition();
+    //             EXPECT_THAT((smallRadius + bigRadius) - actual_distance.norm(), ::testing::Lt(contact.penetration));
+    //         }
+    //     }
     //     //   const auto contacts = collisionHandler.broadPhase(bodies);
     //     //   const bool actual = contacts.contains(Manifold(bodies.at(0), bodies.at(0)));
     //     //   const bool expected = false;

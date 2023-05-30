@@ -14,6 +14,8 @@ namespace AnimeDefendersEngine::Physics {
         auto setFixedDeltaTime(float fixedDeltaTime) noexcept -> void;
         auto updateSystem(SceneManager& sceneManager, float timeStep) -> void;
 
+        void updateSystem(SceneManager&) override{};
+
      private:
         [[nodiscard]] auto addBodies(ComponentManager::ComponentsContainer& components) -> std::vector<Body*>;
         auto processContactEvents(ComponentManager::ComponentsContainer& components) -> void;

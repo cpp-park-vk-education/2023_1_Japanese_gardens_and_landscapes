@@ -58,13 +58,21 @@ namespace AnimeDefendersEngine::Physics {
         bodyDefinition.id = "B";
         Body* circleB = physicsWorld->addBody(std::move(bodyDefinition));
 
-        // const auto events = physicsWorld->fixedUpdate();
-        //  const auto actual_size = events.size();
+        const auto events = physicsWorld->fixedUpdate();
+        const auto actual_size = events.size();
         auto expected_size = 1;
-        // EXPECT_EQ(expected_size, actual_size);
-        //  EXPECT_EQ(events.begin()->bodyAID, "A");
-        //  EXPECT_EQ(events.begin()->bodyBID, "B");
-        //  EXPECT_EQ(events.begin()->type, ContactEventType::ContactEnter);
+        EXPECT_EQ(expected_size, actual_size);
+        EXPECT_EQ(events.begin()->bodyAID, "A");
+        EXPECT_EQ(events.begin()->bodyBID, "B");
+        EXPECT_EQ(events.begin()->type, ContactEventType::ContactEnter);
+
+        const auto events1 = physicsWorld->fixedUpdate();
+        const auto actual_size1 = events1.size();
+        auto expected_size1 = 1;
+        EXPECT_EQ(expected_size1, actual_size1);
+        EXPECT_EQ(events1.begin()->bodyAID, "A");
+        EXPECT_EQ(events1.begin()->bodyBID, "B");
+        EXPECT_EQ(events1.begin()->type, ContactEventType::ContactStay);
     }
 
 }  // namespace AnimeDefendersEngine::Physics
