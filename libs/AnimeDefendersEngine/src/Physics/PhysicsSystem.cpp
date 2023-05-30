@@ -10,9 +10,17 @@
 
 namespace AnimeDefendersEngine::Physics {
 
-    PhysicsSystem::PhysicsSystem(float fixedDeltaTime) : m_physicsWorld(std::make_unique<CollisionHandler>()) {
-        m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
-    }
+    namespace {
+
+        constexpr float defaultFixedUpdateFrequency = 60.f;
+        constexpr float defaultMinUpdateFrequency = 25.f;
+
+    }  // namespace
+
+    PhysicsSystem::PhysicsSystem(float fixedDeltaTime, float maxDeltaTime)
+        : m_physicsWorld(std::make_unique<CollisionHandler>(), fixedDeltaTime, maxDeltaTime) {}
+
+    PhysicsSystem::PhysicsSystem() : PhysicsSystem(1.f / defaultFixedUpdateFrequency, 1.f / defaultMinUpdateFrequency) {}
 
     auto PhysicsSystem::setFixedDeltaTime(float fixedDeltaTime) noexcept -> void {
         m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
