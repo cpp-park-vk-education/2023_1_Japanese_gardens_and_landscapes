@@ -24,7 +24,7 @@ namespace AnimeDefendersEngine::Physics {
     }
 
     auto CollisionHandler::narrowPhase(std::unordered_set<Manifold>& contacts) const -> void {
-        std::unordered_set<Manifold> actualContacts;
+        std::unordered_set<Manifold> actualContacts{};
         for (auto contact : contacts) {
             if (hasCollision(contact.bodyA, contact.bodyB)) {
                 if (!contact.bodyA->isTrigger() && !contact.bodyB->isTrigger()) {
@@ -40,15 +40,15 @@ namespace AnimeDefendersEngine::Physics {
     namespace {
 
         auto hasCollisionCircleCircle(Body* bodyA, Body* bodyB) -> bool {
-            const auto circleA = dynamic_cast<Circle*>(bodyA->getShape());
-            const auto circleB = dynamic_cast<Circle*>(bodyB->getShape());
+            const auto circleA = static_cast<Circle*>(bodyA->getShape());
+            const auto circleB = static_cast<Circle*>(bodyB->getShape());
             const auto distance = (bodyA->getPosition() - bodyB->getPosition()).norm();
             return distance < circleA->radius + circleB->radius;
         }
 
         auto hasCollisionRectangleCircle(Body* bodyA, Body* bodyB) -> bool {
-            const auto rectangleA = dynamic_cast<Rectangle*>(bodyA->getShape());
-            const auto circleB = dynamic_cast<Circle*>(bodyB->getShape());
+            const auto rectangleA = static_cast<Rectangle*>(bodyA->getShape());
+            const auto circleB = static_cast<Circle*>(bodyB->getShape());
 
             const auto distance = bodyB->getPosition() - bodyA->getPosition();
             auto closestVertexToCircleCenter = distance;
@@ -70,8 +70,8 @@ namespace AnimeDefendersEngine::Physics {
         }
 
         auto hasCollisionRectangleRectangle(Body* bodyA, Body* bodyB) -> bool {
-            const auto rectangleA = dynamic_cast<Rectangle*>(bodyA->getShape());
-            const auto rectangleB = dynamic_cast<Rectangle*>(bodyB->getShape());
+            const auto rectangleA = static_cast<Rectangle*>(bodyA->getShape());
+            const auto rectangleB = static_cast<Rectangle*>(bodyB->getShape());
 
             const auto normal = bodyB->getPosition() - bodyA->getPosition();
             const auto xOverlap = (rectangleA->size.x + rectangleB->size.x) / 2 - std::abs(normal.x);
@@ -101,8 +101,8 @@ namespace AnimeDefendersEngine::Physics {
     namespace {
 
         auto specifyCollisionCircleCircle(Manifold& contact) -> void {
-            const auto circleA = dynamic_cast<Circle*>(contact.bodyA->getShape());
-            const auto circleB = dynamic_cast<Circle*>(contact.bodyB->getShape());
+            const auto circleA = static_cast<Circle*>(contact.bodyA->getShape());
+            const auto circleB = static_cast<Circle*>(contact.bodyB->getShape());
 
             const auto direction = contact.bodyB->getPosition() - contact.bodyA->getPosition();
             const auto distance = direction.norm();
@@ -112,8 +112,8 @@ namespace AnimeDefendersEngine::Physics {
         }
 
         auto specifyCollisionRectangleCircle(Manifold& contact) -> void {
-            const auto rectangleA = dynamic_cast<Rectangle*>(contact.bodyA->getShape());
-            const auto circleB = dynamic_cast<Circle*>(contact.bodyB->getShape());
+            const auto rectangleA = static_cast<Rectangle*>(contact.bodyA->getShape());
+            const auto circleB = static_cast<Circle*>(contact.bodyB->getShape());
 
             const auto distance = contact.bodyB->getPosition() - contact.bodyA->getPosition();
             auto closestVertexToCircleCenter = distance;
@@ -138,8 +138,8 @@ namespace AnimeDefendersEngine::Physics {
         auto specifyCollisionRectangleRectangle(Manifold& contact) -> void {
             using AnimeDefendersEngine::Math::Vector2f;
 
-            const auto rectangleA = dynamic_cast<Rectangle*>(contact.bodyA->getShape());
-            const auto rectangleB = dynamic_cast<Rectangle*>(contact.bodyB->getShape());
+            const auto rectangleA = static_cast<Rectangle*>(contact.bodyA->getShape());
+            const auto rectangleB = static_cast<Rectangle*>(contact.bodyB->getShape());
 
             const auto direction = contact.bodyB->getPosition() - contact.bodyA->getPosition();
             const auto xOverlap = (rectangleA->size.x + rectangleB->size.x) / 2 - std::abs(direction.x);

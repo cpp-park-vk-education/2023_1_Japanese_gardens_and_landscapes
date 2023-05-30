@@ -15,9 +15,8 @@ namespace AnimeDefendersEngine {
           m_onCollisionStay(onCollisionStay),
           m_onCollisionExit(onCollisionExit),
           m_rigidBodyComponent(rigidBodyComponent),
-          m_transformComponent(transformComponent) {
-        m_shapeType = Physics::ShapeType::rectangle;
-    }
+          m_transformComponent(transformComponent),
+          m_shapeType(Physics::ShapeType::rectangle) {}
 
     ColliderComponent::ColliderComponent(const std::string& entityId, ComponentManager& compManager, float radius, bool isTrigger,
                                          CollisionFunction onCollisionEnter, CollisionFunction onCollisionStay,
@@ -30,9 +29,8 @@ namespace AnimeDefendersEngine {
           m_onCollisionStay(onCollisionStay),
           m_onCollisionExit(onCollisionExit),
           m_rigidBodyComponent(rigidBodyComponent),
-          m_transformComponent(transformComponent) {
-        m_shapeType = Physics::ShapeType::circle;
-    }
+          m_transformComponent(transformComponent),
+          m_shapeType(Physics::ShapeType::circle) {}
 
     auto ColliderComponent::onCollisionEnter(ColliderComponent& collider) -> void {
         m_onCollisionEnter(collider);

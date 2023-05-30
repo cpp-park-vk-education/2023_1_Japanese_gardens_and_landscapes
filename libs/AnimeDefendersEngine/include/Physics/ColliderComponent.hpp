@@ -46,7 +46,7 @@ namespace AnimeDefendersEngine {
         CollisionFunction m_onCollisionEnter;
         CollisionFunction m_onCollisionStay;
         CollisionFunction m_onCollisionExit;
-        bool m_isTrigger;
+        bool m_isTrigger{false};
         Physics::ShapeType m_shapeType;
         Math::Vector2f m_size;
         float m_radius{};
