@@ -1,0 +1,2 @@
+Name|FilePath
+Sample|GameFiles/3.png
