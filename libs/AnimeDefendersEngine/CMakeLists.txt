@@ -95,6 +95,7 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/AnimeFramework.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/Component.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/Entity.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/EventListener.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/EventManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/GameLoop.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimeFramework/InputManager.cpp
