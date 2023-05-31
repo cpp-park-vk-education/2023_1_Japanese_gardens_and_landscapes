@@ -1,3 +1,6 @@
 [submodule "googletest"]
 	path = googletest
 	url = https://github.com/google/googletest
+[submodule "libs/AnimeDefendersEngine/libs/stb/stb"]
+	path = libs/AnimeDefendersEngine/libs/stb/stb
+	url = https://github.com/nothings/stb

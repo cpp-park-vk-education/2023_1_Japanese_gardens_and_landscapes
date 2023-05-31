@@ -27,6 +27,14 @@ namespace AnimeDefendersEngine {
                 std::ranges::copy(values, m_values.begin());
             }
 
+            Matrix2d(std::size_t rows, std::size_t columns, std::vector<T> values) : m_rows{rows}, m_columns{columns} {
+                if (m_rows * m_columns != values.size()) {
+                    throw std::invalid_argument{
+                        "While constructing matrix got array of elements which does not work with numer of rows and columns"};
+                }
+                m_values = std::move(values);
+            }
+
             /**
              * @brief Return element reference of matrix by it`s index
              *

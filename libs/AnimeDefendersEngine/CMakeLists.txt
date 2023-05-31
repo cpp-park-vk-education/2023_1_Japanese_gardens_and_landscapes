@@ -67,6 +67,7 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiLabelComponent/UiLabelSystem.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiTextureElementComponent/UiTextureElement.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiTextureElementComponent/UiTextureElementSystem.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/libs/stb/stb/stb_image.h
 )
 
 set(include_locations
@@ -87,6 +88,7 @@ set(include_locations
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiElementComponent
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiLabelComponent
     ${CMAKE_CURRENT_SOURCE_DIR}/include/UiTextureElementComponent
+    ${CMAKE_CURRENT_SOURCE_DIR}/libs/stb/stb
 )
 
 set(source
@@ -190,6 +192,8 @@ if(ENABLE_CPPCHECK)
     )
 endif()
 
+add_subdirectory(libs/stb)
+
 add_library(${project_name} STATIC ${source})
 target_include_directories(${project_name} PUBLIC ${include_locations})
 
@@ -197,7 +201,7 @@ find_package(OpenGL COMPONENTS OpenGL REQUIRED)
 find_package(GLUT COMPONENTS GLUT REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
 
-target_link_libraries(${project_name} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
+target_link_libraries(${project_name} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} STB_Image_lib)
 
 if(ENABLE_CLANG_FORMAT)
     add_dependencies(${project_name} AnimeDefendersEngine_FORMAT_TARGET)
