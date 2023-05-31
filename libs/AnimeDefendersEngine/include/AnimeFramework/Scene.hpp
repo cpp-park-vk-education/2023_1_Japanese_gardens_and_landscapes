@@ -26,6 +26,9 @@ namespace AnimeDefendersEngine {
 
     class Scene {
      public:
+        using IdType = std::size_t;
+
+     public:
         explicit Scene(std::size_t sceneId);
 
         auto addEntity(const std::string& info, const EntityCreator<Scene> auto& create) -> void {
@@ -33,16 +36,18 @@ namespace AnimeDefendersEngine {
 
             m_entities[entity->getId()] = entity;
         }
+        auto addEntity(std::shared_ptr<Entity> entity) -> void;
+
         auto destroyEntity(const std::string& entityId) -> void;
 
         [[nodiscard]] auto getComponentManager() -> ComponentManager&;
 
         auto updateScene() -> void;
 
-        [[nodiscard]] auto getSceneId() const noexcept -> int;
+        [[nodiscard]] auto getSceneId() const noexcept -> IdType;
 
      private:
-        std::size_t m_sceneId{};
+        IdType m_sceneId{};
         std::unordered_map<std::string, std::shared_ptr<Entity>> m_entities;
         ComponentManager m_componentManager;
         std::vector<std::string> m_entityIdsToDestroy;
