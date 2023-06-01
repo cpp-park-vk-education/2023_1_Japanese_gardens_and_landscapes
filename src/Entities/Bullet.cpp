@@ -1,4 +1,5 @@
 #include "Bullet.hpp"
+#include "FileSystem.hpp"
 #include "Scene.hpp"
 
 #include <iostream>
@@ -12,8 +13,8 @@ namespace AnimeDefendersEngine {
 
     }  // namespace
 
-    Bullet::Bullet(Scene& scene, const std::string& entityId, Math::Vector2f position, Math::Vector2f velocity,
-                   float mass = defaultBulletMass, float radius = defaultBulletRadius)
+    Bullet::Bullet(Scene& scene, const FileSystem::FileSystem& fileSystem, const std::string& entityId, Math::Vector2f position,
+                   Math::Vector2f velocity, float mass = defaultBulletMass, float radius = defaultBulletRadius)
         : Entity(entityId, scene),
           mass(mass),
           radius(radius),
@@ -21,9 +22,13 @@ namespace AnimeDefendersEngine {
           rigidbody(getId(), scene.getComponentManager(), mass, velocity),
           collider(
               getId(), scene.getComponentManager(), radius, false,
-              [this](ColliderComponent& otherCollider) { this->onCollisionEnter(otherCollider); },
+              [this](ColliderComponent& otherCollider) {
+                  this->onCollisionEnter(otherCollider);
+    },
               [this](ColliderComponent& otherCollider) { this->onCollisionStay(otherCollider); },
-              [this](ColliderComponent& otherCollider) { this->onCollisionExit(otherCollider); }, transform, &rigidbody) {
+              [this](ColliderComponent& otherCollider) { this->onCollisionExit(otherCollider); }, transform, &rigidbody),
+          sprite(getId(), scene.getComponentManager(), {{position.x, 50, position.y}, 0, 0},
+                 sprite.getDrawTextureWrapper().loadTexture(fileSystem.getImage("Bullet.png"))) {
         std::cout << getId() << " is created!\n";
     }
 
