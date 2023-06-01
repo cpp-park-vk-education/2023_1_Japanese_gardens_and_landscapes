@@ -49,6 +49,7 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
         auto scene = std::make_unique<AnimeDefendersEngine::Scene>(0);
         m_sceneManager.addScene(std::move(scene));
         m_sceneManager.setActiveScene(0);
+        
         m_gameLoop.run();
     }
 };
