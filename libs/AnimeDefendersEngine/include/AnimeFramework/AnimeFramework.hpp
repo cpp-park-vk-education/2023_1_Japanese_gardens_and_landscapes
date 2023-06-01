@@ -35,7 +35,7 @@ namespace AnimeDefendersEngine {
         explicit AnimeFramework();
         auto run() -> void;
 
-     private:
+     protected:
         SceneManager m_sceneManager;
         GameLoop m_gameLoop;
     };

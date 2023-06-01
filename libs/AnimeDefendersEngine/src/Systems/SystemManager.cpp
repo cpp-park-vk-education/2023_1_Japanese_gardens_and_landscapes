@@ -10,7 +10,8 @@ namespace AnimeDefendersEngine {
     }
 
     auto SystemManager::updateSystems(SceneManager& sceneManager, float fixedDeltaTime) -> void {
-        static_cast<Physics::PhysicsSystem*>(m_systems.at(0).get())->updateSystem(sceneManager, fixedDeltaTime);
+        return;
+        // static_cast<Physics::PhysicsSystem*>(m_systems.at(0).get())->updateSystem(sceneManager, fixedDeltaTime);
     }
 
 }  // namespace AnimeDefendersEngine
