@@ -18,6 +18,11 @@ namespace AnimeDefendersEngine {
         for (const auto& entityId : m_entityIdsToDestroy) {
             m_entities.erase(entityId);
         }
+
+        for (const auto& [entityId, entity] : m_entities) {
+            entity->update();
+        }
+
         m_entities.clear();
     }
 
