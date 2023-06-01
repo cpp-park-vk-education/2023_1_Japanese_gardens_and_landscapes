@@ -6,7 +6,7 @@
 
 namespace AnimeDefendersEngine {
 
-    class HealthBonus : Entity {
+    class HealthBonus : public Entity {
      public:
         HealthBonus(Scene& scene, const std::string& entityId, Math::Vector2f position, float radius);
 

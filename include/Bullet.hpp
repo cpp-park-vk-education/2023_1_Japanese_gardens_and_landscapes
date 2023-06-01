@@ -6,7 +6,7 @@
 
 namespace AnimeDefendersEngine {
 
-    class Bullet : Entity {
+    class Bullet : public Entity {
      public:
         Bullet(Scene& scene, const std::string& entityId, Math::Vector2f position, Math::Vector2f velocity, float mass, float radius);
 

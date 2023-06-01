@@ -6,7 +6,7 @@
 
 namespace AnimeDefendersEngine {
 
-    class DamageZone : Entity {
+    class DamageZone : public Entity {
      public:
         DamageZone(Scene& scene, const std::string& entityId, Math::Vector2f position, Math::Vector2f size);
 
