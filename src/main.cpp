@@ -42,14 +42,13 @@
 class Game : public AnimeDefendersEngine::AnimeFramework {
  public:
     auto run() -> void {
-        auto readStream = std::make_unique<std::ifstream>("GameFiles/entities.txt");
-        auto entityCreator = std::make_unique<AnimeDefendersEngine::BaseCreator>();
+        // auto readStream = std::make_unique<std::ifstream>("GameFiles/entities.txt");
+        // auto entityCreator = std::make_unique<AnimeDefendersEngine::BaseCreator>();
 
-        AnimeDefendersEngine::SceneLoader loadScenes{std::move(readStream), std::move(entityCreator), m_sceneManager};
+        // AnimeDefendersEngine::SceneLoader loadScenes{std::move(readStream), std::move(entityCreator), m_sceneManager};
         auto scene = std::make_unique<AnimeDefendersEngine::Scene>(0);
-        m_sceneManager.addScene(0);
+        m_sceneManager.addScene(std::move(scene));
         m_sceneManager.setActiveScene(0);
-
         m_gameLoop.run();
     }
 };
