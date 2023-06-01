@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ISystem.hpp"
 #include "ISystemManager.hpp"
 
 #include <memory>
@@ -8,7 +9,6 @@
 namespace AnimeDefendersEngine {
 
     class SceneManager;
-    class ISystem;
 
 }  // namespace AnimeDefendersEngine
 
