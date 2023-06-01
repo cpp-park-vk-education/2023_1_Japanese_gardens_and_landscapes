@@ -24,8 +24,10 @@ namespace AnimeDefendersEngine {
     }
 
     auto HealthBonus::onCollisionEnter(ColliderComponent& otherCollider) -> void {
-        // do heal
-        destroy();
+        if (otherCollider.getEntityId() == "Player") {
+            // do heal
+            destroy();
+        }
     }
 
     auto HealthBonus::onCollisionStay(ColliderComponent& otherCollider) -> void {}
