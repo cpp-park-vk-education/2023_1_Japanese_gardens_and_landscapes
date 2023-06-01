@@ -13,7 +13,7 @@ namespace AnimeDefendersEngine {
 
     }  // namespace
 
-    Bullet::Bullet(Scene& scene, const FileSystem::FileSystem& fileSystem, const std::string& entityId, Math::Vector2f position,
+    Bullet::Bullet(Scene& scene, FileSystem::FileSystem& fileSystem, const std::string& entityId, Math::Vector2f position,
                    Math::Vector2f velocity, float mass = defaultBulletMass, float radius = defaultBulletRadius)
         : Entity(entityId, scene),
           mass(mass),

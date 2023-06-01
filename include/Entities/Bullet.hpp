@@ -1,5 +1,6 @@
 #include "ColliderComponent.hpp"
 #include "Entity.hpp"
+#include "FileSystem.hpp"
 #include "RigidBodyComponent.hpp"
 #include "Sprite.hpp"
 #include "TransformComponent.hpp"
@@ -9,7 +10,7 @@ namespace AnimeDefendersEngine {
 
     class Bullet : public Entity {
      public:
-        Bullet(Scene& scene, const FileSystem::FileSystem& fileSystem, const std::string& entityId, Math::Vector2f position,
+        Bullet(Scene& scene, FileSystem::FileSystem& fileSystem, const std::string& entityId, Math::Vector2f position,
                Math::Vector2f velocity, float mass, float radius);
 
         auto onCollisionEnter(ColliderComponent& otherCollider) -> void;
