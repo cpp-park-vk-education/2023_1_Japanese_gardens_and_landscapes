@@ -7,6 +7,7 @@
 #include "SystemManager.hpp"
 
 #include <chrono>
+#include <iostream>
 
 namespace AnimeDefendersEngine {
 
@@ -65,7 +66,7 @@ namespace AnimeDefendersEngine {
                 accumulator = m_maxDeltaTime;
             }
             while (accumulator >= m_fixedDeltaTime) {
-                continue;
+                m_sceneManager.getActiveScene().updateScene();
                 m_systemManager->updateSystems(m_sceneManager, m_fixedDeltaTime);
                 accumulator -= m_fixedDeltaTime;
 

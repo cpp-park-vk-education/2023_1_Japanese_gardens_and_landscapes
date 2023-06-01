@@ -2,6 +2,8 @@
 #include "ComponentManager.hpp"
 #include "Entity.hpp"
 
+#include <iostream>
+
 namespace AnimeDefendersEngine {
 
     Scene::Scene(std::size_t sceneId) : m_sceneId{sceneId}, m_componentManager{sceneId} {}

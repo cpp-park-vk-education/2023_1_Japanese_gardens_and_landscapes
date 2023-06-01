@@ -35,6 +35,10 @@ namespace AnimeDefendersEngine {
 
     auto Wall::onCollisionExit(ColliderComponent& otherCollider) -> void {}
 
-    auto Wall::update() -> void {}
+    auto Wall::update() -> void {
+        // AnimeDefendersEngine::Logger::defaultLog.printMessage("rotating");
+        sprite.setTranspose(
+            {sprite.getTranspose().posCoords, sprite.getTranspose().horisontalViewAngle + 1, sprite.getTranspose().vecticalViewAngle});
+    }
 
 }  // namespace AnimeDefendersEngine
