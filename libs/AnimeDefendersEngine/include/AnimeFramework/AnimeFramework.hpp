@@ -1,23 +1,42 @@
 #pragma once
 
 #include "ComponentManager.hpp"
+#include "Entity.hpp"
+#include "EventManager.hpp"
 #include "GameLoop.hpp"
+#include "IEntityCreator.hpp"
+#include "Renderer.hpp"
+#include "SceneLoader.hpp"
 #include "SceneManager.hpp"
+#include "SystemManager.hpp"
+#include "Window.hpp"
+
+#include <fstream>
+#include <memory>
 
 namespace AnimeDefendersEngine {
 
+    /**
+     * @brief Dummy required by AnimeFramework
+     *  Must be defined by game developer
+     */
+    class BaseCreator : public IEntityCreator {
+     public:
+        auto create(const std::vector<std::string>& arguments, Scene& scene) -> std::shared_ptr<Entity> override {
+            return std::make_shared<Entity>("Hi", scene);
+        };
+    };
+
+    /**
+     * @brief Should be redefined by game developer
+     */
     class AnimeFramework {
      public:
-        void run();
-        /* {
-                m_sceneManager = initializer.makeSceneManager(file);
-                m_componentManager = initializer.makeSceneManager(file);
-                GameLoop.run();
-        } */
+        explicit AnimeFramework();
+        auto run() -> void;
 
      private:
-        std::unique_ptr<ISceneManager> m_sceneManager;
-        std::shared_ptr<ComponentManager> m_globalComponentsManager;
-        GameLoop m_gameloop;
+        SceneManager m_sceneManager;
+        GameLoop m_gameLoop;
     };
 }  // namespace AnimeDefendersEngine
