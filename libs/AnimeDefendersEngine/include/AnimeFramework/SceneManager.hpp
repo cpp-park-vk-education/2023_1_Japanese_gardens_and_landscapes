@@ -1,30 +1,31 @@
 #pragma once
 
+#include "Scene.hpp"
+
 #include <memory>
 #include <unordered_map>
 
 namespace AnimeDefendersEngine {
+
     class Scene;
-}
+    class SceneLoader;
+
+}  // namespace AnimeDefendersEngine
 
 namespace AnimeDefendersEngine {
 
-    class ISceneManager {
+    class SceneManager {
      public:
-        [[nodiscard]] virtual auto getActiveScene() -> Scene& = 0;
-        virtual auto setActiveScene(std::size_t sceneId) -> void = 0;
-    };
-
-    class SceneManager final : public ISceneManager {
-     public:
-        [[nodiscard]] auto getActiveScene() -> Scene& override;
-        auto setActiveScene(std::size_t sceneId) noexcept -> void override;
+        [[nodiscard]] auto getActiveScene() -> Scene&;
+        auto setActiveScene(std::size_t sceneId) noexcept -> void;
 
         auto addScene(std::unique_ptr<Scene> scene) -> void;
 
+        [[nodiscard]] auto getScenes() -> std::unordered_map<Scene::IdType, std::unique_ptr<Scene>>&;
+
      private:
-        std::size_t m_activeSceneId{};
-        std::unordered_map<int, std::unique_ptr<Scene>> m_scenes;
+        Scene::IdType m_activeSceneId{};
+        std::unordered_map<Scene::IdType, std::unique_ptr<Scene>> m_scenes;
     };
 
 }  // namespace AnimeDefendersEngine
