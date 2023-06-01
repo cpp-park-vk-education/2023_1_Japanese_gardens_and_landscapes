@@ -30,6 +30,7 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/IWindow.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/Renderer.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics/Texture.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/InputComponent/InputComponent.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Logger/Logger.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Coords2d.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/Coords3d.hpp
@@ -77,6 +78,7 @@ set(include_locations
     ${CMAKE_CURRENT_SOURCE_DIR}/include/CameraComponent
     ${CMAKE_CURRENT_SOURCE_DIR}/include/FileSystem
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Graphics
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/InputComponent
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Logger
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Math
     ${CMAKE_CURRENT_SOURCE_DIR}/include/OnFixedUpdateComponent
