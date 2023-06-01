@@ -1,5 +1,6 @@
 #include "Bullet.hpp"
 #include "FileSystem.hpp"
+#include "Logger.hpp"
 #include "Scene.hpp"
 
 #include <iostream>
@@ -29,23 +30,18 @@ namespace AnimeDefendersEngine {
               [this](ColliderComponent& otherCollider) { this->onCollisionExit(otherCollider); }, transform, &rigidbody),
           sprite(getId(), scene.getComponentManager(), {{position.x, 50, position.y}, 0, 0},
                  sprite.getDrawTextureWrapper().loadTexture(fileSystem.getImage("Bullet.png"))) {
-        std::cout << getId() << " is created!\n";
+        Logger::defaultLog.printMessage(getId() + " is created!\n");
     }
 
     auto Bullet::onCollisionEnter(ColliderComponent& otherCollider) -> void {
+        Logger::defaultLog.printMessage(getId() + " hited " + otherCollider.getEntityId() + "\n");
         // rigidbody.velocity = rigidbody.velocity * (-1);
-        // do damage
-        std::cout << "Enter!!!" << std::endl;
         destroy();
     }
 
-    auto Bullet::onCollisionStay(ColliderComponent& otherCollider) -> void {
-        std::cout << "Stay!!!!!" << std::endl;
-    }
+    auto Bullet::onCollisionStay(ColliderComponent& otherCollider) -> void {}
 
-    auto Bullet::onCollisionExit(ColliderComponent& otherCollider) -> void {
-        std::cout << "Exit!!!!!" << std::endl;
-    }
+    auto Bullet::onCollisionExit(ColliderComponent& otherCollider) -> void {}
 
     auto Bullet::update() -> void{};
 
