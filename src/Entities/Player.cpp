@@ -9,12 +9,15 @@ namespace AnimeDefendersEngine {
 
         constexpr float defaultPlayerRadius = 1.f;
         constexpr float defaultPlayerMass = 3.f;
+        constexpr float defaultPlayerHealth = 100.f;
 
     }  // namespace
 
-    Player::Player(Scene& scene, FileSystem::FileSystem& fileSystem, const std::string& entityId, Math::Vector2f position,
-                   Math::Vector2f velocity, float mass = defaultPlayerMass, float radius = defaultPlayerRadius, float health = 100.f)
+    Player::Player(Scene& scene, FileSystem::FileSystem& fileSystem, InputManager& inputManager, const std::string& entityId,
+                   Math::Vector2f position, Math::Vector2f velocity, float mass = defaultPlayerMass, float radius = defaultPlayerRadius,
+                   float health = defaultPlayerHealth)
         : Entity(entityId, scene),
+          m_inputComponent(getId(), scene.getComponentManager(), inputManager),
           m_health(getId(), scene.getComponentManager(), health),
           m_transform(getId(), scene.getComponentManager(), position),
           m_rigidbody(getId(), scene.getComponentManager(), mass, velocity),
@@ -32,7 +35,6 @@ namespace AnimeDefendersEngine {
 
     auto Player::onCollisionEnter(ColliderComponent& otherCollider) -> void {
         Logger::defaultLog.printMessage(getId() + " hited " + otherCollider.getEntityId() + "\n");
-        // rigidbody.velocity = rigidbody.velocity * (-1);
         destroy();
     }
 
