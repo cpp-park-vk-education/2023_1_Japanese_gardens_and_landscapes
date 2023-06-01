@@ -59,7 +59,7 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
         m_sceneManager.setActiveScene(0);
         using AnimeDefendersEngine::Math::Vector2f;
         AnimeDefendersEngine::FileSystem::FileSystem fileSystem{absolutePath("GameFiles/resourceLocations.txt")};
-        AnimeDefendersEngine::InputManager inputManager{m_gameLoop.getEventManager(),m_gameLoop.getRenderer()->getActiveWindowPtr() };
+        AnimeDefendersEngine::InputManager inputManager{*m_gameLoop.getEventManager(), m_gameLoop.getRenderer()->getActiveWindowPtr()};
         // m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::Bullet>(
         //     m_sceneManager.getActiveScene(), fileSystem, "dsds", Vector2f(0, 0), Vector2f(0, 0), 1, 1));
         AnimeDefendersEngine::Math::Transpose tp{};
