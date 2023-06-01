@@ -10,6 +10,7 @@ namespace AnimeDefendersEngine {
         constexpr float defaultPlayerRadius = 1.f;
         constexpr float defaultPlayerMass = 3.f;
         constexpr float defaultPlayerHealth = 100.f;
+        constexpr float playerSpeed = 100.f;
 
     }  // namespace
 
@@ -42,6 +43,13 @@ namespace AnimeDefendersEngine {
 
     auto Player::onCollisionExit(ColliderComponent& otherCollider) -> void {}
 
-    auto Player::update() -> void{};
+    auto Player::update() -> void {
+        if (m_inputComponent.getButtonDown('w')) {
+            Logger::defaultLog.printMessage(getId() +
+                                            "moved forward"
+                                            "\n");
+            m_rigidbody.velocity.x = playerSpeed;
+        }
+    };
 
 }  // namespace AnimeDefendersEngine
