@@ -9,11 +9,11 @@ namespace AnimeDefendersEngine {
                      std::make_unique<EventManager>(), m_sceneManager} {}
 
     auto AnimeFramework::run() -> void {
-        auto readStream = std::make_unique<std::ifstream>("SamplePath");
+        auto readStream = std::make_unique<std::ifstream>("GameFiles/entities.txt");
         auto entityCreator = std::make_unique<BaseCreator>();
 
         SceneLoader loadScenes{std::move(readStream), std::move(entityCreator), m_sceneManager};
-        m_sceneManager.setActiveScene(2);
+        m_sceneManager.setActiveScene(0);
 
         m_gameLoop.run();
     }

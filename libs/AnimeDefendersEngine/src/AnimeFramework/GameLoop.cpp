@@ -53,6 +53,7 @@ namespace AnimeDefendersEngine {
         Timer timer{};
         float timeElapsedSinceLastUpdate = 0.f;
         float accumulator{0};
+
         while (m_isRunning) {
             const auto newTime = timer.getCurrentTimeInMilliseconds();
             const auto deltaTime = newTime - timeElapsedSinceLastUpdate;
@@ -73,6 +74,7 @@ namespace AnimeDefendersEngine {
 
                 m_eventManager->update();
             }
+            continue;
             m_renderer->renderObjects(m_sceneManager.getActiveScene());
         }
     }
