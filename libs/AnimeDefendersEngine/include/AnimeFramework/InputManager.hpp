@@ -4,6 +4,7 @@
 #include "Window.hpp"
 
 #include <GL/glut.h>
+#include <memory>
 
 namespace AnimeDefendersEngine {
 
@@ -16,7 +17,7 @@ namespace AnimeDefendersEngine {
 
     class InputManager {
      public:
-        InputManager(EventManager& eventManager, Graphics::Window& window);
+        InputManager(EventManager& eventManager, std::shared_ptr<Graphics::Window> window);
         auto keyboardHandler(unsigned char pressedKey, int xMousePosition, int yMousePosition) -> void;
         auto passiveMotionHandler(int xMousePosition, int yMousePosition) -> void;
         auto motionHandler(int xMousePosition, int yMousePosition) -> void;

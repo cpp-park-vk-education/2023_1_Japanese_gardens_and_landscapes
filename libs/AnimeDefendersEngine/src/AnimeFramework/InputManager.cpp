@@ -2,15 +2,15 @@
 
 namespace AnimeDefendersEngine {
 
-    InputManager::InputManager(EventManager& eventManager, Graphics::Window& window) : m_eventManager(eventManager) {
-        window.setMouseClickHandler([this](int button, int buttonState, int xMousePosition, int yMousePosition) {
+    InputManager::InputManager(EventManager& eventManager, std::shared_ptr<Graphics::Window> window ) : m_eventManager(eventManager) {
+        window->setMouseClickHandler([this](int button, int buttonState, int xMousePosition, int yMousePosition) {
             this->mouseHandler(button, buttonState, xMousePosition, yMousePosition);
         });
-        window.setActiveMouseMotionHandler(
+        window->setActiveMouseMotionHandler(
             [this](int xMousePosition, int yMousePosition) { this->motionHandler(xMousePosition, yMousePosition); });
-        window.setPassiveMouseMotionHandler(
+        window->setPassiveMouseMotionHandler(
             [this](int xMousePosition, int yMousePosition) { this->passiveMotionHandler(xMousePosition, yMousePosition); });
-        window.setKeyPressHandler([this](unsigned char pressedKey, int xMousePosition, int yMousePosition) {
+        window->setKeyPressHandler([this](unsigned char pressedKey, int xMousePosition, int yMousePosition) {
             this->keyboardHandler(pressedKey, xMousePosition, yMousePosition);
         });
     }
