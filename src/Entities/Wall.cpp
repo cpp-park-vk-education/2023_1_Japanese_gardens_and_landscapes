@@ -1,4 +1,5 @@
 #include "Wall.hpp"
+#include "Logger.hpp"
 #include "Scene.hpp"
 
 #include <iostream>
@@ -20,7 +21,7 @@ namespace AnimeDefendersEngine {
               [this](ColliderComponent& otherCollider) { this->onCollisionEnter(otherCollider); },
               [this](ColliderComponent& otherCollider) { this->onCollisionStay(otherCollider); },
               [this](ColliderComponent& otherCollider) { this->onCollisionExit(otherCollider); }, transform) {
-        std::cout << getId() << " is created!\n";
+        Logger::defaultLog.printMessage(getId() + " is created!\n");
     }
 
     auto Wall::onCollisionEnter(ColliderComponent& otherCollider) -> void {}

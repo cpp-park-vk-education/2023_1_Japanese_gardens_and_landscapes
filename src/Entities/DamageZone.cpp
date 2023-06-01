@@ -1,4 +1,5 @@
 #include "DamageZone.hpp"
+#include "Logger.hpp"
 #include "Scene.hpp"
 
 #include <iostream>
@@ -20,19 +21,19 @@ namespace AnimeDefendersEngine {
               [this](ColliderComponent& otherCollider) { this->onCollisionEnter(otherCollider); },
               [this](ColliderComponent& otherCollider) { this->onCollisionStay(otherCollider); },
               [this](ColliderComponent& otherCollider) { this->onCollisionExit(otherCollider); }, transform) {
-        std::cout << getId() << " is created!\n";
+        Logger::defaultLog.printMessage(getId() + " is created!\n");
     }
 
-    auto DamageZone::onCollisionEnter(ColliderComponent& otherCollider) -> void {}
-
-    auto DamageZone::onCollisionStay(ColliderComponent& otherCollider) -> void {
-        // do damage
+    auto DamageZone::onCollisionEnter(ColliderComponent& otherCollider) -> void {
+        Logger::defaultLog.printMessage(otherCollider.getEntityId() + " entered DamageZone\n");
     }
 
-    auto DamageZone::onCollisionExit(ColliderComponent& otherCollider) -> void {}
+    auto DamageZone::onCollisionStay(ColliderComponent& otherCollider) -> void {}
 
-    auto DamageZone::update() -> void {
-        std::cout << transform.position;
+    auto DamageZone::onCollisionExit(ColliderComponent& otherCollider) -> void {
+        Logger::defaultLog.printMessage(otherCollider.getEntityId() + " exited DamageZone\n");
     }
+
+    auto DamageZone::update() -> void {}
 
 }  // namespace AnimeDefendersEngine

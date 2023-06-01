@@ -1,4 +1,5 @@
 #include "HealthBonus.hpp"
+#include "Logger.hpp"
 #include "Scene.hpp"
 
 #include <iostream>
@@ -20,12 +21,12 @@ namespace AnimeDefendersEngine {
               [this](ColliderComponent& otherCollider) { this->onCollisionEnter(otherCollider); },
               [this](ColliderComponent& otherCollider) { this->onCollisionStay(otherCollider); },
               [this](ColliderComponent& otherCollider) { this->onCollisionExit(otherCollider); }, transform) {
-        std::cout << getId() << " is created!\n";
+        Logger::defaultLog.printMessage(getId() + " is created!\n");
     }
 
     auto HealthBonus::onCollisionEnter(ColliderComponent& otherCollider) -> void {
         if (otherCollider.getEntityId() == "Player") {
-            // do heal
+            Logger::defaultLog.printMessage(otherCollider.getEntityId() + " took HealthBonus\n");
             destroy();
         }
     }
@@ -34,8 +35,6 @@ namespace AnimeDefendersEngine {
 
     auto HealthBonus::onCollisionExit(ColliderComponent& otherCollider) -> void {}
 
-    auto HealthBonus::update() -> void {
-        std::cout << transform.position;
-    }
+    auto HealthBonus::update() -> void {}
 
 }  // namespace AnimeDefendersEngine
