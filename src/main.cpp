@@ -8,6 +8,8 @@
 #include "Vector2.hpp"
 #include "Wall.hpp"
 
+#include <memory>
+
 // namespace AnimeDefendersEngine {
 
 // auto createWall(std::vector<std::string>& arguments, Scene& scene, FileSystem::FileSystem& fileSystem) -> std::shared_ptr<Entity> {
@@ -49,7 +51,10 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
         auto scene = std::make_unique<AnimeDefendersEngine::Scene>(0);
         m_sceneManager.addScene(std::move(scene));
         m_sceneManager.setActiveScene(0);
-        
+        using AnimeDefendersEngine::Math::Vector2f;
+        AnimeDefendersEngine::FileSystem::FileSystem fileSystem("GameFiles/resourceLocations.txt");
+        m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::Bullet>(
+            m_sceneManager.getActiveScene(), fileSystem, "dsds", Vector2f(0, 0), Vector2f(0, 0), 1, 1));
         m_gameLoop.run();
     }
 };

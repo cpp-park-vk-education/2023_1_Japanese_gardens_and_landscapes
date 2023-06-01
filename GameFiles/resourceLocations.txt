@@ -1,2 +1,3 @@
 Name|FilePath
 Sample|GameFiles/3.png
+Bullet.png|GameFiles/Player_attack9.png
