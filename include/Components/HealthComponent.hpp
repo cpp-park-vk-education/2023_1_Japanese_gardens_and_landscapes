@@ -6,14 +6,13 @@
 namespace AnimeDefendersEngine {
 
     namespace {
-        constexpr float defaultHealth = 100.f;
         constexpr float defaultMaxHealth = 100.f;
     }  // namespace
 
     class HealthComponent : public BaseComponent<HealthComponent> {
      public:
         HealthComponent(const std::string& entityId, ComponentManager& compManager, float health)
-            : BaseComponent<HealthComponent>(entityId, compManager), m_health(health) {}
+            : BaseComponent<HealthComponent>(entityId, compManager), m_maxHealth(health), m_health(health) {}
 
         auto addHealth(float health) -> void {
             m_health += health;
@@ -25,7 +24,7 @@ namespace AnimeDefendersEngine {
         auto setMaxHealth(float maxHealth) -> void { m_maxHealth = maxHealth; }
 
      private:
-        float m_health{defaultHealth};
+        float m_health{defaultMaxHealth};
         float m_maxHealth{defaultMaxHealth};
     };
 

@@ -13,6 +13,7 @@ set(include_files
     ${PROJECT_SOURCE_DIR}/include/Entities/Bullet.hpp
     ${PROJECT_SOURCE_DIR}/include/Entities/DamageZone.hpp
     ${PROJECT_SOURCE_DIR}/include/Entities/HealthBonus.hpp
+    ${PROJECT_SOURCE_DIR}/include/Entities/Player.hpp
     ${PROJECT_SOURCE_DIR}/include/Entities/Wall.hpp
     ${PROJECT_SOURCE_DIR}/include/Game.hpp
 )
@@ -24,6 +25,7 @@ set(source
     ${PROJECT_SOURCE_DIR}/src/Entities/Bullet.cpp
     ${PROJECT_SOURCE_DIR}/src/Entities/DamageZone.cpp
     ${PROJECT_SOURCE_DIR}/src/Entities/HealthBonus.cpp
+    ${PROJECT_SOURCE_DIR}/src/Entities/Player.cpp
     ${PROJECT_SOURCE_DIR}/src/Entities/Wall.cpp
     ${PROJECT_SOURCE_DIR}/src/Game.cpp
 )
