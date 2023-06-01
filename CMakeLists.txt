@@ -13,6 +13,7 @@ set(include_files
     ${PROJECT_SOURCE_DIR}/include/DamageZone.hpp
     ${PROJECT_SOURCE_DIR}/include/Game.hpp
     ${PROJECT_SOURCE_DIR}/include/HealthBonus.hpp
+    ${PROJECT_SOURCE_DIR}/include/HealthComponent.hpp
 )
 set(include_locations
     ${PROJECT_SOURCE_DIR}/include
@@ -30,7 +31,6 @@ add_compile_definitions(SOURCE_DIR_PATH="${PROJECT_SOURCE_DIR}/")
 add_subdirectory(${PROJECT_SOURCE_DIR}/libs/AnimeDefendersEngine)
 
 set(tests_folder ${PROJECT_SOURCE_DIR}/tests)
-
 
 if(DEBUG OR ENABLE_COVERAGE OR ENABLE_SANITIZERS OR ENABLE_TESTING)
     add_compile_options(-g -O0)
