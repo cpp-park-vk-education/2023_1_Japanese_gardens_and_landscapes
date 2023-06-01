@@ -9,20 +9,21 @@ set(CMAKE_CXX_STANDARD 20)
 set(main_executable ${PROJECT_SOURCE_DIR}/src/main.cpp)
 
 set(include_files
-    ${PROJECT_SOURCE_DIR}/include/Bullet.hpp
-    ${PROJECT_SOURCE_DIR}/include/DamageZone.hpp
+    ${PROJECT_SOURCE_DIR}/include/Components/HealthComponent.hpp
+    ${PROJECT_SOURCE_DIR}/include/Entities/Bullet.hpp
+    ${PROJECT_SOURCE_DIR}/include/Entities/DamageZone.hpp
+    ${PROJECT_SOURCE_DIR}/include/Entities/HealthBonus.hpp
     ${PROJECT_SOURCE_DIR}/include/Game.hpp
-    ${PROJECT_SOURCE_DIR}/include/HealthBonus.hpp
-    ${PROJECT_SOURCE_DIR}/include/HealthComponent.hpp
 )
 set(include_locations
-    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/include/Components
+    ${PROJECT_SOURCE_DIR}/include/Entities
 )
 set(source
-    ${PROJECT_SOURCE_DIR}/src/Bullet.cpp
-    ${PROJECT_SOURCE_DIR}/src/DamageZone.cpp
+    ${PROJECT_SOURCE_DIR}/src/Entities/Bullet.cpp
+    ${PROJECT_SOURCE_DIR}/src/Entities/DamageZone.cpp
+    ${PROJECT_SOURCE_DIR}/src/Entities/HealthBonus.cpp
     ${PROJECT_SOURCE_DIR}/src/Game.cpp
-    ${PROJECT_SOURCE_DIR}/src/HealthBonus.cpp
 )
 
 set(libs_names AnimeDefendersEngine)
