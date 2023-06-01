@@ -1,25 +1,27 @@
 #pragma once
 
 #include "Event.hpp"
+#include "EventListener.hpp"
 
-#include <queue>
+#include <functional>
+#include <memory>
 #include <string>
+#include <vector>
 
 namespace AnimeDefendersEngine {
 
-    class IEventManager {
+    class EventManager {
      public:
-        auto hasEvent(const std::string& eventName) -> bool;
-        ~IEventManager(){};
-    };
-
-    class EventManager : public IEventManager {
-     public:
-        static auto hasEvent(const std::string& eventName) -> bool;
-        static auto update() -> void;
+        auto update() -> void;
+        auto addListener(const EventListener& listener) -> void;
+        auto removeListener(const EventListener& listener) -> void;
+        auto dispatch(std::unique_ptr<Event> event) -> void;
+        auto addEvent(std::unique_ptr<Event> event) -> void;
+        [[nodiscard]] auto hasEvent(const std::string& eventName) -> bool;
 
      private:
-        std::priority_queue<Event> m_events;
+        std::vector<EventListener> m_eventListeners{};
+        std::vector<std::unique_ptr<Event>> m_eventQueue{};
     };
-
+    
 }  // namespace AnimeDefendersEngine

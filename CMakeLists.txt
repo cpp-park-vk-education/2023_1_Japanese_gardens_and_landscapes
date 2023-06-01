@@ -25,9 +25,12 @@ set(source
 )
 
 set(libs_names AnimeDefendersEngine)
+add_compile_definitions(SOURCE_DIR_PATH="${PROJECT_SOURCE_DIR}/")
+
 add_subdirectory(${PROJECT_SOURCE_DIR}/libs/AnimeDefendersEngine)
 
 set(tests_folder ${PROJECT_SOURCE_DIR}/tests)
+
 
 if(DEBUG OR ENABLE_COVERAGE OR ENABLE_SANITIZERS OR ENABLE_TESTING)
     add_compile_options(-g -O0)
