@@ -48,6 +48,7 @@ set(include_files
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/BodyDefinition.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/ColliderComponent.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/CollisionHandler.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/Contact.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/ContactEvent.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/ICollisionHandler.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Physics/Manifold.hpp
@@ -118,6 +119,7 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/BodyDefinition.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/ColliderComponent.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/CollisionHandler.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Contact.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/Manifold.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/PhysicsSystem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Physics/PhysicsWorld.cpp
