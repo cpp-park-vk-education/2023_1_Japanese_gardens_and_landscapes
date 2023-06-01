@@ -53,15 +53,13 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
         // auto entityCreator = std::make_unique<AnimeDefendersEngine::BaseCreator>();
 
         // AnimeDefendersEngine::SceneLoader loadScenes{std::move(readStream), std::move(entityCreator), m_sceneManager};
-        auto window = std::make_shared<AnimeDefendersEngine::Graphics::Window>(300, 200, "Gayyyyy");
-        auto renderer = AnimeDefendersEngine::Graphics::Renderer(window);
+
         auto scene = std::make_unique<AnimeDefendersEngine::Scene>(0);
         m_sceneManager.addScene(std::move(scene));
         m_sceneManager.setActiveScene(0);
         using AnimeDefendersEngine::Math::Vector2f;
         AnimeDefendersEngine::FileSystem::FileSystem fileSystem{absolutePath("GameFiles/resourceLocations.txt")};
-        AnimeDefendersEngine::EventManager eventManager{};
-        AnimeDefendersEngine::InputManager inputManager{eventManager, renderer.getActiveWindowPtr()};
+        AnimeDefendersEngine::InputManager inputManager{m_gameLoop.getEventManager(),m_gameLoop.getRenderer()->getActiveWindowPtr() };
         // m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::Bullet>(
         //     m_sceneManager.getActiveScene(), fileSystem, "dsds", Vector2f(0, 0), Vector2f(0, 0), 1, 1));
         AnimeDefendersEngine::Math::Transpose tp{};
