@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Contact.hpp"
+
 #include <string>
 #include <utility>
 
@@ -12,12 +14,10 @@ namespace AnimeDefendersEngine::Physics {
     };
 
     struct ContactEvent {
-        ContactEvent(const std::string& bodyAID, const std::string& bodyBID, ContactEventType type)
-            : bodyAID(bodyAID), bodyBID(bodyBID), type(type){};
+        ContactEvent(const Contact& contact, ContactEventType type) : contact(contact), type(type){};
         ContactEvent() = default;
 
-        std::string bodyAID;
-        std::string bodyBID;
+        Contact contact;
         ContactEventType type;
     };
 

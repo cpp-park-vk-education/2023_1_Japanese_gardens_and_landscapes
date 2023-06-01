@@ -1,8 +1,8 @@
 #pragma once
 
+#include "Body.hpp"
 #include "CollisionHandler.hpp"
 #include "ContactEvent.hpp"
-#include "Manifold.hpp"
 
 #include <memory>
 #include <unordered_set>
@@ -25,14 +25,15 @@ namespace AnimeDefendersEngine::Physics {
         auto update(float deltaTime) -> void;
         [[maybe_unused]] auto fixedUpdate() -> std::vector<ContactEvent>;
         [[nodiscard]] auto addBody(BodyDefinition&& bodyDefinition) -> Body*;
+        auto removeBodies() -> void;
 
      private:
-        auto getEvents(std::unordered_set<Manifold> currentContacts) -> std::vector<ContactEvent>;
+        auto getEvents(const std::unordered_set<Contact>& currentContacts) -> std::vector<ContactEvent>;
 
      private:
         std::unique_ptr<CollisionHandler> m_collisionHandler;
         std::vector<std::unique_ptr<Body>> m_bodies;
-        std::unordered_set<Manifold> m_contacts;
+        std::unordered_set<Contact> m_contacts;
 
         float m_fixedDeltaTime{};
         float m_maxDeltaTime{};
