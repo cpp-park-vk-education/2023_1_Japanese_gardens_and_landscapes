@@ -1,6 +1,7 @@
 #include "GameLoop.hpp"
 #include "EventManager.hpp"
 #include "InputManager.hpp"
+#include "Logger.hpp"
 #include "Renderer.hpp"
 #include "SceneManager.hpp"
 #include "SystemManager.hpp"
@@ -64,6 +65,7 @@ namespace AnimeDefendersEngine {
                 accumulator = m_maxDeltaTime;
             }
             while (accumulator >= m_fixedDeltaTime) {
+                continue;
                 m_systemManager->updateSystems(m_sceneManager, m_fixedDeltaTime);
                 accumulator -= m_fixedDeltaTime;
 
@@ -74,7 +76,7 @@ namespace AnimeDefendersEngine {
 
                 m_eventManager->update();
             }
-            continue;
+
             m_renderer->renderObjects(m_sceneManager.getActiveScene());
         }
     }

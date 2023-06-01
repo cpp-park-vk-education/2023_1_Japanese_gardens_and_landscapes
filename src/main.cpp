@@ -3,6 +3,8 @@
 #include "Bullet.hpp"
 #include "Camera.hpp"
 #include "FileSystem.hpp"
+#include "Logger.hpp"
+#include "Scene.hpp"
 #include "Vector2.hpp"
 #include "Wall.hpp"
 
@@ -44,6 +46,8 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
         auto entityCreator = std::make_unique<AnimeDefendersEngine::BaseCreator>();
 
         AnimeDefendersEngine::SceneLoader loadScenes{std::move(readStream), std::move(entityCreator), m_sceneManager};
+        auto scene = std::make_unique<AnimeDefendersEngine::Scene>(0);
+        m_sceneManager.addScene(0);
         m_sceneManager.setActiveScene(0);
 
         m_gameLoop.run();
