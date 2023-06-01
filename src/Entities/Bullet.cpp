@@ -28,8 +28,8 @@ namespace AnimeDefendersEngine {
     },
               [this](ColliderComponent& otherCollider) { this->onCollisionStay(otherCollider); },
               [this](ColliderComponent& otherCollider) { this->onCollisionExit(otherCollider); }, transform, &rigidbody),
-          sprite(getId(), scene.getComponentManager(), {{position.x, 50, position.y}, 0, 0},
-                 sprite.getDrawTextureWrapper().loadTexture(fileSystem.getImage("Bullet.png"))) {
+          sprite(getId(), scene.getComponentManager(), {{position.x, 50, position.y}, 0, 0}, {0}) {
+        sprite.setTexture(sprite.getDrawTextureWrapper().loadTexture(fileSystem.getImage("Bullet.png")));
         Logger::defaultLog.printMessage(getId() + " is created!\n");
     }
 

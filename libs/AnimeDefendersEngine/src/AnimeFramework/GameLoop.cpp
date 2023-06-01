@@ -81,4 +81,12 @@ namespace AnimeDefendersEngine {
         }
     }
 
+    auto GameLoop::getEventManager() -> EventManager* {
+        return m_eventManager.get();
+    }
+
+    auto GameLoop::getRenderer() -> Graphics::Renderer* {
+        return m_renderer.get();
+    }
+
 }  // namespace AnimeDefendersEngine

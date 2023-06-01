@@ -28,6 +28,9 @@ namespace AnimeDefendersEngine {
 
         auto run() -> void;
 
+        auto getEventManager() -> EventManager*;
+        auto getRenderer() -> Graphics::Renderer*;
+
      private:
         bool m_isRunning{true};
         float m_maxDeltaTime{};
