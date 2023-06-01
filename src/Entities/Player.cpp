@@ -19,7 +19,10 @@ namespace AnimeDefendersEngine {
                    Math::Vector2f position, Math::Vector2f velocity, float mass = defaultPlayerMass, float radius = defaultPlayerRadius,
                    float health = defaultPlayerHealth, Math::Transpose transpose = defaultTranspose)
         : Entity(entityId, scene),
-          m_camera(getId(), scene.getComponentManager(), transpose),
+          m_camera(
+              getId(), scene.getComponentManager(), transpose,
+              [](Math::Transpose&) {},
+              [](Math::Transpose&) {}, true),
           m_inputComponent(getId(), scene.getComponentManager(), inputManager),
           m_health(getId(), scene.getComponentManager(), health),
           m_transform(getId(), scene.getComponentManager(), position),
