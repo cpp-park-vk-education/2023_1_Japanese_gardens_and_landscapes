@@ -19,6 +19,10 @@ namespace AnimeDefendersEngine {
             m_entities.erase(entityId);
         }
         m_entityIdsToDestroy.clear();
+
+        for (const auto& [entityId, entity] : m_entities) {
+            entity->update();
+        }
     }
 
     [[nodiscard]] auto Scene::getSceneId() const noexcept -> Scene::IdType {
