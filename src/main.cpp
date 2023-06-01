@@ -3,10 +3,15 @@
 #include "Bullet.hpp"
 #include "Camera.hpp"
 #include "FileSystem.hpp"
+#include "InputManager.hpp"
 #include "Logger.hpp"
+#include "Player.hpp"
+#include "Renderer.hpp"
 #include "Scene.hpp"
+#include "Transpose.hpp"
 #include "Vector2.hpp"
 #include "Wall.hpp"
+#include "Window.hpp"
 
 #include <memory>
 
@@ -48,13 +53,20 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
         // auto entityCreator = std::make_unique<AnimeDefendersEngine::BaseCreator>();
 
         // AnimeDefendersEngine::SceneLoader loadScenes{std::move(readStream), std::move(entityCreator), m_sceneManager};
+        auto window = std::make_shared<AnimeDefendersEngine::Graphics::Window>(300, 200, "Gayyyyy");
+        auto renderer = AnimeDefendersEngine::Graphics::Renderer(window);
         auto scene = std::make_unique<AnimeDefendersEngine::Scene>(0);
         m_sceneManager.addScene(std::move(scene));
         m_sceneManager.setActiveScene(0);
         using AnimeDefendersEngine::Math::Vector2f;
-        AnimeDefendersEngine::FileSystem::FileSystem fileSystem("GameFiles/resourceLocations.txt");
-        m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::Bullet>(
-            m_sceneManager.getActiveScene(), fileSystem, "dsds", Vector2f(0, 0), Vector2f(0, 0), 1, 1));
+        AnimeDefendersEngine::FileSystem::FileSystem fileSystem{absolutePath("GameFiles/resourceLocations.txt")};
+        AnimeDefendersEngine::EventManager eventManager{};
+        AnimeDefendersEngine::InputManager inputManager{eventManager, renderer.getActiveWindowPtr()};
+        // m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::Bullet>(
+        //     m_sceneManager.getActiveScene(), fileSystem, "dsds", Vector2f(0, 0), Vector2f(0, 0), 1, 1));
+        AnimeDefendersEngine::Math::Transpose tp{};
+        m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::Player>(
+            m_sceneManager.getActiveScene(), fileSystem, inputManager, "Player", Vector2f(0, 0), Vector2f(0, 0), 1, 1, 100, tp));
         m_gameLoop.run();
     }
 };

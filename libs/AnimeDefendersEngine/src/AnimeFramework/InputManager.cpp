@@ -2,7 +2,7 @@
 
 namespace AnimeDefendersEngine {
 
-    InputManager::InputManager(EventManager& eventManager, std::shared_ptr<Graphics::Window> window ) : m_eventManager(eventManager) {
+    InputManager::InputManager(EventManager& eventManager, std::shared_ptr<Graphics::IWindow> window ) : m_eventManager(eventManager) {
         window->setMouseClickHandler([this](int button, int buttonState, int xMousePosition, int yMousePosition) {
             this->mouseHandler(button, buttonState, xMousePosition, yMousePosition);
         });
