@@ -6,6 +6,9 @@ namespace AnimeDefendersEngine::Physics {
 
     auto Body::setType(BodyType bodyType) noexcept -> void {
         m_bodyType = bodyType;
+        if (bodyType == BodyType::staticBody) {
+            m_inverseMass = 0.f;
+        }
     }
 
     auto Body::applyForce(const Vector2f& force) noexcept -> void {

@@ -1,5 +1,6 @@
 #include "CollisionHandler.hpp"
 #include "Body.hpp"
+#include "Contact.hpp"
 #include "Manifold.hpp"
 #include "Vector2.hpp"
 
@@ -8,33 +9,29 @@
 
 namespace AnimeDefendersEngine::Physics {
 
-    auto CollisionHandler::broadPhase(const std::vector<Body*>& bodies) const -> std::unordered_set<Manifold> {
-        std::unordered_set<Manifold> contacts;
-        contacts.reserve(bodies.size());
+    auto CollisionHandler::broadPhase(const std::vector<Body*>& bodies) const -> std::vector<Manifold> {
+        std::vector<Manifold> manifolds{};
+        manifolds.reserve(bodies.size());
         for (auto bodyAIter = bodies.begin(); bodyAIter != bodies.end(); ++bodyAIter) {
             for (auto bodyBIter = std::next(bodyAIter); bodyBIter != bodies.end(); ++bodyBIter) {
-                if ((*bodyAIter)->getID() < (*bodyBIter)->getID()) {
-                    contacts.emplace(*bodyAIter, *bodyBIter);
-                } else {
-                    contacts.emplace(*bodyBIter, *bodyAIter);
-                }
+                manifolds.emplace_back(*bodyAIter, *bodyBIter);
             }
         }
-        return contacts;
+        return manifolds;
     }
 
-    auto CollisionHandler::narrowPhase(std::unordered_set<Manifold>& contacts) const -> void {
-        std::unordered_set<Manifold> actualContacts{};
-        for (auto contact : contacts) {
-            if (hasCollision(contact.bodyA, contact.bodyB)) {
-                if (!contact.bodyA->isTrigger() && !contact.bodyB->isTrigger()) {
-                    specifyCollision(contact);
-                    resolveCollision(contact);
+    auto CollisionHandler::narrowPhase(std::vector<Manifold>& manifolds) const -> std::unordered_set<Contact> {
+        std::unordered_set<Contact> actualContacts{};
+        for (auto& manifold : manifolds) {
+            if (hasCollision(manifold.bodyA, manifold.bodyB)) {
+                if (!manifold.bodyA->isTrigger() && !manifold.bodyB->isTrigger()) {
+                    specifyCollision(manifold);
+                    resolveCollision(manifold);
                 }
-                actualContacts.insert(contact);
+                actualContacts.emplace(manifold.bodyA->getID(), manifold.bodyB->getID());
             }
         }
-        contacts = std::move(actualContacts);
+        return actualContacts;
     }
 
     namespace {
@@ -133,6 +130,7 @@ namespace AnimeDefendersEngine::Physics {
         auto specifyCollisionCircleRectangle(Manifold& contact) -> void {
             std::swap(contact.bodyA, contact.bodyB);
             specifyCollisionRectangleCircle(contact);
+            contact.normal = contact.normal * (-1);
             std::swap(contact.bodyA, contact.bodyB);
         }
 
@@ -164,27 +162,28 @@ namespace AnimeDefendersEngine::Physics {
 
     }  // namespace
 
-    auto CollisionHandler::specifyCollision(Manifold& contact) const -> void {
-        const auto typeA = static_cast<int>(contact.bodyA->getShapeType());
-        const auto typeB = static_cast<int>(contact.bodyB->getShapeType());
-        specifyCollisionTypes[typeA][typeB](contact);
+    auto CollisionHandler::specifyCollision(Manifold& manifold) const -> void {
+        const auto typeA = static_cast<int>(manifold.bodyA->getShapeType());
+        const auto typeB = static_cast<int>(manifold.bodyB->getShapeType());
+        specifyCollisionTypes[typeA][typeB](manifold);
     };
 
-    auto CollisionHandler::resolveCollision(Manifold& contact) const -> void {
-        const auto relativeVelocity = contact.bodyB->getVelocity() - contact.bodyA->getVelocity();
-        const auto relativeVelocityProjection = relativeVelocity * contact.normal;
+    auto CollisionHandler::resolveCollision(Manifold& manifold) const -> void {
+        const auto relativeVelocity = manifold.bodyB->getVelocity() - manifold.bodyA->getVelocity();
+        const auto relativeVelocityProjection = relativeVelocity * manifold.normal;
 
         if (relativeVelocityProjection > 0) {
             return;
         }
 
-        const auto impulseMagnitude = -2 * relativeVelocityProjection / (contact.bodyA->getInverseMass() + contact.bodyB->getInverseMass());
-        const auto impulse = impulseMagnitude * contact.normal;
+        const auto impulseMagnitude =
+            -2 * relativeVelocityProjection / (manifold.bodyA->getInverseMass() + manifold.bodyB->getInverseMass());
+        const auto impulse = impulseMagnitude * manifold.normal;
 
-        contact.bodyA->setVelocity(contact.bodyA->getVelocity() - contact.bodyA->getInverseMass() * impulse);
-        contact.bodyB->setVelocity(contact.bodyB->getVelocity() + contact.bodyB->getInverseMass() * impulse);
+        manifold.bodyA->setVelocity(manifold.bodyA->getVelocity() - manifold.bodyA->getInverseMass() * impulse);
+        manifold.bodyB->setVelocity(manifold.bodyB->getVelocity() + manifold.bodyB->getInverseMass() * impulse);
 
-        contact.correctPositions();
+        manifold.correctPositions();
     }
 
 }  // namespace AnimeDefendersEngine::Physics

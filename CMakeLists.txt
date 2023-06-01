@@ -4,18 +4,24 @@ set(project_name AnimeDefenders)
 project(${project_name})
 
 set(CMAKE_CXX_STANDARD 20)
-# add_compile_options(-Wall -Wextra -Werror -Wpedantic)
 
+# add_compile_options(-Wall -Wextra -Werror -Wpedantic)
 set(main_executable ${PROJECT_SOURCE_DIR}/src/main.cpp)
 
 set(include_files
+    ${PROJECT_SOURCE_DIR}/include/Bullet.hpp
+    ${PROJECT_SOURCE_DIR}/include/DamageZone.hpp
     ${PROJECT_SOURCE_DIR}/include/Game.hpp
+    ${PROJECT_SOURCE_DIR}/include/HealthBonus.hpp
 )
 set(include_locations
     ${PROJECT_SOURCE_DIR}/include
 )
-set(source 
+set(source
+    ${PROJECT_SOURCE_DIR}/src/Bullet.cpp
+    ${PROJECT_SOURCE_DIR}/src/DamageZone.cpp
     ${PROJECT_SOURCE_DIR}/src/Game.cpp
+    ${PROJECT_SOURCE_DIR}/src/HealthBonus.cpp
 )
 
 set(libs_names AnimeDefendersEngine)
@@ -115,7 +121,6 @@ if(ENABLE_CPPCHECK)
     add_dependencies(${project_name} CPPCHECK_TARGET)
 endif()
 
-
 if(ENABLE_COVERAGE OR ENABLE_TESTING)
     enable_testing()
     add_subdirectory(googletest)
@@ -129,7 +134,6 @@ if(ENABLE_COVERAGE OR ENABLE_TESTING)
         --test-dir ${PROJECT_BINARY_DIR}
         DEPENDS tests_list_target ${libs_names}
     )
-
 
     if(ENABLE_TESTING)
         find_program(VALGRIND "valgrind")

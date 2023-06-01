@@ -32,6 +32,8 @@ namespace AnimeDefendersEngine::Physics {
 
         std::vector<Body*> bodies = addBodies(components);
 
+        // std::cout << bodies.size() << std::endl;
+
         m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
         m_contactEvents = m_physicsWorld.fixedUpdate();
 
@@ -41,6 +43,8 @@ namespace AnimeDefendersEngine::Physics {
         }
 
         processContactEvents(components);
+
+        m_physicsWorld.removeBodies();
     }
 
     auto PhysicsSystem::addBodies(ComponentManager::ComponentsContainer& components) -> std::vector<Body*> {
@@ -63,12 +67,15 @@ namespace AnimeDefendersEngine::Physics {
 
             bodyDef.isTrigger = collider->isTrigger();
 
+            if (collider->getRigidBody() != nullptr) {
+                bodyDef.mass = collider->getRigidBody()->mass;
+                bodyDef.bodyType = BodyType::dynamicBody;
+            } else {
+                bodyDef.bodyType = BodyType::staticBody;
+            }
             auto* body = m_physicsWorld.addBody(std::move(bodyDef));
 
-            if (collider->getRigidBody() == nullptr) {
-                body->setType(BodyType::staticBody);
-            } else {
-                body->setType(BodyType::dynamicBody);
+            if (collider->getRigidBody() != nullptr) {
                 body->applyImpulse(collider->getRigidBody()->velocity);
             }
 
@@ -79,8 +86,8 @@ namespace AnimeDefendersEngine::Physics {
 
     auto PhysicsSystem::processContactEvents(ComponentManager::ComponentsContainer& colliders) -> void {
         for (auto event : m_contactEvents) {
-            auto* bodyA = static_cast<ColliderComponent*>(colliders.at(event.bodyAID));
-            auto* bodyB = static_cast<ColliderComponent*>(colliders.at(event.bodyBID));
+            auto* bodyA = static_cast<ColliderComponent*>(colliders.at(event.contact.bodyAID));
+            auto* bodyB = static_cast<ColliderComponent*>(colliders.at(event.contact.bodyBID));
 
             switch (event.type) {
                 case ContactEventType::ContactEnter:

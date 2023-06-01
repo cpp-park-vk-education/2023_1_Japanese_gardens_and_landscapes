@@ -43,23 +43,27 @@ namespace AnimeDefendersEngine::Physics {
         return m_bodies.back().get();
     }
 
-    auto PhysicsWorld::getEvents(std::unordered_set<Manifold> currentContacts) -> std::vector<ContactEvent> {
+    auto PhysicsWorld::getEvents(const std::unordered_set<Contact>& currentContacts) -> std::vector<ContactEvent> {
         std::vector<ContactEvent> events{};
         events.reserve(currentContacts.size());
-        for (auto currentContact : currentContacts) {
+        for (const auto& currentContact : currentContacts) {
             if (m_contacts.contains(currentContact)) {
-                events.emplace_back(currentContact.bodyA->getID(), currentContact.bodyB->getID(), ContactEventType::ContactStay);
+                events.emplace_back(currentContact, ContactEventType::ContactStay);
                 m_contacts.erase(currentContact);
             } else {
-                events.emplace_back(currentContact.bodyA->getID(), currentContact.bodyB->getID(), ContactEventType::ContactEnter);
+                events.emplace_back(currentContact, ContactEventType::ContactEnter);
             }
         }
 
-        for (auto leftContact : m_contacts) {
-            events.emplace_back(leftContact.bodyA->getID(), leftContact.bodyB->getID(), ContactEventType::ContactExit);
+        for (const auto& leftContact : m_contacts) {
+            events.emplace_back(leftContact, ContactEventType::ContactExit);
         }
         return events;
     }
+
+    auto PhysicsWorld::removeBodies() -> void {
+        m_bodies.clear();
+    };
 
     auto PhysicsWorld::fixedUpdate() -> std::vector<ContactEvent> {
         std::vector<Body*> bodies{};
@@ -72,17 +76,17 @@ namespace AnimeDefendersEngine::Physics {
             bodies.push_back(body.get());
         }
 
-        std::unordered_set<Manifold> currentContacts = m_collisionHandler->broadPhase(bodies);
-        m_collisionHandler->narrowPhase(currentContacts);
+        std::vector<Manifold> possibleContacts = m_collisionHandler->broadPhase(bodies);
+        std::unordered_set<Contact> actualContacts = m_collisionHandler->narrowPhase(possibleContacts);
 
         for (const auto& body : m_bodies) {
             body->clearForce();
             body->clearVelocity();
         }
 
-        std::vector<ContactEvent> events = getEvents(currentContacts);
+        std::vector<ContactEvent> events = getEvents(actualContacts);
 
-        std::swap(m_contacts, currentContacts);
+        std::swap(m_contacts, actualContacts);
 
         return events;
     }

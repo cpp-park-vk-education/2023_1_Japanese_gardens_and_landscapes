@@ -4,7 +4,15 @@
 
 namespace AnimeDefendersEngine::Physics {
 
-    Manifold::Manifold(Body* bodyA, Body* bodyB) : bodyA(bodyA), bodyB(bodyB) {}
+    Manifold::Manifold(Body* bodyA, Body* bodyB) {
+        if (bodyA->getID() <= bodyB->getID()) {
+            this->bodyA = bodyA;
+            this->bodyB = bodyB;
+        } else {
+            this->bodyA = bodyB;
+            this->bodyB = bodyA;
+        }
+    }
 
     namespace {
 
@@ -18,18 +26,6 @@ namespace AnimeDefendersEngine::Physics {
             correctionPercent * std::max(penetration - tolerance, 0.f) / (bodyA->getInverseMass() + bodyB->getInverseMass()) * normal;
         bodyA->setPosition(bodyA->getPosition() - correctionPercent * bodyA->getInverseMass() * correction);
         bodyB->setPosition(bodyB->getPosition() + correctionPercent * bodyB->getInverseMass() * correction);
-    }
-
-    namespace {
-
-        inline auto getIDs(const Manifold& manifold) {
-            return std::tie(manifold.bodyA->getID(), manifold.bodyB->getID());
-        }
-
-    }  // namespace
-
-    auto operator==(const Manifold& left, const Manifold& right) -> bool {
-        return getIDs(left) == getIDs(right);
     }
 
 }  // namespace AnimeDefendersEngine::Physics
