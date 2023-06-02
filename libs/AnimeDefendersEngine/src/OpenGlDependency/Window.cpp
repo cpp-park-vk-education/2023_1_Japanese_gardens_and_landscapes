@@ -17,6 +17,7 @@ namespace AnimeDefendersEngine::Graphics {
         glMatrixMode(GL_PROJECTION);
         // gluPerspective(120, 1., 0.1, 100.);
         glMatrixMode(GL_MODELVIEW);
+        glutMainLoop();
     }
 
     Window::~Window() noexcept {
