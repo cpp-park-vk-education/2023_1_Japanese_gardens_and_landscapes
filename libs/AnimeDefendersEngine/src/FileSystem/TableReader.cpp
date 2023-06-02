@@ -5,7 +5,7 @@
 
 namespace AnimeDefendersEngine::FileSystem {
 
-    auto SplitString(const std::string& str, const char separator) -> std::vector<std::string> {
+    auto splitString(const std::string& str, char separator) -> std::vector<std::string> {
         std::vector<std::string> splittedString{};
         std::stringstream stream{str};
         while (!stream.eof()) {
@@ -29,7 +29,7 @@ namespace AnimeDefendersEngine::FileSystem {
             }
             std::getline(*m_dataStream, line);
         }
-        const auto splittedString = SplitString(line, m_wordsInRowSeparator);
+        const auto splittedString = splitString(line, m_wordsInRowSeparator);
 
         if (splittedString.size() != m_columnsNames.size()) {
             throw std::runtime_error{
@@ -69,7 +69,7 @@ namespace AnimeDefendersEngine::FileSystem {
             throw std::runtime_error{"Unable to read table: empty stream"};
         }
 
-        auto splitedString = SplitString(line, m_wordsInRowSeparator);
+        auto splitedString = splitString(line, m_wordsInRowSeparator);
         for (const auto& word : splitedString) {
             m_columnsNames.emplace_back(word);
         }

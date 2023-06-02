@@ -1,5 +1,6 @@
 #include "Scene.hpp"
 #include "ComponentManager.hpp"
+#include "Entity.hpp"
 
 namespace AnimeDefendersEngine {
 
@@ -20,8 +21,12 @@ namespace AnimeDefendersEngine {
         m_entityIdsToDestroy.clear();
     }
 
-    [[nodiscard]] auto Scene::getSceneId() const noexcept -> int {
+    [[nodiscard]] auto Scene::getSceneId() const noexcept -> Scene::IdType {
         return m_sceneId;
+    }
+
+    auto Scene::addEntity(std::shared_ptr<Entity> entity) -> void {
+        m_entities[entity->getId()] = entity;
     }
 
 }  // namespace AnimeDefendersEngine
