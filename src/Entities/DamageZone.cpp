@@ -18,27 +18,15 @@ namespace AnimeDefendersEngine {
         : Entity(entityId, scene),
           radius(radius),
           transform(getId(), scene.getComponentManager(), position),
-          collider(
-              getId(), scene.getComponentManager(), size, true,
-              [this](ColliderComponent& otherCollider) {
-                  this->onCollisionEnter(otherCollider);
+          sprite(getId(), scene.getComponentManager(),
+                 {
+                     {position.x, -5, position.y},
+                     90, 0
     },
-              [this](ColliderComponent& otherCollider) { this->onCollisionStay(otherCollider); },
-              [this](ColliderComponent& otherCollider) { this->onCollisionExit(otherCollider); }, transform),
-          sprite(getId(), scene.getComponentManager(), {{position.x, -5, position.y}, 90, 0}, {0}) {
+                 {0}) {
         sprite.setTexture(sprite.getDrawTextureWrapper().loadTexture(fileSystem.getImage(textureId)));
 
         Logger::defaultLog.printMessage(getId() + " is created!\n");
-    }
-
-    auto DamageZone::onCollisionEnter(ColliderComponent& otherCollider) -> void {
-        Logger::defaultLog.printMessage(otherCollider.getEntityId() + " entered DamageZone\n");
-    }
-
-    auto DamageZone::onCollisionStay(ColliderComponent& otherCollider) -> void {}
-
-    auto DamageZone::onCollisionExit(ColliderComponent& otherCollider) -> void {
-        Logger::defaultLog.printMessage(otherCollider.getEntityId() + " exited DamageZone\n");
     }
 
     auto DamageZone::update() -> void {

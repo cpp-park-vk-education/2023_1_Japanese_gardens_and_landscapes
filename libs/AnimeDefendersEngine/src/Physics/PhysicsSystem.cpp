@@ -33,7 +33,6 @@ namespace AnimeDefendersEngine::Physics {
         std::vector<Body*> bodies = addBodies(components);
 
         // std::cout << bodies.size() << std::endl;
-
         m_physicsWorld.setFixedDeltaTime(fixedDeltaTime);
         m_contactEvents = m_physicsWorld.fixedUpdate();
 
@@ -41,6 +40,8 @@ namespace AnimeDefendersEngine::Physics {
             auto* collider = static_cast<ColliderComponent*>(components.at(body->getID()));
             collider->getTransform().position = body->getPosition();
         }
+
+        return;
 
         processContactEvents(components);
 

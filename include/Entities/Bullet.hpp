@@ -10,8 +10,8 @@ namespace AnimeDefendersEngine {
 
     class Bullet : public Entity {
      public:
-        Bullet(Scene& scene, FileSystem::FileSystem& fileSystem, const std::string& entityId, Math::Vector2f position,
-               Math::Vector2f velocity, std::string textureName, float mass, float radius);
+        Bullet(Scene& scene, const std::string& entityId, FileSystem::FileSystem& fileSystem, const std::string& textureId,
+               Math::Vector2f position, Math::Vector2f velocity, float mass, float radius);
 
         auto onCollisionEnter(ColliderComponent& otherCollider) -> void;
         auto onCollisionStay(ColliderComponent& otherCollider) -> void;

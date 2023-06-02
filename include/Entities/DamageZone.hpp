@@ -13,13 +13,9 @@ namespace AnimeDefendersEngine {
         DamageZone(Scene& scene, const std::string& entityId, FileSystem::FileSystem& fileSystem, std::string textureId,
                    Math::Vector2f position, Math::Vector2f size);
 
-        auto onCollisionEnter(ColliderComponent& otherCollider) -> void;
-        auto onCollisionStay(ColliderComponent& otherCollider) -> void;
-        auto onCollisionExit(ColliderComponent& otherCollider) -> void;
         auto update() -> void override;
 
         TransformComponent transform;
-        ColliderComponent collider;
         Graphics::Sprite sprite;
 
         float radius{};
