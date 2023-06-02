@@ -1,6 +1,7 @@
 #include <iostream>
 #include "AnimeFramework.hpp"
 #include "Bullet.hpp"
+#include "Monster.hpp"
 #include "Camera.hpp"
 #include "DamageZone.hpp"
 #include "FileSystem.hpp"
@@ -71,27 +72,30 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
         m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::Player>(
             m_sceneManager.getActiveScene(), fileSystem, inputManager, "Player", Vector2f(0, 0), Vector2f(0, 0), 1, 0.1, 100, tp));
 
-        for (int i = 0; i < 7; i++) {
-            m_sceneManager.getActiveScene().addEntity(
-                std::make_shared<AnimeDefendersEngine::Wall>(m_sceneManager.getActiveScene(), "Wall100" + std::to_string(i), fileSystem,
-                                                             "Wall1", Vector2f(1, -1 + 2 * i), Vector2f(0.5, 0.1)));
-        }
-        for (int i = 0; i < 7; i++) {
-            m_sceneManager.getActiveScene().addEntity(
-                std::make_shared<AnimeDefendersEngine::Wall>(m_sceneManager.getActiveScene(), "Wall200" + std::to_string(i), fileSystem,
-                                                             "Wall1", Vector2f(-2 * i, -2), Vector2f(0.1, 0.5)));
-        }
+        // for (int i = 0; i < 7; i++) {
+        //     m_sceneManager.getActiveScene().addEntity(
+        //         std::make_shared<AnimeDefendersEngine::Wall>(m_sceneManager.getActiveScene(), "Wall100" + std::to_string(i), fileSystem,
+        //                                                      "Wall1", Vector2f(1, -1 + 2 * i), Vector2f(0.5, 0.1)));
+        // }
+        // for (int i = 0; i < 7; i++) {
+        //     m_sceneManager.getActiveScene().addEntity(
+        //         std::make_shared<AnimeDefendersEngine::Wall>(m_sceneManager.getActiveScene(), "Wall200" + std::to_string(i), fileSystem,
+        //                                                      "Wall1", Vector2f(-2 * i, -2), Vector2f(0.1, 0.5)));
+        // }
 
-        for (int i = 3; i < 17; ++i) {
-            for (int j = -4; j < 11; ++j) {
-                m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::DamageZone>(
-                    m_sceneManager.getActiveScene(), "floor" + std::to_string(i) + std::to_string(j), fileSystem, "floor2",
-                    Vector2f(10 - 2 * i, 11 - 2 * j), Vector2f(0.1, 0.5)));
-            }
-        }
-        m_sceneManager.getActiveScene().addEntity(
-            std::make_shared<AnimeDefendersEngine::Bullet>(m_sceneManager.getActiveScene(), "bullet" + std::to_string(0), fileSystem,
-                                                           "Bullet", Vector2f(0, -0.5), Vector2f(0, -0.1f), 1, 0.1));
+        // for (int i = 3; i < 17; ++i) {
+        //     for (int j = -4; j < 11; ++j) {
+        //         m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::DamageZone>(
+        //             m_sceneManager.getActiveScene(), "floor" + std::to_string(i) + std::to_string(j), fileSystem, "floor2",
+        //             Vector2f(10 - 2 * i, 11 - 2 * j), Vector2f(0.1, 0.5)));
+        //     }
+        // }
+        // m_sceneManager.getActiveScene().addEntity(
+        //     std::make_shared<AnimeDefendersEngine::Bullet>(m_sceneManager.getActiveScene(), "bullet" + std::to_string(0), fileSystem,
+        //                                                    "Bullet", Vector2f(0, -0.5), Vector2f(0, -0.1f), 1, 0.1));
+
+         m_sceneManager.getActiveScene().addEntity(
+            std::make_shared<AnimeDefendersEngine::Monster>(m_sceneManager.getActiveScene(), fileSystem, "Monster1", Vector2f(0.f, -1.7f), Vector2f(0, 0), 3, 1, 10));
 
         // m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::DamageZone>(
         //     m_sceneManager.getActiveScene(), "floor" + std::to_string(1), fileSystem, "floor2", Vector2f(0, -3), Vector2f(0.1, 0.5)));

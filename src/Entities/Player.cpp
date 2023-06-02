@@ -38,7 +38,7 @@ namespace AnimeDefendersEngine {
 
     auto Player::onCollisionEnter(ColliderComponent& otherCollider) -> void {
         Logger::defaultLog.printMessage(getId() + " hited " + otherCollider.getEntityId() + "\n");
-        destroy();
+        //destroy();
     }
 
     auto Player::onCollisionStay(ColliderComponent& otherCollider) -> void {}
