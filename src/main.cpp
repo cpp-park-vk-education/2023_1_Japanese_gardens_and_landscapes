@@ -89,11 +89,9 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
                     Vector2f(10 - 2 * i, 11 - 2 * j), Vector2f(0.1, 0.5)));
             }
         }
-        auto transforms = m_sceneManager.getActiveScene().getComponentManager().getComponents<AnimeDefendersEngine::TransformComponent>();
-        auto* playerTransform = static_cast<AnimeDefendersEngine::TransformComponent*>(transforms.at("Player"));
         m_sceneManager.getActiveScene().addEntity(
             std::make_shared<AnimeDefendersEngine::Bullet>(m_sceneManager.getActiveScene(), "bullet" + std::to_string(0), fileSystem,
-                                                           "Bullet", Vector2f(0, -0.5), Vector2f(0, -0.1f), playerTransform, 0.1, 1));
+                                                           "Bullet", Vector2f(0, -0.5), Vector2f(0, -0.1f), 1, 0.1));
 
         // m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::DamageZone>(
         //     m_sceneManager.getActiveScene(), "floor" + std::to_string(1), fileSystem, "floor2", Vector2f(0, -3), Vector2f(0.1, 0.5)));
