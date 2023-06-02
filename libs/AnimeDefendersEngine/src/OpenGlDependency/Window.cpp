@@ -12,6 +12,7 @@ namespace AnimeDefendersEngine::Graphics {
         glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
         glutInitWindowSize(m_windowWidth, m_windowHeight);
         glEnable(GL_DEPTH_TEST);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         m_windowId = glutCreateWindow(windowTitle.c_str());
 
