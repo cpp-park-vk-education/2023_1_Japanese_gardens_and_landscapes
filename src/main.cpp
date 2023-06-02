@@ -77,12 +77,12 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
 
         for (int i = 0; i < 7; i++) {
             m_sceneManager.getActiveScene().addEntity(
-                std::make_shared<AnimeDefendersEngine::Wall>(m_sceneManager.getActiveScene(), "Wall100" + std::to_string(i), fileSystem,
+                std::make_shared<AnimeDefendersEngine::Wall>(m_sceneManager.getActiveScene(), "Wall1" + std::to_string(i), fileSystem,
                                                              "Wall1", Vector2f(1, -1 + 2 * i), Vector2f(0.5, 0.05)));
         }
         for (int i = 0; i < 7; i++) {
             m_sceneManager.getActiveScene().addEntity(
-                std::make_shared<AnimeDefendersEngine::Wall>(m_sceneManager.getActiveScene(), "Wall200" + std::to_string(i), fileSystem,
+                std::make_shared<AnimeDefendersEngine::Wall>(m_sceneManager.getActiveScene(), "Wall2" + std::to_string(i), fileSystem,
                                                              "Wall1", Vector2f(-2 * i, -2), Vector2f(0.05, 0.5)));
         }
 
