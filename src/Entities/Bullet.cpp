@@ -15,7 +15,8 @@ namespace AnimeDefendersEngine {
     }  // namespace
 
     Bullet::Bullet(Scene& scene, const std::string& entityId, FileSystem::FileSystem& fileSystem, const std::string& textureId,
-                   Math::Vector2f position, Math::Vector2f velocity, float mass = defaultBulletMass, float radius = defaultBulletRadius)
+                   Math::Vector2f position, Math::Vector2f velocity, TransformComponent* playerTransform, float mass = defaultBulletMass,
+                   float radius = defaultBulletRadius)
         : Entity(entityId, scene),
           mass(mass),
           radius(radius),
@@ -29,6 +30,7 @@ namespace AnimeDefendersEngine {
               [this](ColliderComponent& otherCollider) { this->onCollisionStay(otherCollider); },
               [this](ColliderComponent& otherCollider) { this->onCollisionExit(otherCollider); }, transform, &rigidbody),
           sprite(getId(), scene.getComponentManager(), {{position.x, 0, position.y}, 0, 0}, {0}) {
+        transform.position = playerTransform->position + Math::Vector2f(0, -0.5);
         sprite.setTexture(sprite.getDrawTextureWrapper().loadTexture(fileSystem.getImage(textureId)));
         Logger::defaultLog.printMessage(getId() + " is created!\n");
     }

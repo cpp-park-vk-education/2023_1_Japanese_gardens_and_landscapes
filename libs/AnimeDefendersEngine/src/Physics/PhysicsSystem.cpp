@@ -41,7 +41,7 @@ namespace AnimeDefendersEngine::Physics {
             collider->getTransform().position = body->getPosition();
         }
 
-        // processContactEvents(components);
+        processContactEvents(components);
         m_physicsWorld.removeBodies();
     }
 
@@ -84,6 +84,12 @@ namespace AnimeDefendersEngine::Physics {
 
     auto PhysicsSystem::processContactEvents(ComponentManager::ComponentsContainer& colliders) -> void {
         for (auto event : m_contactEvents) {
+            if (!colliders.contains(event.contact.bodyAID)) {
+                continue;
+            }
+            if (!colliders.contains(event.contact.bodyBID)) {
+                continue;
+            }
             auto* bodyA = static_cast<ColliderComponent*>(colliders.at(event.contact.bodyAID));
             auto* bodyB = static_cast<ColliderComponent*>(colliders.at(event.contact.bodyBID));
 
