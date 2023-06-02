@@ -4,4 +4,6 @@ Bullet|GameFiles/Player_attack9.png
 Wall1|GameFiles/Wall1.png
 Wall2|GameFiles/Wall2.png
 floor2|GameFiles/floor2.png
-Monster.png|GameFiles/Monster.png
+m1|GameFiles/Monster.png
+m2|GameFiles/ghost_attack8.png
+m3|GameFiles/Karakasa_attack1.png

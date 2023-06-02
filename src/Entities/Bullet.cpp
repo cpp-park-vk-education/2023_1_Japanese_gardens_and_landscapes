@@ -37,7 +37,7 @@ namespace AnimeDefendersEngine {
         Logger::defaultLog.printMessage(getId() + " hited " + otherCollider.getEntityId() + "\n");
         std::cout << getId() + " start collision with " + otherCollider.getEntityId() + "\n";
         rigidbody.velocity = rigidbody.velocity * (-1);
-        // destroy();
+        //  destroy();
     }
 
     auto Bullet::onCollisionStay(ColliderComponent& otherCollider) -> void {

@@ -15,8 +15,8 @@ namespace AnimeDefendersEngine {
 
     }  // namespace
 
-    Monster::Monster(Scene& scene, FileSystem::FileSystem& fileSystem, const std::string& entityId, Math::Vector2f position,
-                     Math::Vector2f velocity, float mass = defaultMonsterMass, float radius = defaultMonsterRadius,
+    Monster::Monster(Scene& scene, FileSystem::FileSystem& fileSystem, const std::string& entityId, const std::string& textureId,
+                     Math::Vector2f position, Math::Vector2f velocity, float mass = defaultMonsterMass, float radius = defaultMonsterRadius,
                      float health = defaultMonsterHealth)
         : Entity(entityId, scene),
           m_health(getId(), scene.getComponentManager(), health),
@@ -30,17 +30,22 @@ namespace AnimeDefendersEngine {
               [this](ColliderComponent& otherCollider) { this->onCollisionStay(otherCollider); },
               [this](ColliderComponent& otherCollider) { this->onCollisionExit(otherCollider); }, m_transform, &m_rigidbody),
           m_sprite(getId(), scene.getComponentManager(), {{position.x, 0, position.y}, 180, 0}, {0}) {
-        m_sprite.setTexture(m_sprite.getDrawTextureWrapper().loadTexture(fileSystem.getImage("Monster.png")));
+        m_sprite.setTexture(m_sprite.getDrawTextureWrapper().loadTexture(fileSystem.getImage(textureId)));
         Logger::defaultLog.printMessage(getId() + " is created!\n");
     }
 
-    auto Monster::onCollisionEnter(ColliderComponent& otherCollider) -> void {}
+    auto Monster::onCollisionEnter(ColliderComponent& otherCollider) -> void {
+        if (otherCollider.getEntityId() == "bullet") {
+            destroy();
+        }
+    }
 
     auto Monster::onCollisionStay(ColliderComponent& otherCollider) -> void {}
 
     auto Monster::onCollisionExit(ColliderComponent& otherCollider) -> void {}
 
     auto Monster::update() -> void {
+        m_rigidbody.velocity = Math::Vector2f(0, 0.1f);
         m_sprite.setTranspose({
             {m_transform.position.x, 0.02 * sin(0.000004 * clock()), m_transform.position.y},
             m_sprite.getTranspose().vecticalViewAngle,
