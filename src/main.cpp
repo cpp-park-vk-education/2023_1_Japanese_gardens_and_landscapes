@@ -77,7 +77,7 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
         }
 
         m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::Wall>(
-            m_sceneManager.getActiveScene(), "Wall3", fileSystem, "Wall1", Vector2f(1, -1), Vector2f(0.5, 0.1)));
+            m_sceneManager.getActiveScene(), "Wall100", fileSystem, "Wall1", Vector2f(1, -1), Vector2f(0.5, 0.1)));
         m_gameLoop.run();
     }
 };
