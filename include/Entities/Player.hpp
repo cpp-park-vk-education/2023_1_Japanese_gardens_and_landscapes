@@ -27,7 +27,6 @@ namespace AnimeDefendersEngine {
         TransformComponent m_transform;
         RigidBodyComponent m_rigidbody;
         ColliderComponent m_collider;
-        Graphics::Sprite m_sprite;
         HealthComponent m_health;
         InputComponent m_inputComponent;
         Graphics::Camera m_camera;
