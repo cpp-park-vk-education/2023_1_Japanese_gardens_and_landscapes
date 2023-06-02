@@ -24,7 +24,7 @@ namespace AnimeDefendersEngine {
     },
               [this](ColliderComponent& otherCollider) { this->onCollisionStay(otherCollider); },
               [this](ColliderComponent& otherCollider) { this->onCollisionExit(otherCollider); }, transform),
-          sprite(getId(), scene.getComponentManager(), {{position.x, 50, position.y}, 0, 0}, {0}) {
+          sprite(getId(), scene.getComponentManager(), {{position.x, 0, position.y}, 0, 0}, {0}) {
         sprite.setTexture(sprite.getDrawTextureWrapper().loadTexture(fileSystem.getImage("Wall.png")));
         Logger::defaultLog.printMessage(getId() + " is created!\n");
     }
@@ -37,8 +37,8 @@ namespace AnimeDefendersEngine {
 
     auto Wall::update() -> void {
         // AnimeDefendersEngine::Logger::defaultLog.printMessage("rotating");
-        sprite.setTranspose(
-            {sprite.getTranspose().posCoords, sprite.getTranspose().horisontalViewAngle + 1, sprite.getTranspose().vecticalViewAngle});
+        // sprite.setTranspose(
+        //   {sprite.getTranspose().posCoords, sprite.getTranspose().horisontalViewAngle + 1, sprite.getTranspose().vecticalViewAngle});
     }
 
 }  // namespace AnimeDefendersEngine
