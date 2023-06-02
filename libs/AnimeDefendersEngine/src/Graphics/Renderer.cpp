@@ -2,6 +2,8 @@
 #include "Sprite.hpp"
 #include "UiElement.hpp"
 
+#include <iostream>
+
 namespace AnimeDefendersEngine::Graphics {
 
     Renderer::Renderer(std::shared_ptr<IWindow> window) noexcept : m_window(window) {}

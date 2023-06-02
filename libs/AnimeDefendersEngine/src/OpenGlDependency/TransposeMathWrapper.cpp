@@ -1,6 +1,7 @@
 #include "TransposeMathWrapper.hpp"
 
 #include <GL/gl.h>
+#include <iostream>
 
 namespace AnimeDefendersEngine::Graphics {
 

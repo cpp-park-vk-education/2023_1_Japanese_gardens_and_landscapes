@@ -1,10 +1,14 @@
 #include "DrawTextureWrapper.hpp"
 
 #include <GL/glut.h>
+#include <iostream>
 
 namespace AnimeDefendersEngine::Graphics {
 
     auto DrawTextureWrapper::loadTexture(const Math::Matrix2d<Color>& pixelMatrix) const noexcept -> Texture {
+        for (auto it = pixelMatrix.begin(); it != pixelMatrix.end(); it++) {
+            std::cout << static_cast<int>(it->green) << std::endl;
+        }
         Texture newTexture;
         glGenTextures(1, &newTexture.textureId);
         glBindTexture(GL_TEXTURE_2D, newTexture.textureId);

@@ -15,6 +15,7 @@ namespace AnimeDefendersEngine::Graphics::SpriteSystem {
 
         transposeMathWrapper.applyTransposeMatrix(transpose);
         drawTextureWrapper.drawTexture(texture);
+        transposeMathWrapper.dropLastMatrix();
     }
 
 }  // namespace AnimeDefendersEngine::Graphics::SpriteSystem
