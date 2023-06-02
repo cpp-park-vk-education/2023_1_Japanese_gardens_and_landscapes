@@ -1,5 +1,6 @@
 #pragma once
 
+#include <chrono>
 #include "ColliderComponent.hpp"
 #include "Entity.hpp"
 #include "FileSystem.hpp"
@@ -14,8 +15,8 @@ namespace AnimeDefendersEngine {
 
     class Monster : public Entity {
      public:
-        Monster(Scene& scene, FileSystem::FileSystem& fileSystem, const std::string& entityId,
-               Math::Vector2f position, Math::Vector2f velocity, float mass, float radius, float health);
+        Monster(Scene& scene, FileSystem::FileSystem& fileSystem, const std::string& entityId, Math::Vector2f position,
+                Math::Vector2f velocity, float mass, float radius, float health);
 
         auto onCollisionEnter(ColliderComponent& otherCollider) -> void;
         auto onCollisionStay(ColliderComponent& otherCollider) -> void;

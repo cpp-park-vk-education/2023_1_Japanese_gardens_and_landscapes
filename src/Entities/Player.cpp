@@ -43,8 +43,8 @@ namespace AnimeDefendersEngine {
     auto Player::onCollisionExit(ColliderComponent& otherCollider) -> void {}
 
     auto Player::update() -> void {
-        m_rigidbody.velocity = Math::Vector2f(0.1, 0);
-        // std::cout << m_transform.position.x << std::endl;
+        // m_rigidbody.velocity = Math::Vector2f(0.1, 0);
+        //   std::cout << m_transform.position.x << std::endl;
         m_camera.setTranspose({
             {m_transform.position.x, 0, m_transform.position.y},
             m_camera.getCameraTranspose().vecticalViewAngle,

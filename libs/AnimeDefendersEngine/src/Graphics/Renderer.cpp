@@ -31,7 +31,7 @@ namespace AnimeDefendersEngine::Graphics {
             throw std::runtime_error("The active camera should be the only one! At the moment they are not.");
         }
 
-        activeCamera->determineNewCameraTranspose();
+        // activeCamera->determineNewCameraTranspose();
         activeCamera->applyCameraView();
 
         for (const auto& component : sprites) {
