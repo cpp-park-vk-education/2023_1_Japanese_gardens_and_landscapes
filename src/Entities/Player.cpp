@@ -44,10 +44,16 @@ namespace AnimeDefendersEngine {
 
     auto Player::update() -> void {
         // m_rigidbody.velocity = Math::Vector2f(0.1, 0);
-        //   std::cout << m_transform.position.x << std::endl;
+        //    std::cout << m_transform.position.x << std::endl;
+
+        // m_camera.getTransposeMathWrapper().applyTransposeMatrix({
+        //     {m_transform.position.x, 0, m_transform.position.y},
+        //     m_camera.getCameraTranspose().vecticalViewAngle + 0.1f,
+        //     m_camera.getCameraTranspose().horisontalViewAngle
+        // });
         m_camera.setTranspose({
             {m_transform.position.x, 0, m_transform.position.y},
-            m_camera.getCameraTranspose().vecticalViewAngle,
+            m_camera.getCameraTranspose().vecticalViewAngle + 0.1f,
             m_camera.getCameraTranspose().horisontalViewAngle
         });
         // if (m_health.getHealth() < 0) {

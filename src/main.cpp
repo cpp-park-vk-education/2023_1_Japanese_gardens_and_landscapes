@@ -65,12 +65,15 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
         std::cout << "Input manager initialized " << std::endl;
         // m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::Bullet>(
         //     m_sceneManager.getActiveScene(), fileSystem, "dsds", Vector2f(0, 0), Vector2f(0, 0), 1, 1));
-        AnimeDefendersEngine::Math::Transpose tp{};
+        AnimeDefendersEngine::Math::Transpose tp{
+            {10, 0, 20},
+            45, 45
+        };
 
         AnimeDefendersEngine::Logger::defaultLog.printMessage(" trying to create player!");
 
         m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::Player>(
-            m_sceneManager.getActiveScene(), fileSystem, inputManager, "Player", Vector2f(0, 0), Vector2f(0, 0), 1, 0.1, 100, tp));
+            m_sceneManager.getActiveScene(), fileSystem, inputManager, "Player", Vector2f(0, 0), Vector2f(0, 0), 1, 0.05, 100, tp));
 
         for (int i = 0; i < 7; i++) {
             m_sceneManager.getActiveScene().addEntity(
@@ -90,12 +93,12 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
                     Vector2f(10 - 2 * i, 11 - 2 * j), Vector2f(0.1, 0.5)));
             }
         }
-        m_sceneManager.getActiveScene().addEntity(
-            std::make_shared<AnimeDefendersEngine::Bullet>(m_sceneManager.getActiveScene(), "bullet" + std::to_string(0), fileSystem,
-                                                           "Bullet", Vector2f(0, -0.5), Vector2f(0, -0.1f), 1, 0.1));
+        // m_sceneManager.getActiveScene().addEntity(
+        //     std::make_shared<AnimeDefendersEngine::Bullet>(m_sceneManager.getActiveScene(), "bullet" + std::to_string(0), fileSystem,
+        //                                                    "Bullet", Vector2f(0, -0.5), Vector2f(0, -0.1f), 0.05, 0.1));
 
-        m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::Monster>(
-            m_sceneManager.getActiveScene(), fileSystem, "Monster1", Vector2f(0.f, -1.7f), Vector2f(0, 0), 3, 1, 10));
+        // m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::Monster>(
+        //     m_sceneManager.getActiveScene(), fileSystem, "Monster1", Vector2f(0.f, -1.7f), Vector2f(0, 0), 3, 0.2, 10));
 
         // m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::DamageZone>(
         //     m_sceneManager.getActiveScene(), "floor" + std::to_string(1), fileSystem, "floor2", Vector2f(0, -3), Vector2f(0.1, 0.5)));

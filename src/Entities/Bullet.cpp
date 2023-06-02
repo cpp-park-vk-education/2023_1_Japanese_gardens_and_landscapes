@@ -47,18 +47,17 @@ namespace AnimeDefendersEngine {
     auto Bullet::onCollisionExit(ColliderComponent& otherCollider) -> void {}
 
     auto Bullet::update() -> void {
-        // sprite.setTexture(sprite.getDrawTextureWrapper().loadTexture(fileSystem.getImage(textureId)));
-        // sprite.setTranspose({
-        //     {transform.position.x, 0, transform.position.y},
-        //     sprite.getTranspose().vecticalViewAngle - 2.f,
-        //     sprite.getTranspose().horisontalViewAngle + 2.f
-        // });
-
         sprite.setTranspose({
             {transform.position.x, 0, transform.position.y},
-            sprite.getTranspose().vecticalViewAngle,
-            sprite.getTranspose().horisontalViewAngle
+            sprite.getTranspose().vecticalViewAngle - 2.f,
+            sprite.getTranspose().horisontalViewAngle + 2.f
         });
+
+        // sprite.setTranspose({
+        //     {transform.position.x, 0, transform.position.y},
+        //     sprite.getTranspose().vecticalViewAngle,
+        //     sprite.getTranspose().horisontalViewAngle
+        // });
     };
 
 }  // namespace AnimeDefendersEngine

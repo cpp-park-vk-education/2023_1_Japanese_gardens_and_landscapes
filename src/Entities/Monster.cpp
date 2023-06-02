@@ -32,7 +32,6 @@ namespace AnimeDefendersEngine {
           m_sprite(getId(), scene.getComponentManager(), {{position.x, 0, position.y}, 180, 0}, {0}) {
         m_sprite.setTexture(m_sprite.getDrawTextureWrapper().loadTexture(fileSystem.getImage("Monster.png")));
         Logger::defaultLog.printMessage(getId() + " is created!\n");
-        srand(time(0));  // инициализируем генератор случайных чисел
     }
 
     auto Monster::onCollisionEnter(ColliderComponent& otherCollider) -> void {}
