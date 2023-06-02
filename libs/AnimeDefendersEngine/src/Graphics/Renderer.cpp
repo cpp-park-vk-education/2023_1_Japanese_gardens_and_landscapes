@@ -31,7 +31,6 @@ namespace AnimeDefendersEngine::Graphics {
             throw std::runtime_error("The active camera should be the only one! At the moment they are not.");
         }
 
-        std::cout << activeCamera->getCameraTranspose().posCoords.x << ' ' << activeCamera->getCameraTranspose().posCoords.z << '\n';
         activeCamera->determineNewCameraTranspose();
         activeCamera->applyCameraView();
 

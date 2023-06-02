@@ -18,7 +18,6 @@ namespace AnimeDefendersEngine {
     }
 
     auto InputManager::keyboardHandler(unsigned char pressedKey, int xMousePosition, int yMousePosition) -> void {
-        std::cout << "fuck" << std::endl;
         auto event = std::make_unique<Event>("Key" + std::to_string(pressedKey), EventType::KeyPressed);
         m_eventManager.addEvent(std::move(event));
     }

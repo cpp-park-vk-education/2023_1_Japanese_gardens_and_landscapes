@@ -5,7 +5,7 @@ namespace AnimeDefendersEngine {
     AnimeFramework::AnimeFramework()
         : m_sceneManager{},
           m_gameLoop{std::make_unique<SystemManager>(),
-                     std::make_unique<Graphics::Renderer>(std::make_unique<Graphics::Window>(1280, 1280, "Gaaaaaay")),
+                     std::make_unique<Graphics::Renderer>(std::make_unique<Graphics::Window>(1280, 1280, "Anime")),
                      std::make_unique<EventManager>(), m_sceneManager} {}
 
     auto AnimeFramework::run() -> void {
