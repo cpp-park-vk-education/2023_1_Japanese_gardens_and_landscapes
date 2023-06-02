@@ -1,6 +1,5 @@
-#include "Logger.hpp"
 #include "Player.hpp"
-
+#include "Logger.hpp"
 
 #include <iostream>
 
@@ -43,7 +42,7 @@ namespace AnimeDefendersEngine {
 
     auto Player::onCollisionExit(ColliderComponent& otherCollider) -> void {}
 
-    auto Player::update() -> void {
+    auto Player::update() -> void{
         // m_rigidbody.velocity = Math::Vector2f(0.1, 0);
         //    std::cout << m_transform.position.x << std::endl;
 
@@ -52,19 +51,11 @@ namespace AnimeDefendersEngine {
         //     m_camera.getCameraTranspose().vecticalViewAngle + 0.1f,
         //     m_camera.getCameraTranspose().horisontalViewAngle
         // });
-        glLoadIdentity();
-        m_camera.getTransposeMathWrapper().applyTransposeMatrix({
-            {m_transform.position.x, 0, m_transform.position.y},
-            m_camera.getCameraTranspose().vecticalViewAngle + 0.1f,
-            m_camera.getCameraTranspose().horisontalViewAngle
-        });
-
         // m_camera.setTranspose({
         //     {m_transform.position.x, 0, m_transform.position.y},
         //     m_camera.getCameraTranspose().vecticalViewAngle + 0.1f,
         //     m_camera.getCameraTranspose().horisontalViewAngle
         // });
-
         // if (m_health.getHealth() < 0) {
         //     m_camera.setTranspose({m_camera.getCameraTranspose().posCoords, m_camera.getCameraTranspose().vecticalViewAngle - 2.f,
         //                            m_camera.getCameraTranspose().horisontalViewAngle + 2.f});
