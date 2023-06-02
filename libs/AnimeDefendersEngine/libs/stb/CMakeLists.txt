@@ -9,10 +9,10 @@ set(source
     ${CMAKE_CURRENT_SOURCE_DIR}/stb_image.cpp
 )
 set(include_files 
-    ${CMAKE_CURRENT_SOURCE_DIR}/stb
+    ${CMAKE_CURRENT_SOURCE_DIR}/stb/stb_image.h
 )
 set(${include_locations}
-    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/stb
 )
 
 add_library(${project_name} STATIC ${source})
