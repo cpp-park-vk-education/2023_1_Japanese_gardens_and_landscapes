@@ -1,12 +1,12 @@
 #include <iostream>
 #include "AnimeFramework.hpp"
 #include "Bullet.hpp"
-#include "Monster.hpp"
 #include "Camera.hpp"
 #include "DamageZone.hpp"
 #include "FileSystem.hpp"
 #include "InputManager.hpp"
 #include "Logger.hpp"
+#include "Monster.hpp"
 #include "Player.hpp"
 #include "Renderer.hpp"
 #include "Scene.hpp"
@@ -94,8 +94,8 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
         //     std::make_shared<AnimeDefendersEngine::Bullet>(m_sceneManager.getActiveScene(), "bullet" + std::to_string(0), fileSystem,
         //                                                    "Bullet", Vector2f(0, -0.5), Vector2f(0, -0.1f), 1, 0.1));
 
-         m_sceneManager.getActiveScene().addEntity(
-            std::make_shared<AnimeDefendersEngine::Monster>(m_sceneManager.getActiveScene(), fileSystem, "Monster1", Vector2f(0.f, -1.7f), Vector2f(0, 0), 3, 1, 10));
+        m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::Monster>(
+            m_sceneManager.getActiveScene(), fileSystem, "Monster1", Vector2f(0.f, -1.7f), Vector2f(0, 0), 3, 1, 10));
 
         // m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::DamageZone>(
         //     m_sceneManager.getActiveScene(), "floor" + std::to_string(1), fileSystem, "floor2", Vector2f(0, -3), Vector2f(0.1, 0.5)));

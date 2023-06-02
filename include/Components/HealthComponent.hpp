@@ -20,6 +20,7 @@ namespace AnimeDefendersEngine {
         }
 
         auto decreaseHealth(float damage) -> void { m_health -= damage; }
+        auto getHealth() -> float { return m_health; }
         auto setHealth(float health) -> void { m_health = health; }
         auto setMaxHealth(float maxHealth) -> void { m_maxHealth = maxHealth; }
 

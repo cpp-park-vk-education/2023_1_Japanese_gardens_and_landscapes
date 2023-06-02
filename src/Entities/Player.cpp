@@ -20,10 +20,7 @@ namespace AnimeDefendersEngine {
                    float health = defaultPlayerHealth, Math::Transpose transpose = defaultTranspose)
         : Entity(entityId, scene),
           m_camera(
-              getId(), scene.getComponentManager(), transpose,
-              [](Math::Transpose&) {
-    },
-              [](Math::Transpose&) {}, true),
+              getId(), scene.getComponentManager(), transpose, [](Math::Transpose&) {}, [](Math::Transpose&) {}, true),
           m_inputComponent(getId(), scene.getComponentManager(), inputManager),
           m_health(getId(), scene.getComponentManager(), health),
           m_transform(getId(), scene.getComponentManager(), position),
@@ -38,7 +35,7 @@ namespace AnimeDefendersEngine {
 
     auto Player::onCollisionEnter(ColliderComponent& otherCollider) -> void {
         Logger::defaultLog.printMessage(getId() + " hited " + otherCollider.getEntityId() + "\n");
-        //destroy();
+        // destroy();
     }
 
     auto Player::onCollisionStay(ColliderComponent& otherCollider) -> void {}
@@ -46,12 +43,24 @@ namespace AnimeDefendersEngine {
     auto Player::onCollisionExit(ColliderComponent& otherCollider) -> void {}
 
     auto Player::update() -> void {
-        if (m_inputComponent.getButtonDown('w')) {
-            Logger::defaultLog.printMessage(getId() +
-                                            "moved forward"
-                                            "\n");
-            m_rigidbody.velocity.x = playerSpeed;
-        }
+        m_rigidbody.velocity = Math::Vector2f(0.1, 0);
+        // std::cout << m_transform.position.x << std::endl;
+        m_camera.setTranspose({
+            {m_transform.position.x, 0, m_transform.position.y},
+            m_camera.getCameraTranspose().vecticalViewAngle,
+            m_camera.getCameraTranspose().horisontalViewAngle
+        });
+        // if (m_health.getHealth() < 0) {
+        //     m_camera.setTranspose({m_camera.getCameraTranspose().posCoords, m_camera.getCameraTranspose().vecticalViewAngle - 2.f,
+        //                            m_camera.getCameraTranspose().horisontalViewAngle + 2.f});
+        // } else {
+        //     if (m_inputComponent.getButtonDown('w')) {
+        //         Logger::defaultLog.printMessage(getId() +
+        //                                         "moved forward"
+        //                                         "\n");
+        //         m_rigidbody.velocity.x = playerSpeed;
+        //     }
+        // }
     };
 
 }  // namespace AnimeDefendersEngine
