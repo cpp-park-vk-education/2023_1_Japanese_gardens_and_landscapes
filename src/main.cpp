@@ -92,7 +92,7 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
 
         m_sceneManager.getActiveScene().addEntity(
             std::make_shared<AnimeDefendersEngine::Bullet>(m_sceneManager.getActiveScene(), "bullet" + std::to_string(0), fileSystem,
-                                                           "Bullet", Vector2f(0, -0.5), Vector2f(0, 0.01f), 1, 0.1));
+                                                           "Bullet", Vector2f(0, -0.5), Vector2f(0, -0.1f), 1, 0.1));
 
         // m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::DamageZone>(
         //     m_sceneManager.getActiveScene(), "floor" + std::to_string(1), fileSystem, "floor2", Vector2f(0, -3), Vector2f(0.1, 0.5)));

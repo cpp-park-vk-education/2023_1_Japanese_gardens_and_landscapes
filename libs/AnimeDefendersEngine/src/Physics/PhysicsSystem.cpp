@@ -41,10 +41,7 @@ namespace AnimeDefendersEngine::Physics {
             collider->getTransform().position = body->getPosition();
         }
 
-        return;
-
-        processContactEvents(components);
-
+        // processContactEvents(components);
         m_physicsWorld.removeBodies();
     }
 

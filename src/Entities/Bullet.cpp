@@ -35,26 +35,29 @@ namespace AnimeDefendersEngine {
 
     auto Bullet::onCollisionEnter(ColliderComponent& otherCollider) -> void {
         Logger::defaultLog.printMessage(getId() + " hited " + otherCollider.getEntityId() + "\n");
+        std::cout << "fuck" << std::endl;
         // rigidbody.velocity = rigidbody.velocity * (-1);
         destroy();
     }
 
-    auto Bullet::onCollisionStay(ColliderComponent& otherCollider) -> void {}
+    auto Bullet::onCollisionStay(ColliderComponent& otherCollider) -> void {
+        std::cout << "fuck" << std::endl;
+    }
 
     auto Bullet::onCollisionExit(ColliderComponent& otherCollider) -> void {}
 
     auto Bullet::update() -> void {
-        sprite.setTranspose({
-            {transform.position.x, 0, transform.position.y},
-            sprite.getTranspose().vecticalViewAngle - 2.f,
-            sprite.getTranspose().horisontalViewAngle + 2.f
-        });
-
         // sprite.setTranspose({
         //     {transform.position.x, 0, transform.position.y},
-        //     sprite.getTranspose().vecticalViewAngle,
-        //     sprite.getTranspose().horisontalViewAngle
+        //     sprite.getTranspose().vecticalViewAngle - 2.f,
+        //     sprite.getTranspose().horisontalViewAngle + 2.f
         // });
+
+        sprite.setTranspose({
+            {transform.position.x, 0, transform.position.y},
+            sprite.getTranspose().vecticalViewAngle,
+            sprite.getTranspose().horisontalViewAngle
+        });
     };
 
 }  // namespace AnimeDefendersEngine
