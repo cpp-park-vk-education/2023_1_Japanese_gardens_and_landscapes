@@ -11,13 +11,14 @@ namespace AnimeDefendersEngine::Graphics {
         glutInit(&argc, nullptr);
         glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
         glutInitWindowSize(m_windowWidth, m_windowHeight);
+        glEnable(GL_DEPTH_TEST);
 
         m_windowId = glutCreateWindow(windowTitle.c_str());
 
         glMatrixMode(GL_PROJECTION);
         gluPerspective(120, 1., 0.1, 100.);
         glMatrixMode(GL_MODELVIEW);
-        glutMainLoop();
+        // glutMainLoop();
     }
 
     Window::~Window() noexcept {
