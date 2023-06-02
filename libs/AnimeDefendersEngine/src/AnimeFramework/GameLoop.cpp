@@ -7,6 +7,7 @@
 #include "SystemManager.hpp"
 
 #include <chrono>
+#include <GL/freeglut.h>
 #include <iostream>
 
 namespace AnimeDefendersEngine {
@@ -57,6 +58,7 @@ namespace AnimeDefendersEngine {
         float accumulator{0};
 
         while (m_isRunning) {
+            glutMainLoopEvent();
             const auto newTime = timer.getCurrentTimeInMilliseconds();
             const auto deltaTime = newTime - timeElapsedSinceLastUpdate;
             timeElapsedSinceLastUpdate = newTime;
