@@ -32,9 +32,7 @@ namespace AnimeDefendersEngine {
               getId(), scene.getComponentManager(), radius, false,
               [this](ColliderComponent& otherCollider) { this->onCollisionEnter(otherCollider); },
               [this](ColliderComponent& otherCollider) { this->onCollisionStay(otherCollider); },
-              [this](ColliderComponent& otherCollider) { this->onCollisionExit(otherCollider); }, m_transform, &m_rigidbody),
-          m_sprite(getId(), scene.getComponentManager(), {{position.x + 200, 0, position.y}, 0, 0}, {0}) {
-        m_sprite.setTexture(m_sprite.getDrawTextureWrapper().loadTexture(fileSystem.getImage("Bullet.png")));
+              [this](ColliderComponent& otherCollider) { this->onCollisionExit(otherCollider); }, m_transform, &m_rigidbody) {
         Logger::defaultLog.printMessage(getId() + " is created!\n");
     }
 
