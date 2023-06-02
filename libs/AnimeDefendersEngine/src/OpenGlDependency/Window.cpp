@@ -15,7 +15,7 @@ namespace AnimeDefendersEngine::Graphics {
         m_windowId = glutCreateWindow(windowTitle.c_str());
 
         glMatrixMode(GL_PROJECTION);
-        // gluPerspective(120, 1., 0.1, 100.);
+        gluPerspective(120, 1., 0.1, 100.);
         glMatrixMode(GL_MODELVIEW);
         glutMainLoop();
     }
@@ -28,6 +28,7 @@ namespace AnimeDefendersEngine::Graphics {
         glutReshapeWindow(m_windowWidth, m_windowHeight);
         glutSwapBuffers();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glLoadIdentity();
     }
 
     auto Window::setMouseClickHandler(mouseClickHandler handler) const noexcept -> void {
