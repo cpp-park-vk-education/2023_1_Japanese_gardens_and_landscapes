@@ -64,7 +64,6 @@ class Game : public AnimeDefendersEngine::AnimeFramework {
         //     m_sceneManager.getActiveScene(), fileSystem, "dsds", Vector2f(0, 0), Vector2f(0, 0), 1, 1));
         AnimeDefendersEngine::Math::Transpose tp{};
 
-        AnimeDefendersEngine::Logger::defaultLog.setLogLevel(AnimeDefendersEngine::Logger::LogLevel::ErrorsWarningsAndMessages);
         AnimeDefendersEngine::Logger::defaultLog.printMessage(" trying to create player!");
 
         m_sceneManager.getActiveScene().addEntity(std::make_shared<AnimeDefendersEngine::Player>(
