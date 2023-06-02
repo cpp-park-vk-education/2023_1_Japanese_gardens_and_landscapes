@@ -25,6 +25,10 @@ namespace AnimeDefendersEngine::Graphics {
 
     auto DrawTextureWrapper::drawTexture(const Texture& texture) const noexcept -> void {
         glEnable(GL_TEXTURE_2D);
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_ALPHA_TEST);
+        glAlphaFunc(GL_GREATER, 0.1f);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glBindTexture(GL_TEXTURE_2D, texture.textureId);
         glPushMatrix();
 
