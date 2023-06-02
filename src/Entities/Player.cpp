@@ -1,5 +1,6 @@
-#include "Player.hpp"
 #include "Logger.hpp"
+#include "Player.hpp"
+
 
 #include <iostream>
 
@@ -51,11 +52,19 @@ namespace AnimeDefendersEngine {
         //     m_camera.getCameraTranspose().vecticalViewAngle + 0.1f,
         //     m_camera.getCameraTranspose().horisontalViewAngle
         // });
-        m_camera.setTranspose({
+        glLoadIdentity();
+        m_camera.getTransposeMathWrapper().applyTransposeMatrix({
             {m_transform.position.x, 0, m_transform.position.y},
             m_camera.getCameraTranspose().vecticalViewAngle + 0.1f,
             m_camera.getCameraTranspose().horisontalViewAngle
         });
+
+        // m_camera.setTranspose({
+        //     {m_transform.position.x, 0, m_transform.position.y},
+        //     m_camera.getCameraTranspose().vecticalViewAngle + 0.1f,
+        //     m_camera.getCameraTranspose().horisontalViewAngle
+        // });
+
         // if (m_health.getHealth() < 0) {
         //     m_camera.setTranspose({m_camera.getCameraTranspose().posCoords, m_camera.getCameraTranspose().vecticalViewAngle - 2.f,
         //                            m_camera.getCameraTranspose().horisontalViewAngle + 2.f});
